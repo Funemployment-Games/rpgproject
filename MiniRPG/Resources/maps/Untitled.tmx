@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="40" height="40" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="castle" tilewidth="16" tileheight="16" margin="5">
+  <image source="../castle.png" width="635" height="980"/>
+ </tileset>
+ <tileset firstgid="2341" name="meta_tiles" tilewidth="16" tileheight="16" margin="5">
+  <image source="../meta_tiles.png" width="64" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="collidable" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="2344" name="king" tilewidth="16" tileheight="16">
+  <image source="../characters/king.png" width="127" height="16"/>
+ </tileset>
+ <layer name="floor" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt1LkNwkAQRuFxgL0dENgclXAfFTlHlEBGB8RUQAeOaQAawCLlIZEACThYr1Z/8GmSleZJI23pzEoREYnGrWNWw9LfJdh76svZ1U3+pz71qU99sfZtMrMDtpn6Yu2rAu6rX333APqG7l2OAj30MXDfb3z2jZhjTDDFDHMssMQK6w9t3zf0/+9p59rvOzZ08tR3xqWBq6c+ERGRkD0AA3XEoA==
+  </data>
+ </layer>
+ <layer name="meta" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt1rEJACAMRcG0DuL+K7qC+CGmuAPLkAc2qQLg1l7509c/27FDn76Uvoy+jL6MvsztXfL7fpne1z3bseP3/066n/UBwJsDCfMfFw==
+  </data>
+ </layer>
+ <objectgroup name="exits" width="40" height="40">
+  <object name="exit" x="336" y="416" width="16" height="16">
+   <properties>
+    <property name="destination" value="worldmap_nw"/>
+    <property name="startx" value="10"/>
+    <property name="starty" value="8"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="start" width="40" height="40">
+  <object name="start" x="336" y="272" width="16" height="16"/>
+ </objectgroup>
+ <layer name="npc" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztziEBAAAIA7BbqtA/IBXuMFuCJQBAY+d7AAAAAEDrAKTIADQ=
+  </data>
+ </layer>
+</map>
