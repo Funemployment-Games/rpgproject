@@ -21,34 +21,34 @@
  </tileset>
  <layer name="floor" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt0LFqAkEQgOHTNoIWsTTm9GJAQVAwoI0i2piDBBJtRLCRVLH12bSzvycQxDcQsbD2D5ywLFpoYG+RKT6OuS3mZxKO4ySEEELcjQyKClebTzxtLhnqK6OiqGKNNjrohXMNbwo/ZqaviRYOii2+0ccgnNV3P+K+FSaY4Secber7u9cXNhhaej+H/Ts+8Zid91P75H73eb+Z5fc79cn9/ne/vWV9gdYXRNj3wJ6kJoU5bwss8cic1pjsy+AJWTzDRQ55eHhBAa8Kk31l1K/QMNzXRO+M7oX/7wb7PtjzeYORob4xe35vMDXUJ4QQQtjsCOyxzYs=
+   eJzt0bsOAVEUheF9agoFhYJQKETiCURBNIpRuBVMokFF4X29gmewTiYSjrjkSPbsxCq+YvYU82dN4kQSIiL6Wk1E6hE6otPXxXeG7tkM9zksXrzv5dh3xm0LO9hL9myp74LbwN9hLNmzpT5vivsSVgb/r9/rvo/7cT/ux/24n40+S/sVoBgoBS1lqASqCm23/RruUTPoa0E7kPf//USrr/+mYWSgbwLrCKlCm7eBQ4SjUt/pBxp9RET03654KOrM
   </data>
  </layer>
  <objectgroup name="start" width="40" height="40">
-  <object name="start" x="336" y="272" width="16" height="16"/>
+  <object name="start" x="336" y="208" width="16" height="16"/>
  </objectgroup>
  <objectgroup name="exits" width="40" height="40">
   <object name="exit" x="336" y="416" width="16" height="16">
    <properties>
-    <property name="destination" value="worldmap_nw"/>
-    <property name="startx" value="10"/>
-    <property name="starty" value="8"/>
+    <property name="destination" value="airgetlam_castle_town"/>
+    <property name="startx" value="13"/>
+    <property name="starty" value="2.5"/>
    </properties>
   </object>
  </objectgroup>
  <layer name="npc" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztzjENAAAIA7Bd+JeMjBHSKmgCAHww7QAAAADAIQuACAAH
+   eJztzjENAAAIA7Bd+JeMjBHSKmgCADdMOwAAAADAGwuHiAAH
   </data>
  </layer>
  <layer name="pillar" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt0DEOgCAQRFHobUC9/8m8C1tDgsUWJua95BfTTikA8K3nZbPnvxz/5fgvx385/vuXo661qEdndEX3FAAA7Azh0AtE
+   eJzt0DEKgDAMheH0COoJlOyC4P1P0rvYoVAIRYcMte3/QYaQDI8nAgDw2s2uTVIUp5nL3O/KD/oVP3a8oz8f+vOhPx/6G98SRNY0W2idpO7IufSn+QAAAGb3AL/DC0g=
   </data>
  </layer>
  <layer name="meta" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt1ksKwCAQBFG9/6VzgWBi2l/gFbhQGKppN1MKAOAtdcCR7/69dW/NjuSv+WbPpg79ZQ79ZQ79ZQ79ZQ799Tme9pLd+8vp+VbPrnDs/t+T9mf5AAD4xgVGywC8
+   eJzt1kEKwCAQBEH9/6dzD0IiE3UD1eBFXHoYL9saAGCGHhz5xp773Zs3q/hjvpVzX3j0l3n0l3n0l3n0l3n0N+d52k1O7y/V8+2c2+U5/b+V9ufK+QAAqMwFo5oAgQ==
   </data>
  </layer>
 </map>

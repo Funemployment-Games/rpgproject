@@ -2,7 +2,6 @@
 //  config.h
 //  MiniRPG
 //
-//  Created by Brandon Trebitowski on 1/6/13.
 //
 //
 
@@ -10,6 +9,6 @@
 #define MiniRPG_config_h
 
 #define kGameScale 2
-#define kStartingRoom "castle1"
+#define kStartingRoom "airgetlam_castle_throne"
 
 #endif

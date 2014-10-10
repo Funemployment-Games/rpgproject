@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="30" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="castle_lower" tilewidth="16" tileheight="16">
+  <image source="castle_lower.png" width="690" height="655"/>
+ </tileset>
+ <tileset firstgid="1721" source="meta.tsx"/>
+ <layer name="floor" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzTZWBg0B0gzMXIwMANxDxY8CIm7OL48Acc4vxArM6EsDeDlYHhMwt2LMTMwDCdCVPcBSjWx4hdjzQW9TAcRKS99jjsxYeXM4/aOxTsfQ5MN/sGwF4hJoidpNr7A6h+KQ49pNhLip0wfGHU3kFv7wE86ZIQ/k2BvbTAo/Zi4oUUxC8uvcTYm0uBv3CVlaP2Dh57ZwDxTCzin4hIU5cosBeEXbHIEbKXGu2NkWZvASuqPZ+oZO8koLmT8dg7m0b+3Qs0dx8QH8WBjwHxGTR8HIhPAPFJID6FRR4fvswKsVeYjYHhJZD9ihV3/+kTHjlyMQAEA7Z8
+  </data>
+ </layer>
+ <layer name="meta" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJxjYBg4sJONvhjZXnxuIscfxMiN2jsy7UVPf/S0lxyAz720tJdYM0ftHZn20gKM2otfDSXmj9o7ai+6GnLrQUrLjZHU3hi1l/r2UtLXIFfvQAAAqkd0ZQ==
+  </data>
+ </layer>
+ <objectgroup name="exits" width="30" height="30">
+  <object name="exit_throne_room" x="224" y="32" width="16" height="16">
+   <properties>
+    <property name="destination" value="airgetlam_castle_throne"/>
+    <property name="startx" value="22"/>
+    <property name="starty" value="25"/>
+   </properties>
+  </object>
+  <object name="exit_worldmap" x="224" y="464" width="32" height="16">
+   <properties>
+    <property name="destination" value="worldmap_nw"/>
+    <property name="startx" value="2"/>
+    <property name="starty" value="2"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
