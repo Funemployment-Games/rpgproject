@@ -69,7 +69,7 @@ void GameLayer::loadMapNamed(std::string name)
     
     std::string fileExtension = ".tmx";
     std::string fileNameWithExtension = "maps/" + name + fileExtension;
-    //printf("%s\n",fileNameWithExtension.c_str());
+    printf("Loading map: %s\n",fileNameWithExtension.c_str());
     tileMap = TMXTiledMap::create(fileNameWithExtension);
     this->addChild(tileMap, -6);
     metaLayer = tileMap->getLayer("meta");
@@ -220,10 +220,10 @@ void GameLayer::setPlayerPosition(Vec2 position)
 {
 	Vec2 tileCoord = tileCoordForPosition(position);
     
-    //printf("setPlayerPosition - Current TileCoordinates: %f, %f\n", tileCoord.x, tileCoord.y);
+    //printf("\nsetPlayerPosition - Current TileCoordinates: %f, %f\n", tileCoord.x, tileCoord.y);
     //printf("setPlayerPosition - Current desiredPosition: %f, %f\n", position.x, position.y);
     
-    position = wrapWoldMap(tileCoord, position);
+    //position = wrapWoldMap(tileCoord, position);
     
     //printf("setPlayerPosition - Current positionFromTileCoord: %f, %f\n", position.x, position.y);
     
@@ -258,6 +258,8 @@ void GameLayer::setPlayerPosition(Vec2 position)
 
 bool GameLayer::scanMetaLayer(Vec2 tileCoord)
 {
+    //printf("scanMetaLayer - Current TileCoordinates: %f, %f\n", tileCoord.x, tileCoord.y);
+    
     int tileGid = metaLayer->getTileGIDAt(tileCoord);
     
     if (tileGid)
