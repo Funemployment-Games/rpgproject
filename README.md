@@ -69,3 +69,6 @@ Menus (out of game)
 Strings
 * Not started
 * Need some table or something to pull these from, make it localizable.
+
+Current Tackle List
+Matthew - I'm going to create a sample starter town and start setting up the code and scripting functionality for it. My first goal is multiple, unique NPCs, followed by fixed path moving NPCs, followed by shops. I also plan to finish setting it up so that the player can enter/exit the castle.
