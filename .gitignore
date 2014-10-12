@@ -2,3 +2,7 @@
 *.xcuserstate
 *.xcuserdatad
 *.xcworkspace
+*.opensdf
+*.sdf
+*.sdf
+*.suo
