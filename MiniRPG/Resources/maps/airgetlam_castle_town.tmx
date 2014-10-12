@@ -4,6 +4,14 @@
   <image source="castle_lower.png" width="690" height="655"/>
  </tileset>
  <tileset firstgid="1721" source="meta.tsx"/>
+ <tileset firstgid="1724" name="merchant" tilewidth="16" tileheight="16" spacing="2" margin="2">
+  <image source="../characters/merchant.png" width="56" height="56"/>
+  <tile id="4">
+   <properties>
+    <property name="name" value="ItemShop"/>
+   </properties>
+  </tile>
+ </tileset>
  <layer name="floor" width="30" height="30">
   <data encoding="base64" compression="zlib">
    eJzTZWBg0B0gzMXIwMANxDxY8CIm7OL48Acc4vxArM6EsDeDlYHhMwt2LMTMwDCdCVPcBSjWx4hdjzQW9TAcRKS99jjsxYeXM4/aOxTsfQ5MN/sGwF4hJoidpNr7A6h+KQ49pNhLip0wfGHU3kFv7wE86ZIQ/k2BvbTAo/Zi4oUUxC8uvcTYm0uBv3CVlaP2Dh57ZwDxTCzin4hIU5cosBeEXbHIEbKXGu2NkWZvASuqPZ+oZO8koLmT8dg7m0b+3Qs0dx8QH8WBjwHxGTR8HIhPAPFJID6FRR4fvswKsVeYjYHhJZD9ihV3/+kTHjlyMQAEA7Z8
@@ -30,4 +38,9 @@
    </properties>
   </object>
  </objectgroup>
+ <layer name="npc" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztzjEBAAAIA6Bd9o9kNGPsEBKQ0LDTHgAAAN8dzCEAxw==
+  </data>
+ </layer>
 </map>

@@ -9,9 +9,9 @@
 #include "NPCManager.h"
 #include <stdio.h>
 #include <stdlib.h>
-#ifdef IOS
+#ifdef CC_TARGET_OS_IPHONE
 #include <unistd.h>
-#elif WIN32
+#elif CC_PLATFORM_WIN32
 #endif
 #include <fcntl.h>
 
@@ -168,7 +168,7 @@ void NPCManager::loadLuaFilesForMap(TMXTiledMap* map, std::string layerName, std
  */
 void NPCManager::runLua(const char* luaCode)
 {
-#ifdef IOS
+#ifdef CC_TARGET_OS_IPHONE
     char buffer[256] = {0};
     int out_pipe[2];
     int saved_stdout;
@@ -190,7 +190,7 @@ void NPCManager::runLua(const char* luaCode)
     report_errors(m_pLuaState, status);
     
     // Grab the output
-#ifdef IOS
+#ifdef CC_TARGET_OS_IPHONE
     read(out_pipe[0], buffer, 255);
     dup2(saved_stdout, STDOUT_FILENO);
     
