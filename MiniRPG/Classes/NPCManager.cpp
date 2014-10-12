@@ -9,7 +9,10 @@
 #include "NPCManager.h"
 #include <stdio.h>
 #include <stdlib.h>
+#ifdef IOS
 #include <unistd.h>
+#elif WIN32
+#endif
 #include <fcntl.h>
 
 // singleton stuff
@@ -165,17 +168,18 @@ void NPCManager::loadLuaFilesForMap(TMXTiledMap* map, std::string layerName, std
  */
 void NPCManager::runLua(const char* luaCode)
 {
+#ifdef IOS
     char buffer[256] = {0};
     int out_pipe[2];
     int saved_stdout;
-    
+
     // Set up pipes for output
     saved_stdout = dup(STDOUT_FILENO);
     pipe(out_pipe);
     fcntl(out_pipe[0], F_SETFL, O_NONBLOCK);
     dup2(out_pipe[1], STDOUT_FILENO);
     close(out_pipe[1]);
-    
+#endif
     // Run Lua
     m_pLuaEngine->executeString(luaCode);
 
@@ -186,6 +190,7 @@ void NPCManager::runLua(const char* luaCode)
     report_errors(m_pLuaState, status);
     
     // Grab the output
+#ifdef IOS
     read(out_pipe[0], buffer, 255);
     dup2(saved_stdout, STDOUT_FILENO);
     
@@ -195,6 +200,7 @@ void NPCManager::runLua(const char* luaCode)
     {
         printf("Lua: %s",output.c_str());
     }
+#endif
 }
 
 /**

@@ -17,7 +17,7 @@ extern "C" {
 #endif
 
 #include "cocos2d.h"
-#include "extensions/cocos-ext.h"
+//#include "extensions/cocos-ext.h"
 
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
 #include <dirent.h>
@@ -25,7 +25,7 @@ extern "C" {
 #endif
 
 USING_NS_CC;
-USING_NS_CC_EXT;
+//USING_NS_CC_EXT;
 
 static int lua_cocos2dx_createDownloadDir(lua_State* L)
 {
