@@ -30,14 +30,14 @@ bool GameLayer::init()
     m_pLuaState   = m_pLuaStack->getLuaState();
     register_globalluamanager(m_pLuaStack->getLuaState());
     
-    //m_pLuaEngine->executeScriptFile("res/lua/globalmanager.lua");
+    m_pLuaEngine->executeScriptFile("res/lua/globalmanager.lua");
     
-    //m_pNPCManager = NPCManager::getInstance();
-    //m_pNPCManager->setGameLayer(this);
-    //m_pNPCManager->retain();
+    m_pNPCManager = NPCManager::getInstance();
+    m_pNPCManager->setGameLayer(this);
+    m_pNPCManager->retain();
     
     // TODO: Save game load code.
-    //m_pLuaEngine->executeString("gQuestFlagsLUT = {[\"TalkedToKingForFirstTime\"] = false,}");
+    m_pLuaEngine->executeString("gQuestFlagsLUT = {[\"TalkedToKingForFirstTime\"] = false,}");
     
     // TODO: This should also be loaded from the save.
     m_strCurrentMapName = kStartingRoom;
@@ -74,14 +74,14 @@ void GameLayer::loadMapNamed(std::string name)
     this->addChild(tileMap, -6);
     metaLayer = tileMap->getLayer("meta");
     metaLayer->setVisible(true);
-    //m_pNPCLayer = tileMap->getLayer("npc");
+    m_pNPCLayer = tileMap->getLayer("npc");
     tileWidth = tileMap->getTileSize().width;
     tileHeight = tileMap->getTileSize().height;
     mapWidth = tileMap->getMapSize().width;
     mapHeight = tileMap->getMapSize().height;
     exitGroup = tileMap->getObjectGroup("exits");
     
-    //m_pNPCManager->loadNPCsForTileMap(tileMap, name);
+    m_pNPCManager->loadNPCsForTileMap(tileMap, name);
 }
 
 void GameLayer::initTheHero()

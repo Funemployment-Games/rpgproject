@@ -182,15 +182,15 @@ void NPCManager::runLua(const char* luaCode)
 #endif
     // Run Lua
     m_pLuaEngine->executeString(luaCode);
-
+    
+    // Grab the output
+#ifdef CC_TARGET_OS_IPHONE
     int status = lua_pcall(m_pLuaState, 0, LUA_MULTRET, 0);
     
     // Report errors if there are any
     //printf("luaCode: %s\n", luaCode);
     report_errors(m_pLuaState, status);
     
-    // Grab the output
-#ifdef CC_TARGET_OS_IPHONE
     read(out_pipe[0], buffer, 255);
     dup2(saved_stdout, STDOUT_FILENO);
     
