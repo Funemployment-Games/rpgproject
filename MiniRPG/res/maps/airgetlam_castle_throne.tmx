@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="40" height="40" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="meta_tiles" tilewidth="16" tileheight="16" margin="5">
+  <image source="meta_tiles.png" width="64" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="collidable" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="4" name="king" tilewidth="16" tileheight="16">
+  <image source="../characters/king.png" width="127" height="16"/>
+  <tile id="2">
+   <properties>
+    <property name="name" value="TheKing"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="11" name="castle_upper" tilewidth="16" tileheight="16">
+  <image source="castle_upper.png" width="272" height="353"/>
+ </tileset>
+ <layer name="floor" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt0bsOAVEUheF9agoFhYJQKETiCURBNIpRuBVMokFF4X29gmewTiYSjrjkSPbsxCq+YvYU82dN4kQSIiL6Wk1E6hE6otPXxXeG7tkM9zksXrzv5dh3xm0LO9hL9myp74LbwN9hLNmzpT5vivsSVgb/r9/rvo/7cT/ux/24n40+S/sVoBgoBS1lqASqCm23/RruUTPoa0E7kPf//USrr/+mYWSgbwLrCKlCm7eBQ4SjUt/pBxp9RET03654KOrM
+  </data>
+ </layer>
+ <objectgroup name="start" width="40" height="40">
+  <object name="start" x="336" y="208" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup name="exits" width="40" height="40">
+  <object name="exit" x="336" y="416" width="16" height="16">
+   <properties>
+    <property name="destination" value="airgetlam_castle_town"/>
+    <property name="startx" value="13"/>
+    <property name="starty" value="2.5"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="npc" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIA7Bd+JeMjBHSKmgCADdMOwAAAADAGwuHiAAH
+  </data>
+ </layer>
+ <layer name="pillar" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt0DEKgDAMheH0COoJlOyC4P1P0rvYoVAIRYcMte3/QYaQDI8nAgDw2s2uTVIUp5nL3O/KD/oVP3a8oz8f+vOhPx/6G98SRNY0W2idpO7IufSn+QAAAGb3AL/DC0g=
+  </data>
+ </layer>
+ <layer name="meta" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt1kEKwCAQBEH9/6dzD0IiE3UD1eBFXHoYL9saAGCGHhz5xp773Zs3q/hjvpVzX3j0l3n0l3n0l3n0l3n0N+d52k1O7y/V8+2c2+U5/b+V9ufK+QAAqMwFo5oAgQ==
+  </data>
+ </layer>
+</map>
