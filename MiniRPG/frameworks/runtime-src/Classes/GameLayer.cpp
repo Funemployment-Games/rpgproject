@@ -105,7 +105,7 @@ void GameLayer::initTheHeros()
     m_pHero->setDesiredPosition(Vec2(startX, startY));
 
     m_pHero->setScale(1.0f);
-    //m_pHero->setAnchorPoint(Vec2(0.5,0.0));
+    m_pHero->setAnchorPoint(Vec2(0.0,0.0));
     m_pHero->setZOrder(-5);
     this->addChild(m_pHero, m_pTileMap->getLayer("floor")->getZOrder());
     m_pHero->idle();
@@ -128,7 +128,7 @@ void GameLayer::initTheNPCs(std::string mapName)
         npcSprite->setDesiredPosition(Vec2(x, y));
         
         npcSprite->setScale(1.0f);
-        //npcSprite->setAnchorPoint(Vec2(0.5,0.0));
+        npcSprite->setAnchorPoint(Vec2(0.,0.0));
         npcSprite->setZOrder(-5);
         this->addChild(npcSprite, m_pTileMap->getLayer("floor")->getZOrder());
         npcSprite->idle();

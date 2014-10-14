@@ -17,7 +17,7 @@
   </data>
  </layer>
  <objectgroup name="start">
-  <object name="start" x="336" y="208" width="16" height="16"/>
+  <object name="start" x="320" y="208" width="16" height="16"/>
  </objectgroup>
  <objectgroup name="exits">
   <object name="exit" x="336" y="416" width="16" height="16">
@@ -39,10 +39,16 @@
   </data>
  </layer>
  <objectgroup name="npc">
-  <object name="kingspawn" type="npcspawn" x="336" y="161" width="16" height="16">
+  <object name="kingspawn" type="npcspawn" x="336" y="160" width="16" height="16">
    <properties>
     <property name="basesprite" value="king"/>
     <property name="behaviorscript" value="agc-throne-king"/>
+   </properties>
+  </object>
+  <object name="bunny_girlspawn" type="npcspawn" x="240" y="160" width="16" height="16">
+   <properties>
+    <property name="basesprite" value="bunny_girl"/>
+    <property name="behaviorscript" value="bunny_girl"/>
    </properties>
   </object>
  </objectgroup>
