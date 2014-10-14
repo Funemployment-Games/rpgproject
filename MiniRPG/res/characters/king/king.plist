@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>merchant_e_01.png</key>
+            <key>king_e_01.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{16,16}}</string>
@@ -17,33 +17,7 @@
                 <key>sourceSize</key>
                 <string>{16,16}</string>
             </dict>
-            <key>merchant_e_02.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{20,2},{16,16}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{16,16}}</string>
-                <key>sourceSize</key>
-                <string>{16,16}</string>
-            </dict>
-            <key>merchant_n_01.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{38,2},{16,16}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{16,16}}</string>
-                <key>sourceSize</key>
-                <string>{16,16}</string>
-            </dict>
-            <key>merchant_n_02.png</key>
+            <key>king_e_02.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,20},{16,16}}</string>
@@ -56,33 +30,7 @@
                 <key>sourceSize</key>
                 <string>{16,16}</string>
             </dict>
-            <key>merchant_s_01.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{20,20},{16,16}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{16,16}}</string>
-                <key>sourceSize</key>
-                <string>{16,16}</string>
-            </dict>
-            <key>merchant_s_02.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{38,20},{16,16}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{16,16}}</string>
-                <key>sourceSize</key>
-                <string>{16,16}</string>
-            </dict>
-            <key>merchant_w_01.png</key>
+            <key>king_n_01.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,38},{16,16}}</string>
@@ -95,10 +43,62 @@
                 <key>sourceSize</key>
                 <string>{16,16}</string>
             </dict>
-            <key>merchant_w_02.png</key>
+            <key>king_n_02.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{20,2},{16,16}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{16,16}}</string>
+                <key>sourceSize</key>
+                <string>{16,16}</string>
+            </dict>
+            <key>king_s_01.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{38,2},{16,16}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{16,16}}</string>
+                <key>sourceSize</key>
+                <string>{16,16}</string>
+            </dict>
+            <key>king_s_02.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{20,20},{16,16}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{16,16}}</string>
+                <key>sourceSize</key>
+                <string>{16,16}</string>
+            </dict>
+            <key>king_w_01.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{20,38},{16,16}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{16,16}}</string>
+                <key>sourceSize</key>
+                <string>{16,16}</string>
+            </dict>
+            <key>king_w_02.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{38,20},{16,16}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -114,13 +114,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>merchant.png</string>
+            <string>king.pvr.ccz</string>
             <key>size</key>
             <string>{56,56}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:f6b5e6a312a5dd5ae683ee5867ec448b:24c1203318f41f6b837ad8df355441b4:65793c78a56469c16cc65c2f4e8d1d21$</string>
+            <string>$TexturePacker:SmartUpdate:6928f14c973ec6698f0b98aa2f66ec69:e8188fc07cea18cefb9b5cd492310cf1:128e75a997a8f5131b4928b891dd8707$</string>
             <key>textureFileName</key>
-            <string>merchant.png</string>
+            <string>king.pvr.ccz</string>
         </dict>
     </dict>
 </plist>
