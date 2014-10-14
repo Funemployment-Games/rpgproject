@@ -40,7 +40,7 @@ bool ChatBox::initWithGameLayer(std::string npcName, std::string npcDialogue)
     
     m_textArray = split(npcDialogue, '\n');
     
-    Sprite* backroundSprite = Sprite::create("ui/chat-box.png");
+    Sprite* backroundSprite = Sprite::create("res/ui/chat-box.png");
     backroundSprite->getTexture()->setAliasTexParameters();
     backroundSprite->setScale(4);
     backroundSprite->setPosition(Vec2(176,560));

@@ -43,12 +43,14 @@
    <properties>
     <property name="basesprite" value="king"/>
     <property name="behaviorscript" value="agc-throne-king"/>
+    <property name="npcname" value="TheKing"/>
    </properties>
   </object>
   <object name="bunny_girlspawn" type="npcspawn" x="240" y="160" width="16" height="16">
    <properties>
     <property name="basesprite" value="bunny_girl"/>
-    <property name="behaviorscript" value="bunny_girl"/>
+    <property name="behaviorscript" value="agc-throne-bunny_girl"/>
+    <property name="npcname" value="BunnyGirl"/>
    </properties>
   </object>
  </objectgroup>

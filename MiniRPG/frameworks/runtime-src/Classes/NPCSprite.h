@@ -28,6 +28,9 @@ public:
     virtual void createActions();
     virtual void createWalkAction();
     virtual void createIdleAction();
+    
+    //Accessors
+    std::string getScriptName();
 
 private:
     std::string m_strScriptName;

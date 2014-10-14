@@ -30,7 +30,7 @@ bool SimpleDPad::init()
     m_fRadius = 64;
     m_bIsHeld = false;
     
-    this->setPosition(Vec2(300, 0));
+    this->setPosition(Vec2(80, 80));
     this->setOpacity(100);
     
     this->scheduleUpdate();

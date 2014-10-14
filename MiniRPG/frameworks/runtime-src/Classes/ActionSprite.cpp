@@ -83,3 +83,12 @@ ActionState ActionSprite::getActionState()
     return m_actionState;
 }
 
+void ActionSprite::setCharacterName(std::string theName)
+{
+    m_strCharacterName = theName;
+}
+
+std::string ActionSprite::getCharacterName()
+{
+    return m_strCharacterName;
+}

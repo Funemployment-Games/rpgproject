@@ -31,7 +31,7 @@ bool HeroSprite::initWithParameters(std::string spriteName)
         return false;
     }
     
-    m_fWalkSpeed = 50;
+    m_fWalkSpeed = 32;
     m_strSpriteName = spriteName;
     
     createActions();
@@ -135,6 +135,7 @@ void HeroSprite::createIdleAction()
 //D-Pad
 void HeroSprite::didChangeDirectionTo(Vec2 direction)
 {
+    m_vDesiredPosition = Vec2::ZERO;
     bool directionChanged = false;
     if (direction.x == 1.0 && m_currentDirection != kActionSpriteDirectionEast)
     {

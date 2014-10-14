@@ -14,6 +14,7 @@
 #elif CC_PLATFORM_WIN32
 #endif
 #include <fcntl.h>
+#include "config.h"
 
 // singleton stuff
 static NPCManager *s_sharedNPCManager = nullptr;
@@ -58,9 +59,19 @@ GameLayer* NPCManager::getGameLayer()
     return m_pGameLayer;
 }
 
-void NPCManager::setClosestNPCName(std::string closestNPC)
+void NPCManager::addNPC(NPCSprite* theNPC)
 {
-    m_closestNPC = closestNPC;
+    m_vCurrentNPCs.pushBack(theNPC);
+}
+
+void NPCManager::update(float delta)
+{
+    for (Vector<NPCSprite*>::iterator npcIterator = m_vCurrentNPCs.begin() ; npcIterator != m_vCurrentNPCs.end(); ++npcIterator)
+    {
+        NPCSprite* currentNPC = (NPCSprite*)*npcIterator;
+        currentNPC->setPosition(currentNPC->getDesiredPosition());
+        currentNPC->update(delta);
+    }
 }
 
 /**
@@ -75,18 +86,35 @@ void NPCManager::interactWithNPCNamed(std::string npcName)
 
 void NPCManager::interactWithClosestNPC()
 {
-    if (std::strcmp(m_closestNPC.c_str(), STD_STRING_EMPTY.c_str()) != 0)
+    if (m_pClosestNPC)
     {
-        interactWithNPCNamed(m_closestNPC);
+        interactWithNPCNamed(m_pClosestNPC->getCharacterName());
     }
 }
 
-void NPCManager::loadNPCsForTileMap(TMXTiledMap* map, std::string  name)
+NPCSprite* NPCManager::willHeroCollideWithAnyNPC(Vec2 herosDesiredPosition)
 {
-    // Reset NPCs for the current map
-    runLua("gNPCLUT = {}");
+    for (Vector<NPCSprite*>::iterator npcIterator = m_vCurrentNPCs.begin() ; npcIterator != m_vCurrentNPCs.end(); ++npcIterator)
+    {
+        NPCSprite* currentNPC = (NPCSprite*)*npcIterator;
+        Vec2 npcPosition = currentNPC->getPosition();
+        
+        //printf("scanNPCLayer - Current desired tileCoord: %f, %f\n", tileCoord.x, tileCoord.y);
+        //printf("scanNPCLayer - Current npcTileCoord: %f, %f\n", npcTileCoord.x, npcTileCoord.y);
+        //printf("scanNPCLayer - Current desired Position: %f, %f\n", m_pHero->getDesiredPosition().x, m_pHero->getDesiredPosition().y);
+        //printf("scanNPCLayer - Current npcPosition: %f, %f\n", npcPosition.x, npcPosition.y);
+        
+        bool intersectsX = ((npcPosition.x - kTileSize/2) < herosDesiredPosition.x && herosDesiredPosition.x < (npcPosition.x + kTileSize/2) );
+        bool intersectsY = ((npcPosition.y - kTileSize/2) < herosDesiredPosition.y && herosDesiredPosition.y < (npcPosition.y + kTileSize/2) );
+        
+        if (intersectsX && intersectsY)
+        {
+            m_pClosestNPC = currentNPC;
+            return m_pClosestNPC;
+        }
+    }
     
-    loadLuaFilesForMap(map,"npc", name);
+    return nullptr;
 }
 
 /**
@@ -108,56 +136,30 @@ void ReplaceStringInPlace(std::string& subject, const std::string& search,
     }
 }
 
-void NPCManager::loadLuaFilesForMap(TMXTiledMap* map, std::string layerName, std::string name)
+void NPCManager::intializeNPCLua()
 {
-    //NSFileManager *manager = [NSFileManager defaultManager];
-    TMXLayer* layer = map->getLayer(layerName);
+    // Reset NPCs for the current map
+    runLua("gNPCLUT = {}");
     
-    if (!layer)
+    for (Vector<NPCSprite*>::iterator npcIterator = m_vCurrentNPCs.begin() ; npcIterator != m_vCurrentNPCs.end(); ++npcIterator)
     {
-        printf("%s has no lua!\n", name.c_str());
-        return;
-    }
+        NPCSprite* currentNPC = (NPCSprite*)*npcIterator;
 
-    // Enumerate the layer
-    for(int i = 0; i < layer->getLayerSize().width; i++)
-    {
-        for(int j = 0; j < layer->getLayerSize().height; j++)
+        // Resolve the path to the NPCs Lua file
+        //std::string roomName = mapName;
+        //ReplaceStringInPlace(roomName, ".tmx", "");
+        std::string npcFilename = "res/lua/" + currentNPC->getScriptName() + ".lua";
+        std::string fullPath    = FileUtils::getInstance()->fullPathForFilename(npcFilename);
+        std::string contentStr  = FileUtils::getInstance()->getStringFromFile(fullPath);
+
+        // If the NPC has a Lua file, initialize it.
+        if(contentStr != "")
         {
-            Vec2 tileCoord = Vec2(j,i);
-            int tileGid = layer->getTileGIDAt(tileCoord);
-
-            // Check to see if there is an NPC at this location
-            if(tileGid)
-            {
-                // Fetch the name of the NPC
-                Value tileValue = map->getPropertiesForGID(tileGid);
-                if (tileValue.getType() != Value::Type::NONE)
-                {
-                    ValueMap properties = tileValue.asValueMap();
-                    if (properties.size() > 0)
-                    {
-                        const std::string npcName = properties.at("name").asString();
-
-                        // Resolve the path to the NPCs Lua file
-                        std::string roomName = name;
-                        //ReplaceStringInPlace(roomName, ".tmx", "");
-                        std::string npcFilename = "res/lua/" + roomName + "-" + npcName + ".lua";
-                        std::string fullPath    = FileUtils::getInstance()->fullPathForFilename(npcFilename);
-                        std::string contentStr  = FileUtils::getInstance()->getStringFromFile(fullPath);
-
-                        // If the NPC has a Lua file, initialize it.
-                        if(contentStr != "")
-                        {
-                            runLua(contentStr.c_str());
-                        }
-                        else
-                        {
-                            printf("Warning: No Lua file for npc %s at path %s",npcName.c_str(),fullPath.c_str());
-                        }
-                    }
-                }
-            }
+            runLua(contentStr.c_str());
+        }
+        else
+        {
+            printf("Warning: No Lua file for npc %s at path %s\n",currentNPC->getCharacterName().c_str(),fullPath.c_str());
         }
     }
 }
@@ -198,7 +200,7 @@ void NPCManager::runLua(const char* luaCode)
     std::string output = buffer;
     if(output.length() > 2)
     {
-        printf("Lua: %s",output.c_str());
+        printf("Lua: %s\n",output.c_str());
     }
 #endif
 }

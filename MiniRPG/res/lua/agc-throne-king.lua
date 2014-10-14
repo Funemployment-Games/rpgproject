@@ -1,4 +1,4 @@
-require("lua/globalmanager")
+require("res/lua/globalmanager")
 
 king = {}
 

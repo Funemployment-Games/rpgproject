@@ -50,6 +50,8 @@ public:
     Vec2 getDesiredPosition();
     void setVelocity(const Vec2& velocity);
     Vec2 getVelocity();
+    void setCharacterName(std::string theName);
+    std::string getCharacterName();
     
     void setActionState(ActionState theState);
     ActionState getActionState();
@@ -76,6 +78,7 @@ protected:
     Vec2 m_vDesiredPosition;
     
     std::string m_strSpriteName;
+    std::string m_strCharacterName;
 };
 
 #endif

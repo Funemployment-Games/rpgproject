@@ -62,8 +62,6 @@ private:
     TMXObjectGroup* m_pExitGroup;
     std::string m_strCurrentMapName;
     
-    float tileWidth;
-    float tileHeight;
     float mapWidth;
     float mapHeight;
     
@@ -74,8 +72,6 @@ private:
     NPCManager* m_pNPCManager;
     HudLayer* m_pHudLayer;
     ChatBox* m_pChatbox;
-    
-    Vector<NPCSprite*> m_vCurrentNPCs;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

@@ -73,9 +73,7 @@ void GameLayer::loadMapNamed(std::string mapName)
     m_pTileMap = TMXTiledMap::create(fileNameWithExtension);
     this->addChild(m_pTileMap, -6);
     m_pMetaLayer = m_pTileMap->getLayer("meta");
-    m_pMetaLayer->setVisible(false);
-    tileWidth = m_pTileMap->getTileSize().width;
-    tileHeight = m_pTileMap->getTileSize().height;
+    m_pMetaLayer->setVisible(true);
     mapWidth = m_pTileMap->getMapSize().width;
     mapHeight = m_pTileMap->getMapSize().height;
     m_pExitGroup = m_pTileMap->getObjectGroup("exits");
@@ -85,6 +83,9 @@ void GameLayer::loadMapNamed(std::string mapName)
     {
         initTheNPCs(mapName);
     }
+    
+    std::string mapScript = "res/lua/" + mapName + ".lua";
+    m_pLuaEngine->executeScriptFile(mapScript.c_str());
 }
 
 void GameLayer::initTheHeros()
@@ -119,6 +120,7 @@ void GameLayer::initTheNPCs(std::string mapName)
         ValueMap npc = npcs[i].asValueMap();
         std::string basesprite = npc["basesprite"].asString();
         std::string behaviorscript  = npc["behaviorscript"].asString();
+        std::string npcName = npc["npcname"].asString();
         float x = npc["x"].asFloat();
         float y = npc["y"].asFloat();
         
@@ -126,17 +128,18 @@ void GameLayer::initTheNPCs(std::string mapName)
         
         NPCSprite* npcSprite = (NPCSprite*)NPCSprite::createNPC(basesprite, behaviorscript);
         npcSprite->setDesiredPosition(Vec2(x, y));
-        
         npcSprite->setScale(1.0f);
         npcSprite->setAnchorPoint(Vec2(0.,0.0));
         npcSprite->setZOrder(-5);
+        npcSprite->setCharacterName(npcName);
+        
         this->addChild(npcSprite, m_pTileMap->getLayer("floor")->getZOrder());
         npcSprite->idle();
         
-        m_vCurrentNPCs.pushBack(npcSprite);
+        m_pNPCManager->addNPC(npcSprite);
     }
 
-    m_pNPCManager->loadNPCsForTileMap(m_pTileMap, mapName);
+    m_pNPCManager->intializeNPCLua();
 }
 
 /**
@@ -155,11 +158,10 @@ void GameLayer::update(float delta)
         heroIsDoneWalking();
     }
     
-    for (Vector<NPCSprite*>::iterator npcIterator = m_vCurrentNPCs.begin() ; npcIterator != m_vCurrentNPCs.end(); ++npcIterator)
+
+    if (m_pNPCManager)
     {
-        NPCSprite* currentNPC = (NPCSprite*)*npcIterator;
-        currentNPC->setPosition(currentNPC->getDesiredPosition());
-        currentNPC->update(delta);
+        m_pNPCManager->update(delta);
     }
 }
 
@@ -197,8 +199,8 @@ void GameLayer::setViewpointCenter(Vec2 position)
     float halfWidth = winSize.width / 2;
     float halfHeight = winSize.height / 2;
     
-    float mapRealW = mapWidth * tileWidth;
-    float mapRealH = mapHeight * tileHeight;
+    float mapRealW = mapWidth * kTileSize;
+    float mapRealH = mapHeight * kTileSize;
     
     int maxX = MAX(position.x, halfWidth);
     int maxY = MAX(position.y, halfHeight);
@@ -274,15 +276,13 @@ void GameLayer::setPlayerPosition(Vec2 position)
 
     
     //Check NPCs
-    /*
-    if (m_pNPCLayer)
+    if (m_pNPCSpawnGroup)
     {
         if (scanNPCLayer(tileCoord))
         {
             return;
         }
     }
-     */
     
     /*
     if (m_pTreasureLayer)
@@ -326,36 +326,24 @@ bool GameLayer::scanMetaLayer(Vec2 tileCoord)
 
 bool GameLayer::scanNPCLayer(Vec2 tileCoord)
 {
-    /*
-    int tileGid = m_pNPCLayer->getTileGIDAt(tileCoord);
-    if (tileGid)
-    {
-        Value tileValue = tileMap->getPropertiesForGID(tileGid);
-        if (tileValue.getType() != Value::Type::NONE)
-        {
-            ValueMap properties = tileValue.asValueMap();
-            if (properties.size() > 0)
-            {
-                if (!m_pHudLayer->getContextButtonVisibility(eContextMenuButton_Talk))
-                {
-                    const std::string npcName = properties.at("name").asString();
-                    printf("%s\n",npcName.c_str());
-                    m_pNPCManager->setClosestNPCName(npcName);
-                    m_pHudLayer->setContextButtonVisibility(eContextMenuButton_Talk, true);
-                }
-                return true;
-            }
-        }
-    }
-    else
-    {
-        if (m_pHudLayer->getContextButtonVisibility(eContextMenuButton_Talk))
-        {
-            m_pNPCManager->setClosestNPCName(STD_STRING_EMPTY);
-            m_pHudLayer->setContextButtonVisibility(eContextMenuButton_Talk, false);
-        }
-    }
-    */
+    NPCSprite* collidedSprite = m_pNPCManager->willHeroCollideWithAnyNPC(m_pHero->getDesiredPosition());
+     if (collidedSprite)
+     {
+         if (!m_pHudLayer->getContextButtonVisibility(eContextMenuButton_Talk))
+         {
+             printf("%s\n",collidedSprite->getCharacterName().c_str());
+             m_pHudLayer->setContextButtonVisibility(eContextMenuButton_Talk, true);
+         }
+         return true;
+     }
+     else
+     {
+         if (m_pHudLayer->getContextButtonVisibility(eContextMenuButton_Talk))
+         {
+             m_pHudLayer->setContextButtonVisibility(eContextMenuButton_Talk, false);
+         }
+     }
+    
     return false;
 }
 
@@ -366,24 +354,24 @@ bool GameLayer::scanTreasureLayer(Vec2 tileCoord)
 
 Vec2 GameLayer::wrapWoldMap(Vec2 tileCoord, Vec2 worldPosition)
 {
-    if (tileCoord.x > (MAXTILEMAPSIZE - tileWidth/4))
+    if (tileCoord.x > (MAXTILEMAPSIZE - kTileSize/4))
     {
-        tileCoord.x = tileWidth/4;
+        tileCoord.x = kTileSize/4;
         worldPosition = positionForTileCoord(tileCoord);
     }
-    else if (tileCoord.x < tileWidth/4)
+    else if (tileCoord.x < kTileSize/4)
     {
-        tileCoord.x = (MAXTILEMAPSIZE - tileWidth/4);
+        tileCoord.x = (MAXTILEMAPSIZE - kTileSize/4);
         worldPosition = positionForTileCoord(tileCoord);
     }
-    else if (tileCoord.y > (MAXTILEMAPSIZE - tileHeight/4))
+    else if (tileCoord.y > (MAXTILEMAPSIZE - kTileSize/4))
     {
-        tileCoord.y = tileHeight/4;
+        tileCoord.y = kTileSize/4;
         worldPosition = positionForTileCoord(tileCoord);
     }
-    else if (tileCoord.y < tileHeight/4)
+    else if (tileCoord.y < kTileSize/4)
     {
-        tileCoord.y = (MAXTILEMAPSIZE - tileHeight/4);
+        tileCoord.y = (MAXTILEMAPSIZE - kTileSize/4);
         worldPosition = positionForTileCoord(tileCoord);
     }
     
@@ -437,8 +425,8 @@ void GameLayer::heroIsDoneWalking()
  */
 Vec2 GameLayer::tileCoordForPosition(Vec2 position)
 {
-    int x = position.x / (tileWidth);
-    int y = ((mapHeight * tileHeight) - position.y) / (tileHeight);
+    int x = position.x / (kTileSize);
+    int y = ((mapHeight * kTileSize) - position.y) / (kTileSize);
     return Vec2(x, y);
 }
 
@@ -447,8 +435,8 @@ Vec2 GameLayer::tileCoordForPosition(Vec2 position)
  */
 Vec2 GameLayer::positionForTileCoord(Vec2 tileCoord)
 {
-    int x = (tileCoord.x * tileWidth) + tileWidth;
-    int y = (mapHeight * tileHeight) - (tileCoord.y * tileHeight) - tileHeight;
+    int x = (tileCoord.x * kTileSize) + kTileSize;
+    int y = (mapHeight * kTileSize) - (tileCoord.y * kTileSize) - kTileSize;
     
     return Vec2(x, y);
 }

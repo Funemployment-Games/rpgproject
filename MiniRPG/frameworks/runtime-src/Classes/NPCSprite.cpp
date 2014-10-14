@@ -134,3 +134,9 @@ void NPCSprite::createIdleAction()
         m_idleAction[j]->retain();
     }
 }
+
+//
+std::string NPCSprite::getScriptName()
+{
+    return m_strScriptName;
+}

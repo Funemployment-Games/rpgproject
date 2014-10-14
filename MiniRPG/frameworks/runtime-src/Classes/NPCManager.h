@@ -19,6 +19,7 @@ extern "C" {
 
 #include "cocos2d.h"
 #include "CCLuaEngine.h"
+#include "NPCSprite.h"
 
 USING_NS_CC;
 
@@ -35,15 +36,17 @@ public:
     //Accessors
     void setGameLayer(GameLayer* pGameLayer);
     GameLayer* getGameLayer();
-    void setClosestNPCName(std::string closestNPC);
+    void addNPC(NPCSprite* theNPC);
     
     //Interaction
     void interactWithNPCNamed(std::string npcName);
     void interactWithClosestNPC();
+    NPCSprite* willHeroCollideWithAnyNPC(Vec2 herosDesiredPosition);
     
     //Load
-    void loadNPCsForTileMap(TMXTiledMap* map, std::string  name);
-    void loadLuaFilesForMap(TMXTiledMap* map, std::string layerName, std::string name);
+    void intializeNPCLua();
+    
+    void update(float delta);
     
 private:
     void runLua(const char* luaCode);
@@ -54,7 +57,8 @@ private:
     LuaStack* m_pLuaStack;
     lua_State* m_pLuaState;
     GameLayer* m_pGameLayer;
-    std::string m_closestNPC;
+    NPCSprite* m_pClosestNPC;
+    Vector<NPCSprite*> m_vCurrentNPCs;
 };
 
 #endif

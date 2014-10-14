@@ -9,6 +9,8 @@
 #define MiniRPG_config_h
 
 #define kGameScale 2
-#define kStartingRoom "airgetlam_castle_throne"
+#define kStartingRoom "agc-throne"
+
+#define kTileSize 16.0f
 
 #endif
