@@ -16,14 +16,10 @@ USING_NS_CC;
 class HeroSprite: public ActionSprite
 {
 public:
-    // there's no 'id' in cpp, so we recommend returning the class instance pointer
-    static cocos2d::Sprite* createSprite();
+    static Sprite* createHero(std::string spriteName);
+    static Sprite* create();
     
-    // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
-    bool init();
-    
-    // implement the "static create()" method manually
-    CREATE_FUNC(HeroSprite);
+    bool initWithParameters(std::string spriteName);
     
     //scheduled methods
     virtual void update(float dt);

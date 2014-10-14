@@ -7,6 +7,7 @@
 #include "SimpleDPad.h"
 #include "HudLayer.h"
 #include "HeroSprite.h"
+#include "NPCSprite.h"
 #include "NPCManager.h"
 #include "LuaGlobalManager.h"
 #include "ChatBox.h"
@@ -39,8 +40,9 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(GameLayer);
 private:
-    void loadMapNamed(std::string name);
-    void initTheHero();
+    void loadMapNamed(std::string mapName);
+    void initTheHeros();
+    void initTheNPCs(std::string mapName);
     void setViewpointCenter(Vec2 position);
     void setPlayerPosition(Vec2 position);
     void heroIsDoneWalking();
@@ -54,10 +56,10 @@ private:
     SpriteBatchNode *m_pActors;
     HeroSprite* m_pHero;
     
-    TMXTiledMap* tileMap;
-    TMXLayer* metaLayer;
-    TMXLayer* m_pNPCLayer;
-    TMXObjectGroup* exitGroup;
+    TMXTiledMap* m_pTileMap;
+    TMXLayer* m_pMetaLayer;
+    TMXObjectGroup* m_pNPCSpawnGroup;
+    TMXObjectGroup* m_pExitGroup;
     std::string m_strCurrentMapName;
     
     float tileWidth;
@@ -72,6 +74,8 @@ private:
     NPCManager* m_pNPCManager;
     HudLayer* m_pHudLayer;
     ChatBox* m_pChatbox;
+    
+    Vector<NPCSprite*> m_vCurrentNPCs;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

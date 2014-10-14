@@ -70,12 +70,12 @@ protected:
     
     //attributes
     float m_fWalkSpeed;
-    float m_fHitPoints;
-    float m_fDamage;
     
     //movement
     Vec2 m_vVelocity;
     Vec2 m_vDesiredPosition;
+    
+    std::string m_strSpriteName;
 };
 
 #endif

@@ -1,28 +1,28 @@
 //
-//  ActionSprite.cpp
-//  PompaDroid
+//  NPCSprite.cpp
+//  MiniRPG
 //
-//  Created by Matthew Barney on 5/28/14.
+//  Created by Matthew Barney on 10/14/14.
 //
 //
 
-#include "HeroSprite.h"
+#include "NPCSprite.h"
 
-Sprite* HeroSprite::createHero(std::string spriteName)
+Sprite* NPCSprite::createNPC(std::string spriteName, std::string scriptName)
 {
-    HeroSprite* hero = new (std::nothrow) HeroSprite();
-    if (hero && hero->initWithParameters(spriteName))
+    NPCSprite* npc = new (std::nothrow) NPCSprite();
+    if (npc && npc->initWithParameters(spriteName, scriptName))
     {
-        hero->autorelease();
-        return hero;
+        npc->autorelease();
+        return npc;
     }
-    CC_SAFE_DELETE(hero);
+    CC_SAFE_DELETE(npc);
     return nullptr;
 }
 
 
 // on "init" you need to initialize your instance
-bool HeroSprite::initWithParameters(std::string spriteName)
+bool NPCSprite::initWithParameters(std::string spriteName, std::string scriptName)
 {
     //////////////////////////////
     // 1. super init first
@@ -33,19 +33,22 @@ bool HeroSprite::initWithParameters(std::string spriteName)
     
     m_fWalkSpeed = 50;
     m_strSpriteName = spriteName;
+    m_strScriptName = scriptName;
+    
+    m_currentDirection = kActionSpriteDirectionSouth;
     
     createActions();
     
     return true;
 }
 
-void HeroSprite::update(float dt)
+void NPCSprite::update(float dt)
 {
     ActionSprite::update(dt);
 }
 
 // Creation
-void HeroSprite::createActions()
+void NPCSprite::createActions()
 {
     //idle animation
     createIdleAction();
@@ -54,7 +57,7 @@ void HeroSprite::createActions()
     createWalkAction();
 }
 
-void HeroSprite::createWalkAction()
+void NPCSprite::createWalkAction()
 {
     int i; // This is goofy as shit, but for some reason its the only way to not make i go from 1 to maxint after 1 loop.
     for (int j=kActionSpriteDirectionNorth;j<kActionSpriteDirectionMax;++j)
@@ -93,7 +96,7 @@ void HeroSprite::createWalkAction()
     }
 }
 
-void HeroSprite::createIdleAction()
+void NPCSprite::createIdleAction()
 {
     int i;
     for (int j=kActionSpriteDirectionNorth;j<kActionSpriteDirectionMax;++j)
@@ -131,45 +134,3 @@ void HeroSprite::createIdleAction()
         m_idleAction[j]->retain();
     }
 }
-
-//D-Pad
-void HeroSprite::didChangeDirectionTo(Vec2 direction)
-{
-    bool directionChanged = false;
-    if (direction.x == 1.0 && m_currentDirection != kActionSpriteDirectionEast)
-    {
-        m_currentDirection = kActionSpriteDirectionEast;
-        directionChanged = true;
-    }
-    else if (direction.x == -1.0 && m_currentDirection != kActionSpriteDirectionWest)
-    {
-        m_currentDirection = kActionSpriteDirectionWest;
-        directionChanged = true;
-    }
-    else if (direction.y == 1.0 && m_currentDirection != kActionSpriteDirectionNorth)
-    {
-        m_currentDirection = kActionSpriteDirectionNorth;
-        directionChanged = true;
-    }
-    else if (direction.y == -1.0 && m_currentDirection != kActionSpriteDirectionSouth)
-    {
-        m_currentDirection = kActionSpriteDirectionSouth;
-        directionChanged = true;
-    }
-    
-    walkWithDirection(direction, directionChanged);
-}
-
-void HeroSprite::simpleDPadTouchEnded()
-{
-    if (m_actionState == kActionStateWalk)
-    {
-        idle();
-    }
-}
-
-void HeroSprite::isHoldingDirection(Vec2 direction)
-{
-    walkWithDirection(direction, false);
-}
-

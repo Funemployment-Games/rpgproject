@@ -51,6 +51,8 @@
 		50D7C96C17EBBEDF005D0B91 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D7C96B17EBBEDF005D0B91 /* OpenGL.framework */; };
 		50D7C96E17EBBEE6005D0B91 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D7C96D17EBBEE6005D0B91 /* AppKit.framework */; };
 		50D7C97017EBBEEC005D0B91 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D7C96F17EBBEEC005D0B91 /* IOKit.framework */; };
+		7A40282E19ED9CBB002E0E70 /* NPCSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A40282D19ED9CBB002E0E70 /* NPCSprite.cpp */; };
+		7A40282F19ED9CBB002E0E70 /* NPCSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A40282D19ED9CBB002E0E70 /* NPCSprite.cpp */; };
 		7AC6D91419EC3B5D00956EDF /* ActionSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC6D90119EC3B5D00956EDF /* ActionSprite.cpp */; };
 		7AC6D91519EC3B5D00956EDF /* ActionSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC6D90119EC3B5D00956EDF /* ActionSprite.cpp */; };
 		7AC6D91619EC3B5D00956EDF /* ChatBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC6D90319EC3B5D00956EDF /* ChatBox.cpp */; };
@@ -331,6 +333,8 @@
 		50D7C96B17EBBEDF005D0B91 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		50D7C96D17EBBEE6005D0B91 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		50D7C96F17EBBEEC005D0B91 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		7A40282C19ED9C50002E0E70 /* NPCSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NPCSprite.h; path = ../Classes/NPCSprite.h; sourceTree = "<group>"; };
+		7A40282D19ED9CBB002E0E70 /* NPCSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NPCSprite.cpp; path = ../Classes/NPCSprite.cpp; sourceTree = "<group>"; };
 		7AC6D90119EC3B5D00956EDF /* ActionSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ActionSprite.cpp; path = ../Classes/ActionSprite.cpp; sourceTree = "<group>"; };
 		7AC6D90219EC3B5D00956EDF /* ActionSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSprite.h; path = ../Classes/ActionSprite.h; sourceTree = "<group>"; };
 		7AC6D90319EC3B5D00956EDF /* ChatBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ChatBox.cpp; path = ../Classes/ChatBox.cpp; sourceTree = "<group>"; };
@@ -609,6 +613,8 @@
 				7AC6D91319EC3B5D00956EDF /* SimpleDPad.h */,
 				F293BB7E15EB831F00256477 /* AppDelegate.cpp */,
 				F293BB7F15EB831F00256477 /* AppDelegate.h */,
+				7A40282C19ED9C50002E0E70 /* NPCSprite.h */,
+				7A40282D19ED9CBB002E0E70 /* NPCSprite.cpp */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -683,7 +689,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					F293B3C715EB7BE500256477 = {
-						DevelopmentTeam = MDDB52YB8L;
+						DevelopmentTeam = L8753YW299;
 					};
 				};
 			};
@@ -912,6 +918,7 @@
 			files = (
 				7AC6D91919EC3B5D00956EDF /* GameLayer.cpp in Sources */,
 				7AC6D92519EC3B5D00956EDF /* SimpleDPad.cpp in Sources */,
+				7A40282F19ED9CBB002E0E70 /* NPCSprite.cpp in Sources */,
 				C06E23C418CEF9740093C81A /* main.cpp in Sources */,
 				7AC6D91719EC3B5D00956EDF /* ChatBox.cpp in Sources */,
 				7AC6D91F19EC3B5D00956EDF /* HudLayer.cpp in Sources */,
@@ -928,6 +935,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A40282E19ED9CBB002E0E70 /* NPCSprite.cpp in Sources */,
 				5023812517EBBCAC00990C9B /* RootViewController.mm in Sources */,
 				7AC6D91419EC3B5D00956EDF /* ActionSprite.cpp in Sources */,
 				F293BB9C15EB831F00256477 /* AppDelegate.cpp in Sources */,
@@ -1119,7 +1127,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Matthew Barney (JR5B3T43YT)";
 				COMPRESS_PNG_FILES = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1133,6 +1141,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "MiniRPG iOS";
+				PROVISIONING_PROFILE = "30C51529-B431-418D-AD78-64472CE672DA";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/cocos/platform/ios";
@@ -1143,7 +1152,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Inhance Digital Corporation";
 				COMPRESS_PNG_FILES = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ios/Prefix.pch;
@@ -1156,6 +1165,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "MiniRPG iOS";
+				PROVISIONING_PROFILE = "C689A5ED-DCEC-44D8-8FD0-7A32B3C4E023";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/cocos/platform/ios";

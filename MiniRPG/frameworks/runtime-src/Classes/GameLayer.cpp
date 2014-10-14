@@ -43,7 +43,7 @@ bool GameLayer::init()
     m_strCurrentMapName = kStartingRoom;
     loadMapNamed(m_strCurrentMapName);
     
-    initTheHero();
+    initTheHeros();
     
     // Enable touches TODO: What is the non deprecated way to do this?
     setTouchEnabled(true);
@@ -58,53 +58,85 @@ bool GameLayer::init()
  * Loads a tilemap from the bundle path with a given name.
  *
  */
-void GameLayer::loadMapNamed(std::string name)
+void GameLayer::loadMapNamed(std::string mapName)
 {
-    if(tileMap)
+    if(m_pTileMap)
     {
-        tileMap->removeAllChildrenWithCleanup(true);
-        this->removeChild(tileMap, true);
-        tileMap = nullptr;
+        m_pTileMap->removeAllChildrenWithCleanup(true);
+        this->removeChild(m_pTileMap, true);
+        m_pTileMap = nullptr;
     }
     
     std::string fileExtension = ".tmx";
-    std::string fileNameWithExtension = "res/maps/" + name + fileExtension;
+    std::string fileNameWithExtension = "res/maps/" + mapName + fileExtension;
     printf("Loading map: %s\n",fileNameWithExtension.c_str());
-    tileMap = TMXTiledMap::create(fileNameWithExtension);
-    this->addChild(tileMap, -6);
-    metaLayer = tileMap->getLayer("meta");
-    metaLayer->setVisible(true);
-    m_pNPCLayer = tileMap->getLayer("npc");
-    tileWidth = tileMap->getTileSize().width;
-    tileHeight = tileMap->getTileSize().height;
-    mapWidth = tileMap->getMapSize().width;
-    mapHeight = tileMap->getMapSize().height;
-    exitGroup = tileMap->getObjectGroup("exits");
+    m_pTileMap = TMXTiledMap::create(fileNameWithExtension);
+    this->addChild(m_pTileMap, -6);
+    m_pMetaLayer = m_pTileMap->getLayer("meta");
+    m_pMetaLayer->setVisible(false);
+    tileWidth = m_pTileMap->getTileSize().width;
+    tileHeight = m_pTileMap->getTileSize().height;
+    mapWidth = m_pTileMap->getMapSize().width;
+    mapHeight = m_pTileMap->getMapSize().height;
+    m_pExitGroup = m_pTileMap->getObjectGroup("exits");
     
-    m_pNPCManager->loadNPCsForTileMap(tileMap, name);
+    m_pNPCSpawnGroup = m_pTileMap->getObjectGroup("npc");
+    if (m_pNPCSpawnGroup)
+    {
+        initTheNPCs(mapName);
+    }
 }
 
-void GameLayer::initTheHero()
+void GameLayer::initTheHeros()
 {
-    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("res/characters/heroine.plist");
-    m_pActors = SpriteBatchNode::create("res/characters/heroine.pvr.ccz");
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("res/characters/heroine/heroine.plist");
+    //TODO: maybe look into creating a super texture with all the character and npc sprites for more efficient drawing.
+    m_pActors = SpriteBatchNode::create("res/characters/heroine/heroine.pvr.ccz");
+
     m_pActors->getTexture()->setAliasTexParameters();
     this->addChild(m_pActors, -5);
     
-    m_pHero = (HeroSprite*)HeroSprite::createSprite();\
-    
-    auto startGroup = tileMap->getObjectGroup("start");
+    m_pHero = (HeroSprite*)HeroSprite::createHero("heroine");
+    //m_pActors->addChild(m_pHero);
+    auto startGroup = m_pTileMap->getObjectGroup("start");
     ValueMap startPoint = startGroup->getObject("start");
     float startX = startPoint["x"].asFloat();
     float startY = startPoint["y"].asFloat();
-    Point heroPoint = Point(startX, startY);
-    m_pHero->setDesiredPosition(heroPoint);
+    m_pHero->setDesiredPosition(Vec2(startX, startY));
 
     m_pHero->setScale(1.0f);
     //m_pHero->setAnchorPoint(Vec2(0.5,0.0));
     m_pHero->setZOrder(-5);
-    this->addChild(m_pHero, tileMap->getLayer("floor")->getZOrder());
+    this->addChild(m_pHero, m_pTileMap->getLayer("floor")->getZOrder());
     m_pHero->idle();
+}
+
+void GameLayer::initTheNPCs(std::string mapName)
+{
+    ValueVector npcs = m_pNPCSpawnGroup->getObjects();
+    for(int i=0;i<npcs.size();++i)
+    {
+        ValueMap npc = npcs[i].asValueMap();
+        std::string basesprite = npc["basesprite"].asString();
+        std::string behaviorscript  = npc["behaviorscript"].asString();
+        float x = npc["x"].asFloat();
+        float y = npc["y"].asFloat();
+        
+        SpriteFrameCache::getInstance()->addSpriteFramesWithFile("res/characters/" + basesprite + "/" + basesprite + ".plist");
+        
+        NPCSprite* npcSprite = (NPCSprite*)NPCSprite::createNPC(basesprite, behaviorscript);
+        npcSprite->setDesiredPosition(Vec2(x, y));
+        
+        npcSprite->setScale(1.0f);
+        //npcSprite->setAnchorPoint(Vec2(0.5,0.0));
+        npcSprite->setZOrder(-5);
+        this->addChild(npcSprite, m_pTileMap->getLayer("floor")->getZOrder());
+        npcSprite->idle();
+        
+        m_vCurrentNPCs.pushBack(npcSprite);
+    }
+
+    m_pNPCManager->loadNPCsForTileMap(m_pTileMap, mapName);
 }
 
 /**
@@ -121,6 +153,13 @@ void GameLayer::update(float delta)
         setPlayerPosition(m_pHero->getDesiredPosition());
         setViewpointCenter(m_pHero->getPosition());
         heroIsDoneWalking();
+    }
+    
+    for (Vector<NPCSprite*>::iterator npcIterator = m_vCurrentNPCs.begin() ; npcIterator != m_vCurrentNPCs.end(); ++npcIterator)
+    {
+        NPCSprite* currentNPC = (NPCSprite*)*npcIterator;
+        currentNPC->setPosition(currentNPC->getDesiredPosition());
+        currentNPC->update(delta);
     }
 }
 
@@ -235,6 +274,7 @@ void GameLayer::setPlayerPosition(Vec2 position)
 
     
     //Check NPCs
+    /*
     if (m_pNPCLayer)
     {
         if (scanNPCLayer(tileCoord))
@@ -242,6 +282,7 @@ void GameLayer::setPlayerPosition(Vec2 position)
             return;
         }
     }
+     */
     
     /*
     if (m_pTreasureLayer)
@@ -260,11 +301,11 @@ bool GameLayer::scanMetaLayer(Vec2 tileCoord)
 {
     //printf("scanMetaLayer - Current TileCoordinates: %f, %f\n", tileCoord.x, tileCoord.y);
     
-    int tileGid = metaLayer->getTileGIDAt(tileCoord);
+    int tileGid = m_pMetaLayer->getTileGIDAt(tileCoord);
     
     if (tileGid)
     {
-        Value tileValue = tileMap->getPropertiesForGID(tileGid);
+        Value tileValue = m_pTileMap->getPropertiesForGID(tileGid);
         if (tileValue.getType() != Value::Type::NONE)
         {
             ValueMap properties = tileValue.asValueMap();
@@ -285,6 +326,7 @@ bool GameLayer::scanMetaLayer(Vec2 tileCoord)
 
 bool GameLayer::scanNPCLayer(Vec2 tileCoord)
 {
+    /*
     int tileGid = m_pNPCLayer->getTileGIDAt(tileCoord);
     if (tileGid)
     {
@@ -313,7 +355,7 @@ bool GameLayer::scanNPCLayer(Vec2 tileCoord)
             m_pHudLayer->setContextButtonVisibility(eContextMenuButton_Talk, false);
         }
     }
-    
+    */
     return false;
 }
 
@@ -358,9 +400,9 @@ void GameLayer::heroIsDoneWalking()
         return;
     }
 
-    if (exitGroup)
+    if (m_pExitGroup)
     {
-        ValueVector exits = exitGroup->getObjects();
+        ValueVector exits = m_pExitGroup->getObjects();
         for(int i=0;i<exits.size();++i)
         {
             ValueMap exit = exits[i].asValueMap();
