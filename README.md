@@ -26,7 +26,7 @@ Interior Maps (Towns/Dungeons)
 
 NPCs
 * Basic NPC interaction - done
-* Animation - Not started
+* Animation - They now have support for walk/idle just like the player.
 * Ability to give repeating paths - todo
 * Ability for designer to script npc movements during events - todo 
 
@@ -47,7 +47,7 @@ Input
 * Basic D-Pad - Done
 * Basic Context Sensitive button - Done
 * Improved touch input - todo
-* Keyboard/controller support - todo
+* Keyboard/controller support - Note, keyboard movement is working on Mac, untested on PC.
 
 Casino
 * Not started
@@ -71,4 +71,5 @@ Strings
 * Need some table or something to pull these from, make it localizable.
 
 Current Tackle List
-Matthew - I'm going to create a sample starter town and start setting up the code and scripting functionality for it. My first goal is multiple, unique NPCs, followed by fixed path moving NPCs, followed by shops. I also plan to finish setting it up so that the player can enter/exit the castle.
+Matthew - 
+I redid NPC Spawning to make it easier to potentially move NPCs and do other interaction with them. I'm going to try and build a scripted cutscene and the move on to yes/no dialogues.
