@@ -142,7 +142,7 @@ void NPCManager::loadLuaFilesForMap(TMXTiledMap* map, std::string layerName, std
                         // Resolve the path to the NPCs Lua file
                         std::string roomName = name;
                         //ReplaceStringInPlace(roomName, ".tmx", "");
-                        std::string npcFilename = "lua/" + roomName + "-" + npcName + ".lua";
+                        std::string npcFilename = "res/lua/" + roomName + "-" + npcName + ".lua";
                         std::string fullPath    = FileUtils::getInstance()->fullPathForFilename(npcFilename);
                         std::string contentStr  = FileUtils::getInstance()->getStringFromFile(fullPath);
 

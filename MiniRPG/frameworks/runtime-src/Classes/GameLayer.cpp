@@ -101,7 +101,7 @@ void GameLayer::initTheHero()
     m_pHero->setDesiredPosition(heroPoint);
 
     m_pHero->setScale(1.0f);
-    //m_pHero->setAnchorPoint(Vec2(-0.5,0.5));
+    //m_pHero->setAnchorPoint(Vec2(0.5,0.0));
     m_pHero->setZOrder(-5);
     this->addChild(m_pHero, tileMap->getLayer("floor")->getZOrder());
     m_pHero->idle();
