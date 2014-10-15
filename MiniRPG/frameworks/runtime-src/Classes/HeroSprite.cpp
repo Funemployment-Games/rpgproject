@@ -135,7 +135,7 @@ void HeroSprite::createIdleAction()
 //D-Pad
 void HeroSprite::didChangeDirectionTo(Vec2 direction)
 {
-    m_vDesiredPosition = Vec2::ZERO;
+    m_vDesiredPosition = this->getPosition();
     bool directionChanged = false;
     if (direction.x == 1.0 && m_currentDirection != kActionSpriteDirectionEast)
     {
@@ -165,6 +165,7 @@ void HeroSprite::simpleDPadTouchEnded()
 {
     if (m_actionState == kActionStateWalk)
     {
+        //m_vDesiredPosition = this->getPosition();
         idle();
     }
 }
