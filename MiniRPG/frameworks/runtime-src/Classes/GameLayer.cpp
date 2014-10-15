@@ -41,8 +41,10 @@ bool GameLayer::init()
     
     // TODO: This should also be loaded from the save.
     m_strCurrentMapName = kStartingRoom;
+	m_pTileMap = nullptr;
     loadMapNamed(m_strCurrentMapName);
     
+	m_pHero = nullptr;
     initTheHeros();
     
     // Enable touches TODO: What is the non deprecated way to do this?
