@@ -6,3 +6,16 @@
 *.sdf
 *.suo
 MiniRPG/proj.win32/Debug.win32/
+MiniRPG/frameworks/cocos2d-x/cocos/2d/Debug.win32/
+MiniRPG/frameworks/cocos2d-x/cocos/editor-support/cocosbuilder/proj.win32/Debug.win32
+MiniRPG/frameworks/cocos2d-x/cocos/editor-support/cocostudio/proj.win32/Debug.win32
+MiniRPG/frameworks/cocos2d-x/cocos/editor-support/spine/proj.win32/Debug.win32
+MiniRPG/frameworks/cocos2d-x/cocos/scripting/lua-bindings/proj.win32/Debug.win32
+MiniRPG/frameworks/cocos2d-x/cocos/storage/local-storage/proj.win32/Debug.win32
+MiniRPG/frameworks/cocos2d-x/cocos/ui/proj.win32/Debug.win32
+MiniRPG/frameworks/cocos2d-x/extensions/proj.win32/Debug.win32
+MiniRPG/frameworks/cocos2d-x/external/chipmunk/proj.win32/Debug.win32
+MiniRPG/frameworks/cocos2d-x/external/chipmunk/proj.win32
+MiniRPG/frameworks/runtime-src/proj.win32/Debug.win32
+MiniRPG/frameworks/cocos2d-x/cocos/network/proj.win32/Debug.win32
+MiniRPG/frameworks/cocos2d-x/cocos/audio/proj.win32/Debug.win32
