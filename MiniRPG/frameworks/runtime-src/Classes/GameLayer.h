@@ -62,8 +62,11 @@ private:
     TMXObjectGroup* m_pExitGroup;
     std::string m_strCurrentMapName;
     
-    float mapWidth;
-    float mapHeight;
+    float m_fHalfWinHeight;
+    float m_fHalfWinWidth;
+    float m_fMapRealWidth;
+    float m_fMapRealHeight;
+    Vec2 m_vCenterOfView;
     
     LuaEngine* m_pLuaEngine;
     LuaStack* m_pLuaStack;

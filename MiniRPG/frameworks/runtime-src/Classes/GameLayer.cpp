@@ -76,9 +76,15 @@ void GameLayer::loadMapNamed(std::string mapName)
     this->addChild(m_pTileMap, -6);
     m_pMetaLayer = m_pTileMap->getLayer("meta");
     m_pMetaLayer->setVisible(true);
-    mapWidth = m_pTileMap->getMapSize().width;
-    mapHeight = m_pTileMap->getMapSize().height;
     m_pExitGroup = m_pTileMap->getObjectGroup("exits");
+    
+    Size winSize = Director::getInstance()->getWinSize();
+    m_fHalfWinWidth = winSize.width / 2;
+    m_fHalfWinHeight = winSize.height / 2;
+    m_vCenterOfView = Vec2(m_fHalfWinWidth, m_fHalfWinHeight);
+    
+    m_fMapRealWidth = m_pTileMap->getMapSize().width * kTileSize;
+    m_fMapRealHeight =  m_pTileMap->getMapSize().height * kTileSize;
     
     m_pNPCSpawnGroup = m_pTileMap->getObjectGroup("npc");
     if (m_pNPCSpawnGroup)
@@ -195,24 +201,15 @@ LuaEngine* GameLayer::getLuaEngine()
  */
 void GameLayer::setViewpointCenter(Vec2 position)
 {
-    
-    Size winSize = Director::getInstance()->getWinSize();
-    
-    float halfWidth = winSize.width / 2;
-    float halfHeight = winSize.height / 2;
-    
-    float mapRealW = mapWidth * kTileSize;
-    float mapRealH = mapHeight * kTileSize;
-    
-    int maxX = MAX(position.x, halfWidth);
-    int maxY = MAX(position.y, halfHeight);
+    int maxX = MAX(position.x, m_fHalfWinWidth);
+    int maxY = MAX(position.y, m_fHalfWinHeight);
 
-    int minX = MIN(maxX, (mapRealW) - halfWidth);
-    int minY = MIN(maxY, (mapRealH) - halfHeight);
+    int minX = MIN(maxX, (m_fMapRealWidth) - m_fHalfWinWidth);
+    int minY = MIN(maxY, (m_fMapRealHeight) - m_fHalfWinHeight);
     
     Vec2 actualPosition = Vec2(minX, minY);
-    Vec2 centerOfView = Vec2(winSize.width/2, winSize.height/2);
-    Vec2 viewPoint = centerOfView - actualPosition;
+
+    Vec2 viewPoint = m_vCenterOfView - actualPosition;
     
     this->setPosition(viewPoint);
 }
@@ -428,7 +425,7 @@ void GameLayer::heroIsDoneWalking()
 Vec2 GameLayer::tileCoordForPosition(Vec2 position)
 {
     int x = position.x / (kTileSize);
-    int y = ((mapHeight * kTileSize) - position.y) / (kTileSize);
+    int y = ((m_fMapRealHeight) - position.y) / (kTileSize);
     return Vec2(x, y);
 }
 
@@ -438,7 +435,7 @@ Vec2 GameLayer::tileCoordForPosition(Vec2 position)
 Vec2 GameLayer::positionForTileCoord(Vec2 tileCoord)
 {
     int x = (tileCoord.x * kTileSize) + kTileSize;
-    int y = (mapHeight * kTileSize) - (tileCoord.y * kTileSize) - kTileSize;
+    int y = (m_fMapRealHeight) - (tileCoord.y * kTileSize) - kTileSize;
     
     return Vec2(x, y);
 }
@@ -448,6 +445,8 @@ void GameLayer::showNPCDialogue(std::string npcName, std::string dialogue)
     if (!m_pChatbox)
     {
         m_pChatbox = m_pChatbox->createChatBox( npcName, dialogue);
+        Vec2 vCenteredBoxPos = Vec2(this->getPosition().x * -1.f, this->getPosition().y * -3.f);
+        m_pChatbox->setPosition(Vec2(vCenteredBoxPos));
         this->addChild(m_pChatbox, 5);
         m_pChatbox->advanceTextOrHide();
     }

@@ -43,14 +43,14 @@ bool ChatBox::initWithGameLayer(std::string npcName, std::string npcDialogue)
     Sprite* backroundSprite = Sprite::create("res/ui/chat-box.png");
     backroundSprite->getTexture()->setAliasTexParameters();
     backroundSprite->setScale(4);
-    backroundSprite->setPosition(Vec2(176,560));
+    backroundSprite->setPosition(Vec2(0,0));
     backroundSprite->setAnchorPoint(Vec2(0,0));
     this->addChild(backroundSprite, 0);
 
     m_pLabel = Label::createWithSystemFont("", "Helvetica", 16, Size(300,60), TextHAlignment::LEFT, TextVAlignment::TOP);
     m_pLabel->setColor(Color3B::WHITE);
     m_pLabel->setAnchorPoint(Vec2(0, 0));
-    m_pLabel->setPosition(Vec2(182,575));
+    m_pLabel->setPosition(Vec2(6,15));
     
     this->addChild(m_pLabel, 1);
     
