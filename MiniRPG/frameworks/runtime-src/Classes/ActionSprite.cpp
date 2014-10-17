@@ -10,9 +10,11 @@
 
 void ActionSprite::update(float dt)
 {
-    if (m_actionState == kActionStateWalk)
+    if (m_actionState == kActionStateManualWalk)
     {
+        //printf("%s Current Position: %f, %f\n", m_strCharacterName.c_str(), this->getPosition().x, this->getPosition().y);
         this->setDesiredPosition(this->getPosition() + (m_vVelocity * dt));
+        //printf("%s Desired Position: %f, %f\n", m_strCharacterName.c_str(), m_vDesiredPosition.x, m_vDesiredPosition.y);
     }
 }
 
@@ -34,9 +36,9 @@ void ActionSprite::walkWithDirection(Vec2 direction, bool directionChanged)
     {
         stopAllActions();
         runAction(m_walkAction[m_currentDirection]);
-        m_actionState = kActionStateWalk;
+        m_actionState = kActionStateManualWalk;
     }
-    if (m_actionState == kActionStateWalk)
+    if (m_actionState == kActionStateManualWalk)
     {
         m_vVelocity = Vec2(direction.x * m_fWalkSpeed, direction.y * m_fWalkSpeed);
         if (directionChanged)
@@ -81,6 +83,16 @@ void ActionSprite::setActionState(ActionState theState)
 ActionState ActionSprite::getActionState()
 {
     return m_actionState;
+}
+
+void ActionSprite::setWalkPattern(ActionSpriteWalkPattern thePattern)
+{
+    m_walkPattern = thePattern;
+}
+
+ActionSpriteWalkPattern ActionSprite::getWalkPattern()
+{
+    return m_walkPattern;
 }
 
 void ActionSprite::setCharacterName(std::string theName)

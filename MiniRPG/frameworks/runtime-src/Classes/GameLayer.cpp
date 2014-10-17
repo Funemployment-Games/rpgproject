@@ -136,6 +136,7 @@ void GameLayer::initTheNPCs(std::string mapName)
         
         NPCSprite* npcSprite = (NPCSprite*)NPCSprite::createNPC(basesprite, behaviorscript);
         npcSprite->setDesiredPosition(Vec2(x, y));
+        npcSprite->setPosition(Vec2(x, y));
         npcSprite->setScale(1.0f);
         npcSprite->setAnchorPoint(Vec2(0.,0.0));
         npcSprite->setZOrder(-5);
@@ -166,11 +167,12 @@ void GameLayer::update(float delta)
         heroIsDoneWalking();
     }
     
-
     if (m_pNPCManager)
     {
         m_pNPCManager->update(delta);
     }
+    
+    m_pLuaEngine->executeString("gCurrentMap:tick()");
 }
 
 // Accessors

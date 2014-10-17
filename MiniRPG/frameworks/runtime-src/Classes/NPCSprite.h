@@ -24,6 +24,8 @@ public:
     //scheduled methods
     virtual void update(float dt);
     
+    void walkNumTilesWithDirection(int numTilesToMove, std::string directionToMove);
+    
     //creation
     virtual void createActions();
     virtual void createWalkAction();
@@ -31,9 +33,16 @@ public:
     
     //Accessors
     std::string getScriptName();
+    void setDelayBetweenSteps(float theDelay);
+    float getDelayBetweenSteps();
+    
+    //Callbacks
+    void onFinishedWalkingCallback(Ref* pSender);
 
 private:
     std::string m_strScriptName;
+    float m_fDelayBetweenSteps;
+    float m_fTimeSinceLastStep;
 };
 
 #endif

@@ -31,7 +31,7 @@ bool HeroSprite::initWithParameters(std::string spriteName)
         return false;
     }
     
-    m_fWalkSpeed = 32;
+    m_fWalkSpeed = 32.f;
     m_strSpriteName = spriteName;
     
     createActions();
@@ -163,7 +163,7 @@ void HeroSprite::didChangeDirectionTo(Vec2 direction)
 
 void HeroSprite::simpleDPadTouchEnded()
 {
-    if (m_actionState == kActionStateWalk)
+    if (m_actionState == kActionStateManualWalk)
     {
         //m_vDesiredPosition = this->getPosition();
         idle();

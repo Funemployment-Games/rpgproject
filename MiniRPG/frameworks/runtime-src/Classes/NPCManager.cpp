@@ -69,7 +69,7 @@ void NPCManager::update(float delta)
     for (Vector<NPCSprite*>::iterator npcIterator = m_vCurrentNPCs.begin() ; npcIterator != m_vCurrentNPCs.end(); ++npcIterator)
     {
         NPCSprite* currentNPC = (NPCSprite*)*npcIterator;
-        currentNPC->setPosition(currentNPC->getDesiredPosition());
+        //currentNPC->setPosition(currentNPC->getDesiredPosition());
         currentNPC->update(delta);
     }
 }
@@ -89,6 +89,30 @@ void NPCManager::interactWithClosestNPC()
     if (m_pClosestNPC)
     {
         interactWithNPCNamed(m_pClosestNPC->getCharacterName());
+    }
+}
+
+void NPCManager::moveNPCWithDirection(std::string npcName, Vec2 theDirection, bool directionDidChange)
+{
+    for (Vector<NPCSprite*>::iterator npcIterator = m_vCurrentNPCs.begin() ; npcIterator != m_vCurrentNPCs.end(); ++npcIterator)
+    {
+        NPCSprite* currentNPC = (NPCSprite*)*npcIterator;
+        if (currentNPC->getCharacterName() == npcName)
+        {
+            currentNPC->walkWithDirection(theDirection, directionDidChange);
+        }
+    }
+}
+
+void NPCManager::walkNumTilesWithDirection(std::string npcName, int numTiles, std::string direction)
+{
+    for (Vector<NPCSprite*>::iterator npcIterator = m_vCurrentNPCs.begin() ; npcIterator != m_vCurrentNPCs.end(); ++npcIterator)
+    {
+        NPCSprite* currentNPC = (NPCSprite*)*npcIterator;
+        if (currentNPC->getCharacterName() == npcName)
+        {
+            currentNPC->walkNumTilesWithDirection(numTiles, direction);
+        }
     }
 }
 

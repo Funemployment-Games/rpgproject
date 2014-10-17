@@ -1,0 +1,17 @@
+require("res/lua/globalmanager")
+
+NPC = {}
+NPC.__index = NPC
+
+function NPC.create(name, dialogue)
+   local npc = {}             -- our new object
+   setmetatable(npc,NPC)  -- make Account handle lookup
+   npc.name = name      -- initialize our object
+   npc.dialogue = dialogue
+   return npc
+end
+
+function NPC:interact()
+  -- talk(self.name, self.dialogue)
+walkNumTilesWithDirection("BunnyGirl", 4, "south")
+end

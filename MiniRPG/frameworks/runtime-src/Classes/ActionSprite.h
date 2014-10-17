@@ -17,7 +17,8 @@ USING_NS_CC;
 typedef enum _ActionState {
     kActionStateNone = 0,
     kActionStateIdle,
-    kActionStateWalk,
+    kActionStateManualWalk,
+    kActionStateAutoWalk,
 } ActionState;
 
 typedef enum  _ActionSpriteDirection
@@ -29,6 +30,15 @@ typedef enum  _ActionSpriteDirection
     kActionSpriteDirectionMax,
     
 } ActionSpriteDirection;
+
+typedef enum _ActionSpriteWalkPattern
+{
+    kActionSpriteWalkPatternNone = 0,
+    kActionSpriteWalkPatternHorizontal,
+    kActionSpriteWalkPatternVertical,
+    kActionSpriteWalkPatternBox,
+} ActionSpriteWalkPattern;
+
 class ActionSprite: public cocos2d::Sprite
 {
 public:
@@ -56,7 +66,8 @@ public:
     void setActionState(ActionState theState);
     ActionState getActionState();
     
-    float getAttackDamage();
+    void setWalkPattern(ActionSpriteWalkPattern thePattern);
+    ActionSpriteWalkPattern getWalkPattern();
     
 private:
 
@@ -69,6 +80,7 @@ protected:
     //states
     ActionState m_actionState;
     ActionSpriteDirection m_currentDirection;
+    ActionSpriteWalkPattern m_walkPattern;
     
     //attributes
     float m_fWalkSpeed;

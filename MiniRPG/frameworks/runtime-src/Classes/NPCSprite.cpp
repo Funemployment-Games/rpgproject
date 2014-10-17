@@ -31,11 +31,14 @@ bool NPCSprite::initWithParameters(std::string spriteName, std::string scriptNam
         return false;
     }
     
-    m_fWalkSpeed = 50;
+    m_fWalkSpeed = 1.0f;
     m_strSpriteName = spriteName;
     m_strScriptName = scriptName;
     
     m_currentDirection = kActionSpriteDirectionSouth;
+    m_walkPattern = kActionSpriteWalkPatternNone;
+    m_fDelayBetweenSteps = 0.0f;
+    m_fTimeSinceLastStep = 0.0f;
     
     createActions();
     
@@ -90,8 +93,8 @@ void NPCSprite::createWalkAction()
             walkFrames.pushBack(frame);
         }
         
-        Animation *walkAnimation = Animation::createWithSpriteFrames(walkFrames, 1.0/4.0);
-        m_walkAction[j] = RepeatForever::create((Animate::create(walkAnimation)));
+        Animation *walkAnimation = Animation::createWithSpriteFrames(walkFrames, 1.0f/4.0f);
+        m_walkAction[j] = /*Animate::create(walkAnimation);*/RepeatForever::create((Animate::create(walkAnimation)));
         m_walkAction[j]->retain();
     }
 }
@@ -135,8 +138,60 @@ void NPCSprite::createIdleAction()
     }
 }
 
+void NPCSprite::walkNumTilesWithDirection(int numTilesToMove, std::string directionToMove)
+{
+    Vec2 destination = Vec2::ZERO;
+    if (directionToMove == "east")
+    {
+        m_currentDirection = kActionSpriteDirectionEast;
+        destination = Vec2(getPosition().x + (16.0f * numTilesToMove), getPosition().y);
+    }
+    else if (directionToMove == "west")
+    {
+        m_currentDirection = kActionSpriteDirectionWest;
+        destination = Vec2(getPosition().x - (16.0f * numTilesToMove), getPosition().y);
+    }
+    else if (directionToMove == "north")
+    {
+        m_currentDirection = kActionSpriteDirectionNorth;
+        destination = Vec2(getPosition().x, getPosition().y + (16.0f * numTilesToMove));
+    }
+    else if (directionToMove == "south")
+    {
+        m_currentDirection = kActionSpriteDirectionSouth;
+        destination = Vec2(getPosition().x, getPosition().y - (16.0f * numTilesToMove));
+    }
+    
+    // Animate the player
+    auto moveAction = MoveTo::create(numTilesToMove * m_fWalkSpeed, destination);
+    
+	// Play actions
+    m_actionState = kActionStateAutoWalk;
+    auto doneAction = CallFuncN::create(CC_CALLBACK_1(NPCSprite::onFinishedWalkingCallback, this));
+    auto animationSequence = Sequence::create((FiniteTimeAction*)m_walkAction[m_currentDirection], NULL);
+    auto movementSequence = Sequence::create(moveAction, doneAction,NULL);
+    runAction(animationSequence);
+    runAction(movementSequence);
+}
+
 //
 std::string NPCSprite::getScriptName()
 {
     return m_strScriptName;
+}
+
+void NPCSprite::setDelayBetweenSteps(float theDelay)
+{
+    m_fDelayBetweenSteps = theDelay;
+}
+
+float NPCSprite::getDelayBetweenSteps()
+{
+    return m_fDelayBetweenSteps;
+}
+
+void NPCSprite::onFinishedWalkingCallback(Ref* pSender)
+{
+    printf("onFinishedWalkingCallback");
+    idle();
 }

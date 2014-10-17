@@ -7,6 +7,7 @@
 //
 
 #include "LuaGlobalManager.h"
+#include "LuaBasicConversions.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -27,13 +28,69 @@ extern "C" {
 USING_NS_CC;
 //USING_NS_CC_EXT;
 
-static int lua_cocos2dx_createDownloadDir(lua_State* L)
+static int lua_npc_walk_with_direction(lua_State* L)
 {
+    if (nullptr == L)
+        return 0;
+    
+    int argc = 0;
+    bool ok  = true;
+    tolua_Error tolua_err;
+    Vec2 direction;
+    
+    argc = lua_gettop(L);
+    
+    if (argc != 3)
+    {
+        tolua_error(L,"#ferror in function 'lua_npc_walk_with_direction', too few arguments.",&tolua_err);
+        return 0;
+    }
+    
+    std::string npcName = tolua_tostring(L, 1, "");
+    
+    ok &= luaval_to_vec2(L, 2, &direction);
+    if(!ok)
+    {
+        return 0;
+    }
+    
+    if (!tolua_isboolean(L, 3, 0, &tolua_err))
+    {
+        tolua_error(L,"#ferror in function 'lua_npc_walk_with_direction'.",&tolua_err);
+        return 0;
+    }
+    
+    bool changedDirection = (bool)tolua_toboolean(L, 2, 0);
+    NPCManager* pManager = NPCManager::getInstance();
+    pManager->moveNPCWithDirection(npcName, direction, changedDirection);
+    
     return 0;
 }
 
-static int lua_cocos2dx_deleteDownloadDir(lua_State* L)
+static int lua_npc_walk_numtiles_with_direction(lua_State* L)
 {
+    if (nullptr == L)
+        return 0;
+    
+    int argc = 0;
+    //bool ok  = true;
+    tolua_Error tolua_err;
+
+    argc = lua_gettop(L);
+    
+    if (argc != 3)
+    {
+        tolua_error(L,"#ferror in function 'lua_npc_walk_numtiles_with_direction', too few arguments.",&tolua_err);
+        return 0;
+    }
+    
+    std::string npcName = tolua_tostring(L, 1, "");
+    int numTiles = (int)tolua_tonumber(L, 2, 0);
+    std::string direction = tolua_tostring(L, 3, "");
+    
+    NPCManager* pManager = NPCManager::getInstance();
+    pManager->walkNumTilesWithDirection(npcName, numTiles, direction);
+    
     return 0;
 }
 
@@ -54,7 +111,6 @@ static int lua_npc_talk(lua_State* L)
     
     pGameLayer->showNPCDialogue(npcName, dialogue);
     
-    printf("success!\n");
     return 0;
 }
 
@@ -63,8 +119,8 @@ int register_globalluamanager(lua_State* L)
     tolua_open(L);
     tolua_module(L, NULL, 0);
     tolua_beginmodule(L, NULL);
-    tolua_function(L, "createDownloadDir", lua_cocos2dx_createDownloadDir);
-    tolua_function(L, "deleteDownloadDir", lua_cocos2dx_deleteDownloadDir);
+    tolua_function(L, "walkNumTilesWithDirection", lua_npc_walk_numtiles_with_direction);
+    tolua_function(L, "walkWithDirection", lua_npc_walk_with_direction);
     tolua_function(L, "talk", lua_npc_talk);
     tolua_endmodule(L);
     return 0;
