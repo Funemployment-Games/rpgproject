@@ -131,6 +131,9 @@ void GameLayer::initTheNPCs(std::string mapName)
         std::string npcName = npc["npcname"].asString();
         float x = npc["x"].asFloat();
         float y = npc["y"].asFloat();
+        float width = npc["width"].asFloat();
+        float height = npc["height"].asFloat();
+        Rect walkBounds = Rect::Rect(x, y, width, height);
         
         SpriteFrameCache::getInstance()->addSpriteFramesWithFile("res/characters/" + basesprite + "/" + basesprite + ".plist");
         
@@ -141,6 +144,7 @@ void GameLayer::initTheNPCs(std::string mapName)
         npcSprite->setAnchorPoint(Vec2(0.,0.0));
         npcSprite->setZOrder(-5);
         npcSprite->setCharacterName(npcName);
+        npcSprite->setWalkBounds(walkBounds);
         
         this->addChild(npcSprite, m_pTileMap->getLayer("floor")->getZOrder());
         npcSprite->idle();

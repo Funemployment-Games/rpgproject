@@ -85,16 +85,6 @@ ActionState ActionSprite::getActionState()
     return m_actionState;
 }
 
-void ActionSprite::setWalkPattern(ActionSpriteWalkPattern thePattern)
-{
-    m_walkPattern = thePattern;
-}
-
-ActionSpriteWalkPattern ActionSprite::getWalkPattern()
-{
-    return m_walkPattern;
-}
-
 void ActionSprite::setCharacterName(std::string theName)
 {
     m_strCharacterName = theName;

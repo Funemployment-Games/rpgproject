@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" width="40" height="40" tilewidth="16" tileheight="16">
  <tileset firstgid="1" name="meta_tiles" tilewidth="16" tileheight="16" margin="5">
   <image source="meta_tiles.png" width="64" height="32"/>
   <tile id="0">
@@ -16,10 +16,10 @@
    eJzt0bsOAVEUheF9EgoFhYJQKETiCURBNIpRuBVMokFF4X29gtewTiYSjrjkSPbsxCq+YvYU82dN4kQSIiL6Wk1E6hE6otPXxXeG7tkM9zksXrzv5dh3xm0LO9hL9myp74LbwN9hLNmzpT5vivsSVgb/r9/rvo/7cT/ux/24n40+S/sVoBgoBS1lqASqCm23/RruUTPoa0E7kPf//USrr/+mYWSgbwLrCKlCm7eBQ4SjUt/pBxp9RET0364gm78M
   </data>
  </layer>
- <objectgroup name="start">
+ <objectgroup name="start" width="0" height="0">
   <object name="start" x="320" y="208" width="16" height="16"/>
  </objectgroup>
- <objectgroup name="exits">
+ <objectgroup name="exits" width="0" height="0">
   <object name="exit" x="336" y="416" width="16" height="16">
    <properties>
     <property name="destination" value="airgetlam_castle_town"/>
@@ -38,7 +38,7 @@
    eJzt1kEKwCAQBEH9/6dzD0IiE3UD1eBFXHoYL9saAGCGHhz5xp773Zs3q/hjvpVzX3j0l3n0l3n0l3n0l3n0N+d52k1O7y/V8+2c2+U5/b+V9ufK+QAAqMwFo5oAgQ==
   </data>
  </layer>
- <objectgroup name="npc">
+ <objectgroup name="npc" width="0" height="0">
   <object name="kingspawn" type="npcspawn" x="336" y="160" width="16" height="16">
    <properties>
     <property name="basesprite" value="king"/>
@@ -46,7 +46,7 @@
     <property name="npcname" value="TheKing"/>
    </properties>
   </object>
-  <object name="bunny_girlspawn" type="npcspawn" x="240" y="160" width="16" height="16">
+  <object name="bunny_girlspawn" type="npcspawn" x="240" y="160" width="48" height="32">
    <properties>
     <property name="basesprite" value="bunny_girl"/>
     <property name="behaviorscript" value="agc-throne-bunny_girl"/>

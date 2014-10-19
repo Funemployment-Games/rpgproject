@@ -43,6 +43,8 @@ public:
     void interactWithClosestNPC();
     void moveNPCWithDirection(std::string npcName, Vec2 theDirection, bool directionDidChange);
     void walkNumTilesWithDirection( std::string npcName, int numTilesToMove, std::string directionToMove);
+    void setWalkBounds(std::string npcName, Rect bounds);
+    void setDelayBetweenSteps(std::string npcName, float theDelay);
     
     NPCSprite* willHeroCollideWithAnyNPC(Vec2 herosDesiredPosition);
     

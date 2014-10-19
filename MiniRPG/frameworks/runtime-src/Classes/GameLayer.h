@@ -37,6 +37,9 @@ public:
     LuaEngine* getLuaEngine();
     void showNPCDialogue(std::string npcName, std::string dialogue);
     
+    Vec2 tileCoordForPosition(Vec2 position);
+    Vec2 positionForTileCoord(Vec2 tileCoord);
+    
     // implement the "static create()" method manually
     CREATE_FUNC(GameLayer);
 private:
@@ -49,8 +52,6 @@ private:
     bool scanMetaLayer(Vec2 tileCoord);
     bool scanNPCLayer(Vec2 tileCoord);
     bool scanTreasureLayer(Vec2 tileCoord);
-    Vec2 tileCoordForPosition(Vec2 position);
-    Vec2 positionForTileCoord(Vec2 tileCoord);
     Vec2 wrapWoldMap(Vec2 tileCoord, Vec2 worldPosition);
     
     SpriteBatchNode *m_pActors;

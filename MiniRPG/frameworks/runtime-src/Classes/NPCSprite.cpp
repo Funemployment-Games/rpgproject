@@ -7,6 +7,7 @@
 //
 
 #include "NPCSprite.h"
+#include "config.h"
 
 Sprite* NPCSprite::createNPC(std::string spriteName, std::string scriptName)
 {
@@ -36,7 +37,7 @@ bool NPCSprite::initWithParameters(std::string spriteName, std::string scriptNam
     m_strScriptName = scriptName;
     
     m_currentDirection = kActionSpriteDirectionSouth;
-    m_walkPattern = kActionSpriteWalkPatternNone;
+    m_actionState = kActionStateAutoWalk;
     m_fDelayBetweenSteps = 0.0f;
     m_fTimeSinceLastStep = 0.0f;
     
@@ -47,7 +48,25 @@ bool NPCSprite::initWithParameters(std::string spriteName, std::string scriptNam
 
 void NPCSprite::update(float dt)
 {
-    ActionSprite::update(dt);
+    if (m_actionState == kActionStateManualWalk)
+    {
+        ActionSprite::update(dt);
+    }
+    else
+    {
+        if (m_fDelayBetweenSteps != 0.0f)
+        {
+            if (m_fTimeSinceLastStep > m_fDelayBetweenSteps)
+            {
+                m_fTimeSinceLastStep = 0;
+                determineNextTileToWalkTo();
+            }
+            else
+            {
+                m_fTimeSinceLastStep += dt;
+            }
+        }
+    }
 }
 
 // Creation
@@ -138,40 +157,53 @@ void NPCSprite::createIdleAction()
     }
 }
 
-void NPCSprite::walkNumTilesWithDirection(int numTilesToMove, std::string directionToMove)
+void NPCSprite::walkNumTilesWithDirection(int numTilesToMove, std::string directionToMove, bool forceMovement)
+{
+    Vec2 destination = determineDestinationPositon(numTilesToMove, directionToMove);
+    
+    bool isValidDestination = m_WalkBounds.containsPoint(destination);
+    
+    if (isValidDestination || forceMovement)
+    {
+        // Animate the player
+        auto moveAction = MoveTo::create(numTilesToMove * m_fWalkSpeed, destination);
+        
+        // Play actions
+        m_actionState = kActionStateAutoWalk;
+        auto doneAction = CallFuncN::create(CC_CALLBACK_1(NPCSprite::onFinishedWalkingCallback, this));
+        auto animationSequence = Sequence::create((FiniteTimeAction*)m_walkAction[m_currentDirection], NULL);
+        auto movementSequence = Sequence::create(moveAction, doneAction,NULL);
+        runAction(animationSequence);
+        runAction(movementSequence);
+    }
+}
+
+Vec2 NPCSprite::determineDestinationPositon(int numTilesToMove, std::string directionToMove)
 {
     Vec2 destination = Vec2::ZERO;
+    
     if (directionToMove == "east")
     {
         m_currentDirection = kActionSpriteDirectionEast;
-        destination = Vec2(getPosition().x + (16.0f * numTilesToMove), getPosition().y);
+        destination = Vec2(getPosition().x + (kTileSize * numTilesToMove), getPosition().y);
     }
     else if (directionToMove == "west")
     {
         m_currentDirection = kActionSpriteDirectionWest;
-        destination = Vec2(getPosition().x - (16.0f * numTilesToMove), getPosition().y);
+        destination = Vec2(getPosition().x - (kTileSize * numTilesToMove), getPosition().y);
     }
     else if (directionToMove == "north")
     {
         m_currentDirection = kActionSpriteDirectionNorth;
-        destination = Vec2(getPosition().x, getPosition().y + (16.0f * numTilesToMove));
+        destination = Vec2(getPosition().x, getPosition().y + (kTileSize * numTilesToMove));
     }
     else if (directionToMove == "south")
     {
         m_currentDirection = kActionSpriteDirectionSouth;
-        destination = Vec2(getPosition().x, getPosition().y - (16.0f * numTilesToMove));
+        destination = Vec2(getPosition().x, getPosition().y - (kTileSize * numTilesToMove));
     }
     
-    // Animate the player
-    auto moveAction = MoveTo::create(numTilesToMove * m_fWalkSpeed, destination);
-    
-	// Play actions
-    m_actionState = kActionStateAutoWalk;
-    auto doneAction = CallFuncN::create(CC_CALLBACK_1(NPCSprite::onFinishedWalkingCallback, this));
-    auto animationSequence = Sequence::create((FiniteTimeAction*)m_walkAction[m_currentDirection], NULL);
-    auto movementSequence = Sequence::create(moveAction, doneAction,NULL);
-    runAction(animationSequence);
-    runAction(movementSequence);
+    return destination;
 }
 
 //
@@ -190,8 +222,39 @@ float NPCSprite::getDelayBetweenSteps()
     return m_fDelayBetweenSteps;
 }
 
+void NPCSprite::setWalkBounds(Rect bounds)
+{
+    m_WalkBounds = bounds;
+}
+
+Rect NPCSprite::getWalkBounds()
+{
+    return m_WalkBounds;
+}
+
 void NPCSprite::onFinishedWalkingCallback(Ref* pSender)
 {
-    printf("onFinishedWalkingCallback");
+    //printf("onFinishedWalkingCallback");
     idle();
+}
+
+void NPCSprite::determineNextTileToWalkTo()
+{
+    int directionIndex = 0;
+    
+    if (m_WalkBounds.size.width < 1 && m_WalkBounds.size.height > 0)
+    {
+        directionIndex = rand() % 1;     // v2 in the range 0 to 1
+    }
+    else if (m_WalkBounds.size.width > 0 && m_WalkBounds.size.height < 1)
+    {
+        directionIndex = rand() % 1 + 2;     //in the range 2-3
+    }
+    else
+    {
+        directionIndex = rand() % kActionSpriteDirectionMax;     // v2 in the range 0 to 3
+    }
+
+    std::string directionsArray[kActionSpriteDirectionMax] = {"north","south","east","west"};
+    walkNumTilesWithDirection(1, directionsArray[directionIndex], false);
 }

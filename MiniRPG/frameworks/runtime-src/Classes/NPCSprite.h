@@ -24,7 +24,7 @@ public:
     //scheduled methods
     virtual void update(float dt);
     
-    void walkNumTilesWithDirection(int numTilesToMove, std::string directionToMove);
+    void walkNumTilesWithDirection(int numTilesToMove, std::string directionToMove, bool forceMovement);
     
     //creation
     virtual void createActions();
@@ -35,14 +35,20 @@ public:
     std::string getScriptName();
     void setDelayBetweenSteps(float theDelay);
     float getDelayBetweenSteps();
+    void setWalkBounds(Rect bounds);
+    Rect getWalkBounds();
     
     //Callbacks
     void onFinishedWalkingCallback(Ref* pSender);
 
 private:
+    void determineNextTileToWalkTo();
+    Vec2 determineDestinationPositon(int numTilesToMove, std::string directionToMove);
+    
     std::string m_strScriptName;
     float m_fDelayBetweenSteps;
     float m_fTimeSinceLastStep;
+    Rect m_WalkBounds;
 };
 
 #endif

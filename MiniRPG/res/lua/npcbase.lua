@@ -15,3 +15,11 @@ function NPC:interact()
   -- talk(self.name, self.dialogue)
 walkNumTilesWithDirection("BunnyGirl", 4, "south")
 end
+
+function NPC:setStepDelay(delayInSeconds)
+    setStepDelay(self.name, delayInSeconds)
+end
+
+function NPC:setWalkBounds(startX, startY, width, height)
+    setWalkBounds(self.name, cc.rect(startX, startY, width, height))
+end

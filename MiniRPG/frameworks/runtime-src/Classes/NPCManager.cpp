@@ -82,6 +82,14 @@ void NPCManager::interactWithNPCNamed(std::string npcName)
 {
     std::string luaCode = "gNPCLUT[\"" + npcName + "\"]:interact()";
     runLua(luaCode.c_str());
+    for (Vector<NPCSprite*>::iterator npcIterator = m_vCurrentNPCs.begin() ; npcIterator != m_vCurrentNPCs.end(); ++npcIterator)
+    {
+        NPCSprite* currentNPC = (NPCSprite*)*npcIterator;
+        if (currentNPC->getCharacterName() == npcName)
+        {
+            currentNPC->setActionState(kActionStateTalking);
+        }
+    }
 }
 
 void NPCManager::interactWithClosestNPC()
@@ -111,7 +119,31 @@ void NPCManager::walkNumTilesWithDirection(std::string npcName, int numTiles, st
         NPCSprite* currentNPC = (NPCSprite*)*npcIterator;
         if (currentNPC->getCharacterName() == npcName)
         {
-            currentNPC->walkNumTilesWithDirection(numTiles, direction);
+            currentNPC->walkNumTilesWithDirection(numTiles, direction, true);
+        }
+    }
+}
+
+void NPCManager::setWalkBounds(std::string npcName, Rect bounds)
+{
+    for (Vector<NPCSprite*>::iterator npcIterator = m_vCurrentNPCs.begin() ; npcIterator != m_vCurrentNPCs.end(); ++npcIterator)
+    {
+        NPCSprite* currentNPC = (NPCSprite*)*npcIterator;
+        if (currentNPC->getCharacterName() == npcName)
+        {
+            currentNPC->setWalkBounds(bounds);
+        }
+    }
+}
+
+void NPCManager::setDelayBetweenSteps(std::string npcName, float theDelay)
+{
+    for (Vector<NPCSprite*>::iterator npcIterator = m_vCurrentNPCs.begin() ; npcIterator != m_vCurrentNPCs.end(); ++npcIterator)
+    {
+        NPCSprite* currentNPC = (NPCSprite*)*npcIterator;
+        if (currentNPC->getCharacterName() == npcName)
+        {
+            currentNPC->setDelayBetweenSteps(theDelay);
         }
     }
 }

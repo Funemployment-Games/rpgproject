@@ -97,10 +97,12 @@ static int lua_npc_walk_numtiles_with_direction(lua_State* L)
 static int lua_npc_talk(lua_State* L)
 {
     int argc = lua_gettop(L);
+    tolua_Error tolua_err;
     
-    if (argc < 2)
+    if (argc != 2)
     {
-        printf("Invalid number of arguments!");
+        tolua_error(L,"#ferror in function 'lua_npc_walk_numtiles_with_direction', too few arguments.",&tolua_err);
+        return 0;
     }
     
     std::string npcName = tolua_tostring(L, 1, "");
@@ -114,6 +116,62 @@ static int lua_npc_talk(lua_State* L)
     return 0;
 }
 
+static int lua_npc_set_walk_bounds(lua_State* L)
+{
+    int argc = lua_gettop(L);
+    bool ok;
+    Rect boundsRect;
+    tolua_Error tolua_err;
+    
+    if (argc != 2)
+    {
+        tolua_error(L,"#ferror in function 'lua_npc_set_walk_bounds', too few arguments.",&tolua_err);
+        return 0;
+    }
+    
+    std::string npcName = tolua_tostring(L, 1, "");
+    
+    ok &= luaval_to_rect(L, 2, &boundsRect);
+    /*
+    if(!ok)
+    {
+        printf("Expected cocos2d::Rect, got another type!\n");
+        return 0;
+    }
+     */
+    
+    NPCManager* pManager = NPCManager::getInstance();
+    GameLayer* pGameLayer = pManager->getGameLayer();
+    
+    Vec2 worldPos = pGameLayer->positionForTileCoord(Vec2(boundsRect.origin.x, boundsRect.origin.y));
+    Rect convertedRect = Rect::Rect(worldPos.x, worldPos.y, boundsRect.size.width * kTileSize, boundsRect.size.height * kTileSize);
+    
+    pManager->setWalkBounds(npcName, convertedRect);
+    
+    return 0;
+}
+
+static int lua_npc_set_delay_between_steps(lua_State* L)
+{
+    int argc = lua_gettop(L);
+    cocos2d::Rect boundsRect;
+    tolua_Error tolua_err;
+    
+    if (argc != 2)
+    {
+        tolua_error(L,"#ferror in function 'lua_npc_set_delay_between_steps', too few arguments.",&tolua_err);
+        return 0;
+    }
+    
+    std::string npcName = tolua_tostring(L, 1, "");
+    float fDelay = (float)tolua_tonumber(L, 2, 0);
+    
+    NPCManager* pManager = NPCManager::getInstance();
+    pManager->setDelayBetweenSteps(npcName, fDelay);
+    
+    return 0;
+}
+
 int register_globalluamanager(lua_State* L)
 {
     tolua_open(L);
@@ -122,6 +180,8 @@ int register_globalluamanager(lua_State* L)
     tolua_function(L, "walkNumTilesWithDirection", lua_npc_walk_numtiles_with_direction);
     tolua_function(L, "walkWithDirection", lua_npc_walk_with_direction);
     tolua_function(L, "talk", lua_npc_talk);
+    tolua_function(L, "setWalkBounds", lua_npc_set_walk_bounds);
+    tolua_function(L, "setStepDelay", lua_npc_set_delay_between_steps);
     tolua_endmodule(L);
     return 0;
 }

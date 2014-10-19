@@ -33,6 +33,8 @@ bool HeroSprite::initWithParameters(std::string spriteName)
     
     m_fWalkSpeed = 32.f;
     m_strSpriteName = spriteName;
+    m_currentDirection = kActionSpriteDirectionNorth;
+    m_actionState = kActionStateIdle;
     
     createActions();
     
