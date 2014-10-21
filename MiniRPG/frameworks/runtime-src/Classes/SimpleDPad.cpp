@@ -108,6 +108,7 @@ void SimpleDPad::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *event)
 
 void SimpleDPad::onKeyPressed(EventKeyboard::KeyCode keycode, cocos2d::Event* event)
 {
+    m_bIsHeld = true;
     if (keycode == cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
     {
         //right
@@ -161,15 +162,20 @@ void SimpleDPad::onKeyPressed(EventKeyboard::KeyCode keycode, cocos2d::Event* ev
 
     }
     
-    
+    //printf("onKeyPressed %d\n", keycode);
+    m_lastKeyPressed = keycode;
     m_pThePlayer->didChangeDirectionTo(m_vDirection);
 }
 
 void SimpleDPad::onKeyReleased(EventKeyboard::KeyCode keycode, cocos2d::Event* event)
 {
-    m_vDirection = Vec2::ZERO;
-    m_bIsHeld = false;
-    m_pThePlayer->simpleDPadTouchEnded();
+    //printf("onKeyReleased %d\n", keycode);
+    if (m_lastKeyPressed == keycode)
+    {
+        m_vDirection = Vec2::ZERO;
+        m_bIsHeld = false;
+        m_pThePlayer->simpleDPadTouchEnded();
+    }
 }
 
 void SimpleDPad::updateDirectionForTouchLocation(Vec2 location)

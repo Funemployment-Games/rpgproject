@@ -1,4 +1,4 @@
-//
+ //
 //  ActionSprite.cpp
 //  PompaDroid
 //
@@ -31,10 +31,13 @@ bool HeroSprite::initWithParameters(std::string spriteName)
         return false;
     }
     
-    m_fWalkSpeed = 32.f;
+    m_fWalkSpeed = .5f;
     m_strSpriteName = spriteName;
     m_currentDirection = kActionSpriteDirectionNorth;
-    m_actionState = kActionStateIdle;
+    m_actionState = kActionStateAutoWalkDone;
+    m_bIsHoldingDirection = false;
+    m_bDidChangeDirection = false;
+    m_vNextDirection = Vec2::ZERO;
     
     createActions();
     
@@ -44,6 +47,14 @@ bool HeroSprite::initWithParameters(std::string spriteName)
 void HeroSprite::update(float dt)
 {
     ActionSprite::update(dt);
+    
+    if (m_actionState == kActionStateAutoWalkDone)
+    {
+        if (!m_bIsHoldingDirection)
+        {
+            idle();
+        }
+    }
 }
 
 // Creation
@@ -137,43 +148,82 @@ void HeroSprite::createIdleAction()
 //D-Pad
 void HeroSprite::didChangeDirectionTo(Vec2 direction)
 {
-    m_vDesiredPosition = this->getPosition();
+    //m_vDesiredPosition = this->getPosition();
     bool directionChanged = false;
     if (direction.x == 1.0 && m_currentDirection != kActionSpriteDirectionEast)
     {
         m_currentDirection = kActionSpriteDirectionEast;
+        //printf("didChangeDirectionTo east\n");
         directionChanged = true;
     }
     else if (direction.x == -1.0 && m_currentDirection != kActionSpriteDirectionWest)
     {
         m_currentDirection = kActionSpriteDirectionWest;
+        //printf("didChangeDirectionTo west\n");
         directionChanged = true;
     }
     else if (direction.y == 1.0 && m_currentDirection != kActionSpriteDirectionNorth)
     {
         m_currentDirection = kActionSpriteDirectionNorth;
+        //printf("didChangeDirectionTo north\n");
         directionChanged = true;
     }
     else if (direction.y == -1.0 && m_currentDirection != kActionSpriteDirectionSouth)
     {
         m_currentDirection = kActionSpriteDirectionSouth;
+        //printf("didChangeDirectionTo south\n");
         directionChanged = true;
     }
     
-    walkWithDirection(direction, directionChanged);
+    //walkNumTilesWithDirection(1, m_currentDirection, true);
+    m_bDidChangeDirection = directionChanged;
+    m_vNextDirection = direction;
+    walkWithDirection(m_vNextDirection, directionChanged);
 }
 
 void HeroSprite::simpleDPadTouchEnded()
 {
+    //printf("simpleDPadTouchEnded\n");
+    /*
     if (m_actionState == kActionStateManualWalk)
     {
         //m_vDesiredPosition = this->getPosition();
         idle();
     }
+     */
+    
+    //if (!m_bDidChangeDirection)
+    {
+        m_bIsHoldingDirection = false;
+    }
 }
 
 void HeroSprite::isHoldingDirection(Vec2 direction)
 {
+    m_bIsHoldingDirection = true;
+    
     walkWithDirection(direction, false);
+}
+
+//Callbacks
+void HeroSprite::onFinishedWalkingCallback(Ref* pSender)
+{
+    if (m_bIsHoldingDirection)
+    {
+        m_actionState = kActionStateAutoWalkStart;
+        //printf("\nonFinishedWalkingCallback - m_bIsHoldingDirection\n");
+        //printf("%s onFinishedWalkingCallback currentpos - %f, %f\n", m_strCharacterName.c_str(), this->getPosition().x, this->getPosition().y);
+        //printf("%s onFinishedWalkingCallback destpos - %f, %f\n", m_strCharacterName.c_str(), m_vDesiredPosition.x, m_vDesiredPosition.y);
+        
+        if (m_bDidChangeDirection)
+        {
+            walkWithDirection(m_vNextDirection, m_bDidChangeDirection);
+            m_bDidChangeDirection = false;
+        }
+    }
+    else
+    {
+        m_actionState = kActionStateAutoWalkDone;
+    }
 }
 

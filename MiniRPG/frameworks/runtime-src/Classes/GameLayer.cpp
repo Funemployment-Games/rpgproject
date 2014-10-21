@@ -111,6 +111,7 @@ void GameLayer::initTheHeros()
     ValueMap startPoint = startGroup->getObject("start");
     float startX = startPoint["x"].asFloat();
     float startY = startPoint["y"].asFloat();
+    m_pHero->setPosition(Vec2(startX, startY));
     m_pHero->setDesiredPosition(Vec2(startX, startY));
 
     m_pHero->setScale(1.0f);
@@ -276,6 +277,7 @@ void GameLayer::setPlayerPosition(Vec2 position)
     // Check walls
     if (scanMetaLayer(tileCoord))
     {
+        m_pHero->idle();
         return;
     }
 
@@ -285,6 +287,7 @@ void GameLayer::setPlayerPosition(Vec2 position)
     {
         if (scanNPCLayer(tileCoord))
         {
+            m_pHero->idle();
             return;
         }
     }
@@ -299,7 +302,8 @@ void GameLayer::setPlayerPosition(Vec2 position)
     }
      */
     
-    m_pHero->setPosition(position);
+    //m_pHero->setPosition(position);
+    m_pHero->walkOneTileInCurrentDirection();
 }
 
 bool GameLayer::scanMetaLayer(Vec2 tileCoord)

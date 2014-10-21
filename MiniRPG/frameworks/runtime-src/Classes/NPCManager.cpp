@@ -88,6 +88,7 @@ void NPCManager::interactWithNPCNamed(std::string npcName)
         if (currentNPC->getCharacterName() == npcName)
         {
             currentNPC->setActionState(kActionStateTalking);
+            break;
         }
     }
 }
@@ -108,6 +109,7 @@ void NPCManager::moveNPCWithDirection(std::string npcName, Vec2 theDirection, bo
         if (currentNPC->getCharacterName() == npcName)
         {
             currentNPC->walkWithDirection(theDirection, directionDidChange);
+            break;
         }
     }
 }
@@ -119,7 +121,9 @@ void NPCManager::walkNumTilesWithDirection(std::string npcName, int numTiles, st
         NPCSprite* currentNPC = (NPCSprite*)*npcIterator;
         if (currentNPC->getCharacterName() == npcName)
         {
-            currentNPC->walkNumTilesWithDirection(numTiles, direction, true);
+            ActionSpriteDirection theDirection = currentNPC->directionStringToEnum(direction);
+            currentNPC->walkNumTilesWithDirection(numTiles, theDirection, true);
+            break;
         }
     }
 }
@@ -132,6 +136,7 @@ void NPCManager::setWalkBounds(std::string npcName, Rect bounds)
         if (currentNPC->getCharacterName() == npcName)
         {
             currentNPC->setWalkBounds(bounds);
+            break;
         }
     }
 }
@@ -144,6 +149,7 @@ void NPCManager::setDelayBetweenSteps(std::string npcName, float theDelay)
         if (currentNPC->getCharacterName() == npcName)
         {
             currentNPC->setDelayBetweenSteps(theDelay);
+            break;
         }
     }
 }

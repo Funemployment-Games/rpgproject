@@ -12,8 +12,7 @@ function NPC.create(name, dialogue)
 end
 
 function NPC:interact()
-  -- talk(self.name, self.dialogue)
-walkNumTilesWithDirection("BunnyGirl", 4, "south")
+    talk(self.name, self.dialogue)
 end
 
 function NPC:setStepDelay(delayInSeconds)

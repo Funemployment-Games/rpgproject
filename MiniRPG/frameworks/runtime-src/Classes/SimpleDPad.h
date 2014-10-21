@@ -51,6 +51,7 @@ private:
     float m_fRadius;
     bool m_bIsHeld;
     HeroSprite* m_pThePlayer;
+    EventKeyboard::KeyCode m_lastKeyPressed;
     
     EventListenerTouchOneByOne* m_pEventListener;
     EventListenerKeyboard* m_pKeyboardEventListener;

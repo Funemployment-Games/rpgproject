@@ -18,7 +18,9 @@ typedef enum _ActionState {
     kActionStateNone = 0,
     kActionStateIdle,
     kActionStateManualWalk,
-    kActionStateAutoWalk,
+    kActionStateAutoWalkStart,
+    kActionStateAutoWalking,
+    kActionStateAutoWalkDone,
     kActionStateTalking,
 } ActionState;
 
@@ -46,6 +48,8 @@ public:
     //action methods
     virtual void idle();
     virtual void walkWithDirection(Vec2 direction, bool directionChanged);
+    void walkNumTilesWithDirection(int numTilesToMove, ActionSpriteDirection directionToMove, bool forceMovement);
+    void walkOneTileInCurrentDirection();
     
     //accessor methods
     virtual void setPosition(const Vec2& pos);
@@ -55,14 +59,20 @@ public:
     Vec2 getVelocity();
     void setCharacterName(std::string theName);
     std::string getCharacterName();
+    ActionSpriteDirection directionStringToEnum(std::string directionToMove);
     
     void setActionState(ActionState theState);
     ActionState getActionState();
+    
+    //Callbacks
+    virtual void onFinishedWalkingCallback(Ref* pSender) = 0;
     
 private:
 
     
 protected:
+    Vec2 determineDestinationPositon(int numTilesToMove, ActionSpriteDirection directionToMove);
+    
     //actions
     Action* m_idleAction[kActionSpriteDirectionMax];
     Action* m_walkAction[kActionSpriteDirectionMax];
@@ -77,6 +87,7 @@ protected:
     //movement
     Vec2 m_vVelocity;
     Vec2 m_vDesiredPosition;
+    Rect m_WalkBounds;
     
     std::string m_strSpriteName;
     std::string m_strCharacterName;
