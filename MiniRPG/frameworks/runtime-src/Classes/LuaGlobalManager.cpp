@@ -111,7 +111,33 @@ static int lua_npc_talk(lua_State* L)
     NPCManager* pManager = NPCManager::getInstance();
     GameLayer* pGameLayer = pManager->getGameLayer();
     
-    pGameLayer->showNPCDialogue(npcName, dialogue);
+    pManager->setNPCState(npcName, kActionStateTalking);
+    pGameLayer->showNPCDialogue(npcName, dialogue, "", "");
+    
+    return 0;
+}
+
+static int lua_npc_yes_no_talk(lua_State* L)
+{
+    int argc = lua_gettop(L);
+    tolua_Error tolua_err;
+    
+    if (argc != 4)
+    {
+        tolua_error(L,"#ferror in function 'lua_npc_walk_numtiles_with_direction', too few arguments.",&tolua_err);
+        return 0;
+    }
+    
+    std::string npcName = tolua_tostring(L, 1, "");
+    std::string dialogue = tolua_tostring(L, 2, "");
+    std::string yes = tolua_tostring(L, 3, "");
+    std::string no = tolua_tostring(L, 4, "");
+    
+    NPCManager* pManager = NPCManager::getInstance();
+    GameLayer* pGameLayer = pManager->getGameLayer();
+    
+    pManager->setNPCState(npcName, kActionStateTalking);
+    pGameLayer->showNPCDialogue(npcName, dialogue, yes, no);
     
     return 0;
 }
@@ -180,6 +206,7 @@ int register_globalluamanager(lua_State* L)
     tolua_function(L, "walkNumTilesWithDirection", lua_npc_walk_numtiles_with_direction);
     tolua_function(L, "walkWithDirection", lua_npc_walk_with_direction);
     tolua_function(L, "talk", lua_npc_talk);
+    tolua_function(L, "talkYesNo", lua_npc_yes_no_talk);
     tolua_function(L, "setWalkBounds", lua_npc_set_walk_bounds);
     tolua_function(L, "setStepDelay", lua_npc_set_delay_between_steps);
     tolua_endmodule(L);

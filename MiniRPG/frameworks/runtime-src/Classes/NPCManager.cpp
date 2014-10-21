@@ -154,6 +154,19 @@ void NPCManager::setDelayBetweenSteps(std::string npcName, float theDelay)
     }
 }
 
+void NPCManager::setNPCState(std::string npcName, ActionState theState)
+{
+    for (Vector<NPCSprite*>::iterator npcIterator = m_vCurrentNPCs.begin() ; npcIterator != m_vCurrentNPCs.end(); ++npcIterator)
+    {
+        NPCSprite* currentNPC = (NPCSprite*)*npcIterator;
+        if (currentNPC->getCharacterName() == npcName)
+        {
+            currentNPC->setActionState(theState);
+            break;
+        }
+    }
+}
+
 NPCSprite* NPCManager::willHeroCollideWithAnyNPC(Vec2 herosDesiredPosition)
 {
     for (Vector<NPCSprite*>::iterator npcIterator = m_vCurrentNPCs.begin() ; npcIterator != m_vCurrentNPCs.end(); ++npcIterator)

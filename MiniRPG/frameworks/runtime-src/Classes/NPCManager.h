@@ -45,6 +45,7 @@ public:
     void walkNumTilesWithDirection( std::string npcName, int numTilesToMove, std::string directionToMove);
     void setWalkBounds(std::string npcName, Rect bounds);
     void setDelayBetweenSteps(std::string npcName, float theDelay);
+    void setNPCState(std::string npcName, ActionState theState);
     
     NPCSprite* willHeroCollideWithAnyNPC(Vec2 herosDesiredPosition);
     

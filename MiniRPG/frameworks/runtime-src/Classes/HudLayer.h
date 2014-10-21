@@ -17,10 +17,10 @@ USING_NS_CC;
 
 enum ContextMenuButton
 {
-    eContextMenuButton_Talk,
-    //eContextMenuButton_Search,
-    eContextMenuButton_Max,
-    eContextMenuButton_None = -1,
+    kContextMenuButton_Talk,
+    //kContextMenuButton_Search,
+    kContextMenuButton_Max,
+    kContextMenuButton_None = -1,
 };
 
 class HudLayer: public cocos2d::Layer
@@ -44,7 +44,7 @@ public:
 private:
     SimpleDPad* m_pTheDPad;
     Menu* m_pContextMenu;
-    MenuItemImage* m_pContextButtons[eContextMenuButton_Max];
+    MenuItemImage* m_pContextButtons[kContextMenuButton_Max];
     
     void onTalkButtonCallback(Ref* pSender);
     void onSearchButtonCallback(Ref* pSender);

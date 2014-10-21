@@ -185,7 +185,7 @@ void GameLayer::setTheHudLayer(HudLayer* theHudLayer)
 {
     m_pHudLayer = theHudLayer;
     
-    for (int i=0; i<eContextMenuButton_Max;++i)
+    for (int i=0; i<kContextMenuButton_Max;++i)
     {
         m_pHudLayer->setContextButtonVisibility((ContextMenuButton)i, false);
     }
@@ -248,6 +248,8 @@ void GameLayer::onTouchesEnded(const std::vector<Touch*>& touches, Event *unused
             this->removeChild(m_pChatbox, true);
             //delete m_pChatbox;
             m_pChatbox = nullptr;
+            m_pNPCManager->setNPCState(m_strCurrentTalkingNPC, kActionStateIdle);
+            m_pHudLayer->setVisible(true);
         }
         return;
     }
@@ -338,18 +340,18 @@ bool GameLayer::scanNPCLayer(Vec2 tileCoord)
     NPCSprite* collidedSprite = m_pNPCManager->willHeroCollideWithAnyNPC(m_pHero->getDesiredPosition());
      if (collidedSprite)
      {
-         if (!m_pHudLayer->getContextButtonVisibility(eContextMenuButton_Talk))
+         if (!m_pHudLayer->getContextButtonVisibility(kContextMenuButton_Talk))
          {
-             printf("%s\n",collidedSprite->getCharacterName().c_str());
-             m_pHudLayer->setContextButtonVisibility(eContextMenuButton_Talk, true);
+             printf("Collided with: %s\n",collidedSprite->getCharacterName().c_str());
+             m_pHudLayer->setContextButtonVisibility(kContextMenuButton_Talk, true);
          }
          return true;
      }
      else
      {
-         if (m_pHudLayer->getContextButtonVisibility(eContextMenuButton_Talk))
+         if (m_pHudLayer->getContextButtonVisibility(kContextMenuButton_Talk))
          {
-             m_pHudLayer->setContextButtonVisibility(eContextMenuButton_Talk, false);
+             m_pHudLayer->setContextButtonVisibility(kContextMenuButton_Talk, false);
          }
      }
     
@@ -450,14 +452,24 @@ Vec2 GameLayer::positionForTileCoord(Vec2 tileCoord)
     return Vec2(x, y);
 }
 
-void GameLayer::showNPCDialogue(std::string npcName, std::string dialogue)
+void GameLayer::showNPCDialogue(std::string npcName, std::string dialogue, std::string yesResponse, std::string noResponse)
 {
     if (!m_pChatbox)
     {
-        m_pChatbox = m_pChatbox->createChatBox( npcName, dialogue);
+        if (yesResponse == "" && noResponse == "")
+        {
+            m_pChatbox = ChatBox::createChatBox( npcName, dialogue);
+        }
+        else
+        {
+            m_pChatbox = YesNoBox::createYesNoBox(npcName, dialogue, yesResponse, noResponse);
+        }
         Vec2 vCenteredBoxPos = Vec2(this->getPosition().x * -1.f, this->getPosition().y * -3.f);
         m_pChatbox->setPosition(Vec2(vCenteredBoxPos));
         this->addChild(m_pChatbox, 5);
         m_pChatbox->advanceTextOrHide();
+        m_strCurrentTalkingNPC = npcName;
+        
+        m_pHudLayer->setVisible(false);
     }
 }

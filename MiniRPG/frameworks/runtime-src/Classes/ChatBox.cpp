@@ -11,7 +11,7 @@
 ChatBox* ChatBox::createChatBox(std::string npcName, std::string npcDialogue)
 {
     ChatBox* box = new (std::nothrow) ChatBox();
-    if (box && box->initWithGameLayer(npcName, npcDialogue))
+    if (box && box->initWithDialogue(npcName, npcDialogue))
     {
         box->autorelease();
         return box;
@@ -19,6 +19,7 @@ ChatBox* ChatBox::createChatBox(std::string npcName, std::string npcDialogue)
     CC_SAFE_DELETE(box);
     return nullptr;
 }
+
 std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) {
     std::stringstream ss(s);
     std::string item;
@@ -34,7 +35,7 @@ std::vector<std::string> split(const std::string &s, char delim) {
     return elems;
 }
 
-bool ChatBox::initWithGameLayer(std::string npcName, std::string npcDialogue)
+bool ChatBox::initWithDialogue(std::string npcName, std::string npcDialogue)
 {
     m_npcName = npcName;
     

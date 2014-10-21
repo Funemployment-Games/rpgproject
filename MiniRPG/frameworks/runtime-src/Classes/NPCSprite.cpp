@@ -55,6 +55,11 @@ void NPCSprite::update(float dt)
     }
     else
      */
+    if (m_actionState == kActionStateTalking)
+    {
+        
+    }
+    else
     {
         if (m_fDelayBetweenSteps != 0.0f)
         {

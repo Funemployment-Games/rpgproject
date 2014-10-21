@@ -20,10 +20,10 @@ public:
     static ChatBox* createChatBox(std::string npcName, std::string npcDialogue);
     static ChatBox* create();
     
-    bool initWithGameLayer(std::string npcName, std::string npcDialogue);
-    
-    void advanceTextOrHide();
+    bool initWithDialogue(std::string npcName, std::string npcDialogue);
+    virtual void advanceTextOrHide();
 private:
+protected:
     std::string m_npcName;
     std::vector<std::string> m_textArray;
     Label* m_pLabel;

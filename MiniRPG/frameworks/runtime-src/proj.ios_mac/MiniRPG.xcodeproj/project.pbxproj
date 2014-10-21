@@ -51,6 +51,8 @@
 		50D7C96C17EBBEDF005D0B91 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D7C96B17EBBEDF005D0B91 /* OpenGL.framework */; };
 		50D7C96E17EBBEE6005D0B91 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D7C96D17EBBEE6005D0B91 /* AppKit.framework */; };
 		50D7C97017EBBEEC005D0B91 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D7C96F17EBBEEC005D0B91 /* IOKit.framework */; };
+		7A322E6419F6D1FD00FBF6CE /* YesNoBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A322E6219F6D1FD00FBF6CE /* YesNoBox.cpp */; };
+		7A322E6519F6D1FD00FBF6CE /* YesNoBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A322E6219F6D1FD00FBF6CE /* YesNoBox.cpp */; };
 		7A40282E19ED9CBB002E0E70 /* NPCSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A40282D19ED9CBB002E0E70 /* NPCSprite.cpp */; };
 		7A40282F19ED9CBB002E0E70 /* NPCSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A40282D19ED9CBB002E0E70 /* NPCSprite.cpp */; };
 		7AC6D91419EC3B5D00956EDF /* ActionSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC6D90119EC3B5D00956EDF /* ActionSprite.cpp */; };
@@ -333,6 +335,8 @@
 		50D7C96B17EBBEDF005D0B91 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		50D7C96D17EBBEE6005D0B91 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		50D7C96F17EBBEEC005D0B91 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		7A322E6219F6D1FD00FBF6CE /* YesNoBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = YesNoBox.cpp; path = ../Classes/YesNoBox.cpp; sourceTree = "<group>"; };
+		7A322E6319F6D1FD00FBF6CE /* YesNoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YesNoBox.h; path = ../Classes/YesNoBox.h; sourceTree = "<group>"; };
 		7A40282C19ED9C50002E0E70 /* NPCSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NPCSprite.h; path = ../Classes/NPCSprite.h; sourceTree = "<group>"; };
 		7A40282D19ED9CBB002E0E70 /* NPCSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NPCSprite.cpp; path = ../Classes/NPCSprite.cpp; sourceTree = "<group>"; };
 		7AC6D90119EC3B5D00956EDF /* ActionSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ActionSprite.cpp; path = ../Classes/ActionSprite.cpp; sourceTree = "<group>"; };
@@ -603,6 +607,7 @@
 				7AC6D91019EC3B5D00956EDF /* NPCManager.cpp */,
 				7A40282D19ED9CBB002E0E70 /* NPCSprite.cpp */,
 				7AC6D91219EC3B5D00956EDF /* SimpleDPad.cpp */,
+				7A322E6219F6D1FD00FBF6CE /* YesNoBox.cpp */,
 				7AC6D90219EC3B5D00956EDF /* ActionSprite.h */,
 				F293BB7F15EB831F00256477 /* AppDelegate.h */,
 				7AC6D90419EC3B5D00956EDF /* ChatBox.h */,
@@ -615,6 +620,7 @@
 				7AC6D91119EC3B5D00956EDF /* NPCManager.h */,
 				7A40282C19ED9C50002E0E70 /* NPCSprite.h */,
 				7AC6D91319EC3B5D00956EDF /* SimpleDPad.h */,
+				7A322E6319F6D1FD00FBF6CE /* YesNoBox.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -927,6 +933,7 @@
 				7AC6D91D19EC3B5D00956EDF /* HeroSprite.cpp in Sources */,
 				7AC6D92119EC3B5D00956EDF /* LuaGlobalManager.cpp in Sources */,
 				7AC6D91B19EC3B5D00956EDF /* GameScene.cpp in Sources */,
+				7A322E6519F6D1FD00FBF6CE /* YesNoBox.cpp in Sources */,
 				5023813317EBBCE400990C9B /* AppDelegate.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -941,6 +948,7 @@
 				F293BB9C15EB831F00256477 /* AppDelegate.cpp in Sources */,
 				7AC6D91E19EC3B5D00956EDF /* HudLayer.cpp in Sources */,
 				7AC6D92419EC3B5D00956EDF /* SimpleDPad.cpp in Sources */,
+				7A322E6419F6D1FD00FBF6CE /* YesNoBox.cpp in Sources */,
 				7AC6D91C19EC3B5D00956EDF /* HeroSprite.cpp in Sources */,
 				7AC6D91619EC3B5D00956EDF /* ChatBox.cpp in Sources */,
 				5023812417EBBCAC00990C9B /* main.m in Sources */,
