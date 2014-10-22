@@ -17,8 +17,8 @@ Interior Maps (Towns/Dungeons)
 * Basic navigation - done
 * Ability to exit/enter locations - mostly done
 * Event triggers - not started
-* Searchable titles - not started
-* Yes/No dialogues - not started
+* Searchable tiles - not started
+* Yes/No dialogues - first pass done
 * Quest Flags - needs design consideration
 * Encounter maps - not started
 * Destructible/removable terrain/objects - not started
@@ -27,8 +27,8 @@ Interior Maps (Towns/Dungeons)
 NPCs
 * Basic NPC interaction - done
 * Animation - They now have support for walk/idle just like the player.
-* Ability to give repeating paths - todo
-* Ability for designer to script npc movements during events - todo 
+* Ability to give repeating paths - first pass is done
+* Ability for designer to script npc movements during events - first pass is done 
 
 Party
 * Make it so all 4 party member sprites show and follow leader. - not started
@@ -47,7 +47,7 @@ Input
 * Basic D-Pad - Done
 * Basic Context Sensitive button - Done
 * Improved touch input - todo
-* Keyboard/controller support - Note, keyboard movement is working on Mac, untested on PC.
+* Keyboard/controller support - keyboard works on mac and pc, will eventually need to make remappable.
 
 Casino
 * Not started
@@ -72,4 +72,4 @@ Strings
 
 Current Tackle List
 Matthew - 
-I redid NPC Spawning to make it easier to potentially move NPCs and do other interaction with them. I'm going to try and build a scripted cutscene and the move on to yes/no dialogues.
+Yes no dialogues have been implemented, probably need ability to set quest flags and what maybe have other call backs. I think I'll try to throw together a cut scene and starter quest so I can figure out how this is all going to work.

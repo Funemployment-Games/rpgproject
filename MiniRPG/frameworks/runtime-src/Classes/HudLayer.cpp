@@ -43,24 +43,24 @@ bool HudLayer::init()
 
 void HudLayer::CreateContextMenuButtons()
 {
-    Point buttonPositions [eContextMenuButton_Max] =
+    Point buttonPositions [kContextMenuButton_Max] =
     {
         Point(64,-160),
         //PointPoint(180,64),
     };
     
-    const char* buttonUpImages [eContextMenuButton_Max] =
+    const char* buttonUpImages [kContextMenuButton_Max] =
     {
         "res/ui/btn_talk.png",
         //"ui/btn_search.png",
     };
-    const char* buttonDownImages [eContextMenuButton_Max] =
+    const char* buttonDownImages [kContextMenuButton_Max] =
     {
         "res/ui/btn_talk.png",
         //"ui/btn_search.png",
     };
     
-    ccMenuCallback buttonHandlers [eContextMenuButton_Max] =
+    ccMenuCallback buttonHandlers [kContextMenuButton_Max] =
     {
         CC_CALLBACK_1(HudLayer::onTalkButtonCallback, this),
         //CC_CALLBACK_1(HudLayer::onSearchButtonCallback, this),
@@ -68,7 +68,7 @@ void HudLayer::CreateContextMenuButtons()
     
     MenuItemImage* tempButton;
     
-    for (int i=0; i< eContextMenuButton_Max;++i)
+    for (int i=0; i< kContextMenuButton_Max;++i)
     {
         tempButton = MenuItemImage::create(buttonUpImages[i],
                                            buttonDownImages[i],
@@ -77,7 +77,7 @@ void HudLayer::CreateContextMenuButtons()
         m_pContextButtons[i] = tempButton;
     }
     
-    for (int i=0;i<eContextMenuButton_Max;++i)
+    for (int i=0;i<kContextMenuButton_Max;++i)
     {
         m_pContextMenu->addChild(m_pContextButtons[i]);
     }

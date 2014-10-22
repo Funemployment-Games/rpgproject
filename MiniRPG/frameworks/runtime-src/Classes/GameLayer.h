@@ -11,6 +11,7 @@
 #include "NPCManager.h"
 #include "LuaGlobalManager.h"
 #include "ChatBox.h"
+#include "YesNoBox.h"
 
 USING_NS_CC;
 
@@ -35,7 +36,7 @@ public:
     void setTheHudLayer(HudLayer* theHudLayer);
     HeroSprite* getTheHero();
     LuaEngine* getLuaEngine();
-    void showNPCDialogue(std::string npcName, std::string dialogue);
+    void showNPCDialogue(std::string npcName, std::string dialogue, std::string yesResponse, std::string noResponse);
     
     Vec2 tileCoordForPosition(Vec2 position);
     Vec2 positionForTileCoord(Vec2 tileCoord);
@@ -62,6 +63,7 @@ private:
     TMXObjectGroup* m_pNPCSpawnGroup;
     TMXObjectGroup* m_pExitGroup;
     std::string m_strCurrentMapName;
+    std::string m_strCurrentTalkingNPC;
     
     float m_fHalfWinHeight;
     float m_fHalfWinWidth;
