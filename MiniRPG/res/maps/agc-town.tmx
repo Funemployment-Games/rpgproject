@@ -4,14 +4,6 @@
   <image source="castle_lower.png" width="690" height="655"/>
  </tileset>
  <tileset firstgid="1721" source="meta.tsx"/>
- <tileset firstgid="1724" name="merchant" tilewidth="16" tileheight="16" spacing="2" margin="2">
-  <image source="../characters/merchant.png" width="56" height="56"/>
-  <tile id="4">
-   <properties>
-    <property name="name" value="ItemShop"/>
-   </properties>
-  </tile>
- </tileset>
  <layer name="floor" width="30" height="30">
   <data encoding="base64" compression="zlib">
    eJzTZWBg0B0gzMXIwMANxDxY8CIm7OL48Acc4vxArM6EsDeDlYHhMwt2LMTMwDCdCVPcBSjWx4hdjzQW9TAcRKS99jjsxYeXM4/aOxTsfQ5MN/sGwF4hJoidpNr7A6h+KQ49pNhLip0wfGHU3kFv7wE86ZIQ/k2BvbTAo/Zi4oUUxC8uvcTYm0uBv3CVlaP2Dh57ZwDxTCzin4hIU5cosBeEXbHIEbKXGu2NkWZvASuqPZ+oZO8koLmT8dg7m0b+3Qs0dx8QH8WBjwHxGTR8HIhPAPFJID6FRR4fvswKsVeYjYHhJZD9ihV3/+kTHjlyMQAEA7Z8
@@ -32,15 +24,20 @@
   </object>
   <object name="exit_worldmap" x="224" y="464" width="32" height="16">
    <properties>
-    <property name="destination" value="worldmap_nw"/>
-    <property name="startx" value="2"/>
-    <property name="starty" value="2"/>
+    <property name="destination" value="worldmap_se"/>
+    <property name="startx" value="165"/>
+    <property name="starty" value="177"/>
    </properties>
   </object>
  </objectgroup>
- <layer name="npc" width="30" height="30">
-  <data encoding="base64" compression="zlib">
-   eJztzjEBAAAIA6Bd9o9kNGPsEBKQ0LDTHgAAAN8dzCEAxw==
-  </data>
- </layer>
+ <objectgroup name="npc" width="0" height="0">
+  <object name="bunny_girlspawn" type="npcspawn" x="240" y="160" width="48" height="32">
+   <properties>
+    <property name="basesprite" value="bunny_girl"/>
+    <property name="behaviorscript" value="agc-town-bunny_girl"/>
+    <property name="npcname" value="BunnyGirl"/>
+    <property name="stepdelay" value="3.0"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

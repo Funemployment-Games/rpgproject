@@ -17,6 +17,12 @@
   </data>
  </layer>
  <objectgroup name="exits" width="256" height="256">
-  <object name="castle1" type="exits" x="2640" y="2807" width="30" height="25"/>
+  <object name="exit-agc-town" type="exits" x="2640" y="2816" width="32" height="16">
+   <properties>
+    <property name="destination" value="agc-town"/>
+    <property name="startx" value="14"/>
+    <property name="starty" value="28"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
