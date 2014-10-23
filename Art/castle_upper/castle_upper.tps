@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>3.5.2</string>
         <key>fileName</key>
-        <string>/Users/mbarney/Documents/Projects/MiniRPG/Art/castle_upper/castle_upper.tps</string>
+        <string>/Users/mbarney/Documents/Projects/rpgproject/Art/castle_upper/castle_upper.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -38,7 +38,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>../../MiniRPG/res/maps/cave_upper_tile_sheet.png</filename>
+        <filename>../../MiniRPG/res/maps/castle_upper_tile_sheet.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>pvrCompressionQuality</key>
@@ -188,57 +188,58 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>castle_178.png</filename>
-            <filename>castle_179.png</filename>
-            <filename>castle_180.png</filename>
-            <filename>castle_181.png</filename>
-            <filename>castle_182.png</filename>
-            <filename>castle_183.png</filename>
-            <filename>castle_184.png</filename>
-            <filename>castle_185.png</filename>
-            <filename>castle_186.png</filename>
-            <filename>castle_187.png</filename>
-            <filename>castle_188.png</filename>
-            <filename>castle_189.png</filename>
-            <filename>castle_190.png</filename>
-            <filename>castle_191.png</filename>
-            <filename>castle_192.png</filename>
-            <filename>castle_193.png</filename>
-            <filename>castle_194.png</filename>
-            <filename>castle_195.png</filename>
-            <filename>castle_196.png</filename>
-            <filename>castle_197.png</filename>
-            <filename>castle_198.png</filename>
-            <filename>castle_199.png</filename>
-            <filename>castle_200.png</filename>
-            <filename>castle_201.png</filename>
-            <filename>castle_202.png</filename>
-            <filename>castle_203.png</filename>
-            <filename>castle_204.png</filename>
-            <filename>castle_205.png</filename>
-            <filename>castle_206.png</filename>
-            <filename>castle_207.png</filename>
-            <filename>castle_208.png</filename>
-            <filename>castle_209.png</filename>
-            <filename>castle_210.png</filename>
-            <filename>castle_211.png</filename>
-            <filename>castle_212.png</filename>
-            <filename>castle_213.png</filename>
-            <filename>castle_214.png</filename>
-            <filename>castle_215.png</filename>
-            <filename>castle_216.png</filename>
-            <filename>castle_217.png</filename>
-            <filename>castle_218.png</filename>
-            <filename>castle_219.png</filename>
-            <filename>castle_220.png</filename>
-            <filename>castle_221.png</filename>
-            <filename>castle_222.png</filename>
-            <filename>castle_223.png</filename>
-            <filename>castle_224.png</filename>
-            <filename>castle_225.png</filename>
-            <filename>castle_226.png</filename>
-            <filename>castle_227.png</filename>
-            <filename>castle_228.png</filename>
+            <filename>blue/blue-001.png</filename>
+            <filename>blue/blue-004.png</filename>
+            <filename>blue/blue-003.png</filename>
+            <filename>blue/blue-002.png</filename>
+            <filename>grey/grey-001.png</filename>
+            <filename>grey/grey-002.png</filename>
+            <filename>grey/grey-003.png</filename>
+            <filename>grey/grey-004.png</filename>
+            <filename>grey/grey-005.png</filename>
+            <filename>grey/grey-006.png</filename>
+            <filename>grey/grey-007.png</filename>
+            <filename>grey/grey-008.png</filename>
+            <filename>grey/grey-009.png</filename>
+            <filename>grey/grey-010.png</filename>
+            <filename>grey/grey-011.png</filename>
+            <filename>grey/grey-012.png</filename>
+            <filename>grey/grey-013.png</filename>
+            <filename>grey/grey-014.png</filename>
+            <filename>grey/grey-015.png</filename>
+            <filename>grey/grey-016.png</filename>
+            <filename>grey/grey-017.png</filename>
+            <filename>grey/grey-018.png</filename>
+            <filename>grey/grey-019.png</filename>
+            <filename>grey/grey-020.png</filename>
+            <filename>grey/grey-021.png</filename>
+            <filename>grey/grey-022.png</filename>
+            <filename>grey/grey-023.png</filename>
+            <filename>grey/grey-024.png</filename>
+            <filename>grey/grey-025.png</filename>
+            <filename>grey/grey-026.png</filename>
+            <filename>purple/purple-001.png</filename>
+            <filename>purple/purple-002.png</filename>
+            <filename>purple/purple-003.png</filename>
+            <filename>purple/purple-004.png</filename>
+            <filename>purple/purple-005.png</filename>
+            <filename>red/red-001.png</filename>
+            <filename>red/red-002.png</filename>
+            <filename>red/red-003.png</filename>
+            <filename>red/red-004.png</filename>
+            <filename>red/red-005.png</filename>
+            <filename>red/red-006.png</filename>
+            <filename>red/red-007.png</filename>
+            <filename>red/red-008.png</filename>
+            <filename>red/red-009.png</filename>
+            <filename>red/red-010.png</filename>
+            <filename>red/red-011.png</filename>
+            <filename>red/red-012.png</filename>
+            <filename>red/red-013.png</filename>
+            <filename>red/red-014.png</filename>
+            <filename>red/red-015.png</filename>
+            <filename>red/red-016.png</filename>
+            <filename>red/red-017.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
