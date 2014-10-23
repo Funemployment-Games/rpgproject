@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>3.5.2</string>
         <key>fileName</key>
-        <string>/Users/mbarney/Documents/Projects/rpgproject/Art/cave_tiles/cave.tps</string>
+        <string>/Users/mbarney/Documents/Projects/MiniRPG/Art/cave_tiles/cave.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -38,7 +38,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>cave.png</filename>
+        <filename>../../MiniRPG/res/maps/cave_tile_sheet.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>pvrCompressionQuality</key>

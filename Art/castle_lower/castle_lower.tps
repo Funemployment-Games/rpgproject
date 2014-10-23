@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data version="1.0">
+    <struct type="Settings">
+        <key>fileFormatVersion</key>
+        <int>3</int>
+        <key>texturePackerVersion</key>
+        <string>3.5.2</string>
+        <key>fileName</key>
+        <string>/Users/mbarney/Documents/Projects/MiniRPG/Art/castle_lower/castle_lower.tps</string>
+        <key>autoSDSettings</key>
+        <array>
+            <struct type="AutoSDSettings">
+                <key>scale</key>
+                <double>1</double>
+                <key>extension</key>
+                <string></string>
+                <key>spriteFilter</key>
+                <string></string>
+                <key>acceptFractionalValues</key>
+                <false/>
+                <key>maxTextureSize</key>
+                <QSize>
+                    <key>width</key>
+                    <int>-1</int>
+                    <key>height</key>
+                    <int>-1</int>
+                </QSize>
+            </struct>
+        </array>
+        <key>allowRotation</key>
+        <true/>
+        <key>premultiplyAlpha</key>
+        <false/>
+        <key>shapeDebug</key>
+        <false/>
+        <key>dpi</key>
+        <uint>72</uint>
+        <key>dataFormat</key>
+        <string>cocos2d</string>
+        <key>textureFileName</key>
+        <filename>../../MiniRPG/res/maps/cave_lower_tile_sheet.png</filename>
+        <key>flipPVR</key>
+        <false/>
+        <key>pvrCompressionQuality</key>
+        <enum type="SettingsBase::PvrCompressionQuality">PVR_QUALITY_NORMAL</enum>
+        <key>mipMapMinSize</key>
+        <uint>32768</uint>
+        <key>etc1CompressionQuality</key>
+        <enum type="SettingsBase::Etc1CompressionQuality">ETC1_QUALITY_LOW_PERCEPTUAL</enum>
+        <key>dxtCompressionMode</key>
+        <enum type="SettingsBase::DxtCompressionMode">DXT_PERCEPTUAL</enum>
+        <key>jxrColorFormat</key>
+        <enum type="SettingsBase::JpegXrColorMode">JXR_YUV444</enum>
+        <key>jxrTrimFlexBits</key>
+        <uint>0</uint>
+        <key>jxrCompressionLevel</key>
+        <uint>0</uint>
+        <key>ditherType</key>
+        <enum type="SettingsBase::DitherType">NearestNeighbour</enum>
+        <key>backgroundColor</key>
+        <uint>0</uint>
+        <key>libGdx</key>
+        <struct type="LibGDX">
+            <key>filtering</key>
+            <struct type="LibGDXFiltering">
+                <key>x</key>
+                <enum type="LibGDXFiltering::Filtering">Linear</enum>
+                <key>y</key>
+                <enum type="LibGDXFiltering::Filtering">Linear</enum>
+            </struct>
+        </struct>
+        <key>shapePadding</key>
+        <uint>2</uint>
+        <key>jpgQuality</key>
+        <uint>80</uint>
+        <key>pngOptimizationLevel</key>
+        <uint>0</uint>
+        <key>webpQualityLevel</key>
+        <uint>101</uint>
+        <key>textureSubPath</key>
+        <string></string>
+        <key>textureFormat</key>
+        <enum type="SettingsBase::TextureFormat">png</enum>
+        <key>borderPadding</key>
+        <uint>2</uint>
+        <key>maxTextureSize</key>
+        <QSize>
+            <key>width</key>
+            <int>2048</int>
+            <key>height</key>
+            <int>2048</int>
+        </QSize>
+        <key>fixedTextureSize</key>
+        <QSize>
+            <key>width</key>
+            <int>-1</int>
+            <key>height</key>
+            <int>-1</int>
+        </QSize>
+        <key>reduceBorderArtifacts</key>
+        <false/>
+        <key>algorithmSettings</key>
+        <struct type="AlgorithmSettings">
+            <key>algorithm</key>
+            <enum type="AlgorithmSettings::AlgorithmId">Basic</enum>
+            <key>freeSizeMode</key>
+            <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
+            <key>sizeConstraints</key>
+            <enum type="AlgorithmSettings::SizeConstraints">AnySize</enum>
+            <key>forceSquared</key>
+            <false/>
+            <key>forceWordAligned</key>
+            <true/>
+            <key>maxRects</key>
+            <struct type="AlgorithmMaxRectsSettings">
+                <key>heuristic</key>
+                <enum type="AlgorithmMaxRectsSettings::Heuristic">Best</enum>
+            </struct>
+            <key>basic</key>
+            <struct type="AlgorithmBasicSettings">
+                <key>sortBy</key>
+                <enum type="AlgorithmBasicSettings::SortBy">Best</enum>
+                <key>order</key>
+                <enum type="AlgorithmBasicSettings::Order">Ascending</enum>
+            </struct>
+        </struct>
+        <key>andEngine</key>
+        <struct type="AndEngine">
+            <key>minFilter</key>
+            <enum type="AndEngine::MinFilter">Linear</enum>
+            <key>packageName</key>
+            <string>Texture</string>
+            <key>wrap</key>
+            <struct type="AndEngineWrap">
+                <key>s</key>
+                <enum type="AndEngineWrap::Wrap">Clamp</enum>
+                <key>t</key>
+                <enum type="AndEngineWrap::Wrap">Clamp</enum>
+            </struct>
+            <key>magFilter</key>
+            <enum type="AndEngine::MagFilter">MagLinear</enum>
+        </struct>
+        <key>dataFileNames</key>
+        <map type="GFileNameMap">
+            <key>data</key>
+            <struct type="DataFile">
+                <key>name</key>
+                <filename>castle_lower.plist</filename>
+            </struct>
+        </map>
+        <key>multiPack</key>
+        <false/>
+        <key>forceIdenticalLayout</key>
+        <false/>
+        <key>outputFormat</key>
+        <enum type="SettingsBase::OutputFormat">RGBA8888</enum>
+        <key>contentProtection</key>
+        <struct type="ContentProtection">
+            <key>key</key>
+            <string></string>
+        </struct>
+        <key>autoAliasEnabled</key>
+        <true/>
+        <key>trimSpriteNames</key>
+        <false/>
+        <key>prependSmartFolderName</key>
+        <false/>
+        <key>cleanTransparentPixels</key>
+        <true/>
+        <key>globalSpriteSettings</key>
+        <struct type="SpriteSettings">
+            <key>scale</key>
+            <double>1</double>
+            <key>scaleMode</key>
+            <enum type="ScaleMode">Smooth</enum>
+            <key>innerPadding</key>
+            <uint>0</uint>
+            <key>extrude</key>
+            <uint>0</uint>
+            <key>trimThreshold</key>
+            <uint>1</uint>
+            <key>trimMode</key>
+            <enum type="SpriteSettings::TrimMode">None</enum>
+            <key>heuristicMask</key>
+            <false/>
+            <key>pivotPoint</key>
+            <enum type="SpriteSettings::PivotPoint">Center</enum>
+        </struct>
+        <key>fileList</key>
+        <array>
+            <filename>castle_001.png</filename>
+            <filename>castle_002.png</filename>
+            <filename>castle_003.png</filename>
+            <filename>castle_004.png</filename>
+            <filename>castle_005.png</filename>
+            <filename>castle_006.png</filename>
+            <filename>castle_007.png</filename>
+            <filename>castle_008.png</filename>
+            <filename>castle_009.png</filename>
+            <filename>castle_010.png</filename>
+            <filename>castle_011.png</filename>
+            <filename>castle_012.png</filename>
+            <filename>castle_013.png</filename>
+            <filename>castle_014.png</filename>
+            <filename>castle_015.png</filename>
+            <filename>castle_016.png</filename>
+            <filename>castle_017.png</filename>
+            <filename>castle_018.png</filename>
+            <filename>castle_019.png</filename>
+            <filename>castle_020.png</filename>
+            <filename>castle_021.png</filename>
+            <filename>castle_022.png</filename>
+            <filename>castle_023.png</filename>
+            <filename>castle_024.png</filename>
+            <filename>castle_025.png</filename>
+            <filename>castle_026.png</filename>
+            <filename>castle_027.png</filename>
+            <filename>castle_028.png</filename>
+            <filename>castle_029.png</filename>
+            <filename>castle_030.png</filename>
+            <filename>castle_031.png</filename>
+            <filename>castle_032.png</filename>
+            <filename>castle_033.png</filename>
+            <filename>castle_034.png</filename>
+            <filename>castle_035.png</filename>
+            <filename>castle_036.png</filename>
+            <filename>castle_037.png</filename>
+            <filename>castle_038.png</filename>
+            <filename>castle_039.png</filename>
+            <filename>castle_040.png</filename>
+            <filename>castle_041.png</filename>
+            <filename>castle_042.png</filename>
+            <filename>castle_043.png</filename>
+            <filename>castle_044.png</filename>
+            <filename>castle_045.png</filename>
+            <filename>castle_046.png</filename>
+            <filename>castle_047.png</filename>
+            <filename>castle_048.png</filename>
+            <filename>castle_049.png</filename>
+            <filename>castle_050.png</filename>
+            <filename>castle_051.png</filename>
+            <filename>castle_052.png</filename>
+            <filename>castle_053.png</filename>
+            <filename>castle_054.png</filename>
+            <filename>castle_055.png</filename>
+            <filename>castle_056.png</filename>
+            <filename>castle_057.png</filename>
+            <filename>castle_058.png</filename>
+            <filename>castle_059.png</filename>
+            <filename>castle_060.png</filename>
+            <filename>castle_061.png</filename>
+            <filename>castle_062.png</filename>
+            <filename>castle_063.png</filename>
+            <filename>castle_064.png</filename>
+            <filename>castle_065.png</filename>
+            <filename>castle_066.png</filename>
+            <filename>castle_067.png</filename>
+            <filename>castle_068.png</filename>
+            <filename>castle_069.png</filename>
+            <filename>castle_070.png</filename>
+            <filename>castle_071.png</filename>
+            <filename>castle_072.png</filename>
+            <filename>castle_073.png</filename>
+            <filename>castle_074.png</filename>
+            <filename>castle_075.png</filename>
+            <filename>castle_076.png</filename>
+            <filename>castle_077.png</filename>
+            <filename>castle_078.png</filename>
+            <filename>castle_079.png</filename>
+            <filename>castle_080.png</filename>
+            <filename>castle_081.png</filename>
+            <filename>castle_082.png</filename>
+            <filename>castle_083.png</filename>
+            <filename>castle_084.png</filename>
+            <filename>castle_085.png</filename>
+            <filename>castle_086.png</filename>
+            <filename>castle_087.png</filename>
+            <filename>castle_088.png</filename>
+            <filename>castle_089.png</filename>
+            <filename>castle_090.png</filename>
+            <filename>castle_091.png</filename>
+            <filename>castle_092.png</filename>
+            <filename>castle_093.png</filename>
+            <filename>castle_094.png</filename>
+            <filename>castle_095.png</filename>
+            <filename>castle_096.png</filename>
+            <filename>castle_097.png</filename>
+            <filename>castle_098.png</filename>
+            <filename>castle_099.png</filename>
+            <filename>castle_100.png</filename>
+            <filename>castle_101.png</filename>
+            <filename>castle_102.png</filename>
+            <filename>castle_103.png</filename>
+            <filename>castle_104.png</filename>
+            <filename>castle_105.png</filename>
+            <filename>castle_106.png</filename>
+            <filename>castle_107.png</filename>
+            <filename>castle_108.png</filename>
+            <filename>castle_109.png</filename>
+            <filename>castle_110.png</filename>
+            <filename>castle_111.png</filename>
+            <filename>castle_112.png</filename>
+            <filename>castle_113.png</filename>
+            <filename>castle_114.png</filename>
+            <filename>castle_115.png</filename>
+            <filename>castle_116.png</filename>
+            <filename>castle_117.png</filename>
+            <filename>castle_118.png</filename>
+            <filename>castle_119.png</filename>
+            <filename>castle_120.png</filename>
+            <filename>castle_121.png</filename>
+            <filename>castle_122.png</filename>
+            <filename>castle_123.png</filename>
+            <filename>castle_124.png</filename>
+            <filename>castle_125.png</filename>
+            <filename>castle_126.png</filename>
+            <filename>castle_127.png</filename>
+            <filename>castle_128.png</filename>
+            <filename>castle_129.png</filename>
+            <filename>castle_130.png</filename>
+            <filename>castle_131.png</filename>
+            <filename>castle_132.png</filename>
+            <filename>castle_133.png</filename>
+            <filename>castle_134.png</filename>
+            <filename>castle_135.png</filename>
+            <filename>castle_136.png</filename>
+            <filename>castle_137.png</filename>
+            <filename>castle_138.png</filename>
+            <filename>castle_139.png</filename>
+            <filename>castle_140.png</filename>
+            <filename>castle_141.png</filename>
+            <filename>castle_142.png</filename>
+            <filename>castle_143.png</filename>
+            <filename>castle_144.png</filename>
+            <filename>castle_145.png</filename>
+            <filename>castle_146.png</filename>
+            <filename>castle_147.png</filename>
+            <filename>castle_148.png</filename>
+            <filename>castle_149.png</filename>
+            <filename>castle_150.png</filename>
+            <filename>castle_151.png</filename>
+            <filename>castle_152.png</filename>
+            <filename>castle_153.png</filename>
+            <filename>castle_154.png</filename>
+            <filename>castle_155.png</filename>
+            <filename>castle_156.png</filename>
+            <filename>castle_157.png</filename>
+            <filename>castle_158.png</filename>
+            <filename>castle_159.png</filename>
+            <filename>castle_160.png</filename>
+            <filename>castle_161.png</filename>
+            <filename>castle_162.png</filename>
+            <filename>castle_163.png</filename>
+            <filename>castle_164.png</filename>
+            <filename>castle_165.png</filename>
+            <filename>castle_166.png</filename>
+            <filename>castle_167.png</filename>
+            <filename>castle_168.png</filename>
+            <filename>castle_169.png</filename>
+            <filename>castle_170.png</filename>
+            <filename>castle_171.png</filename>
+            <filename>castle_172.png</filename>
+            <filename>castle_173.png</filename>
+            <filename>castle_174.png</filename>
+            <filename>castle_175.png</filename>
+            <filename>castle_176.png</filename>
+            <filename>castle_177.png</filename>
+        </array>
+        <key>ignoreFileList</key>
+        <array/>
+        <key>replaceList</key>
+        <array/>
+        <key>ignoredWarnings</key>
+        <array/>
+        <key>commonDivisorX</key>
+        <uint>1</uint>
+        <key>commonDivisorY</key>
+        <uint>1</uint>
+    </struct>
+</data>
