@@ -8,49 +8,38 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="4" name="castle_upper" tilewidth="16" tileheight="16">
-  <image source="castle_upper.png" width="272" height="353"/>
+ <tileset firstgid="4" name="cave_upper_tile_sheet" tilewidth="16" tileheight="16" spacing="2" margin="2">
+  <tileoffset x="2" y="2"/>
+  <image source="cave_upper_tile_sheet.png" width="920" height="20"/>
  </tileset>
  <layer name="floor" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt0bsOAVEUheF9EgoFhYJQKETiCURBNIpRuBVMokFF4X29gtewTiYSjrjkSPbsxCq+YvYU82dN4kQSIiL6Wk1E6hE6otPXxXeG7tkM9zksXrzv5dh3xm0LO9hL9myp74LbwN9hLNmzpT5vivsSVgb/r9/rvo/7cT/ux/24n40+S/sVoBgoBS1lqASqCm23/RruUTPoa0E7kPf//USrr/+mYWSgbwLrCKlCm7eBQ4SjUt/pBxp9RET0364gm78M
+   eJzt1rkOwjAQRVEXAYSAgk1sAcQiCKsCgf//NV4kIw3GSVzZKV5xmskUV44LR0qpiIiInDUg0dpCUjF/eOrL4KSlwqlinnns68AdunAucdV7caC+FexgCGNBzkP2rWEPI6NPzkP2TYwuG/YV9/XgUtCVz2+B+75s5yi/h+iLtbK+WGAf+9gXvq+pft9PuT5MYQ4bOFh2nh7PLzUMYAYL2MLRshPq/7qqQ9+yBn0t9X+3XLw89Zn3ytXbUx8REVGdfQBU/DqI
   </data>
  </layer>
  <objectgroup name="start" width="0" height="0">
-  <object name="start" x="320" y="208" width="16" height="16"/>
+  <object name="start" x="384" y="192" width="16" height="16"/>
  </objectgroup>
  <objectgroup name="exits" width="0" height="0">
   <object name="exit" x="336" y="416" width="16" height="16">
    <properties>
-    <property name="destination" value="airgetlam_castle_town"/>
-    <property name="startx" value="13"/>
-    <property name="starty" value="2.5"/>
+    <property name="destination" value="agc-town"/>
+    <property name="startx" value="14"/>
+    <property name="starty" value="3"/>
    </properties>
   </object>
  </objectgroup>
- <layer name="pillar" width="40" height="40">
-  <data encoding="base64" compression="zlib">
-   eJzt0DEKgDAMheF0VU+gZBcE73+SnscOhUIoOmSobf8PMoRkeDwRAIDXbnZtkqI4zVzmfld+0K/4seMd/fnQnw/9+dDf+JYgsqbZQuskdUfOpT/NBwAAMLsHE8IKiw==
-  </data>
- </layer>
  <layer name="meta" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt1kEKwCAQBEH9/6dzD0IiE3UD1eBFXHoYL9saAGCGHhz5xp773Zs3q/hjvpVzX3j0l3n0l3n0l3n0l3n0N+d52k1O7y/V8+2c2+U5/b+V9ufK+QAAqMwFo5oAgQ==
+   eJzt1sEJACAMxdC6/9LOoB9qwRfwVkmgl1YBAE5YwdN379GXefRlHn2ZR1/m0Zd59GWe1/fL6czPfZ3/ujyv9zvpfp7cBwDAZDbOowBz
   </data>
  </layer>
  <objectgroup name="npc" width="0" height="0">
-  <object name="kingspawn" type="npcspawn" x="336" y="160" width="16" height="16">
+  <object name="kingspawn" type="npcspawn" x="288" y="192" width="16" height="16">
    <properties>
     <property name="basesprite" value="king"/>
     <property name="behaviorscript" value="agc-throne-king"/>
     <property name="npcname" value="TheKing"/>
-   </properties>
-  </object>
-  <object name="bunny_girlspawn" type="npcspawn" x="240" y="160" width="48" height="32">
-   <properties>
-    <property name="basesprite" value="bunny_girl"/>
-    <property name="behaviorscript" value="agc-throne-bunny_girl"/>
-    <property name="npcname" value="BunnyGirl"/>
    </properties>
   </object>
  </objectgroup>

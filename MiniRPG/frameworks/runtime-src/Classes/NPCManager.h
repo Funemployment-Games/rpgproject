@@ -37,6 +37,8 @@ public:
     void setGameLayer(GameLayer* pGameLayer);
     GameLayer* getGameLayer();
     void addNPC(NPCSprite* theNPC);
+    void removeNPC(NPCSprite* theNPC);
+    void removeAllNPCs();
     
     //Interaction
     void interactWithNPCNamed(std::string npcName);

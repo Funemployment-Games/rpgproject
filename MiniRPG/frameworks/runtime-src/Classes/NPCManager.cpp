@@ -16,6 +16,8 @@
 #include <fcntl.h>
 #include "config.h"
 
+#include "GameLayer.h"
+
 // singleton stuff
 static NPCManager *s_sharedNPCManager = nullptr;
 
@@ -62,6 +64,25 @@ GameLayer* NPCManager::getGameLayer()
 void NPCManager::addNPC(NPCSprite* theNPC)
 {
     m_vCurrentNPCs.pushBack(theNPC);
+}
+
+void NPCManager::removeNPC(NPCSprite* theNPC)
+{
+    m_vCurrentNPCs.eraseObject(theNPC);
+}
+
+void NPCManager::removeAllNPCs()
+{
+    for (Vector<NPCSprite*>::iterator npcIterator = m_vCurrentNPCs.begin() ; npcIterator != m_vCurrentNPCs.end(); ++npcIterator)
+    {
+        NPCSprite* currentNPC = (NPCSprite*)*npcIterator;
+        m_pGameLayer->removeChild(currentNPC);
+    }
+    
+    if (!m_vCurrentNPCs.empty())
+    {
+        m_vCurrentNPCs.clear();
+    }
 }
 
 void NPCManager::update(float delta)

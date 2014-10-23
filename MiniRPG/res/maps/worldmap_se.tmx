@@ -1,27 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="256" height="256" tilewidth="16" tileheight="16">
- <tileset firstgid="1" name="meta_tiles" tilewidth="16" tileheight="16">
-  <image source="meta_tiles.png" width="64" height="32"/>
- </tileset>
- <tileset firstgid="9" name="dq1over3" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" width="128" height="128" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="dq1over3" tilewidth="16" tileheight="16">
   <image source="dq1over3.png" width="160" height="224"/>
  </tileset>
- <layer name="ground" width="256" height="256">
+ <tileset firstgid="141" source="meta.tsx"/>
+ <layer name="floor" width="128" height="128">
   <data encoding="base64" compression="zlib">
-   eJzt2EFOAjEYgNFuOQEaD6BRF2r0DswVPAX3XzkTIOpAgQGG0vnf4mVm0YSW5GsLs5TSbG3ZMwPCWGbegenTP8Tl/g8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZcz/KD0X4Lq67t9a3zcwF+C6nP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEzRPKP0vIDx5Lq/hNJrA/Ybs397ANw2/UNMY7evf7hd+oe4jm34rkf/ULdT2x+6B5ReJ7BtSP/PrZfWa9I/1G7I/f2hx+9/qNvQ/v3/B9Ohf4hpaL/6h+nQP8TVrOkf4lmkVf/9532G/qF+Tcq3/5XG6b/0moGVXPvdM9d+x9kP9WvS8Lu//qFuTfrtfPO+SM5/iKBJ23vAZ/q/B+gfpqlJu8/4Zq0bc07j+ocyjmkwd65vzv9zPyM3tvR3A1N3Tv8bpdcAnMYdHeLSP8Slf4hpX9OPracDY/QP9drX9Hvr48AY/UO9LnH31z/US/8Ql/4hLv1DXPoHDtE/0NE/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABs+wEe0T3G
+   eJzt1lFOg0AUQNFhBdq4AI36o9E90P1vShI7EUmnKaXkwcz5OBk+mnSG+6DtUkodAAAAAAAAAAAAQICHguh9EdP9HqLPRmx/M7B9+rdr7fb6b5v+bbu24eOE/vt3a/u5MxB9Tpb3fx28Dd71r8Kc9/fThN///Zvb3/+/uujfrrn99K+L/m07nujfpj799p+uhwL963CueV6/0zr9o8/Mn2nz8Vpqf5jZW//tKrU/nmmufz3GnfN1nzz/rRh3z9df6f8M6F+v3H7aNc9Ct7Cx/nGuaVB6rvuTpd9R+mz0vWnBkv5Z9BlYt793dL30b5v+7brU9HnwckV7/ffrUtOPwaf+VbvHu1//fdO/bfq3Tf+26c/SOYneG7GzEL0fAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABg+34AKkJ3kQ==
   </data>
  </layer>
- <layer name="meta" width="256" height="256">
+ <layer name="meta" width="128" height="128">
   <data encoding="base64" compression="zlib">
-   eJzt0yEOACAMBEH6/08jwBbb0M4k58/sWgAAR1QfAMroHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgD3EHzBPJgL6y7rUP/ekf5tI/zPPqXv/QW9a7/qG/rHHtw1z6BwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AcbjGAANw==
+   eJzt0bEJADAMBDHvD945TVqH1H4JboKrAgAAAAAAAAAAAAAAAAAAAAD40zcy9RC7Td+9z+B/Nv8zvb77v9/02/8M02Pvs/kPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQ6QCqcRyl
   </data>
  </layer>
- <objectgroup name="exits" width="256" height="256">
-  <object name="exit-agc-town" type="exits" x="2640" y="2816" width="32" height="16">
+ <objectgroup name="exits" width="128" height="128">
+  <object name="exit-agc-town" type="exits" x="592" y="768" width="32" height="16">
    <properties>
     <property name="destination" value="agc-town"/>
     <property name="startx" value="14"/>
     <property name="starty" value="28"/>
+   </properties>
+  </object>
+  <object name="exit-ag-cave-s" type="exits" x="720" y="640" width="16" height="16">
+   <properties>
+    <property name="destination" value="ag-cave"/>
+    <property name="startx" value="2"/>
+    <property name="starty" value="42"/>
+   </properties>
+  </object>
+  <object name="exit-ag-cave-n" type="exits" x="784" y="576" width="16" height="16">
+   <properties>
+    <property name="destination" value="ag-cave"/>
+    <property name="startx" value="42"/>
+    <property name="starty" value="2"/>
+   </properties>
+  </object>
+  <object name="exit-dd-town" type="exit" x="912" y="448" width="48" height="16">
+   <properties>
+    <property name="destination" value=""/>
+    <property name="startx" value=""/>
+    <property name="starty" value=""/>
    </properties>
   </object>
  </objectgroup>

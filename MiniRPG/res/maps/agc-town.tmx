@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="30" height="30" tilewidth="16" tileheight="16">
- <tileset firstgid="1" name="castle_lower" tilewidth="16" tileheight="16">
-  <image source="castle_lower.png" width="690" height="655"/>
+ <tileset firstgid="1" source="meta.tsx"/>
+ <tileset firstgid="4" name="cave_lower_tile_sheet" tilewidth="16" tileheight="16" spacing="2" margin="2">
+  <tileoffset x="2" y="2"/>
+  <image source="cave_lower_tile_sheet.png" width="470" height="128"/>
  </tileset>
- <tileset firstgid="1721" source="meta.tsx"/>
  <layer name="floor" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJzTZWBg0B0gzMXIwMANxDxY8CIm7OL48Acc4vxArM6EsDeDlYHhMwt2LMTMwDCdCVPcBSjWx4hdjzQW9TAcRKS99jjsxYeXM4/aOxTsfQ5MN/sGwF4hJoidpNr7A6h+KQ49pNhLip0wfGHU3kFv7wE86ZIQ/k2BvbTAo/Zi4oUUxC8uvcTYm0uBv3CVlaP2Dh57ZwDxTCzin4hIU5cosBeEXbHIEbKXGu2NkWZvASuqPZ+oZO8koLmT8dg7m0b+3Qs0dx8QH8WBjwHxGTR8HIhPAPFJID6FRR4fvswKsVeYjYHhJZD9ihV3/+kTHjlyMQAEA7Z8
+   eJxjYWBgYBkgzArEHHTEMHt5gdgKB8Ylp41HDwcBOUrsxYdH7R0a9vIOoL2k2gkzG5fdtLQXn59H7R21lxZ41N7BE7+j9g5/e8mtByktN0ZSe2PUXuraS05fAz3tktNPGQgMAII0leY=
   </data>
  </layer>
  <layer name="meta" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJxjYBg4sJONvhjZXnxuIscfxMiN2jsy7UVPf/S0lxyAz720tJdYM0ftHZn20gKM2otfDSXmj9o7ai+6GnLrQUrLjZHU3hi1l/r2UtLXIFfvQAAAqkd0ZQ==
+   eJxjYBg4wEhnjGwvPjeR4w9i5EbtHZn2oqc/etpLDsDnXlraS6yZo/aOTHtpAUbtxa+GEvNH7R21F10NufUgpeXGSGpvjNpLfXsp6WuQq3cgAABmAACd
   </data>
  </layer>
  <objectgroup name="exits" width="30" height="30">
@@ -22,16 +23,16 @@
     <property name="starty" value="25"/>
    </properties>
   </object>
-  <object name="exit_worldmap" x="224" y="464" width="32" height="16">
+  <object name="exit_worldmap" x="224" y="448" width="32" height="16">
    <properties>
     <property name="destination" value="worldmap_se"/>
-    <property name="startx" value="165"/>
-    <property name="starty" value="177"/>
+    <property name="startx" value="37"/>
+    <property name="starty" value="49"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="npc" width="0" height="0">
-  <object name="bunny_girlspawn" type="npcspawn" x="240" y="160" width="48" height="32">
+  <object name="bunny_girlspawn" type="npcspawn" x="272" y="160" width="48" height="32">
    <properties>
     <property name="basesprite" value="bunny_girl"/>
     <property name="behaviorscript" value="agc-town-bunny_girl"/>

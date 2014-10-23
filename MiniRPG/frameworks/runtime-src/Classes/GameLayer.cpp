@@ -69,6 +69,8 @@ void GameLayer::loadMapNamed(std::string mapName)
         m_pTileMap = nullptr;
     }
     
+    m_pNPCManager->removeAllNPCs();
+    
     std::string fileExtension = ".tmx";
     std::string fileNameWithExtension = "res/maps/" + mapName + fileExtension;
     printf("Loading map: %s\n",fileNameWithExtension.c_str());
