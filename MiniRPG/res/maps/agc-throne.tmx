@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="40" height="40" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16">
  <tileset firstgid="1" name="meta_tiles" tilewidth="16" tileheight="16" margin="5">
   <image source="meta_tiles.png" width="64" height="32"/>
   <tile id="0">
@@ -8,19 +8,19 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="4" name="cave_upper_tile_sheet" tilewidth="16" tileheight="16" spacing="2" margin="2">
+ <tileset firstgid="4" name="castle_upper_tile_sheet" tilewidth="16" tileheight="16" spacing="2" margin="2">
   <tileoffset x="2" y="2"/>
-  <image source="cave_upper_tile_sheet.png" width="920" height="20"/>
+  <image source="castle_upper_tile_sheet.png" width="938" height="20"/>
  </tileset>
  <layer name="floor" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt1rkOwjAQRVEXAYSAgk1sAcQiCKsCgf//NV4kIw3GSVzZKV5xmskUV44LR0qpiIiInDUg0dpCUjF/eOrL4KSlwqlinnns68AdunAucdV7caC+FexgCGNBzkP2rWEPI6NPzkP2TYwuG/YV9/XgUtCVz2+B+75s5yi/h+iLtbK+WGAf+9gXvq+pft9PuT5MYQ4bOFh2nh7PLzUMYAYL2MLRshPq/7qqQ9+yBn0t9X+3XLw89Zn3ytXbUx8REVGdfQBU/DqI
+   eJzt1rkOwjAQRVEXIIggQWLfkUjBTtj5/z/jIRnJDFESGk+KV5xm4uJq4sJVY0yViIgKq0NgNRxBzrzpqS+EyKo4opx56LFvCTVYwTrDxp6Llfp2sIcDHB3uXLPvBGe4iD53rtm3FV1Swr7Mvivc4C66Hnb+VO77kHtMxHeNvtjK6osd7GMf+/T72ub7LfXWgS70oA+DlDNDj/trCSMY2z1NYJpyRuv/FlWGvlkJ+ubm924VsfDUJ+/VP3z0ERERldkLS4A6Uw==
   </data>
  </layer>
- <objectgroup name="start" width="0" height="0">
+ <objectgroup name="start">
   <object name="start" x="384" y="192" width="16" height="16"/>
  </objectgroup>
- <objectgroup name="exits" width="0" height="0">
+ <objectgroup name="exits">
   <object name="exit" x="336" y="416" width="16" height="16">
    <properties>
     <property name="destination" value="agc-town"/>
@@ -34,7 +34,7 @@
    eJzt1sEJACAMxdC6/9LOoB9qwRfwVkmgl1YBAE5YwdN379GXefRlHn2ZR1/m0Zd59GWe1/fL6czPfZ3/ujyv9zvpfp7cBwDAZDbOowBz
   </data>
  </layer>
- <objectgroup name="npc" width="0" height="0">
+ <objectgroup name="npc">
   <object name="kingspawn" type="npcspawn" x="288" y="192" width="16" height="16">
    <properties>
     <property name="basesprite" value="king"/>

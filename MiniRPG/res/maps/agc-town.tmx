@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="30" height="30" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16">
  <tileset firstgid="1" source="meta.tsx"/>
- <tileset firstgid="4" name="cave_lower_tile_sheet" tilewidth="16" tileheight="16" spacing="2" margin="2">
-  <tileoffset x="2" y="2"/>
-  <image source="cave_lower_tile_sheet.png" width="470" height="128"/>
- </tileset>
+ <tileset firstgid="4" source="castle_lower_tile_sheet.tsx"/>
  <layer name="floor" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJxjYWBgYBkgzArEHHTEMHt5gdgKB8Ylp41HDwcBOUrsxYdH7R0a9vIOoL2k2gkzG5fdtLQXn59H7R21lxZ41N7BE7+j9g5/e8mtByktN0ZSe2PUXuraS05fAz3tktNPGQgMAII0leY=
+   eJwzY2BgMBsg7ArEbnTA7kDsgWSvJxBn4MC45ELJ0AOTo8RefHjU3qFhr+cA2kuqnYTcS0t78ekdtXfUXlrgUXsHT/yO2jv87SW3HqS03BhJ7Y1Re6lvL6kYPe2SggeqPwbCAOQKQ78=
   </data>
  </layer>
  <layer name="meta" width="30" height="30">
@@ -15,7 +12,7 @@
    eJxjYBg4wEhnjGwvPjeR4w9i5EbtHZn2oqc/etpLDsDnXlraS6yZo/aOTHtpAUbtxa+GEvNH7R21F10NufUgpeXGSGpvjNpLfXsp6WuQq3cgAABmAACd
   </data>
  </layer>
- <objectgroup name="exits" width="30" height="30">
+ <objectgroup name="exits">
   <object name="exit_throne_room" x="224" y="32" width="16" height="16">
    <properties>
     <property name="destination" value="airgetlam_castle_throne"/>
@@ -31,7 +28,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="npc" width="0" height="0">
+ <objectgroup name="npc">
   <object name="bunny_girlspawn" type="npcspawn" x="272" y="160" width="48" height="32">
    <properties>
     <property name="basesprite" value="bunny_girl"/>
