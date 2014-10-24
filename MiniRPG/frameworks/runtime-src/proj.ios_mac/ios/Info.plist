@@ -38,7 +38,7 @@
 		<string>Icon-144.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>org.cocos2dx.hellolua</string>
+	<string>com.racetothemoon.VBN</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -56,6 +56,8 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<dict>
 		<key>accelerometer</key>
+		<true/>
+		<key>gamekit</key>
 		<true/>
 		<key>opengles-1</key>
 		<true/>

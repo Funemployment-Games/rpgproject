@@ -73,6 +73,8 @@
 		7A322E9819F970ED00FBF6CE /* SimpleDPad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A322E7F19F970ED00FBF6CE /* SimpleDPad.cpp */; };
 		7A322E9919F970ED00FBF6CE /* YesNoBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A322E8119F970ED00FBF6CE /* YesNoBox.cpp */; };
 		7A322E9A19F970ED00FBF6CE /* YesNoBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A322E8119F970ED00FBF6CE /* YesNoBox.cpp */; };
+		7A9A026919F9D4D400CD1922 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9A026819F9D4D400CD1922 /* StoreKit.framework */; };
+		7A9A026B19F9D4D800CD1922 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9A026A19F9D4D800CD1922 /* GameKit.framework */; };
 		C03781B918BF655400FE4F13 /* res in Resources */ = {isa = PBXBuildFile; fileRef = C03781B718BF655400FE4F13 /* res */; };
 		C03781BA18BF655400FE4F13 /* res in Resources */ = {isa = PBXBuildFile; fileRef = C03781B718BF655400FE4F13 /* res */; };
 		C03781BB18BF655400FE4F13 /* src in Resources */ = {isa = PBXBuildFile; fileRef = C03781B818BF655400FE4F13 /* src */; };
@@ -358,6 +360,8 @@
 		7A322E8019F970ED00FBF6CE /* SimpleDPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleDPad.h; path = ../Classes/SimpleDPad.h; sourceTree = "<group>"; };
 		7A322E8119F970ED00FBF6CE /* YesNoBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = YesNoBox.cpp; path = ../Classes/YesNoBox.cpp; sourceTree = "<group>"; };
 		7A322E8219F970ED00FBF6CE /* YesNoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YesNoBox.h; path = ../Classes/YesNoBox.h; sourceTree = "<group>"; };
+		7A9A026819F9D4D400CD1922 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
+		7A9A026A19F9D4D800CD1922 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/GameKit.framework; sourceTree = DEVELOPER_DIR; };
 		C03781AE18BF654500FE4F13 /* cocos2d_lua_bindings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_lua_bindings.xcodeproj; path = "../../cocos2d-x/cocos/scripting/lua-bindings/proj.ios_mac/cocos2d_lua_bindings.xcodeproj"; sourceTree = "<group>"; };
 		C03781B718BF655400FE4F13 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; name = res; path = ../../../res; sourceTree = "<group>"; };
 		C03781B818BF655400FE4F13 /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = ../../../src; sourceTree = "<group>"; };
@@ -431,11 +435,13 @@
 				D6B061351803AC000077942B /* CoreMotion.framework in Frameworks */,
 				1AF4C403178663F200122817 /* libz.dylib in Frameworks */,
 				50805AAF17EBBEAA004CFAD3 /* UIKit.framework in Frameworks */,
+				7A9A026B19F9D4D800CD1922 /* GameKit.framework in Frameworks */,
 				5023817A17EBBE8300990C9B /* OpenGLES.framework in Frameworks */,
 				F293B3CD15EB7BE500256477 /* QuartzCore.framework in Frameworks */,
 				F293B3D115EB7BE500256477 /* OpenAL.framework in Frameworks */,
 				F293B3D315EB7BE500256477 /* AudioToolbox.framework in Frameworks */,
 				F293B3D515EB7BE500256477 /* AVFoundation.framework in Frameworks */,
+				7A9A026919F9D4D400CD1922 /* StoreKit.framework in Frameworks */,
 				F293B3D915EB7BE500256477 /* Foundation.framework in Frameworks */,
 				F293B3DB15EB7BE500256477 /* CoreGraphics.framework in Frameworks */,
 			);
@@ -571,6 +577,8 @@
 		F293B3CB15EB7BE500256477 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7A9A026A19F9D4D800CD1922 /* GameKit.framework */,
+				7A9A026819F9D4D400CD1922 /* StoreKit.framework */,
 				15AECE28195D482800907DB0 /* MediaPlayer.framework */,
 				15A8A4871834C90E00142BE0 /* libcurl.dylib */,
 				D6B061341803AC000077942B /* CoreMotion.framework */,
@@ -692,10 +700,18 @@
 		F293B3BF15EB7BE500256477 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 				TargetAttributes = {
 					F293B3C715EB7BE500256477 = {
-						DevelopmentTeam = MDDB52YB8L;
+						DevelopmentTeam = LMKMZ94B42;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1030,7 +1046,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1059,7 +1074,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = mac/Prefix.pch;
@@ -1133,7 +1147,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Matthew Barney (5V987ZE7PB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Matthew Barney (5V987ZE7PB)";
 				COMPRESS_PNG_FILES = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1146,6 +1161,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/cocos/platform/ios";
@@ -1156,7 +1172,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Matthew Barney (5V987ZE7PB)";
 				COMPRESS_PNG_FILES = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ios/Prefix.pch;
@@ -1168,6 +1185,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/cocos/platform/ios";
