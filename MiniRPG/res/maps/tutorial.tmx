@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" source="meta.tsx"/>
+ <tileset firstgid="4" source="castle_lower_tile_sheet.tsx"/>
+ <layer name="floor" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt1LEJgEAMQNGMdGM4wU1h4f6VzQlXyYkQA77iQUj1SZEWEQ3gA9tLGX37MM8rsvqO6R4V+6rfT98/+p7Sd/9XqvznSx+7vtiW0QcAAEANJ7yNTBA=
+  </data>
+ </layer>
+ <layer name="meta" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt1cEKABAQBUD+/6ddJSk27GGmZC9677RKAfijBs+LfrN59+0ttbsz9zvJ00+/qEiGfuu9kmU/j3mZ/g8AAAByaG9MAEI=
+  </data>
+ </layer>
+ <objectgroup name="exits">
+  <object name="worldmap_exit" type="exit" x="192" y="272" width="16" height="16">
+   <properties>
+    <property name="destination" value="worldmap_se"/>
+    <property name="startx" value="37"/>
+    <property name="starty" value="49"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

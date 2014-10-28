@@ -3,7 +3,7 @@
  <tileset firstgid="1" name="dq1over3" tilewidth="16" tileheight="16">
   <image source="dq1over3.png" width="160" height="224"/>
  </tileset>
- <tileset firstgid="141" source="meta.tsx"/>
+ <tileset firstgid="141" source="meta_tiles.tsx"/>
  <layer name="floor" width="128" height="128">
   <data encoding="base64" compression="zlib">
    eJzt1lFOg0AUQNFhBdq4AI36o9E90P1vShI7EUmnKaXkwcz5OBk+mnSG+6DtUkodAAAAAAAAAAAAQICHguh9EdP9HqLPRmx/M7B9+rdr7fb6b5v+bbu24eOE/vt3a/u5MxB9Tpb3fx28Dd71r8Kc9/fThN///Zvb3/+/uujfrrn99K+L/m07nujfpj799p+uhwL963CueV6/0zr9o8/Mn2nz8Vpqf5jZW//tKrU/nmmufz3GnfN1nzz/rRh3z9df6f8M6F+v3H7aNc9Ct7Cx/nGuaVB6rvuTpd9R+mz0vWnBkv5Z9BlYt793dL30b5v+7brU9HnwckV7/ffrUtOPwaf+VbvHu1//fdO/bfq3Tf+26c/SOYneG7GzEL0fAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABg+34AKkJ3kQ==

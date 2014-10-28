@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16">
- <tileset firstgid="1" source="meta.tsx"/>
- <tileset firstgid="4" source="castle_lower_tile_sheet.tsx"/>
+ <tileset firstgid="1" source="castle_lower_tile_sheet.tsx"/>
+ <tileset firstgid="133" source="meta_tiles.tsx"/>
  <layer name="floor" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJwzY2BgMBsg7ArEbnTA7kDsgWSvJxBn4MC45ELJ0AOTo8RefHjU3qFhr+cA2kuqnYTcS0t78ekdtXfUXlrgUXsHT/yO2jv87SW3HqS03BhJ7Y1Re6lvL6kYPe2SggeqPwbCAOQKQ78=
+   eJwzZmBgMB4g7ATEznTALkDsimSvGxCn4sC45ILI0AOTo8RefHjU3qFhr9sA2kuqnYTcS0t78ekdtXfUXlrgUXsHT/yO2jv87SW3HqS03BhJ7Y1Re6lvL6kYPe2SggeqPwbCAKI8OTM=
   </data>
  </layer>
  <layer name="meta" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJxjYBg4wEhnjGwvPjeR4w9i5EbtHZn2oqc/etpLDsDnXlraS6yZo/aOTHtpAUbtxa+GEvNH7R21F10NufUgpeXGSGpvjNpLfXsp6WuQq3cgAABmAACd
+   eJzt1rsNACAIQEGWZ28XUEQ+NjwSKoHDxqgiogPzFNZZpAcX97ZTpxsJz106XKsXF7cjcPc1mfm4uFZNxMy+G5P+G7j17mtWzfmdCw/yjVE=
   </data>
  </layer>
  <objectgroup name="exits">

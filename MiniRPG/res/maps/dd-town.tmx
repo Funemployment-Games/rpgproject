@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="16" tileheight="16">
  <tileset firstgid="1" source="castle_lower_tile_sheet.tsx"/>
- <tileset firstgid="133" source="meta.tsx"/>
+ <tileset firstgid="133" source="meta_tiles.tsx"/>
  <layer name="floor" width="128" height="128">
   <data encoding="base64" compression="zlib">
    eJzt07sNgDAQREE35Cb4WIiMguidCxyQEmBZugkmX+lpaymlAgAAAAAAAHywhDVsYZ9gD2O1cHdtgj2M7390+ufj/7npn9v56n9NsAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPjPAxKbRL8=
@@ -9,7 +9,7 @@
  </layer>
  <layer name="meta" width="128" height="128">
   <data encoding="base64" compression="zlib">
-   eJzt07EJADAMA0Ev773TB1Kk/jsQqBeaAQAAAAAAAPizV2jZR6fB/9v8v83+bfYHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICOA8ZvCFE=
+   eJzt1rEJADAMA0Ev773TB1Kk/jsQuBcCzwAAAAAAAAD82Su07OOmwf7b7L9N/236b9N/m/8PAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHoOvq8Lbw==
   </data>
  </layer>
  <objectgroup name="exits">
