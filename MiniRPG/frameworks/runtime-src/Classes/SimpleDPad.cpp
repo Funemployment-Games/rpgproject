@@ -183,54 +183,26 @@ void SimpleDPad::updateDirectionForTouchLocation(Vec2 location)
     float radians = (location - this->getPosition()).getAngle();
     float degrees = -1 * CC_RADIANS_TO_DEGREES(radians);
     
-    if (degrees <= 22.5 && degrees >= -22.5)
+    if ((degrees > -45 && degrees < 45))
     {
         //right
         m_vDirection = Vec2(1.0, 0.0);
     }
-    /*
-     else if (degrees > 22.5 && degrees < 67.5)
-    {
-        //bottomright
-        m_vDirection = Vec2(1.0, -1.0);
-    }
-     */
-    else if (degrees >= 67.5 && degrees <= 112.5)
+    else if (degrees >= 45 && degrees <= 135)
     {
         //bottom
         m_vDirection = Vec2(0.0, -1.0);
     }
-    /*
-    else if (degrees > 112.5 && degrees < 157.5)
-    {
-        //bottomleft
-        m_vDirection = Vec2(-1.0, -1.0);
-    }
-     */
-    else if (degrees >= 157.5 || degrees <= -157.5)
+    else if ((degrees > 135 && degrees <= 180) || (degrees <-135 && degrees >= -180))
     {
         //left
         m_vDirection = Vec2(-1.0, 0.0);
     }
-    /*
-    else if (degrees < -22.5 && degrees > -67.5)
-    {
-        //topright
-        m_vDirection = Vec2(1.0, 1.0);
-    }
-     */
-    else if (degrees <= -67.5 && degrees >= -112.5)
+    else if (degrees <= -45 && degrees >= -135)
     {
         //top
         m_vDirection = Vec2(0.0, 1.0);
     }
-    /*
-    else if (degrees < -112.5 && degrees > -157.5)
-    {
-        //topleft
-        m_vDirection = Vec2(-1.0, 1.0);
-    }
-     */
     m_pThePlayer->didChangeDirectionTo(m_vDirection);
 }
 
