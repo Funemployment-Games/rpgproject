@@ -208,12 +208,25 @@ void HeroSprite::isHoldingDirection(Vec2 direction)
 //Callbacks
 void HeroSprite::onFinishedWalkingCallback(Ref* pSender)
 {
+    printf("onFinishedWalkingCallback %s in TileCoords from %f %f to %f %f\n", m_strCharacterName.c_str(),
+           this->getPosition().x/16.f,
+           ((16.f) - this->getPosition().y) / (16.f),
+           m_vDesiredPosition.x/16,
+           ((16.f) - m_vDesiredPosition.y) / (16.f));
+    
+    printf("onFinishedWalkingCallback %s from %f %f to %f %f\n", m_strCharacterName.c_str(),
+           this->getPosition().x,
+           this->getPosition().y,
+           m_vDesiredPosition.x,
+           m_vDesiredPosition.y);
+
+    
     if (m_bIsHoldingDirection)
     {
         m_actionState = kActionStateAutoWalkStart;
-        //printf("\nonFinishedWalkingCallback - m_bIsHoldingDirection\n");
-        //printf("%s onFinishedWalkingCallback currentpos - %f, %f\n", m_strCharacterName.c_str(), this->getPosition().x, this->getPosition().y);
-        //printf("%s onFinishedWalkingCallback destpos - %f, %f\n", m_strCharacterName.c_str(), m_vDesiredPosition.x, m_vDesiredPosition.y);
+        printf("\nonFinishedWalkingCallback - m_bIsHoldingDirection\n");
+        printf("%s onFinishedWalkingCallback currentpos - %f, %f\n", m_strCharacterName.c_str(), this->getPosition().x, this->getPosition().y);
+        printf("%s onFinishedWalkingCallback destpos - %f, %f\n", m_strCharacterName.c_str(), m_vDesiredPosition.x, m_vDesiredPosition.y);
         
         if (m_bDidChangeDirection)
         {

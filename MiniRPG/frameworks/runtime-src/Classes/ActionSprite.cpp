@@ -107,6 +107,12 @@ void ActionSprite::walkOneTileInCurrentDirection()
         // Animate the player
         auto moveAction = MoveTo::create(1 * m_fWalkSpeed, m_vDesiredPosition);
         
+        printf("Moving %s from %f %f to %f %f\n", m_strCharacterName.c_str(),
+               this->getPosition().x/16.f,
+               ((16.f) - this->getPosition().y) / (kTileSize),
+               m_vDesiredPosition.x/16.f,
+               ((16.f) - m_vDesiredPosition.y) / (kTileSize));
+        
         // Play actions
         auto doneAction = CallFuncN::create(CC_CALLBACK_1(ActionSprite::onFinishedWalkingCallback, this));
         //auto animationSequence = Sequence::create((FiniteTimeAction*)m_walkAction[m_currentDirection], NULL);
@@ -151,6 +157,9 @@ Vec2 ActionSprite::determineDestinationPositon(int numTilesToMove, ActionSpriteD
         default:
             break;
     }
+    
+    printf("\ndetermineDestinationPositon x: %f, y: %f\n", destination.x, destination.y);
+    printf("determineDestination TileCoord x: %f, y: %f\n", destination.x/16.f, (16.0f-destination.y)/16.0f);
 
     return destination;
 }
