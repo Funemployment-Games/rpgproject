@@ -107,11 +107,11 @@ void ActionSprite::walkOneTileInCurrentDirection()
         // Animate the player
         auto moveAction = MoveTo::create(1 * m_fWalkSpeed, m_vDesiredPosition);
         
-        printf("Moving %s from %f %f to %f %f\n", m_strCharacterName.c_str(),
-               this->getPosition().x/16.f,
-               ((16.f) - this->getPosition().y) / (kTileSize),
-               m_vDesiredPosition.x/16.f,
-               ((16.f) - m_vDesiredPosition.y) / (kTileSize));
+        //printf("Moving %s from %f %f to %f %f\n", m_strCharacterName.c_str(),
+        //      this->getPosition().x/16.f,
+        //       ((640.0f) - this->getPosition().y) / (kTileSize) -1,
+        //       m_vDesiredPosition.x/16.f,
+        //       ((640.0f) - m_vDesiredPosition.y) / (kTileSize) -1);
         
         // Play actions
         auto doneAction = CallFuncN::create(CC_CALLBACK_1(ActionSprite::onFinishedWalkingCallback, this));
@@ -158,8 +158,8 @@ Vec2 ActionSprite::determineDestinationPositon(int numTilesToMove, ActionSpriteD
             break;
     }
     
-    printf("\ndetermineDestinationPositon x: %f, y: %f\n", destination.x, destination.y);
-    printf("determineDestination TileCoord x: %f, y: %f\n", destination.x/16.f, (16.0f-destination.y)/16.0f);
+    //printf("\ndetermineDestinationPositon x: %f, y: %f\n", destination.x, destination.y);
+    //printf("determineDestination TileCoord x: %f, y: %f\n", destination.x/16.f, (640.0f-destination.y)/16.0f - 1);
 
     return destination;
 }

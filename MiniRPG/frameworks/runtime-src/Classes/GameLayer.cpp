@@ -77,7 +77,7 @@ void GameLayer::loadMapNamed(std::string mapName)
     m_pTileMap = TMXTiledMap::create(fileNameWithExtension);
     this->addChild(m_pTileMap, -6);
     m_pMetaLayer = m_pTileMap->getLayer("meta");
-    m_pMetaLayer->setVisible(true);
+    m_pMetaLayer->setVisible(false);
     m_pExitGroup = m_pTileMap->getObjectGroup("exits");
     
     Size winSize = Director::getInstance()->getWinSize();
@@ -111,16 +111,16 @@ void GameLayer::initTheHeros()
     //m_pActors->addChild(m_pHero);
     auto startGroup = m_pTileMap->getObjectGroup("start");
     ValueMap startPoint = startGroup->getObject("HeroStart");
-    float startX = startPoint["x"].asFloat();
-    float startY = startPoint["y"].asFloat();
+    int startX = startPoint["x"].asInt();
+    int startY = startPoint["y"].asInt();
     m_pHero->setPosition(Vec2(startX, startY));
     m_pHero->setDesiredPosition(Vec2(startX, startY));
 
-    printf("\ninitTheHeros - m_pHero x: %f, m_pHero y: %f\n", m_pHero->getPosition().x, m_pHero->getPosition().y);
-    Vec2 playerTileCoords = tileCoordForPosition(Vec2(m_pHero->getPosition().x, m_pHero->getPosition().y));
-    printf("initTheHeros - playerTileCoords: %f, playerTileCoords: %f\n", playerTileCoords.x, playerTileCoords.y);
-    Vec2 playerActualPos = positionForTileCoord(playerTileCoords);
-    printf("initTheHeros - playerActualPos: %f, playerActualPos: %f\n", playerActualPos.x, playerActualPos.y);
+    //printf("\ninitTheHeros - m_pHero x: %f, m_pHero y: %f\n", m_pHero->getPosition().x, m_pHero->getPosition().y);
+    //Vec2 playerTileCoords = tileCoordForPosition(Vec2(m_pHero->getPosition().x, m_pHero->getPosition().y));
+    //printf("initTheHeros - playerTileCoords: %f, playerTileCoords: %f\n", playerTileCoords.x, playerTileCoords.y);
+    //Vec2 playerActualPos = positionForTileCoord(playerTileCoords);
+    //printf("initTheHeros - playerActualPos: %f, playerActualPos: %f\n", playerActualPos.x, playerActualPos.y);
     
     m_pHero->setScale(1.0f);
     m_pHero->setAnchorPoint(Vec2(0.0,0.0));
@@ -404,9 +404,9 @@ void GameLayer::heroIsDoneWalking()
 {
     if (m_pHero->getActionState() != kActionStateIdle)
     {
-        printf("m_pHero x: %f, m_pHero y: %f\n", m_pHero->getPosition().x, m_pHero->getPosition().y);
+        //printf("m_pHero x: %f, m_pHero y: %f\n", m_pHero->getPosition().x, m_pHero->getPosition().y);
         Vec2 playerTileCoords = tileCoordForPosition(Vec2(m_pHero->getPosition().x, m_pHero->getPosition().y));
-        printf("playerTileCoords: %f, playerTileCoords: %f\n", playerTileCoords.x, playerTileCoords.y);
+        //printf("playerTileCoords: %f, playerTileCoords: %f\n", playerTileCoords.x, playerTileCoords.y);
         return;
     }
 
@@ -425,21 +425,21 @@ void GameLayer::heroIsDoneWalking()
             
             if (exitRect.containsPoint(m_pHero->getPosition()))
             {
-                printf("exitRect.x: %f, exitRect.y: %f\n", exitRect.origin.x, exitRect.origin.y);
+                //printf("exitRect.x: %f, exitRect.y: %f\n", exitRect.origin.x, exitRect.origin.y);
                 Vec2 exitRectTileCoords = tileCoordForPosition(Vec2(exitRect.origin.x, exitRect.origin.y));
-                printf("exitRectTileCoords: %f, exitRectTileCoords: %f\n", exitRectTileCoords.x, exitRectTileCoords.y);
+                //printf("exitRectTileCoords: %f, exitRectTileCoords: %f\n", exitRectTileCoords.x, exitRectTileCoords.y);
                 
-                printf("m_pHero x: %f, m_pHero y: %f\n", m_pHero->getPosition().x, m_pHero->getPosition().y);
+                //printf("m_pHero x: %f, m_pHero y: %f\n", m_pHero->getPosition().x, m_pHero->getPosition().y);
                 Vec2 playerTileCoords = tileCoordForPosition(Vec2(m_pHero->getPosition().x, m_pHero->getPosition().y));
-                printf("playerTileCoords: %f, playerTileCoords: %f\n", playerTileCoords.x, playerTileCoords.y);
+                //printf("playerTileCoords: %f, playerTileCoords: %f\n", playerTileCoords.x, playerTileCoords.y);
                 
                 
                 m_strCurrentMapName = exit.at("destination").asString();
                 loadMapNamed(m_strCurrentMapName);
                 
                 Vec2 posFromTileCoord = positionForTileCoord(Vec2(exit["startx"].asFloat(), exit["starty"].asFloat()));
-                printf("posFromTileCoord.x %f, posFromTileCoord.y %f\n", posFromTileCoord.x, posFromTileCoord.y);
-                printf("TileCoord.x %f, TileCoord.y %f\n", exit["startx"].asFloat(), exit["starty"].asFloat());
+                //printf("posFromTileCoord.x %f, posFromTileCoord.y %f\n", posFromTileCoord.x, posFromTileCoord.y);
+                //printf("TileCoord.x %f, TileCoord.y %f\n", exit["startx"].asFloat(), exit["starty"].asFloat());
                 
                 m_pHero->idle();
                 m_pHero->setDesiredPosition(posFromTileCoord);
@@ -459,7 +459,7 @@ void GameLayer::heroIsDoneWalking()
 Vec2 GameLayer::tileCoordForPosition(Vec2 position)
 {
     int x = position.x / (kTileSize);
-    int y = ((m_fMapRealHeight) - position.y) / (kTileSize);
+    int y = ((m_fMapRealHeight) - position.y) / (kTileSize) -1;
     return Vec2(x, y);
 }
 
@@ -469,7 +469,7 @@ Vec2 GameLayer::tileCoordForPosition(Vec2 position)
 Vec2 GameLayer::positionForTileCoord(Vec2 tileCoord)
 {
     int x = (tileCoord.x * kTileSize);
-    int y = (m_fMapRealHeight) - (tileCoord.y * kTileSize);
+    int y = (m_fMapRealHeight) - (tileCoord.y * kTileSize) - kTileSize;
     
     return Vec2(x, y);
 }
