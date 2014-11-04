@@ -64,6 +64,9 @@ static int lua_npc_walk_with_direction(lua_State* L)
     NPCManager* pManager = NPCManager::getInstance();
     pManager->moveNPCWithDirection(npcName, direction, changedDirection);
     
+    tolua_pushboolean(L, true);
+	lua_setglobal(L, "gNPCIsMoving");
+    
     return 0;
 }
 
@@ -91,6 +94,9 @@ static int lua_npc_walk_numtiles_with_direction(lua_State* L)
     NPCManager* pManager = NPCManager::getInstance();
     pManager->walkNumTilesWithDirection(npcName, numTiles, direction);
     
+    tolua_pushboolean(L, true);
+	lua_setglobal(L, "gNPCIsMoving");
+    
     return 0;
 }
 
@@ -113,6 +119,9 @@ static int lua_npc_talk(lua_State* L)
     
     pManager->setNPCState(npcName, kActionStateTalking);
     pGameLayer->showNPCDialogue(npcName, dialogue, "", "");
+    
+    tolua_pushboolean(L, true);
+	lua_setglobal(L, "gDialogueIsPresent");
     
     return 0;
 }
@@ -138,6 +147,9 @@ static int lua_npc_yes_no_talk(lua_State* L)
     
     pManager->setNPCState(npcName, kActionStateTalking);
     pGameLayer->showNPCDialogue(npcName, dialogue, yes, no);
+    
+    tolua_pushboolean(L, true);
+	lua_setglobal(L, "gDialogueIsPresent");
     
     return 0;
 }
@@ -194,6 +206,22 @@ static int lua_npc_set_delay_between_steps(lua_State* L)
     
     NPCManager* pManager = NPCManager::getInstance();
     pManager->setDelayBetweenSteps(npcName, fDelay);
+    
+    return 0;
+}
+
+int lua_flag_text_box_state(lua_State* L, bool textBoxState)
+{
+    tolua_pushboolean(L, textBoxState);
+	lua_setglobal(L, "gDialogueIsPresent");
+    
+    return 0;
+}
+
+int lua_flag_npc_movement_state(lua_State* L, bool isMoving)
+{
+    tolua_pushboolean(L, isMoving);
+	lua_setglobal(L, "gNPCIsMoving");
     
     return 0;
 }

@@ -257,6 +257,7 @@ void GameLayer::onTouchesEnded(const std::vector<Touch*>& touches, Event *unused
             //delete m_pChatbox;
             m_pChatbox = nullptr;
             m_pNPCManager->setNPCState(m_strCurrentTalkingNPC, kActionStateIdle);
+            lua_flag_text_box_state(m_pLuaState, false);
             m_pHudLayer->setVisible(true);
         }
         return;

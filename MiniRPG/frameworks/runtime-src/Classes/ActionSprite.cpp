@@ -72,7 +72,7 @@ void ActionSprite::walkWithDirection(Vec2 direction, bool directionChanged)
 
 void ActionSprite::walkNumTilesWithDirection(int numTilesToMove, ActionSpriteDirection directionToMove, bool forceMovement)
 {
-    //printf("%s walkNumTilesWithDirection\n", m_strCharacterName.c_str());
+    printf("%s walkNumTilesWithDirection\n", m_strCharacterName.c_str());
     m_vDesiredPosition = determineDestinationPositon(numTilesToMove, directionToMove);
     
     bool isValidDestination = m_WalkBounds.containsPoint(m_vDesiredPosition);

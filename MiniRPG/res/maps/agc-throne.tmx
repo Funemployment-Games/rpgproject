@@ -29,8 +29,15 @@
    <properties>
     <property name="basesprite" value="king"/>
     <property name="behaviorscript" value="agc-throne-king"/>
-    <property name="npcname" value="TheKing"/>
+    <property name="npcname" value="The King"/>
    </properties>
+  </object>
+  <object name="wisemanspawn" type="npcspawn" x="336" y="304" width="16" height="16">
+    <properties>
+      <property name="basesprite" value="wise_man"/>
+      <property name="behaviorscript" value="agc-throne-wise_man"/>
+      <property name="npcname" value="Wise Man"/>
+    </properties>
   </object>
  </objectgroup>
 </map>

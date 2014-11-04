@@ -8,6 +8,7 @@
 
 #include "NPCSprite.h"
 #include "config.h"
+#include "LuaGlobalManager.h"
 
 Sprite* NPCSprite::createNPC(std::string spriteName, std::string scriptName)
 {
@@ -216,5 +217,9 @@ void NPCSprite::determineNextTileToWalkTo()
 void NPCSprite::onFinishedWalkingCallback(Ref* pSender)
 {
     //printf("NPCSprite::onFinishedWalkingCallback\n");
+    LuaEngine* pLuaEngine = LuaEngine::getInstance();
+    LuaStack* pLuaStack = pLuaEngine->getLuaStack();
+    lua_State* pLuaState  = pLuaStack->getLuaState();
+    lua_flag_npc_movement_state(pLuaState, false);
     idle();
 }

@@ -143,6 +143,7 @@ void NPCManager::walkNumTilesWithDirection(std::string npcName, int numTiles, st
         if (currentNPC->getCharacterName() == npcName)
         {
             ActionSpriteDirection theDirection = currentNPC->directionStringToEnum(direction);
+            currentNPC->setActionState(kActionStateAutoWalkStart);
             currentNPC->walkNumTilesWithDirection(numTiles, theDirection, true);
             break;
         }
