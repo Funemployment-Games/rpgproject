@@ -50,6 +50,8 @@ bool GameLayer::init()
     // Enable touches TODO: What is the non deprecated way to do this?
     setTouchEnabled(true);
     
+	m_pChatbox = nullptr;
+
     this->scheduleUpdate();
     
     
@@ -477,7 +479,7 @@ Vec2 GameLayer::positionForTileCoord(Vec2 tileCoord)
 
 void GameLayer::showNPCDialogue(std::string npcName, std::string dialogue, std::string yesResponse, std::string noResponse)
 {
-    if (!m_pChatbox)
+    if (m_pChatbox == nullptr)
     {
         if (yesResponse == "" && noResponse == "")
         {
@@ -487,7 +489,7 @@ void GameLayer::showNPCDialogue(std::string npcName, std::string dialogue, std::
         {
             m_pChatbox = YesNoBox::createYesNoBox(npcName, dialogue, yesResponse, noResponse);
         }
-        Vec2 vCenteredBoxPos = Vec2(this->getPosition().x * -1.f, this->getPosition().y * -3.f);
+        Vec2 vCenteredBoxPos = Vec2(this->getPosition().x * -1.f, this->getPosition().y * -2.65f);
         m_pChatbox->setPosition(Vec2(vCenteredBoxPos));
         this->addChild(m_pChatbox, 5);
         m_pChatbox->advanceTextOrHide();
