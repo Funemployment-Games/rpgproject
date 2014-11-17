@@ -29,6 +29,7 @@ bool GameLayer::init()
     m_pLuaStack = m_pLuaEngine->getLuaStack();
     m_pLuaState   = m_pLuaStack->getLuaState();
     register_globalluamanager(m_pLuaStack->getLuaState());
+    register_all_spritelua(m_pLuaStack->getLuaState());
     
     m_pLuaEngine->executeScriptFile("res/lua/globalmanager.lua");
     
@@ -138,17 +139,17 @@ void GameLayer::initTheNPCs(std::string mapName)
     {
         ValueMap npc = npcs[i].asValueMap();
         std::string basesprite = npc["basesprite"].asString();
-        std::string behaviorscript  = npc["behaviorscript"].asString();
+        std::string dialogueId  = npc["dialogueId"].asString();
+        std::string dialogueYesId  = npc["dialogueYesId"].asString();
+        std::string dialogueNoId  = npc["dialogueNoId"].asString();
         std::string npcName = npc["npcname"].asString();
         float x = npc["x"].asFloat();
         float y = npc["y"].asFloat();
         float width = npc["width"].asFloat();
         float height = npc["height"].asFloat();
         Rect walkBounds = Rect::Rect(x, y, width, height);
-        
-        SpriteFrameCache::getInstance()->addSpriteFramesWithFile("res/characters/" + basesprite + "/" + basesprite + ".plist");
-        
-        NPCSprite* npcSprite = (NPCSprite*)NPCSprite::createNPC(basesprite, behaviorscript);
+                
+        NPCSprite* npcSprite = (NPCSprite*)NPCSprite::createNPC(basesprite, dialogueId, dialogueYesId, dialogueNoId);
         npcSprite->setDesiredPosition(Vec2(x, y));
         npcSprite->setPosition(Vec2(x, y));
         npcSprite->setScale(1.0f);
@@ -187,7 +188,7 @@ void GameLayer::update(float delta)
         m_pNPCManager->update(delta);
     }
     
-    m_pLuaEngine->executeString("gCurrentMap:tick()");
+    //m_pLuaEngine->executeString("gCurrentMap:tick()");
 }
 
 // Accessors

@@ -95,30 +95,13 @@ void NPCManager::update(float delta)
     }
 }
 
-/**
- * Loads all NPCs on a given tile map.  Initialized empty Lua table to hold
- * NPCs in Lua.
- */
-void NPCManager::interactWithNPCNamed(std::string npcName)
-{
-    std::string luaCode = "gNPCLUT[\"" + npcName + "\"]:interact()";
-    runLua(luaCode.c_str());
-    for (Vector<NPCSprite*>::iterator npcIterator = m_vCurrentNPCs.begin() ; npcIterator != m_vCurrentNPCs.end(); ++npcIterator)
-    {
-        NPCSprite* currentNPC = (NPCSprite*)*npcIterator;
-        if (currentNPC->getCharacterName() == npcName)
-        {
-            currentNPC->setActionState(kActionStateTalking);
-            break;
-        }
-    }
-}
-
 void NPCManager::interactWithClosestNPC()
 {
     if (m_pClosestNPC)
     {
-        interactWithNPCNamed(m_pClosestNPC->getCharacterName());
+        m_pClosestNPC->setActionState(kActionStateTalking);
+        
+        m_pGameLayer->showNPCDialogue(m_pClosestNPC->getCharacterName(), m_pClosestNPC->getDialogueId(), "", "");
     }
 }
 
@@ -236,6 +219,7 @@ void ReplaceStringInPlace(std::string& subject, const std::string& search,
 void NPCManager::intializeNPCLua()
 {
     // Reset NPCs for the current map
+    /*
     runLua("gNPCLUT = {}");
     
     for (Vector<NPCSprite*>::iterator npcIterator = m_vCurrentNPCs.begin() ; npcIterator != m_vCurrentNPCs.end(); ++npcIterator)
@@ -259,6 +243,7 @@ void NPCManager::intializeNPCLua()
             printf("Warning: No Lua file for npc %s at path %s\n",currentNPC->getCharacterName().c_str(),fullPath.c_str());
         }
     }
+     */
 }
 
 

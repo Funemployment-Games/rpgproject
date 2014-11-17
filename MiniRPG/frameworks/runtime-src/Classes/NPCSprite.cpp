@@ -10,10 +10,10 @@
 #include "config.h"
 #include "LuaGlobalManager.h"
 
-Sprite* NPCSprite::createNPC(std::string spriteName, std::string scriptName)
+Sprite* NPCSprite::createNPC(std::string spriteName, std::string dialogueId, std::string dialogueYesId, std::string dialogueNoId)
 {
     NPCSprite* npc = new (std::nothrow) NPCSprite();
-    if (npc && npc->initWithParameters(spriteName, scriptName))
+    if (npc && npc->initWithParameters(spriteName, dialogueId, dialogueYesId, dialogueNoId))
     {
         npc->autorelease();
         return npc;
@@ -24,10 +24,12 @@ Sprite* NPCSprite::createNPC(std::string spriteName, std::string scriptName)
 
 
 // on "init" you need to initialize your instance
-bool NPCSprite::initWithParameters(std::string spriteName, std::string scriptName)
+bool NPCSprite::initWithParameters(std::string spriteName, std::string dialogueId, std::string dialogueYesId, std::string dialogueNoId)
 {
     //////////////////////////////
     // 1. super init first
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("res/characters/" + spriteName + "/" + spriteName + ".plist");
+    
     if ( !Sprite::initWithSpriteFrameName(spriteName + "_s_01.png") )
     {
         return false;
@@ -35,7 +37,7 @@ bool NPCSprite::initWithParameters(std::string spriteName, std::string scriptNam
     
     m_fWalkSpeed = 1.0f;
     m_strSpriteName = spriteName;
-    m_strScriptName = scriptName;
+    m_strDialogueId = dialogueId;
     
     m_currentDirection = kActionSpriteDirectionSouth;
     m_actionState = kActionStateAutoWalkDone;
@@ -166,9 +168,9 @@ void NPCSprite::createIdleAction()
 }
 
 //
-std::string NPCSprite::getScriptName()
+std::string NPCSprite::getDialogueId()
 {
-    return m_strScriptName;
+    return m_strDialogueId;
 }
 
 void NPCSprite::setDelayBetweenSteps(float theDelay)

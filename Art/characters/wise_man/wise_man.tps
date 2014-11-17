@@ -38,7 +38,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>../../../MiniRPG/res/characters/wise_man/wise_man.pvr.ccz</filename>
+        <filename>../../../MiniRPG/res/characters/wise_man/wise_man.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>pvrCompressionQuality</key>
@@ -80,7 +80,7 @@
         <key>textureSubPath</key>
         <string></string>
         <key>textureFormat</key>
-        <enum type="SettingsBase::TextureFormat">pvr2ccz</enum>
+        <enum type="SettingsBase::TextureFormat">png</enum>
         <key>borderPadding</key>
         <uint>2</uint>
         <key>maxTextureSize</key>

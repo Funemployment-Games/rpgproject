@@ -8,7 +8,9 @@ local throne_map = MAP.create("Throne Room")
 print("1")
 
 local i = 0
+
 function throne_map:tick()
+--[[
     if (i == 0 and gNPCIsMoving == false) then
         gNPCLUT["Wise Man"]:walkNumTilesWithDirection(2, "north")
         i = 1
@@ -19,6 +21,7 @@ function throne_map:tick()
         gNPCLUT["The King"]:talk("How horrible!\nWhat can we possibly do?\nWe need a hero!")
         i = 3
     end
+]]
 end
 
 gCurrentMap = throne_map

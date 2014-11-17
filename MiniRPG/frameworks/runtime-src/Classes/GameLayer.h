@@ -10,6 +10,7 @@
 #include "NPCSprite.h"
 #include "NPCManager.h"
 #include "LuaGlobalManager.h"
+#include "lua_cocos2dx_custom.hpp"
 #include "ChatBox.h"
 #include "YesNoBox.h"
 

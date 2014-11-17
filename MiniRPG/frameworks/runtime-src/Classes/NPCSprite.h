@@ -16,10 +16,10 @@ USING_NS_CC;
 class NPCSprite: public ActionSprite
 {
 public:
-    static Sprite* createNPC(std::string spriteName, std::string scriptName);
+    static Sprite* createNPC(std::string spriteName, std::string dialogueId, std::string dialogueYesId, std::string dialogueNoId);
     static Sprite* create();
     
-    bool initWithParameters(std::string spriteName, std::string scriptName);
+    bool initWithParameters(std::string spriteName, std::string dialogueId, std::string dialogueYesId, std::string dialogueNoId);
     
     //scheduled methods
     virtual void update(float dt);
@@ -30,7 +30,9 @@ public:
     virtual void createIdleAction();
     
     //Accessors
-    std::string getScriptName();
+    std::string getDialogueId();
+    std::string getYesDialogueId();
+    std::string getNoDialogueId();
     void setDelayBetweenSteps(float theDelay);
     float getDelayBetweenSteps();
     void setWalkBounds(Rect bounds);
@@ -42,7 +44,9 @@ public:
 private:
     void determineNextTileToWalkTo();
     
-    std::string m_strScriptName;
+    std::string m_strDialogueId;
+    std::string m_strYesDialogueId;
+    std::string m_strNoDialogueId;
     float m_fDelayBetweenSteps;
     float m_fTimeSinceLastStep;
 };

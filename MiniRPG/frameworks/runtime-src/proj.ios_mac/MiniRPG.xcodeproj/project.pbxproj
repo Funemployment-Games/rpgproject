@@ -75,6 +75,8 @@
 		7A322E9A19F970ED00FBF6CE /* YesNoBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A322E8119F970ED00FBF6CE /* YesNoBox.cpp */; };
 		7A9A026919F9D4D400CD1922 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9A026819F9D4D400CD1922 /* StoreKit.framework */; };
 		7A9A026B19F9D4D800CD1922 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9A026A19F9D4D800CD1922 /* GameKit.framework */; };
+		7AF2694F1A158E080085B193 /* lua_cocos2dx_custom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AF2694D1A158E080085B193 /* lua_cocos2dx_custom.cpp */; };
+		7AF269501A158E080085B193 /* lua_cocos2dx_custom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AF2694D1A158E080085B193 /* lua_cocos2dx_custom.cpp */; };
 		C03781B918BF655400FE4F13 /* res in Resources */ = {isa = PBXBuildFile; fileRef = C03781B718BF655400FE4F13 /* res */; };
 		C03781BA18BF655400FE4F13 /* res in Resources */ = {isa = PBXBuildFile; fileRef = C03781B718BF655400FE4F13 /* res */; };
 		C03781BB18BF655400FE4F13 /* src in Resources */ = {isa = PBXBuildFile; fileRef = C03781B818BF655400FE4F13 /* src */; };
@@ -362,6 +364,8 @@
 		7A322E8219F970ED00FBF6CE /* YesNoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YesNoBox.h; path = ../Classes/YesNoBox.h; sourceTree = "<group>"; };
 		7A9A026819F9D4D400CD1922 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		7A9A026A19F9D4D800CD1922 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/GameKit.framework; sourceTree = DEVELOPER_DIR; };
+		7AF2694D1A158E080085B193 /* lua_cocos2dx_custom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lua_cocos2dx_custom.cpp; path = ../Classes/lua_cocos2dx_custom.cpp; sourceTree = "<group>"; };
+		7AF2694E1A158E080085B193 /* lua_cocos2dx_custom.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = lua_cocos2dx_custom.hpp; path = ../Classes/lua_cocos2dx_custom.hpp; sourceTree = "<group>"; };
 		C03781AE18BF654500FE4F13 /* cocos2d_lua_bindings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_lua_bindings.xcodeproj; path = "../../cocos2d-x/cocos/scripting/lua-bindings/proj.ios_mac/cocos2d_lua_bindings.xcodeproj"; sourceTree = "<group>"; };
 		C03781B718BF655400FE4F13 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; name = res; path = ../../../res; sourceTree = "<group>"; };
 		C03781B818BF655400FE4F13 /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = ../../../src; sourceTree = "<group>"; };
@@ -604,6 +608,8 @@
 		F293BB7C15EB830F00256477 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7AF2694D1A158E080085B193 /* lua_cocos2dx_custom.cpp */,
+				7AF2694E1A158E080085B193 /* lua_cocos2dx_custom.hpp */,
 				7A322E6A19F970ED00FBF6CE /* ActionSprite.cpp */,
 				7A322E6B19F970ED00FBF6CE /* ActionSprite.h */,
 				7A322E6E19F970ED00FBF6CE /* ChatBox.cpp */,
@@ -948,6 +954,7 @@
 				7A322E9219F970ED00FBF6CE /* LuaGlobalManager.cpp in Sources */,
 				7A322E8E19F970ED00FBF6CE /* HeroSprite.cpp in Sources */,
 				7A322E8C19F970ED00FBF6CE /* GameScene.cpp in Sources */,
+				7AF269501A158E080085B193 /* lua_cocos2dx_custom.cpp in Sources */,
 				7A322E9419F970ED00FBF6CE /* NPCManager.cpp in Sources */,
 				5023813317EBBCE400990C9B /* AppDelegate.cpp in Sources */,
 				7A322E8A19F970ED00FBF6CE /* GameLayer.cpp in Sources */,
@@ -966,6 +973,7 @@
 				7A322E9119F970ED00FBF6CE /* LuaGlobalManager.cpp in Sources */,
 				5023812417EBBCAC00990C9B /* main.m in Sources */,
 				7A322E8919F970ED00FBF6CE /* GameLayer.cpp in Sources */,
+				7AF2694F1A158E080085B193 /* lua_cocos2dx_custom.cpp in Sources */,
 				5023811817EBBCAC00990C9B /* AppController.mm in Sources */,
 				7A322E8B19F970ED00FBF6CE /* GameScene.cpp in Sources */,
 				7A322E8F19F970ED00FBF6CE /* HudLayer.cpp in Sources */,
@@ -1161,7 +1169,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "6C9F75BB-C42B-434A-9130-F4B685056089";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/cocos/platform/ios";
@@ -1172,7 +1180,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Textron Inc. (Ent)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Matthew Barney (5V987ZE7PB)";
 				COMPRESS_PNG_FILES = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1185,7 +1193,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "6C9F75BB-C42B-434A-9130-F4B685056089";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/cocos/platform/ios";

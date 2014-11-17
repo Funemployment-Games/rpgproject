@@ -41,7 +41,6 @@ public:
     void removeAllNPCs();
     
     //Interaction
-    void interactWithNPCNamed(std::string npcName);
     void interactWithClosestNPC();
     void moveNPCWithDirection(std::string npcName, Vec2 theDirection, bool directionDidChange);
     void walkNumTilesWithDirection( std::string npcName, int numTilesToMove, std::string directionToMove);
