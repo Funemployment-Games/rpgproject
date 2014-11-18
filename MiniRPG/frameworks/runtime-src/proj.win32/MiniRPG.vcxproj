@@ -171,6 +171,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\HeroSprite.h" />
     <ClInclude Include="..\Classes\HudLayer.h" />
     <ClInclude Include="..\Classes\LuaGlobalManager.h" />
+    <ClInclude Include="..\Classes\lua_cocos2dx_custom.hpp" />
     <ClInclude Include="..\Classes\NPCManager.h" />
     <ClInclude Include="..\Classes\NPCSprite.h" />
     <ClInclude Include="..\Classes\SimpleDPad.h" />
@@ -187,6 +188,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\HeroSprite.cpp" />
     <ClCompile Include="..\Classes\HudLayer.cpp" />
     <ClCompile Include="..\Classes\LuaGlobalManager.cpp" />
+    <ClCompile Include="..\Classes\lua_cocos2dx_custom.cpp" />
     <ClCompile Include="..\Classes\NPCManager.cpp" />
     <ClCompile Include="..\Classes\NPCSprite.cpp" />
     <ClCompile Include="..\Classes\SimpleDPad.cpp" />
