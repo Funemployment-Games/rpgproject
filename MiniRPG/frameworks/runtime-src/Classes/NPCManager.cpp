@@ -17,6 +17,7 @@
 #include "config.h"
 
 #include "GameLayer.h"
+#include "LuaBasicConversions.h"
 
 // singleton stuff
 static NPCManager *s_sharedNPCManager = nullptr;
@@ -64,6 +65,16 @@ GameLayer* NPCManager::getGameLayer()
 void NPCManager::addNPC(NPCSprite* theNPC)
 {
     m_vCurrentNPCs.pushBack(theNPC);
+    lua_getglobal(m_pLuaState, "gNPCLUT");
+    if (lua_istable(m_pLuaState, -1))
+    {
+        object_to_luaval<cocos2d::Sprite>(m_pLuaState, "cc.Sprite",(cocos2d::Sprite*)theNPC);
+        
+        //lua_pushlightuserdata(m_pLuaState, c);
+        //lua_pushstring(m_pLuaState, "Test!");
+        lua_setfield(m_pLuaState, -2, theNPC->getCharacterName().c_str());
+        lua_setglobal(m_pLuaState,"gNPCLUT");
+    }
 }
 
 void NPCManager::removeNPC(NPCSprite* theNPC)
@@ -217,33 +228,9 @@ void ReplaceStringInPlace(std::string& subject, const std::string& search,
 }
 
 void NPCManager::intializeNPCLua()
-{
-    // Reset NPCs for the current map
-    /*
-    runLua("gNPCLUT = {}");
-    
-    for (Vector<NPCSprite*>::iterator npcIterator = m_vCurrentNPCs.begin() ; npcIterator != m_vCurrentNPCs.end(); ++npcIterator)
-    {
-        NPCSprite* currentNPC = (NPCSprite*)*npcIterator;
-
-        // Resolve the path to the NPCs Lua file
-        //std::string roomName = mapName;
-        //ReplaceStringInPlace(roomName, ".tmx", "");
-        std::string npcFilename = "res/lua/" + currentNPC->getScriptName() + ".lua";
-        std::string fullPath    = FileUtils::getInstance()->fullPathForFilename(npcFilename);
-        std::string contentStr  = FileUtils::getInstance()->getStringFromFile(fullPath);
-
-        // If the NPC has a Lua file, initialize it.
-        if(contentStr != "")
-        {
-            runLua(contentStr.c_str());
-        }
-        else
-        {
-            printf("Warning: No Lua file for npc %s at path %s\n",currentNPC->getCharacterName().c_str(),fullPath.c_str());
-        }
-    }
-     */
+{    
+    lua_newtable(m_pLuaState);
+    lua_setfield(m_pLuaState, LUA_GLOBALSINDEX, "gNPCLUT");
 }
 
 

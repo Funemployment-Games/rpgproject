@@ -1,5 +1,5 @@
 --Global Lua Manager
-gNPCLUT = {}
+--gNPCLUT = {}
 gChestLUT = {}
 gQuestFlagsLUT = {["TalkedToKingForFirstTime"] = false,}
 gCurrentMap = nil
@@ -7,4 +7,4 @@ gTileSize = 16
 gDialogueIsPresent = false
 gNPCIsMoving = false
 
---print("result is " .. 2)
+print("result is " .. 2)

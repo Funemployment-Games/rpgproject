@@ -134,6 +134,7 @@ void GameLayer::initTheHeros()
 
 void GameLayer::initTheNPCs(std::string mapName)
 {
+    m_pNPCManager->intializeNPCLua();
     ValueVector npcs = m_pNPCSpawnGroup->getObjects();
     for(int i=0;i<npcs.size();++i)
     {
@@ -163,8 +164,6 @@ void GameLayer::initTheNPCs(std::string mapName)
         
         m_pNPCManager->addNPC(npcSprite);
     }
-
-    m_pNPCManager->intializeNPCLua();
 }
 
 /**
@@ -188,7 +187,7 @@ void GameLayer::update(float delta)
         m_pNPCManager->update(delta);
     }
     
-    //m_pLuaEngine->executeString("gCurrentMap:tick()");
+    m_pLuaEngine->executeString("gCurrentMap:tick()");
 }
 
 // Accessors
