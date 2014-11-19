@@ -5,16 +5,16 @@ print("Welcome to the Throne Room!")
 
 local throne_map = MAP.create("Throne Room")
 
-print("4")
+print("8")
 
 local i = 0
 
 function throne_map:tick()
-    if (i == 0 and gNPCLUT["Wise Man"]:getActionState() == 1) then
+    if (i == 0 and gNPCLUT["Wise Man"]:getActionState() == gActionState["ActionStateIdle"]) then
         gNPCLUT["Wise Man"]:setActionState(3)
         gNPCLUT["Wise Man"]:walkNumTilesWithDirection(2, 0, true)
         i = 1
-    elseif (i == 1 and gDialogueIsPresent == false and gNPCLUT["Wise Man"]:getActionState() == 1 ) then
+    elseif (i == 1 and gDialogueIsPresent == false and gNPCLUT["Wise Man"]:getActionState() == gActionState["ActionStateIdle"] ) then
         talk(gNPCLUT["Wise Man"]:getCharacterName(), "My liege, I've had a terrible vision!\nI saw the crystal shatter.\nI fear the dark lord may have escaped.")
         i = 2
     elseif (i == 2 and gDialogueIsPresent == false) then
