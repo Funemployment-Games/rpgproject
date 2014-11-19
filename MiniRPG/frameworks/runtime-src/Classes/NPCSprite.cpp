@@ -218,10 +218,5 @@ void NPCSprite::determineNextTileToWalkTo()
 
 void NPCSprite::onFinishedWalkingCallback(Ref* pSender)
 {
-    //printf("NPCSprite::onFinishedWalkingCallback\n");
-    LuaEngine* pLuaEngine = LuaEngine::getInstance();
-    LuaStack* pLuaStack = pLuaEngine->getLuaStack();
-    lua_State* pLuaState  = pLuaStack->getLuaState();
-    lua_flag_npc_movement_state(pLuaState, false);
     idle();
 }

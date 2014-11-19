@@ -28,7 +28,7 @@ bool GameLayer::init()
     ScriptEngineManager::getInstance()->setScriptEngine(m_pLuaEngine);
     m_pLuaStack = m_pLuaEngine->getLuaStack();
     m_pLuaState   = m_pLuaStack->getLuaState();
-    register_globalluamanager(m_pLuaStack->getLuaState());
+    //register_globalluamanager(m_pLuaStack->getLuaState());
     register_all_spritelua(m_pLuaStack->getLuaState());
     
     m_pLuaEngine->executeScriptFile("res/lua/globalmanager.lua");

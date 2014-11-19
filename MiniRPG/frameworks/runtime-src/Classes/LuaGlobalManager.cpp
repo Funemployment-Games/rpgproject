@@ -27,7 +27,7 @@ extern "C" {
 
 USING_NS_CC;
 //USING_NS_CC_EXT;
-
+/*
 static int lua_npc_walk_with_direction(lua_State* L)
 {
     if (nullptr == L)
@@ -170,13 +170,7 @@ static int lua_npc_set_walk_bounds(lua_State* L)
     std::string npcName = tolua_tostring(L, 1, "");
     
     ok &= luaval_to_rect(L, 2, &boundsRect);
-    /*
-    if(!ok)
-    {
-        printf("Expected cocos2d::Rect, got another type!\n");
-        return 0;
-    }
-     */
+
     
     NPCManager* pManager = NPCManager::getInstance();
     GameLayer* pGameLayer = pManager->getGameLayer();
@@ -209,7 +203,7 @@ static int lua_npc_set_delay_between_steps(lua_State* L)
     
     return 0;
 }
-
+*/
 int lua_flag_text_box_state(lua_State* L, bool textBoxState)
 {
     tolua_pushboolean(L, textBoxState);
@@ -218,6 +212,7 @@ int lua_flag_text_box_state(lua_State* L, bool textBoxState)
     return 0;
 }
 
+/*
 int lua_flag_npc_movement_state(lua_State* L, bool isMoving)
 {
     tolua_pushboolean(L, isMoving);
@@ -225,7 +220,9 @@ int lua_flag_npc_movement_state(lua_State* L, bool isMoving)
     
     return 0;
 }
+ */
 
+/*
 int register_globalluamanager(lua_State* L)
 {
     tolua_open(L);
@@ -240,3 +237,4 @@ int register_globalluamanager(lua_State* L)
     tolua_endmodule(L);
     return 0;
 }
+*/

@@ -15,7 +15,7 @@
  <objectgroup name="exits">
   <object name="exit_throne_room" x="224" y="32" width="16" height="16">
    <properties>
-    <property name="destination" value="airgetlam_castle_throne"/>
+    <property name="destination" value="agc-throne"/>
     <property name="startx" value="22"/>
     <property name="starty" value="25"/>
    </properties>
