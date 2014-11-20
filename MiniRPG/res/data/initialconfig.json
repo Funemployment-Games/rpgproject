@@ -1,0 +1,10 @@
+{ 
+	"CurrentMap" : "agc-throne",
+	"HeroineName" : "Melda",
+	"QuestFlags": [
+        false,
+        false,
+        false,
+       	false
+    ]
+}

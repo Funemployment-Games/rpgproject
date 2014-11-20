@@ -1,4 +1,7 @@
 #include "GameLayer.h"
+#include "external/json/document.h"
+#include "external/json/writer.h"
+#include "external/json/stringbuffer.h"
 
 USING_NS_CC;
 
@@ -37,11 +40,8 @@ bool GameLayer::init()
     m_pNPCManager->setGameLayer(this);
     m_pNPCManager->retain();
     
-    // TODO: Save game load code.
-    m_pLuaEngine->executeString("gQuestFlagsLUT = {[\"TalkedToKingForFirstTime\"] = false,}");
+    loadSavedData();
     
-    // TODO: This should also be loaded from the save.
-    m_strCurrentMapName = kStartingRoom;
 	m_pTileMap = nullptr;
     loadMapNamed(m_strCurrentMapName);
     
@@ -55,6 +55,84 @@ bool GameLayer::init()
 
     this->scheduleUpdate();
     
+    
+    return true;
+}
+
+bool GameLayer::loadSavedData()
+{
+    // Load the list of quest flags from JSON.
+    ssize_t filesize = 0;
+    std::string content;
+    std::string fullPath = "res/data/questflags.json";
+    
+    unsigned char* fileData = FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", &filesize);
+    content.append((char*)fileData);
+    delete[] fileData;
+    
+    rapidjson::Document questFlagsJSON;
+    questFlagsJSON.Parse<0>(content.c_str());
+    
+    if ( questFlagsJSON.HasParseError() )
+    {
+        // report to the user the failure
+        printf("Error parsing questflags.json\n");
+        return false;
+    }
+    
+    // Load the player's save data.
+    content = "";
+    fullPath = "res/data/initialconfig.json"; // TODO: replace with save file.
+    
+    fileData = FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", &filesize);
+    content.append((char*)fileData);
+    delete[] fileData;
+    
+    rapidjson::Document gameConfigJSON;
+    gameConfigJSON.Parse<0>(content.c_str());
+    
+    if ( gameConfigJSON.HasParseError() )
+    {
+        // report to the user the failure
+        printf("Error parsing initialconfig.json\n");
+        return false;
+    }
+    
+    //Read the players quest flags from save data.
+    const rapidjson::Value& a = gameConfigJSON["QuestFlags"]; // Using a reference for consecutive access is handy and faster.
+    assert(a.IsArray());
+    std::vector<bool> vQuestFlags;
+    for (rapidjson::SizeType i = 0; i < a.Size(); i++) // rapidjson uses SizeType instead of size_t.
+    {
+        //printf("QuestFlags[%d] = %s\n", i, a[i].GetBool()? "true" : "false");
+        vQuestFlags.push_back(a[i].GetBool());
+    }
+    
+    //Set the global lua table for quest flags
+    lua_getglobal(m_pLuaState, "gQuestFlagsLUT");
+    if (lua_istable(m_pLuaState, -1))
+    {
+        
+        int index = 0;
+        for (rapidjson::Value::ConstMemberIterator itr = questFlagsJSON.MemberonBegin();
+             itr != questFlagsJSON.MemberonEnd();
+             ++itr)
+        {
+            //printf("member is %s %s\n", itr->name.GetString(), vQuestFlags[index] ? "true" : "false");
+
+            lua_pushboolean(m_pLuaState, vQuestFlags[index]);
+            lua_setfield(m_pLuaState, -2, itr->name.GetString());
+            ++index;
+        }
+    }
+    lua_setglobal(m_pLuaState,"gQuestFlagsLUT");
+    
+    // Set the rest of the game's state from the player's save data.
+    m_strCurrentMapName = gameConfigJSON["CurrentMap"].GetString();
+    
+    //The game objects for the player's party aren't constructed until after the save data is loaded
+    //How do we get that data from this function into the players?
+    //Maybe there is a separate game object for the "party" than there is for the visual sprite?
     
     return true;
 }

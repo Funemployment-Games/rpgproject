@@ -46,6 +46,7 @@ public:
     CREATE_FUNC(GameLayer);
 private:
     void loadMapNamed(std::string mapName);
+    bool loadSavedData();
     void initTheHeros();
     void initTheNPCs(std::string mapName);
     void setViewpointCenter(Vec2 position);
