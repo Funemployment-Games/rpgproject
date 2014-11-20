@@ -63,11 +63,12 @@ bool GameLayer::loadSavedData()
 {
     // Load the list of quest flags from JSON.
     ssize_t filesize = 0;
-    std::string content;
     std::string fullPath = "res/data/questflags.json";
     
-    unsigned char* fileData = FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", &filesize);
-    content.append((char*)fileData);
+	const char* fileData = (const char*)FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", &filesize);
+	std::string content(fileData);
+	size_t pos = content.rfind("}");
+	content = content.substr(0, pos + 1);
     delete[] fileData;
     
     rapidjson::Document questFlagsJSON;
@@ -76,7 +77,7 @@ bool GameLayer::loadSavedData()
     if ( questFlagsJSON.HasParseError() )
     {
         // report to the user the failure
-        printf("Error parsing questflags.json\n");
+		printf("Error parsing questflags.json %s\n", questFlagsJSON.GetParseError());
         return false;
     }
     
@@ -84,8 +85,10 @@ bool GameLayer::loadSavedData()
     content = "";
     fullPath = "res/data/initialconfig.json"; // TODO: replace with save file.
     
-    fileData = FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", &filesize);
-    content.append((char*)fileData);
+	fileData = (const char*)FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", &filesize);
+	content = fileData;
+	pos = content.rfind("}");
+	content = content.substr(0, pos + 1);
     delete[] fileData;
     
     rapidjson::Document gameConfigJSON;
@@ -94,7 +97,7 @@ bool GameLayer::loadSavedData()
     if ( gameConfigJSON.HasParseError() )
     {
         // report to the user the failure
-        printf("Error parsing initialconfig.json\n");
+        printf("Error parsing initialconfig.json %s\n", gameConfigJSON.GetParseError() );
         return false;
     }
     
