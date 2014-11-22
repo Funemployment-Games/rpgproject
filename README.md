@@ -5,8 +5,8 @@ Progress
 
 World Map
 * Basic navigation - done
-* Ability to enter locations - in progress
-* Impassable terrain - in progress
+* Ability to enter locations - works
+* Impassable terrain - can be defined with meta tiles
 * Ocean - in progress
 * River - in Progress
 * Map wrap - in progress, the map wraps but the camera stops at edges so its kinda wonky.
@@ -19,7 +19,7 @@ Interior Maps (Towns/Dungeons)
 * Event triggers - not started
 * Searchable tiles - not started
 * Yes/No dialogues - first pass done
-* Quest Flags - needs design consideration
+* Quest Flags - can be defined in json and used in lua.
 * Encounter maps - not started
 * Destructible/removable terrain/objects - not started
 * Chests - Not started
@@ -46,7 +46,7 @@ Audio
 Input
 * Basic D-Pad - Done
 * Basic Context Sensitive button - Done
-* Improved touch input - todo
+* Improved touch input - Done I guess
 * Keyboard/controller support - keyboard works on mac and pc, will eventually need to make remappable.
 
 Casino
@@ -56,7 +56,7 @@ Combat
 * Not started
 
 Save system
-* Not started, needs quick save and manual save
+* Some stuff has been done with the json stuff, should be easy enough to write a couple functions to handle the rest.
 
 Menus (out of game)
 * Title
@@ -67,9 +67,9 @@ Menus (out of game)
 * Name main character
 
 Strings
-* Not started
-* Need some table or something to pull these from, make it localizable.
+* will be loaded from json
+* Trying to decide if we need to load all at once or keep separate for cutscene/map or whatever.
 
 Current Tackle List
 Matthew - 
-Yes no dialogues have been implemented, probably need ability to set quest flags and what maybe have other call backs. I think I'll try to throw together a cut scene and starter quest so I can figure out how this is all going to work.
+Working on strings, the string table and quest scripting still. Also thinking about how shops/chests/inventory will work.
