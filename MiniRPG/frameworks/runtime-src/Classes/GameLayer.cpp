@@ -65,11 +65,12 @@ bool GameLayer::loadSavedData()
     ssize_t filesize = 0;
     std::string fullPath = "res/data/questflags.json";
     
-	const char* fileData = (const char*)FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", &filesize);
-	std::string content(fileData);
+	Data fileData = FileUtils::getInstance()->getDataFromFile(fullPath.c_str());
+	unsigned char* charData = fileData.getBytes();
+	std::string content(reinterpret_cast<char*>(charData));
 	size_t pos = content.rfind("}");
 	content = content.substr(0, pos + 1);
-    delete[] fileData;
+	//delete[] charData;
     
     rapidjson::Document questFlagsJSON;
     questFlagsJSON.Parse<0>(content.c_str());
@@ -85,11 +86,12 @@ bool GameLayer::loadSavedData()
     content = "";
     fullPath = "res/data/initialconfig.json"; // TODO: replace with save file.
     
-	fileData = (const char*)FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", &filesize);
-	content = fileData;
+	fileData = FileUtils::getInstance()->getDataFromFile(fullPath.c_str());
+	charData = charData = fileData.getBytes();
+	content = reinterpret_cast<char*>(charData);
 	pos = content.rfind("}");
 	content = content.substr(0, pos + 1);
-    delete[] fileData;
+	//delete[] charData;
     
     rapidjson::Document gameConfigJSON;
     gameConfigJSON.Parse<0>(content.c_str());
@@ -208,8 +210,8 @@ void GameLayer::initTheHeros()
     
     m_pHero->setScale(1.0f);
     m_pHero->setAnchorPoint(Vec2(0.0,0.0));
-    m_pHero->setZOrder(-5);
-    this->addChild(m_pHero, m_pTileMap->getLayer("floor")->getZOrder());
+	m_pHero->setLocalZOrder(-5);
+	this->addChild(m_pHero, m_pTileMap->getLayer("floor")->getLocalZOrder());
     m_pHero->idle();
 }
 
@@ -236,11 +238,11 @@ void GameLayer::initTheNPCs(std::string mapName)
         npcSprite->setPosition(Vec2(x, y));
         npcSprite->setScale(1.0f);
         npcSprite->setAnchorPoint(Vec2(0.,0.0));
-        npcSprite->setZOrder(-5);
+		npcSprite->setLocalZOrder(-5);
         npcSprite->setCharacterName(npcName);
         npcSprite->setWalkBounds(walkBounds);
         
-        this->addChild(npcSprite, m_pTileMap->getLayer("floor")->getZOrder());
+		this->addChild(npcSprite, m_pTileMap->getLayer("floor")->getLocalZOrder());
         npcSprite->idle();
         
         m_pNPCManager->addNPC(npcSprite);
@@ -528,7 +530,7 @@ void GameLayer::heroIsDoneWalking()
                 m_pHero->idle();
                 m_pHero->setDesiredPosition(posFromTileCoord);
                 m_pHero->setPosition(posFromTileCoord);
-                m_pHero->setZOrder(-5);
+				m_pHero->setLocalZOrder(-5);
                 m_pHero->simpleDPadTouchEnded();
                 return;
             }
