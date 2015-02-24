@@ -67,9 +67,12 @@ Menus (out of game)
 * Name main character
 
 Strings
-* will be loaded from json
-* Trying to decide if we need to load all at once or keep separate for cutscene/map or whatever.
+* Loaded from json
+* Currently a single json file of strings per map, could fairly easily be adjusted to a single table.
+* String table is loaded via lua.
+* dialogueId for basic dialogue, if an NPC can ask a yes/no question add dialogueYesId and dialogueNoId. These ids must correspond to entries in the string table.
 
 Current Tackle List
 Matthew - 
-Working on strings, the string table and quest scripting still. Also thinking about how shops/chests/inventory will work.
+Strings are now tied to npc's in the map file, use the property "dialgoueId" to set them.
+Probably gonna start on chests or the shop next.
