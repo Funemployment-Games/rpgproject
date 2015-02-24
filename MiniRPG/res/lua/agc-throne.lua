@@ -1,4 +1,3 @@
-require("res/lua/globalmanager")
 require("res/lua/mapbase")
 
 print("Welcome to the Throne Room!")
@@ -15,12 +14,14 @@ function throne_map:tick()
         gNPCLUT["Wise Man"]:walkNumTilesWithDirection(2, 0, true)
         i = 1
     elseif (i == 1 and gDialogueIsPresent == false and gNPCLUT["Wise Man"]:getActionState() == gActionState["ActionStateIdle"] ) then
-        talk(gNPCLUT["Wise Man"]:getCharacterName(), "My liege, I've had a terrible vision!\nI saw the crystal shatter.\nI fear the dark lord may have escaped.")
+        talk(gNPCLUT["Wise Man"]:getCharacterName(), "WiseMan1")
         i = 2
     elseif (i == 2 and gDialogueIsPresent == false) then
-        talk(gNPCLUT["The King"]:getCharacterName(), "How horrible!\nWhat can we possibly do?\nMy daughter you must investigate!")
+        talk(gNPCLUT["The King"]:getCharacterName(), "King1")
         i = 3
     end
 end
 
 gCurrentMap = throne_map
+
+setStringTable("res/data/agcthronestrings.json")

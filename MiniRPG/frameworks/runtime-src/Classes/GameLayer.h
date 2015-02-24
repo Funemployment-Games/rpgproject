@@ -13,6 +13,10 @@
 #include "lua_cocos2dx_custom.hpp"
 #include "ChatBox.h"
 #include "YesNoBox.h"
+#include "external/json/document.h"
+#include "external/json/writer.h"
+#include "external/json/stringbuffer.h"
+
 
 USING_NS_CC;
 
@@ -37,7 +41,8 @@ public:
     void setTheHudLayer(HudLayer* theHudLayer);
     HeroSprite* getTheHero();
     LuaEngine* getLuaEngine();
-    void showNPCDialogue(std::string npcName, std::string dialogue, std::string yesResponse, std::string noResponse);
+    void showNPCDialogue(std::string npcName, std::string stringID, std::string yesResponse, std::string noResponse);
+    bool loadStringTable(std::string fileName);
     
     Vec2 tileCoordForPosition(Vec2 position);
     Vec2 positionForTileCoord(Vec2 tileCoord);
@@ -66,6 +71,7 @@ private:
     TMXObjectGroup* m_pExitGroup;
     std::string m_strCurrentMapName;
     std::string m_strCurrentTalkingNPC;
+    rapidjson::Document m_currentStringTable;
     
     float m_fHalfWinHeight;
     float m_fHalfWinWidth;

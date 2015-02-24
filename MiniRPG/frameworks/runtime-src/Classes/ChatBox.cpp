@@ -48,7 +48,7 @@ bool ChatBox::initWithDialogue(std::string npcName, std::string npcDialogue)
     backroundSprite->setAnchorPoint(Vec2(0,0));
     this->addChild(backroundSprite, 0);
 
-    m_pLabel = Label::createWithSystemFont("", "Helvetica", 16, Size(300,60), TextHAlignment::LEFT, TextVAlignment::TOP);
+    m_pLabel = Label::createWithTTF("", "res/fonts/Warior-Quest-III.ttf", 16, Size(300,60), TextHAlignment::LEFT, TextVAlignment::TOP);
     m_pLabel->setColor(Color3B::WHITE);
     m_pLabel->setAnchorPoint(Vec2(0, 0));
     m_pLabel->setPosition(Vec2(6,15));

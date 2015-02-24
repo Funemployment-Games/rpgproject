@@ -35,7 +35,7 @@ static int lua_npc_talk(lua_State* L)
     
     if (argc != 2)
     {
-        tolua_error(L,"#ferror in function 'lua_npc_walk_numtiles_with_direction', too few arguments.",&tolua_err);
+        tolua_error(L,"#ferror in function 'lua_npc_talk', too few arguments.",&tolua_err);
         return 0;
     }
     
@@ -61,7 +61,7 @@ static int lua_npc_yes_no_talk(lua_State* L)
     
     if (argc != 4)
     {
-        tolua_error(L,"#ferror in function 'lua_npc_walk_numtiles_with_direction', too few arguments.",&tolua_err);
+        tolua_error(L,"#ferror in function 'lua_npc_yes_no_talk', too few arguments.",&tolua_err);
         return 0;
     }
     
@@ -90,6 +90,27 @@ int lua_flag_text_box_state(lua_State* L, bool textBoxState)
     return 0;
 }
 
+static int lua_set_string_table(lua_State* L)
+{
+    int argc = lua_gettop(L);
+    tolua_Error tolua_err;
+    
+    std::string fileName = tolua_tostring(L, 1, "");
+    
+    if (argc != 1)
+    {
+        tolua_error(L,"#ferror in function 'lua_set_string_table', too few arguments.",&tolua_err);
+        return 0;
+    }
+    
+    NPCManager* pManager = NPCManager::getInstance();
+    GameLayer* pGameLayer = pManager->getGameLayer();
+    
+    pGameLayer->loadStringTable(fileName);
+    
+    return 0;
+}
+
 int register_globalluamanager(lua_State* L)
 {
     tolua_open(L);
@@ -97,6 +118,7 @@ int register_globalluamanager(lua_State* L)
     tolua_beginmodule(L, NULL);
     tolua_function(L, "talk", lua_npc_talk);
     tolua_function(L, "talkYesNo", lua_npc_yes_no_talk);
+    tolua_function(L, "setStringTable", lua_set_string_table);
     tolua_endmodule(L);
     return 0;
 }

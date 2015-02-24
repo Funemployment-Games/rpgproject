@@ -1,7 +1,4 @@
 #include "GameLayer.h"
-#include "external/json/document.h"
-#include "external/json/writer.h"
-#include "external/json/stringbuffer.h"
 
 USING_NS_CC;
 
@@ -42,6 +39,7 @@ bool GameLayer::init()
     
     loadSavedData();
     
+    m_currentStringTable.SetArray();
 	m_pTileMap = nullptr;
     loadMapNamed(m_strCurrentMapName);
     
@@ -62,7 +60,7 @@ bool GameLayer::init()
 bool GameLayer::loadSavedData()
 {
     // Load the list of quest flags from JSON.
-    ssize_t filesize = 0;
+    //ssize_t filesize = 0;
     std::string fullPath = "res/data/questflags.json";
     
 	Data fileData = FileUtils::getInstance()->getDataFromFile(fullPath.c_str());
@@ -138,6 +136,29 @@ bool GameLayer::loadSavedData()
     //The game objects for the player's party aren't constructed until after the save data is loaded
     //How do we get that data from this function into the players?
     //Maybe there is a separate game object for the "party" than there is for the visual sprite?
+    
+    return true;
+}
+
+bool GameLayer::loadStringTable(std::string fileName)
+{
+    //std::string fullPath = "res/data/questflags.json";
+    
+    Data fileData = FileUtils::getInstance()->getDataFromFile(fileName.c_str());
+    unsigned char* charData = fileData.getBytes();
+    std::string content(reinterpret_cast<char*>(charData));
+    size_t pos = content.rfind("}");
+    content = content.substr(0, pos + 1);
+    //delete[] charData;
+    
+    m_currentStringTable.Parse<0>(content.c_str());
+    
+    if ( m_currentStringTable.HasParseError() )
+    {
+        // report to the user the failure
+        printf("Error parsing %s %s\n", fileName.c_str(), m_currentStringTable.GetParseError());
+        return false;
+    }
     
     return true;
 }
@@ -560,17 +581,23 @@ Vec2 GameLayer::positionForTileCoord(Vec2 tileCoord)
     return Vec2(x, y);
 }
 
-void GameLayer::showNPCDialogue(std::string npcName, std::string dialogue, std::string yesResponse, std::string noResponse)
+void GameLayer::showNPCDialogue(std::string npcName, std::string stringID, std::string yesResponse, std::string noResponse)
 {
     if (m_pChatbox == nullptr)
     {
         if (yesResponse == "" && noResponse == "")
         {
+            const char* id = stringID.c_str();
+            std::string dialogue = m_currentStringTable[id].GetString();
             m_pChatbox = ChatBox::createChatBox( npcName, dialogue);
+            //delete id;
         }
         else
         {
+            const char* id = stringID.c_str();
+            std::string dialogue = m_currentStringTable[id].GetString();
             m_pChatbox = YesNoBox::createYesNoBox(npcName, dialogue, yesResponse, noResponse);
+            //delete id;
         }
         Vec2 vCenteredBoxPos = Vec2(this->getPosition().x * -1.f, this->getPosition().y * -2.65f);
         m_pChatbox->setPosition(Vec2(vCenteredBoxPos));
