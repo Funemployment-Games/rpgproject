@@ -1,4 +1,8 @@
 { 
 	"WiseMan1" : "My liege, I've had a terrible vision!\nI saw the crystal shatter.\nI fear the dark lord may have escaped.",
-    "King1" : "How horrible!\nWhat can we possibly do?\nMy daughter you must investigate!"
+    "WiseMan2" : "Take the cave southwest of the castle.\n",
+    "King1" : "How horrible!\nWhat can we possibly do?\nMy daughter you must investigate!",
+    "King2" : "Would you like to save your progress?",
+    "KingYes" : "Your progress has been saved.",
+    "KingNo" : "Be careful on your journey."
 }

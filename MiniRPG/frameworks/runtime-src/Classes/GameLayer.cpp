@@ -581,21 +581,26 @@ Vec2 GameLayer::positionForTileCoord(Vec2 tileCoord)
     return Vec2(x, y);
 }
 
-void GameLayer::showNPCDialogue(std::string npcName, std::string stringID, std::string yesResponse, std::string noResponse)
+void GameLayer::showNPCDialogue(std::string npcName, std::string dialgoueId, std::string dialogueYesId, std::string dialogueNoId)
 {
     if (m_pChatbox == nullptr)
     {
-        if (yesResponse == "" && noResponse == "")
+        if (dialogueYesId == "" && dialogueNoId == "")
         {
-            const char* id = stringID.c_str();
+            const char* id = dialgoueId.c_str();
             std::string dialogue = m_currentStringTable[id].GetString();
             m_pChatbox = ChatBox::createChatBox( npcName, dialogue);
             //delete id;
         }
         else
         {
-            const char* id = stringID.c_str();
+            const char* id = dialgoueId.c_str();
             std::string dialogue = m_currentStringTable[id].GetString();
+            id = dialogueYesId.c_str();
+            std::string yesResponse = m_currentStringTable[id].GetString();
+            id = dialogueNoId.c_str();
+            std::string noResponse = m_currentStringTable[id].GetString();
+            
             m_pChatbox = YesNoBox::createYesNoBox(npcName, dialogue, yesResponse, noResponse);
             //delete id;
         }

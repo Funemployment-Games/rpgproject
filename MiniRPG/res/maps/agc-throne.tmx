@@ -28,14 +28,19 @@
   <object name="kingspawn" type="npcspawn" x="288" y="192" width="16" height="16">
    <properties>
     <property name="basesprite" value="king"/>
-    <property name="behaviorscript" value="agc-throne-king"/>
+    <property name="dialogueId" value="King2"/>
+    <property name="dialogueYesId" value="KingYes"/>
+    <property name="dialogueNoId" value="KingNo"/>
     <property name="npcname" value="The King"/>
+    
    </properties>
   </object>
   <object name="wisemanspawn" type="npcspawn" x="336" y="304" width="16" height="16">
     <properties>
       <property name="basesprite" value="wise_man"/>
-      <property name="behaviorscript" value="agc-throne-wise_man"/>
+      <property name="dialogueId" value="WiseMan2"/>
+      <property name="dialogueYesId" value="WiseMan"/>
+      <property name="dialogueNoId" value="WiseManNo"/>
       <property name="npcname" value="Wise Man"/>
     </properties>
   </object>

@@ -69,6 +69,6 @@ void ChatBox::advanceTextOrHide()
     std::string text = m_textArray[0];
     m_textArray.erase(m_textArray.begin());
     
-    std::string message = m_npcName + ": " +  text;
+    std::string message = m_npcName + " " +  text;
     m_pLabel->setString(message);
 }

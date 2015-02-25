@@ -112,7 +112,7 @@ void NPCManager::interactWithClosestNPC()
     {
         m_pClosestNPC->setActionState(kActionStateTalking);
         
-        m_pGameLayer->showNPCDialogue(m_pClosestNPC->getCharacterName(), m_pClosestNPC->getDialogueId(), "", "");
+        m_pGameLayer->showNPCDialogue(m_pClosestNPC->getCharacterName(), m_pClosestNPC->getDialogueId(), m_pClosestNPC->getYesDialogueId(), m_pClosestNPC->getNoDialogueId());
     }
 }
 

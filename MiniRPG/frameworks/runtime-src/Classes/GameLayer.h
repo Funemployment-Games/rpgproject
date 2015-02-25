@@ -41,7 +41,7 @@ public:
     void setTheHudLayer(HudLayer* theHudLayer);
     HeroSprite* getTheHero();
     LuaEngine* getLuaEngine();
-    void showNPCDialogue(std::string npcName, std::string stringID, std::string yesResponse, std::string noResponse);
+    void showNPCDialogue(std::string npcName, std::string dialgoueId, std::string dialogueYesId, std::string dialogueNoId);
     bool loadStringTable(std::string fileName);
     
     Vec2 tileCoordForPosition(Vec2 position);

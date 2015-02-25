@@ -38,6 +38,8 @@ bool NPCSprite::initWithParameters(std::string spriteName, std::string dialogueI
     m_fWalkSpeed = 1.0f;
     m_strSpriteName = spriteName;
     m_strDialogueId = dialogueId;
+    m_strYesDialogueId = dialogueYesId;
+    m_strNoDialogueId = dialogueNoId;
     
     m_currentDirection = kActionSpriteDirectionSouth;
     m_actionState = kActionStateAutoWalkDone;
@@ -171,6 +173,16 @@ void NPCSprite::createIdleAction()
 std::string NPCSprite::getDialogueId()
 {
     return m_strDialogueId;
+}
+
+std::string NPCSprite::getYesDialogueId()
+{
+    return m_strYesDialogueId;
+}
+
+std::string NPCSprite::getNoDialogueId()
+{
+    return m_strNoDialogueId;
 }
 
 void NPCSprite::setDelayBetweenSteps(float theDelay)
