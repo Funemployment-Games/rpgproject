@@ -976,21 +976,23 @@ int lua_NPCSprite_initWithParameters(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 4)
+    if (argc == 5)
     {
         std::string arg0;
         std::string arg1;
         std::string arg2;
         std::string arg3;
+        int arg4;
 
         ok &= luaval_to_std_string(tolua_S, 2,&arg0);
         ok &= luaval_to_std_string(tolua_S, 3,&arg1);
         ok &= luaval_to_std_string(tolua_S, 2,&arg2);
         ok &= luaval_to_std_string(tolua_S, 3,&arg3);
+        ok &= luaval_to_int32(tolua_S, 4,&arg4);
         
         if(!ok)
             return 0;
-        bool ret = cobj->initWithParameters(arg0, arg1, arg2, arg3);
+        bool ret = cobj->initWithParameters(arg0, arg1, arg2, arg3, (NPCType)arg4);
         tolua_pushboolean(tolua_S,(bool)ret);
         return 1;
     }
@@ -1424,13 +1426,18 @@ int lua_NPCSprite_createNPC(lua_State* tolua_S)
         std::string arg1;
         std::string arg2;
         std::string arg3;
+        int arg4;
+        
         ok &= luaval_to_std_string(tolua_S, 2,&arg0);
         ok &= luaval_to_std_string(tolua_S, 3,&arg1);
         ok &= luaval_to_std_string(tolua_S, 3,&arg2);
         ok &= luaval_to_std_string(tolua_S, 4,&arg3);
+        ok &= luaval_to_int32(tolua_S, 5,&arg4);
+        
+        
         if(!ok)
             return 0;
-        cocos2d::Sprite* ret = NPCSprite::createNPC(arg0, arg1, arg2, arg3);
+        cocos2d::Sprite* ret = NPCSprite::createNPC(arg0, arg1, arg2, arg3, (NPCType)arg4);
         object_to_luaval<cocos2d::Sprite>(tolua_S, "cc.Sprite",(cocos2d::Sprite*)ret);
         return 1;
     }

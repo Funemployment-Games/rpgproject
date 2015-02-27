@@ -22,6 +22,14 @@ enum YesNoMenuButton
     kYesNoMenuButton_None = -1,
 };
 
+enum YesNoMenuType
+{
+    kYesNoMenuType_Save,
+    kYesNoMenuType_Purchase,
+    KYesNoMenuType_Max,
+    kYesNoMenuType_None = -1,
+};
+
 class YesNoBox : public ChatBox
 {
 public:
@@ -36,6 +44,7 @@ private:
     Menu* m_pMenu;
     MenuItemImage* m_pButtons[kYesNoMenuButtonButton_Max];
     bool m_bChoiceMade;
+    YesNoMenuType m_eMenuType;
     
     void CreateMenuButtons();
     

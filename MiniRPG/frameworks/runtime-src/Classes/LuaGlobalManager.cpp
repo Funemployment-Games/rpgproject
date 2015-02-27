@@ -40,13 +40,13 @@ static int lua_npc_talk(lua_State* L)
     }
     
     std::string npcName = tolua_tostring(L, 1, "");
-    std::string dialogue = tolua_tostring(L, 2, "");
+    std::string dialogueId = tolua_tostring(L, 2, "");
     
     NPCManager* pManager = NPCManager::getInstance();
     GameLayer* pGameLayer = pManager->getGameLayer();
     
     pManager->setNPCState(npcName, kActionStateTalking);
-    pGameLayer->showNPCDialogue(npcName, dialogue, "", "");
+    pGameLayer->showNPCDialogue(npcName, dialogueId, "", "");
     
     tolua_pushboolean(L, true);
 	lua_setglobal(L, "gDialogueIsPresent");
@@ -66,15 +66,15 @@ static int lua_npc_yes_no_talk(lua_State* L)
     }
     
     std::string npcName = tolua_tostring(L, 1, "");
-    std::string dialogue = tolua_tostring(L, 2, "");
-    std::string yes = tolua_tostring(L, 3, "");
-    std::string no = tolua_tostring(L, 4, "");
+    std::string dialogueId = tolua_tostring(L, 2, "");
+    std::string yesId = tolua_tostring(L, 3, "");
+    std::string noId = tolua_tostring(L, 4, "");
     
     NPCManager* pManager = NPCManager::getInstance();
     GameLayer* pGameLayer = pManager->getGameLayer();
     
     pManager->setNPCState(npcName, kActionStateTalking);
-    pGameLayer->showNPCDialogue(npcName, dialogue, yes, no);
+    pGameLayer->showNPCDialogue(npcName, dialogueId, yesId, noId);
     
     tolua_pushboolean(L, true);
 	lua_setglobal(L, "gDialogueIsPresent");

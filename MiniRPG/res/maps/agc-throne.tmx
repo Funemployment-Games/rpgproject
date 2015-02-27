@@ -32,7 +32,7 @@
     <property name="dialogueYesId" value="KingYes"/>
     <property name="dialogueNoId" value="KingNo"/>
     <property name="npcname" value="The King"/>
-    
+    <property name="npcType" value="king"/>
    </properties>
   </object>
   <object name="wisemanspawn" type="npcspawn" x="336" y="304" width="16" height="16">
@@ -42,6 +42,7 @@
       <property name="dialogueYesId" value="WiseMan"/>
       <property name="dialogueNoId" value="WiseManNo"/>
       <property name="npcname" value="Wise Man"/>
+      <property name="npcType" value="normal"/>
     </properties>
   </object>
  </objectgroup>

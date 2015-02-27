@@ -248,13 +248,14 @@ void GameLayer::initTheNPCs(std::string mapName)
         std::string dialogueYesId  = npc["dialogueYesId"].asString();
         std::string dialogueNoId  = npc["dialogueNoId"].asString();
         std::string npcName = npc["npcname"].asString();
+        NPCType npcType = convertStringToNPCType(npc["npcType"].asString());
         float x = npc["x"].asFloat();
         float y = npc["y"].asFloat();
         float width = npc["width"].asFloat();
         float height = npc["height"].asFloat();
         Rect walkBounds = Rect::Rect(x, y, width, height);
                 
-        NPCSprite* npcSprite = (NPCSprite*)NPCSprite::createNPC(basesprite, dialogueId, dialogueYesId, dialogueNoId);
+        NPCSprite* npcSprite = (NPCSprite*)NPCSprite::createNPC(basesprite, dialogueId, dialogueYesId, dialogueNoId, npcType);
         npcSprite->setDesiredPosition(Vec2(x, y));
         npcSprite->setPosition(Vec2(x, y));
         npcSprite->setScale(1.0f);
@@ -268,6 +269,23 @@ void GameLayer::initTheNPCs(std::string mapName)
         
         m_pNPCManager->addNPC(npcSprite);
     }
+}
+
+NPCType GameLayer::convertStringToNPCType(std::string typeString)
+{
+    std::unordered_map<std::string, NPCType>  npcMap;
+    npcMap = {
+        {"normal",kNPCType_Normal},
+        {"yesno",kNPCType_YesNo},
+        {"king",kNPCType_King},
+        {"shop",kNPCType_Shop},
+        {"inn",kNPCType_Inn},
+        {"church",kNPCType_Church}
+    };
+    
+    NPCType returnVal = npcMap[typeString];
+    
+    return returnVal;
 }
 
 /**
@@ -581,35 +599,50 @@ Vec2 GameLayer::positionForTileCoord(Vec2 tileCoord)
     return Vec2(x, y);
 }
 
-void GameLayer::showNPCDialogue(std::string npcName, std::string dialgoueId, std::string dialogueYesId, std::string dialogueNoId)
+void GameLayer::showNPCDialogue(std::string npcName, std::string dialogueId, std::string dialogueYesId, std::string dialogueNoId, NPCType theType)
 {
-    if (m_pChatbox == nullptr)
+    m_strCurrentTalkingNPC = npcName;
+    
+    switch (theType)
     {
-        if (dialogueYesId == "" && dialogueNoId == "")
+        case kNPCType_Normal:
         {
-            const char* id = dialgoueId.c_str();
+            const char* id = dialogueId.c_str();
             std::string dialogue = m_currentStringTable[id].GetString();
-            m_pChatbox = ChatBox::createChatBox( npcName, dialogue);
+            m_pChatbox = ChatBox::createChatBox( m_strCurrentTalkingNPC, dialogue);
             //delete id;
         }
-        else
+            break;
+        case kNPCType_YesNo:
         {
-            const char* id = dialgoueId.c_str();
+            const char* id = dialogueId.c_str();
             std::string dialogue = m_currentStringTable[id].GetString();
             id = dialogueYesId.c_str();
             std::string yesResponse = m_currentStringTable[id].GetString();
             id = dialogueNoId.c_str();
             std::string noResponse = m_currentStringTable[id].GetString();
             
-            m_pChatbox = YesNoBox::createYesNoBox(npcName, dialogue, yesResponse, noResponse);
+            m_pChatbox = YesNoBox::createYesNoBox(m_strCurrentTalkingNPC, dialogue, yesResponse, noResponse);
             //delete id;
         }
-        Vec2 vCenteredBoxPos = Vec2(this->getPosition().x * -1.f, this->getPosition().y * -2.65f);
-        m_pChatbox->setPosition(Vec2(vCenteredBoxPos));
-        this->addChild(m_pChatbox, 5);
-        m_pChatbox->advanceTextOrHide();
-        m_strCurrentTalkingNPC = npcName;
-        
-        m_pHudLayer->setVisible(false);
+        default:
+        {
+            printf("showNPCDialogue - unimplemented NPC type: %d\n", theType);
+        }
+            break;
+    }
+    
+    Vec2 vCenteredBoxPos = Vec2(this->getPosition().x * -1.f, this->getPosition().y * -2.65f);
+    m_pChatbox->setPosition(Vec2(vCenteredBoxPos));
+    this->addChild(m_pChatbox, 5);
+    m_pChatbox->advanceTextOrHide();
+    m_pHudLayer->setVisible(false);
+}
+
+void GameLayer::showNPCDialogue(NPCSprite* pTheNPC)
+{
+    if (m_pChatbox == nullptr)
+    {
+        showNPCDialogue(pTheNPC->getCharacterName(), pTheNPC->getDialogueId().c_str(), pTheNPC->getYesDialogueId().c_str(), pTheNPC->getNoDialogueId().c_str(), pTheNPC->getNPCType());
     }
 }

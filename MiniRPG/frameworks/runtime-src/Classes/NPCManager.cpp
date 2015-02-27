@@ -96,6 +96,25 @@ void NPCManager::removeAllNPCs()
     }
 }
 
+NPCSprite* NPCManager::getNPC(std::string npcName)
+{
+    NPCSprite* currentNPC = nullptr;
+    for (Vector<NPCSprite*>::iterator npcIterator = m_vCurrentNPCs.begin() ; npcIterator != m_vCurrentNPCs.end(); ++npcIterator)
+    {
+        currentNPC = (NPCSprite*)*npcIterator;
+        if (currentNPC->getCharacterName() == npcName)
+        {
+            break;
+        }
+        else
+        {
+            currentNPC = nullptr;
+        }
+    }
+    
+    return currentNPC;
+}
+
 void NPCManager::update(float delta)
 {
     for (Vector<NPCSprite*>::iterator npcIterator = m_vCurrentNPCs.begin() ; npcIterator != m_vCurrentNPCs.end(); ++npcIterator)
@@ -112,7 +131,7 @@ void NPCManager::interactWithClosestNPC()
     {
         m_pClosestNPC->setActionState(kActionStateTalking);
         
-        m_pGameLayer->showNPCDialogue(m_pClosestNPC->getCharacterName(), m_pClosestNPC->getDialogueId(), m_pClosestNPC->getYesDialogueId(), m_pClosestNPC->getNoDialogueId());
+        m_pGameLayer->showNPCDialogue(m_pClosestNPC);
     }
 }
 

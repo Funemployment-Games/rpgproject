@@ -39,6 +39,7 @@ public:
     void addNPC(NPCSprite* theNPC);
     void removeNPC(NPCSprite* theNPC);
     void removeAllNPCs();
+    NPCSprite* getNPC(std::string npcName);
     
     //Interaction
     void interactWithClosestNPC();

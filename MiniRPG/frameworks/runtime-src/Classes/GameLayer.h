@@ -41,7 +41,8 @@ public:
     void setTheHudLayer(HudLayer* theHudLayer);
     HeroSprite* getTheHero();
     LuaEngine* getLuaEngine();
-    void showNPCDialogue(std::string npcName, std::string dialgoueId, std::string dialogueYesId, std::string dialogueNoId);
+    void showNPCDialogue(NPCSprite* pTheNPC);
+    void showNPCDialogue(std::string npcName, std::string dialogueId, std::string dialogueYesId, std::string dialogueNoId, NPCType theType = kNPCType_Normal);
     bool loadStringTable(std::string fileName);
     
     Vec2 tileCoordForPosition(Vec2 position);
@@ -54,6 +55,7 @@ private:
     bool loadSavedData();
     void initTheHeros();
     void initTheNPCs(std::string mapName);
+    NPCType convertStringToNPCType(std::string typeString);
     void setViewpointCenter(Vec2 position);
     void setPlayerPosition(Vec2 position);
     void heroIsDoneWalking();

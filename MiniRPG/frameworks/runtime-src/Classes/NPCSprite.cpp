@@ -10,10 +10,10 @@
 #include "config.h"
 #include "LuaGlobalManager.h"
 
-Sprite* NPCSprite::createNPC(std::string spriteName, std::string dialogueId, std::string dialogueYesId, std::string dialogueNoId)
+Sprite* NPCSprite::createNPC(std::string spriteName, std::string dialogueId, std::string dialogueYesId, std::string dialogueNoId, NPCType type)
 {
     NPCSprite* npc = new (std::nothrow) NPCSprite();
-    if (npc && npc->initWithParameters(spriteName, dialogueId, dialogueYesId, dialogueNoId))
+    if (npc && npc->initWithParameters(spriteName, dialogueId, dialogueYesId, dialogueNoId, type))
     {
         npc->autorelease();
         return npc;
@@ -24,7 +24,7 @@ Sprite* NPCSprite::createNPC(std::string spriteName, std::string dialogueId, std
 
 
 // on "init" you need to initialize your instance
-bool NPCSprite::initWithParameters(std::string spriteName, std::string dialogueId, std::string dialogueYesId, std::string dialogueNoId)
+bool NPCSprite::initWithParameters(std::string spriteName, std::string dialogueId, std::string dialogueYesId, std::string dialogueNoId, NPCType type)
 {
     //////////////////////////////
     // 1. super init first
@@ -40,6 +40,7 @@ bool NPCSprite::initWithParameters(std::string spriteName, std::string dialogueI
     m_strDialogueId = dialogueId;
     m_strYesDialogueId = dialogueYesId;
     m_strNoDialogueId = dialogueNoId;
+    m_eNPCType = type;
     
     m_currentDirection = kActionSpriteDirectionSouth;
     m_actionState = kActionStateAutoWalkDone;
@@ -183,6 +184,12 @@ std::string NPCSprite::getYesDialogueId()
 std::string NPCSprite::getNoDialogueId()
 {
     return m_strNoDialogueId;
+}
+
+
+NPCType NPCSprite::getNPCType()
+{
+    return m_eNPCType;
 }
 
 void NPCSprite::setDelayBetweenSteps(float theDelay)

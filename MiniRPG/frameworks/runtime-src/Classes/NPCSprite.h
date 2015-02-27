@@ -13,13 +13,25 @@
 
 USING_NS_CC;
 
+enum NPCType
+{
+    kNPCType_Normal,
+    kNPCType_YesNo,
+    kNPCType_King,
+    kNPCType_Shop,
+    kNPCType_Inn,
+    kNPCType_Church,
+    kNPCType_Max,
+    kNPCType_None = -1,
+};
+
 class NPCSprite: public ActionSprite
 {
 public:
-    static Sprite* createNPC(std::string spriteName, std::string dialogueId, std::string dialogueYesId, std::string dialogueNoId);
+    static Sprite* createNPC(std::string spriteName, std::string dialogueId, std::string dialogueYesId, std::string dialogueNoId, NPCType type);
     static Sprite* create();
     
-    bool initWithParameters(std::string spriteName, std::string dialogueId, std::string dialogueYesId, std::string dialogueNoId);
+    bool initWithParameters(std::string spriteName, std::string dialogueId, std::string dialogueYesId, std::string dialogueNoId, NPCType type);
     
     //scheduled methods
     virtual void update(float dt);
@@ -33,6 +45,7 @@ public:
     std::string getDialogueId();
     std::string getYesDialogueId();
     std::string getNoDialogueId();
+    NPCType getNPCType();
     void setDelayBetweenSteps(float theDelay);
     float getDelayBetweenSteps();
     void setWalkBounds(Rect bounds);
@@ -49,6 +62,8 @@ private:
     std::string m_strNoDialogueId;
     float m_fDelayBetweenSteps;
     float m_fTimeSinceLastStep;
+    
+    NPCType m_eNPCType;
 };
 
 #endif

@@ -104,8 +104,7 @@ void YesNoBox::advanceTextOrHide()
 
 void YesNoBox::onYesButtonCallback(Ref* pSender)
 {
-    printf("Yes!\n");
-    std::string message = m_npcName + ": " +  m_strYesResponse;
+    std::string message = m_npcName + " " +  m_strYesResponse;
     m_pLabel->setString(message);
     m_bChoiceMade = true;
     m_pMenu->setVisible(false);
@@ -113,8 +112,7 @@ void YesNoBox::onYesButtonCallback(Ref* pSender)
 
 void YesNoBox::onNoButtonCallback(Ref* pSender)
 {
-    printf("NO!\n");
-    std::string message = m_npcName + ": " +  m_strNoResponse;
+    std::string message = m_npcName + " " +  m_strNoResponse;
     m_pLabel->setString(message);
     m_bChoiceMade = true;
     m_pMenu->setVisible(false);
