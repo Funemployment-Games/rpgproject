@@ -18,7 +18,7 @@ USING_NS_CC;
 enum ContextMenuButton
 {
     kContextMenuButton_Talk,
-    //kContextMenuButton_Search,
+    kContextMenuButton_Search,
     kContextMenuButton_Max,
     kContextMenuButton_None = -1,
 };

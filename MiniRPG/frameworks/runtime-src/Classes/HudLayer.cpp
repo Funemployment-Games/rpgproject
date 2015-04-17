@@ -46,24 +46,24 @@ void HudLayer::CreateContextMenuButtons()
     Point buttonPositions [kContextMenuButton_Max] =
     {
         Point(64,-160),
-        //PointPoint(180,64),
+        Point(64,-160),
     };
     
     const char* buttonUpImages [kContextMenuButton_Max] =
     {
         "res/ui/btn_talk.png",
-        //"ui/btn_search.png",
+        "res/ui/btn_search.png",
     };
     const char* buttonDownImages [kContextMenuButton_Max] =
     {
         "res/ui/btn_talk.png",
-        //"ui/btn_search.png",
+        "res/ui/btn_search.png",
     };
     
     ccMenuCallback buttonHandlers [kContextMenuButton_Max] =
     {
         CC_CALLBACK_1(HudLayer::onTalkButtonCallback, this),
-        //CC_CALLBACK_1(HudLayer::onSearchButtonCallback, this),
+        CC_CALLBACK_1(HudLayer::onSearchButtonCallback, this),
     };
     
     MenuItemImage* tempButton;
