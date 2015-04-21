@@ -614,6 +614,8 @@ void GameLayer::showNPCDialogue(std::string npcName, std::string dialogueId, std
         }
             break;
         case kNPCType_YesNo:
+        case kNPCType_King:
+        case kNPCType_Inn:
         {
             const char* id = dialogueId.c_str();
             std::string dialogue = m_currentStringTable[id].GetString();
@@ -625,6 +627,12 @@ void GameLayer::showNPCDialogue(std::string npcName, std::string dialogueId, std
             m_pChatbox = YesNoBox::createYesNoBox(m_strCurrentTalkingNPC, dialogue, yesResponse, noResponse);
             //delete id;
         }
+            break;
+        case kNPCType_Shop:
+        {
+            
+        }
+            break;
         default:
         {
             printf("showNPCDialogue - unimplemented NPC type: %d\n", theType);

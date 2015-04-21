@@ -1,0 +1,6 @@
+{ 
+	"Merchant" : "Would you like to purchase an item\nfor your journey?\n",
+    "MerchantYes" : "Great! What can I get you?\n",
+    "MerchantNo" : "Well it is your funeral!\n",
+    "BunnyGirl" : "I specialize in puff-puffs!"
+}

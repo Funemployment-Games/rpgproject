@@ -32,10 +32,21 @@
   <object name="bunny_girlspawn" type="npcspawn" x="272" y="160" width="48" height="32">
    <properties>
     <property name="basesprite" value="bunny_girl"/>
-    <property name="behaviorscript" value="agc-town-bunny_girl"/>
+    <property name="dialogueId" value="BunnyGirl"/>
     <property name="npcname" value="BunnyGirl"/>
     <property name="stepdelay" value="3.0"/>
+    <property name="npcType" value="normal"/>
    </properties>
+  </object>
+  <object name="shopspawn" type="npcspawn" x="218" y="32" width="16" height="16">
+      <properties>
+          <property name="basesprite" value="merchant"/>
+          <property name="dialogueId" value="Merchant"/>
+          <property name="dialogueYesId" value="MerchantYes"/>
+          <property name="dialogueNoId" value="MerchantNo"/>
+          <property name="npcname" value="Merchant"/>
+          <property name="npcType" value="shop"/>
+      </properties>
   </object>
  </objectgroup>
 </map>
