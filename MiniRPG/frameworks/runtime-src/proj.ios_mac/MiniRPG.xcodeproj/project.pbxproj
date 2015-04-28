@@ -71,8 +71,10 @@
 		7AA10B6B1A8034C2007E32B7 /* NPCSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA10B521A8034C2007E32B7 /* NPCSprite.cpp */; };
 		7AA10B6C1A8034C2007E32B7 /* SimpleDPad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA10B541A8034C2007E32B7 /* SimpleDPad.cpp */; };
 		7AA10B6D1A8034C2007E32B7 /* SimpleDPad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA10B541A8034C2007E32B7 /* SimpleDPad.cpp */; };
-		7AA10B6E1A8034C2007E32B7 /* YesNoBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA10B561A8034C2007E32B7 /* YesNoBox.cpp */; };
-		7AA10B6F1A8034C2007E32B7 /* YesNoBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA10B561A8034C2007E32B7 /* YesNoBox.cpp */; };
+		7AA10B6E1A8034C2007E32B7 /* MenuYesNo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA10B561A8034C2007E32B7 /* MenuYesNo.cpp */; };
+		7AA10B6F1A8034C2007E32B7 /* MenuYesNo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA10B561A8034C2007E32B7 /* MenuYesNo.cpp */; };
+		7AD09F6D1AE708DC00BB17A6 /* MenuShopIntro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD09F6C1AE708DC00BB17A6 /* MenuShopIntro.cpp */; };
+		7AD09F6E1AE708DC00BB17A6 /* MenuShopIntro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD09F6C1AE708DC00BB17A6 /* MenuShopIntro.cpp */; };
 		9FC760431A67791200D1E6E7 /* lang in Resources */ = {isa = PBXBuildFile; fileRef = 9FC760401A67791200D1E6E7 /* lang */; };
 		9FC760451A677A4A00D1E6E7 /* SimpleConfigParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC760411A67791200D1E6E7 /* SimpleConfigParser.cpp */; };
 		9FF504841A5E87B100AFDA55 /* ConsoleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF504811A5E87B100AFDA55 /* ConsoleWindow.xib */; };
@@ -251,8 +253,10 @@
 		7AA10B531A8034C2007E32B7 /* NPCSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NPCSprite.h; path = ../Classes/NPCSprite.h; sourceTree = "<group>"; };
 		7AA10B541A8034C2007E32B7 /* SimpleDPad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SimpleDPad.cpp; path = ../Classes/SimpleDPad.cpp; sourceTree = "<group>"; };
 		7AA10B551A8034C2007E32B7 /* SimpleDPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleDPad.h; path = ../Classes/SimpleDPad.h; sourceTree = "<group>"; };
-		7AA10B561A8034C2007E32B7 /* YesNoBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = YesNoBox.cpp; path = ../Classes/YesNoBox.cpp; sourceTree = "<group>"; };
-		7AA10B571A8034C2007E32B7 /* YesNoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YesNoBox.h; path = ../Classes/YesNoBox.h; sourceTree = "<group>"; };
+		7AA10B561A8034C2007E32B7 /* MenuYesNo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuYesNo.cpp; path = ../Classes/MenuYesNo.cpp; sourceTree = "<group>"; };
+		7AA10B571A8034C2007E32B7 /* MenuYesNo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuYesNo.h; path = ../Classes/MenuYesNo.h; sourceTree = "<group>"; };
+		7AD09F6B1AE708BD00BB17A6 /* MenuShopIntro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuShopIntro.h; path = ../Classes/MenuShopIntro.h; sourceTree = "<group>"; };
+		7AD09F6C1AE708DC00BB17A6 /* MenuShopIntro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuShopIntro.cpp; path = ../Classes/MenuShopIntro.cpp; sourceTree = "<group>"; };
 		9FC7603F1A67791200D1E6E7 /* CodeIDESupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeIDESupport.h; sourceTree = "<group>"; };
 		9FC760401A67791200D1E6E7 /* lang */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lang; sourceTree = "<group>"; };
 		9FC760411A67791200D1E6E7 /* SimpleConfigParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleConfigParser.cpp; sourceTree = "<group>"; };
@@ -429,13 +433,13 @@
 		F293B3BD15EB7BE500256477 = {
 			isa = PBXGroup;
 			children = (
-				9FF504781A5E86D600AFDA55 /* libsimulator.xcodeproj */,
-				C03781AE18BF654500FE4F13 /* cocos2d_lua_bindings.xcodeproj */,
 				15A8A4031834BDA200142BE0 /* cocos2d_libs.xcodeproj */,
-				5023810617EBBCAC00990C9B /* ios */,
-				5023817117EBBE3400990C9B /* mac */,
+				C03781AE18BF654500FE4F13 /* cocos2d_lua_bindings.xcodeproj */,
+				9FF504781A5E86D600AFDA55 /* libsimulator.xcodeproj */,
 				F293BB7C15EB830F00256477 /* Classes */,
 				F293B3CB15EB7BE500256477 /* Frameworks */,
+				5023810617EBBCAC00990C9B /* ios */,
+				5023817117EBBE3400990C9B /* mac */,
 				F293B3C915EB7BE500256477 /* Products */,
 				F293BC4615EB859D00256477 /* Resources */,
 			);
@@ -489,10 +493,11 @@
 				7AA10B4A1A8034C2007E32B7 /* HudLayer.cpp */,
 				7AA10B4C1A8034C2007E32B7 /* lua_cocos2dx_custom.cpp */,
 				7AA10B4E1A8034C2007E32B7 /* LuaGlobalManager.cpp */,
+				7AD09F6C1AE708DC00BB17A6 /* MenuShopIntro.cpp */,
+				7AA10B561A8034C2007E32B7 /* MenuYesNo.cpp */,
 				7AA10B501A8034C2007E32B7 /* NPCManager.cpp */,
 				7AA10B521A8034C2007E32B7 /* NPCSprite.cpp */,
 				7AA10B541A8034C2007E32B7 /* SimpleDPad.cpp */,
-				7AA10B561A8034C2007E32B7 /* YesNoBox.cpp */,
 				7AA10B401A8034C2007E32B7 /* ActionSprite.h */,
 				F293BB7F15EB831F00256477 /* AppDelegate.h */,
 				7AA10B421A8034C2007E32B7 /* ChatBox.h */,
@@ -503,10 +508,11 @@
 				7AA10B4B1A8034C2007E32B7 /* HudLayer.h */,
 				15427CE2198F237300DC375D /* lua_module_register.h */,
 				7AA10B4F1A8034C2007E32B7 /* LuaGlobalManager.h */,
+				7AD09F6B1AE708BD00BB17A6 /* MenuShopIntro.h */,
+				7AA10B571A8034C2007E32B7 /* MenuYesNo.h */,
 				7AA10B511A8034C2007E32B7 /* NPCManager.h */,
 				7AA10B531A8034C2007E32B7 /* NPCSprite.h */,
 				7AA10B551A8034C2007E32B7 /* SimpleDPad.h */,
-				7AA10B571A8034C2007E32B7 /* YesNoBox.h */,
 				7AA10B4D1A8034C2007E32B7 /* lua_cocos2dx_custom.hpp */,
 				9FC7603E1A67791200D1E6E7 /* ide-support */,
 			);
@@ -731,13 +737,14 @@
 				C07828FA18B4D72E00BD2287 /* SimulatorApp.mm in Sources */,
 				7AA10B591A8034C2007E32B7 /* ActionSprite.cpp in Sources */,
 				5023813317EBBCE400990C9B /* AppDelegate.cpp in Sources */,
-				7AA10B6F1A8034C2007E32B7 /* YesNoBox.cpp in Sources */,
+				7AA10B6F1A8034C2007E32B7 /* MenuYesNo.cpp in Sources */,
 				7AA10B671A8034C2007E32B7 /* LuaGlobalManager.cpp in Sources */,
 				7AA10B631A8034C2007E32B7 /* HudLayer.cpp in Sources */,
 				7AA10B611A8034C2007E32B7 /* HeroSprite.cpp in Sources */,
 				7AA10B651A8034C2007E32B7 /* lua_cocos2dx_custom.cpp in Sources */,
 				7AA10B5B1A8034C2007E32B7 /* ChatBox.cpp in Sources */,
 				9FF504851A5E87B100AFDA55 /* ConsoleWindowController.m in Sources */,
+				7AD09F6E1AE708DC00BB17A6 /* MenuShopIntro.cpp in Sources */,
 				7AA10B5D1A8034C2007E32B7 /* GameLayer.cpp in Sources */,
 				7AA10B6D1A8034C2007E32B7 /* SimpleDPad.cpp in Sources */,
 				7AA10B5F1A8034C2007E32B7 /* GameScene.cpp in Sources */,
@@ -755,6 +762,7 @@
 				7AA10B6C1A8034C2007E32B7 /* SimpleDPad.cpp in Sources */,
 				F293BB9C15EB831F00256477 /* AppDelegate.cpp in Sources */,
 				5023812417EBBCAC00990C9B /* main.m in Sources */,
+				7AD09F6D1AE708DC00BB17A6 /* MenuShopIntro.cpp in Sources */,
 				7AA10B661A8034C2007E32B7 /* LuaGlobalManager.cpp in Sources */,
 				7AA10B581A8034C2007E32B7 /* ActionSprite.cpp in Sources */,
 				7AA10B5C1A8034C2007E32B7 /* GameLayer.cpp in Sources */,
@@ -765,7 +773,7 @@
 				7AA10B6A1A8034C2007E32B7 /* NPCSprite.cpp in Sources */,
 				7AA10B601A8034C2007E32B7 /* HeroSprite.cpp in Sources */,
 				7AA10B5A1A8034C2007E32B7 /* ChatBox.cpp in Sources */,
-				7AA10B6E1A8034C2007E32B7 /* YesNoBox.cpp in Sources */,
+				7AA10B6E1A8034C2007E32B7 /* MenuYesNo.cpp in Sources */,
 				7AA10B681A8034C2007E32B7 /* NPCManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

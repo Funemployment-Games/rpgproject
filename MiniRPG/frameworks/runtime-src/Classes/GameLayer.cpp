@@ -624,13 +624,15 @@ void GameLayer::showNPCDialogue(std::string npcName, std::string dialogueId, std
             id = dialogueNoId.c_str();
             std::string noResponse = m_currentStringTable[id].GetString();
             
-            m_pChatbox = YesNoBox::createYesNoBox(m_strCurrentTalkingNPC, dialogue, yesResponse, noResponse);
+            m_pChatbox = MenuYesNo::createMenuYesNo(m_strCurrentTalkingNPC, dialogue, yesResponse, noResponse);
             //delete id;
         }
             break;
         case kNPCType_Shop:
         {
-            
+            const char* id = dialogueId.c_str();
+            std::string dialogue = m_currentStringTable[id].GetString();
+            m_pChatbox = MenuShopIntro::createMenuShopIntro(m_strCurrentTalkingNPC, dialogue);
         }
             break;
         default:

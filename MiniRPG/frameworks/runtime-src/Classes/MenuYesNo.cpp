@@ -1,16 +1,16 @@
 //
-//  YesNoBox.cpp
+//  MenuYesNo.cpp
 //  MiniRPG
 //
 //  Created by Matthew Barney on 10/21/14.
 //
 //
 
-#include "YesNoBox.h"
+#include "MenuYesNo.h"
 
-YesNoBox* YesNoBox::createYesNoBox(std::string npcName, std::string npcDialogue, std::string yesResponse, std::string noResponse)
+MenuYesNo* MenuYesNo::createMenuYesNo(std::string npcName, std::string npcDialogue, std::string yesResponse, std::string noResponse)
 {
-    YesNoBox* box = new (std::nothrow) YesNoBox();
+    MenuYesNo* box = new (std::nothrow) MenuYesNo();
     if (box && box->initWithDialogueAndResponses(npcName, npcDialogue, yesResponse, noResponse))
     {
         box->autorelease();
@@ -20,7 +20,7 @@ YesNoBox* YesNoBox::createYesNoBox(std::string npcName, std::string npcDialogue,
     return nullptr;
 }
 
-bool YesNoBox::initWithDialogueAndResponses(std::string npcName, std::string npcDialogue, std::string yesResponse, std::string noResponse)
+bool MenuYesNo::initWithDialogueAndResponses(std::string npcName, std::string npcDialogue, std::string yesResponse, std::string noResponse)
 {
     m_strYesResponse = yesResponse;
     m_strNoResponse = noResponse;
@@ -34,34 +34,34 @@ bool YesNoBox::initWithDialogueAndResponses(std::string npcName, std::string npc
     return ChatBox::initWithDialogue(npcName, npcDialogue);
 }
 
-void YesNoBox::CreateMenuButtons()
+void MenuYesNo::CreateMenuButtons()
 {
-    Point buttonPositions [kYesNoMenuButtonButton_Max] =
+    Point buttonPositions [kMenuYesNoButtonButton_Max] =
     {
         Point(-70,-300),
         Point(70,-300),
     };
     
-    const char* buttonUpImages [kYesNoMenuButtonButton_Max] =
+    const char* buttonUpImages [kMenuYesNoButtonButton_Max] =
     {
         "res/ui/btn_yes.png",
         "res/ui/btn_no.png",
     };
-    const char* buttonDownImages [kYesNoMenuButtonButton_Max] =
+    const char* buttonDownImages [kMenuYesNoButtonButton_Max] =
     {
         "res/ui/btn_yes.png",
         "res/ui/btn_no.png",
     };
     
-    ccMenuCallback buttonHandlers [kYesNoMenuButtonButton_Max] =
+    ccMenuCallback buttonHandlers [kMenuYesNoButtonButton_Max] =
     {
-        CC_CALLBACK_1(YesNoBox::onYesButtonCallback, this),
-        CC_CALLBACK_1(YesNoBox::onNoButtonCallback, this),
+        CC_CALLBACK_1(MenuYesNo::onYesButtonCallback, this),
+        CC_CALLBACK_1(MenuYesNo::onNoButtonCallback, this),
     };
     
     MenuItemImage* tempButton;
     
-    for (int i=0; i< kYesNoMenuButtonButton_Max;++i)
+    for (int i=0; i< kMenuYesNoButtonButton_Max;++i)
     {
         tempButton = MenuItemImage::create(buttonUpImages[i],
                                            buttonDownImages[i],
@@ -70,13 +70,13 @@ void YesNoBox::CreateMenuButtons()
         m_pButtons[i] = tempButton;
     }
     
-    for (int i=0;i<kYesNoMenuButtonButton_Max;++i)
+    for (int i=0;i<kMenuYesNoButtonButton_Max;++i)
     {
         m_pMenu->addChild(m_pButtons[i]);
     }
 }
 
-void YesNoBox::advanceTextOrHide()
+void MenuYesNo::advanceTextOrHide()
 {
     if (m_pMenu->isVisible())
     {
@@ -102,7 +102,7 @@ void YesNoBox::advanceTextOrHide()
     m_pLabel->setString(message);
 }
 
-void YesNoBox::onYesButtonCallback(Ref* pSender)
+void MenuYesNo::onYesButtonCallback(Ref* pSender)
 {
     std::string message = m_npcName + " " +  m_strYesResponse;
     m_pLabel->setString(message);
@@ -110,7 +110,7 @@ void YesNoBox::onYesButtonCallback(Ref* pSender)
     m_pMenu->setVisible(false);
 }
 
-void YesNoBox::onNoButtonCallback(Ref* pSender)
+void MenuYesNo::onNoButtonCallback(Ref* pSender)
 {
     std::string message = m_npcName + " " +  m_strNoResponse;
     m_pLabel->setString(message);
