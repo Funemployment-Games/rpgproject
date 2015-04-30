@@ -49,6 +49,8 @@
 		5200BECA1A53D9A500AC45E4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5200BEC91A53D9A500AC45E4 /* Security.framework */; };
 		521A8E7019F0C3D200D177D7 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6E19F0C3D200D177D7 /* Default-667h@2x.png */; };
 		521A8E7119F0C3D200D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */; };
+		7A65A4161AF04EEA00BDAF76 /* CombatScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A65A4141AF04EEA00BDAF76 /* CombatScene.cpp */; };
+		7A65A4171AF04EEA00BDAF76 /* CombatScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A65A4141AF04EEA00BDAF76 /* CombatScene.cpp */; };
 		7AA10B581A8034C2007E32B7 /* ActionSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA10B3F1A8034C2007E32B7 /* ActionSprite.cpp */; };
 		7AA10B591A8034C2007E32B7 /* ActionSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA10B3F1A8034C2007E32B7 /* ActionSprite.cpp */; };
 		7AA10B5A1A8034C2007E32B7 /* ChatBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA10B411A8034C2007E32B7 /* ChatBox.cpp */; };
@@ -230,6 +232,8 @@
 		5200BEC91A53D9A500AC45E4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		521A8E6E19F0C3D200D177D7 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
+		7A65A4141AF04EEA00BDAF76 /* CombatScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CombatScene.cpp; path = ../Classes/CombatScene.cpp; sourceTree = "<group>"; };
+		7A65A4151AF04EEA00BDAF76 /* CombatScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CombatScene.h; path = ../Classes/CombatScene.h; sourceTree = "<group>"; };
 		7AA10B3F1A8034C2007E32B7 /* ActionSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ActionSprite.cpp; path = ../Classes/ActionSprite.cpp; sourceTree = "<group>"; };
 		7AA10B401A8034C2007E32B7 /* ActionSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSprite.h; path = ../Classes/ActionSprite.h; sourceTree = "<group>"; };
 		7AA10B411A8034C2007E32B7 /* ChatBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ChatBox.cpp; path = ../Classes/ChatBox.cpp; sourceTree = "<group>"; };
@@ -515,6 +519,8 @@
 				7AA10B551A8034C2007E32B7 /* SimpleDPad.h */,
 				7AA10B4D1A8034C2007E32B7 /* lua_cocos2dx_custom.hpp */,
 				9FC7603E1A67791200D1E6E7 /* ide-support */,
+				7A65A4141AF04EEA00BDAF76 /* CombatScene.cpp */,
+				7A65A4151AF04EEA00BDAF76 /* CombatScene.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -749,6 +755,7 @@
 				7AA10B6D1A8034C2007E32B7 /* SimpleDPad.cpp in Sources */,
 				7AA10B5F1A8034C2007E32B7 /* GameScene.cpp in Sources */,
 				C07828F818B4D72E00BD2287 /* main.m in Sources */,
+				7A65A4171AF04EEA00BDAF76 /* CombatScene.cpp in Sources */,
 				7AA10B691A8034C2007E32B7 /* NPCManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -774,6 +781,7 @@
 				7AA10B601A8034C2007E32B7 /* HeroSprite.cpp in Sources */,
 				7AA10B5A1A8034C2007E32B7 /* ChatBox.cpp in Sources */,
 				7AA10B6E1A8034C2007E32B7 /* MenuYesNo.cpp in Sources */,
+				7A65A4161AF04EEA00BDAF76 /* CombatScene.cpp in Sources */,
 				7AA10B681A8034C2007E32B7 /* NPCManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
