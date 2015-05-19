@@ -43,25 +43,61 @@ void CombatScene::update(float delta)
 
 void CombatScene::initHeroSprites()
 {
-    // load the Sprite Sheet
     auto spritecache = SpriteFrameCache::getInstance();
     
-    // the .plist file can be generated with any of the tools mentioned below
     spritecache->addSpriteFramesWithFile("res/characters/heroine/heroine.plist");
     
-    // Our .plist file has names for each of the sprites in it.  We'll grab
-    // the sprite named, "Blue_Front1" from the sprite sheet:
-    auto mysprite = Sprite::createWithSpriteFrameName("heroine_w_01.png");
+    Point characterPositions [4] =
+    {
+        Point(240,420),
+        Point(240,360),
+        Point(240,300),
+        Point(240,240),
+    };
     
-    mysprite->setScale(1.0f);
-    mysprite->setAnchorPoint(Vec2(0.0,0.0)); //bottom left
-    mysprite->setPosition(Vec2(160, 448));
-    
-    this->addChild(mysprite);
+    for (int i=0;i<4;++i)
+    {
+        auto mysprite = Sprite::createWithSpriteFrameName("heroine_w_01.png");
+        
+        mysprite->setScale(1.0f);
+        mysprite->setAnchorPoint(Vec2(0.0,0.0)); //bottom left
+        mysprite->setPosition(characterPositions[i]);
+        
+        this->addChild(mysprite);
+    }
 }
 
 void CombatScene::initCombatMenu()
 {
+    auto upperLeft = Sprite::create("res/maps/1.png");
+    upperLeft->setScale(1.0f);
+    upperLeft->setAnchorPoint(Vec2(0.0,0.0)); //bottom left
+    upperLeft->setPosition(Vec2(0, 240));
+    
+    this->addChild(upperLeft, -1);
+    
+    auto upperRight = Sprite::create("res/maps/2.png");
+    upperRight->setScale(1.0f);
+    upperRight->setAnchorPoint(Vec2(0.0,0.0)); //bottom left
+    upperRight->setPosition(Vec2(160, 240));
+    
+    this->addChild(upperRight, -1);
+    
+    auto lowerLeft = Sprite::create("res/maps/3.png");
+    lowerLeft->setScale(1.0f);
+    lowerLeft->setAnchorPoint(Vec2(0.0,0.0)); //bottom left
+    lowerLeft->setPosition(Vec2(0, 0));
+    
+    this->addChild(lowerLeft, -1);
+    
+    auto lowerRight = Sprite::create("res/maps/4.png");
+    lowerRight->setScale(1.0f);
+    lowerRight->setAnchorPoint(Vec2(0.0,0.0)); //bottom left
+    lowerRight->setPosition(Vec2(160, 0));
+    
+    this->addChild(lowerRight, -1);
+    
+    
     m_pCombatMenu = CCMenu::create();
     
     Point buttonPositions [kCombatMenuButton_Max] =
