@@ -44,7 +44,7 @@ private:
     Menu* m_pCombatMenu;
     MenuItemImage* m_pCombatMenuButtons[kCombatMenuButton_Max];
     SpriteBatchNode *m_pActors;
-    HeroSprite* m_pHero;
+    std::vector<HeroSprite*> m_vHeroes;
 };
 
 #endif

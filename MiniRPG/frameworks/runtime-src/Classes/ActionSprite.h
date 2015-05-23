@@ -47,6 +47,7 @@ public:
     
     //action methods
     virtual void idle();
+    virtual void noAction();
     virtual void walkWithDirection(Vec2 direction, bool directionChanged);
     void walkNumTilesWithDirection(int numTilesToMove, ActionSpriteDirection directionToMove, bool forceMovement);
     void walkOneTileInCurrentDirection();

@@ -27,7 +27,6 @@ bool CombatScene::init()
         return false;
     }
     
-    m_pHero = nullptr;
     initHeroSprites();
     initCombatMenu();
     
@@ -38,7 +37,16 @@ bool CombatScene::init()
 
 void CombatScene::update(float delta)
 {
-    
+    if (m_vHeroes.size() > 0)
+    {
+        //Vec2 tileCoord = tileCoordForPosition(m_pHero->getDesiredPosition());
+        //printf("Update - Current TileCoordinates: %f, %f\n", tileCoord.x, tileCoord.y);
+        
+        for (int i=0; i<m_vHeroes.size(); ++i)
+        {
+            m_vHeroes[i]->update(delta);
+        }
+    }
 }
 
 void CombatScene::initHeroSprites()
@@ -57,13 +65,15 @@ void CombatScene::initHeroSprites()
     
     for (int i=0;i<4;++i)
     {
-        auto mysprite = Sprite::createWithSpriteFrameName("heroine_w_01.png");
+        HeroSprite* mysprite = (HeroSprite*)HeroSprite::createHero("heroine");
         
         mysprite->setScale(1.0f);
         mysprite->setAnchorPoint(Vec2(0.0,0.0)); //bottom left
         mysprite->setPosition(characterPositions[i]);
+        mysprite->noAction();
         
         this->addChild(mysprite);
+        m_vHeroes.push_back(mysprite);
     }
 }
 
@@ -138,5 +148,8 @@ void CombatScene::initCombatMenu()
 
 void CombatScene::onFightButtonCallback(Ref* pSender)
 {
-    printf("Doink!");
+    printf("Doink!\n");
+    m_vHeroes[0]->setActionState(kActionStateAutoWalkStart);
+    //m_vHeroes[0]->walkOneTileInCurrentDirection();
+    m_vHeroes[0]->walkNumTilesWithDirection(1, kActionSpriteDirectionWest, true);
 }

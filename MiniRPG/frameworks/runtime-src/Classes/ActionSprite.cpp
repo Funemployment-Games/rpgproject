@@ -33,6 +33,16 @@ void ActionSprite::idle()
     }
 }
 
+void ActionSprite::noAction()
+{
+    if (m_actionState != kActionStateNone)
+    {
+        stopAllActions();
+        m_actionState = kActionStateNone;
+        m_vVelocity = Vec2::ZERO;
+    }
+}
+
 void ActionSprite::walkWithDirection(Vec2 direction, bool directionChanged)
 {
     if (m_actionState == kActionStateIdle)
@@ -95,8 +105,10 @@ void ActionSprite::walkNumTilesWithDirection(int numTilesToMove, ActionSpriteDir
 
 void ActionSprite::walkOneTileInCurrentDirection()
 {
+    printf("ActionSprite::walkOneTileInCurrentDirection\n");
     if (this->getPosition() == m_vDesiredPosition)
     {
+        printf("ActionSprite::walkOneTileInCurrentDirection - early out\n");
         return;
     }
     
@@ -105,13 +117,13 @@ void ActionSprite::walkOneTileInCurrentDirection()
         stopAllActions();
         // Animate the player
         auto moveAction = MoveTo::create(1 * m_fWalkSpeed, m_vDesiredPosition);
-        
-        //printf("Moving %s from %f %f to %f %f\n", m_strCharacterName.c_str(),
-        //      this->getPosition().x/16.f,
-        //       ((640.0f) - this->getPosition().y) / (kTileSize) -1,
-        //       m_vDesiredPosition.x/16.f,
-        //       ((640.0f) - m_vDesiredPosition.y) / (kTileSize) -1);
-        
+        /*
+        printf("Moving %s from %f %f to %f %f\n", m_strCharacterName.c_str(),
+              this->getPosition().x/16.f,
+               ((640.0f) - this->getPosition().y) / (kTileSize) -1,
+               m_vDesiredPosition.x/16.f,
+               ((640.0f) - m_vDesiredPosition.y) / (kTileSize) -1);
+        */
         // Play actions
         auto doneAction = CallFuncN::create(CC_CALLBACK_1(ActionSprite::onFinishedWalkingCallback, this));
         //auto animationSequence = Sequence::create((FiniteTimeAction*)m_walkAction[m_currentDirection], NULL);
@@ -120,6 +132,10 @@ void ActionSprite::walkOneTileInCurrentDirection()
         runAction(movementSequence);
         
         m_actionState = kActionStateAutoWalking;
+    }
+    else
+    {
+        printf("ActionSprite::walkOneTileInCurrentDirection - m_actionState: %d\n", m_actionState);
     }
 }
 
