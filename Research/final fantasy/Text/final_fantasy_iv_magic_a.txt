@@ -1,0 +1,3391 @@
+Deathlike2's FF4 Spell Info
+Version 1.15
+dlfaqs@gmail.com
+started on 5/11/08
+submitted on 1/20/09
+------------------------------------------------------------------------------
+
+
+
+Introduction
+------------
+When I saw FF2 (SNES) for the first time, I was in love with the game. I
+love all the various incarnations of this game, and it's great seeing the
+little differences between the versions. I wrote this FAQ because there are
+many details lacking in the current spell guides for this game put up. I
+commend BSiron's original FF2 (SNES) Algo FAQ for getting the basic info out
+there. It lacks a few details, which my document will cover. I will also try
+to dispel stupid rumors that people have regarding this game as well.
+
+This document will cover the following versions/ports that will be referenced
+in the guide:
+FF2   - Final Fantasy 2 (SNES), both revisions 1.0 and 1.1
+FF4   - Final Fantasy 4 (Super Famicom, - Japanese)
+FF4ET - Final Fantasy 4 Easytype (Super Famicom, - Japanese)*
+FF4A  - Final Fantasy 4 Advance, US and Euro versions
+(matches up with Jap 1.0 and 1.1 revisions respectively)
+
+*Note: This game is NOT FF2 in Japanese.
+
+When I make reference to the SNES ports, I mean FF2, FF4, and FF4ET unless
+a specific version is mentioned.
+
+This info has not been tested or verified with the following versions/ports:
+FF4PS - Final Fantasy 4 PSX port (from the FF Anthologies Collection)
+FF4WS - Final Fantasy 4 Wonderswan port
+FF4DS - Final Fantasy 4 DS port
+
+So, not to keep you waiting too much, onto the spells!
+
+There spells will be listed in the following format:
+
+Name: This is self-explanatory.
+Casting Time: A delay is inserted before the spell is cast. Higher values
+imply a longer delay. Increasing Agility helps to reduce the impact of the
+delay. There is no delay for monsters casting a spell.
+MP Cost: This is self explanatory. Monsters require and consume 0 MP to
+cast a spell, which implies that MP is irrelevant for them.
+Status Effect: A status effect may be inflicted as part of the spell.
+Elemental: When a spell is based on an elemental, the target's weakness,
+resistance, or immunity can change the damage dealt. It is also possible that
+the target can absorb the elemental magic attack.
+Spell Power: For attack spells, this is generally applied against
+Magic Defense of the target to compute the damage taken/dealt. The internal
+value for most spells is Spell Power/4. The internal value for summons is
+Spell Power/8.
+Targeting: There are 8 different possibilities of targeting. Any spell that
+always targets all opponents or all allies will avoid split damage.
+Monsters casting spells tend to ignore spell targeting data and use their
+battle script targeting data instead.
+Hit Rate: The success of the spell is determined by this value.
+Boss Bit: If set, this spell will always fail on monsters with the boss
+bit set.
+Solo Multiplier: If set, this spell will always have a spell multiplier
+of 1 and the target will have at most a magic defense multiplier of 1.
+Ignore Reflect: If true, this spell will ignore Reflect status on the target.
+Notes: Any other relevant info will be provided here.
+
+
+Spells (in the order they are listed internally)
+------
+
+Hold
+Casting Time: 1
+MP Cost: 5
+Status Effect: Paralyze
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 85
+Boss Bit: Yes
+Solo Multiplier: Yes
+Ignore Reflect: No
+Notes: This spell's success appears to be level driven as well. This spell
+will automatically fail if paralysis or other statuses that have a greater
+priority are inflicted. High Will Power or monster Spell Power will reduce
+the duration of the status.
+
+
+Mute/Silence
+Casting Time: 2
+MP Cost: 6
+Status Effect: Silence
+Elemental: n/a
+Spell Power: n/a
+Targeting: one/all targets, default one enemy
+Hit Rate: 90
+Boss Bit: Yes
+Solo Multiplier: Yes
+Ignore Reflect: No
+Notes: Silence status disables every non-monster spell magic sets,
+which include White, Black, Twin, Ninja/Ninjutsu, Call/Summon.
+
+
+Charm/Confuse
+Casting Time: 1
+MP Cost: 10
+Status Effect: Charm
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 75
+Boss Bit: Yes
+Solo Multiplier: Yes
+Ignore Reflect: No
+Notes: Monsters affected by Charm status will run their "Charm" scripts, which
+do not guarantee them hurting themselves. Characters affected by Charm status
+will either attack or cast a random White or Black magic spell, assuming the
+character has that option. FF4A appears to prevent the casting of Meteor and
+Holy by your characters intentionally.
+
+
+Blink
+Casting Time: 0
+MP Cost: 8
+Status Effect: Image (2)
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default ally
+Hit Rate: 50
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: The target is able to evade two physical attacks with this status.
+
+
+Armor/Protect
+Casting Time: 0
+MP Cost: 9
+Status Effect: n/a
+Elemental: n/a
+Spell Power: +5 Defense
+Targeting: one/all targets, default one ally
+Hit Rate: 66
+Boss Bit: No
+Solo Multiplier: Yes
+Ignore Reflect: No
+Notes: When successful, this spell increases the afflicted target's defense
+by 5, to a max of 255. The SNES version of the game visually displays spell
+failure when defense is maxed. Failure of this spell can be frequent
+due to low Will Power/Spirit of the caster. Multitargeting does not reduce
+the power of the spell. Although this spell is "dummied out" of FF2, it is
+cast by the Mind monster vs physical attacks. This is also a spell not normally
+castable in FF4ET, but can be cast as a weapon-item via the Defender and
+Murasame. The spell is also cast by Endure/Gird, which follows the same rules
+as the spell, except that in FF4A, the enemy does not benefit when the spell
+is reflected. The Protect bonus is not applied in the Zeromus battle, even
+though the animation shows success and Zeromus never makes a physical attack.
+
+
+Shell
+Casting Time: 0
+MP Cost: 10
+Status Effect: n/a
+Elemental: n/a
+Spell Power: +3 Magic Defense
+Targeting: one/all targets, default one ally
+Hit Rate: 66
+Boss Bit: No
+Solo Multiplier: Yes
+Ignore Reflect: No
+Notes: When successful, this spell increases the afflicted target's magic
+defense by 3, to a max of 255. The SNES version of the game visually displays
+spell failure when magic defense is maxed. Failure of this spell can be
+frequent due to Will Power/Spirit of the caster. Multitargeting does not
+reduce the power of the spell. Although this spell is "dummied out" of FF2,
+it is cast by the Mind monster vs Holy elemental magic. This is also a spell
+not normally castable in FF4ET, but can be cast as a weapon-item via the
+Elven Bow. The Shell bonus is not applied in the Zeromus battle, even though
+the animation shows success.
+
+
+Slow
+Casting Time: 1
+MP Cost: 14
+Status Effect: n/a
+Elemental: n/a
+Spell Power: +8 Speed Modifier
+Targeting: one/all targets, default one enemy
+Hit Rate: 70
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: The default speed modifier is 16 for all targets.
+Slow increases this modifier by 8 points. The highest this modifier can be is
+at 32. At 32, the target's ATB is twice as slow. This spell slows down every
+timer, except for Count/Doom.
+
+
+Fast/Haste
+Casting Time: 1
+MP Cost: 25
+Status Effect: n/a
+Elemental: n/a
+Spell Power: -3 Speed Modifier
+Targeting: one target, default ally
+Hit Rate: 50
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: The default speed modifier is 16 for all targets.
+Haste decreases this modifier by 3 points. The lowest this modifier can be is
+at 12. At 12, the target's ATB seems to increase by 25%. This spell quickens
+every timer, except for Count/Doom. Monsters targeting characters with this
+spell is treated negatively and is blocked by magic defense.
+
+
+Bersk/Berserk
+Casting Time: 1
+MP Cost: 18
+Status Effect: Berserk
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default ally
+Hit Rate: 50
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: This can be used to increase the target's attack power base by 50% for
+the duration of the status. It will also cause the target uncontrollably make
+physical attacks to random enemy targets.
+
+
+Wall/Reflect
+Casting Time: 0
+MP Cost: 30
+Status Effect: Wall/Reflect
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default ally
+Hit Rate: 75
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: In the SNES version, reflecting a spell causes the monster's 
+magic counter script to be avoided. For instance, a Behemoth doesn't react
+to Holy when it is reflected. Also, certain spell palettes are modified
+when reflected in the SNES version. In FF4A, the Wicked Mask's Reflect
+always succeeds unlike the SNES version. For magic in general, all spells that
+are cast towards the enemy and is considered a negative attack and magic
+evasion is tested against. You will find that the EvilMask's Reflect can fail
+to be applied in the SNES versions, hence the change made in FF4A.
+
+
+White/Holy
+Casting Time: 3 (2 in FF4ET)
+MP Cost: 46
+Status Effect: HP Leak (if the target is weak vs the elemental)
+Elemental: Holy
+Spell Power: 340
+Targeting: one target, default enemy
+Hit Rate: 99
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: HP Leak is inflicted if and only if the enemy is weak vs Holy. Sounds
+and graphics are executed regardless of the success of the spell.
+
+
+Dispel
+Casting Time: 1
+MP Cost: 12
+Status Effect: removes Berserk, Stop (only when Count/Doom is inflicted),
+HP Leak, Wall/Reflect, Barrier, Image (2), Image (1)
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 70
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: In the SNES version, this spell cannot remove Stop status, but ends
+its timer for characters, which freezes them indefinitely until Stop status is
+reapplied. This spell is dummied out of FF2 for some unknown reason. This is
+also a spell not normally castable in FF4ET, but can be cast as a weapon-item
+via the Lunar/Energy Staff.
+
+
+Peep/Scan/Libra
+Casting Time: 0
+MP Cost: 1
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 99
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This spell displays current and MaxHP. It also informs you of elemental
+weaknesses, which include Fire, Ice, Lightning, Air, Holy, and Darkness.
+Air elemental consists mostly of most Spears, Arrows, Boomerangs, but not
+the Dwarf Axe. Darkness elemental is part of the Dark Knight's weapons (but
+not Dark Wave).
+
+
+Cure1/Cure
+Casting Time: 1 (0 in FF4ET)
+MP Cost: 3
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 16
+Targeting: one/all targets, default ally
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: Undead targets take damage from this spell. This spell has the best
+MP cost to HP healing ratio outside of battle.
+
+
+Cure2/Cura
+Casting Time: 1
+MP Cost: 9
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 48
+Targeting: one/all targets, default ally
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: Undead targets take damage from this spell.
+
+
+Cura3/Curaga
+Casting Time: 1
+MP Cost: 18
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 144
+Targeting: one/all targets, default ally
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: Undead targets take damage from this spell.
+
+
+Cure4/Curaja
+Casting Time: 0
+MP Cost: 40
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 288
+Targeting: one/all targets, default ally
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: Undead targets take damage from this spell. Single targeted healing
+will heal up to 9999 in the GBA version. Up to 16384 is healed in the SNES
+version, and any value greater than that will heal MP instead (most notable
+in FF2's Asura battle).
+
+
+Heal/Esuna
+Casting Time: 2
+MP Cost: 20
+Status Effect: removes Stone, Frog/Toad, Mini, Piggy, Silence, Blind, Poison,
+Curse, Paralyze, Sleep, Charm, Gradual Petrification, Berserk (FF4A only)
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default ally
+Hit Rate: 80
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: Berserk removal is only FF4A specific. The original spell to remove
+that was Dispel. This spell can be cast outside of battle while under
+Frog/Toad and Piggy statuses.
+
+
+Life1/Life
+Casting Time: 0
+MP Cost: 8
+Status Effect: removes Death status
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default ally
+Hit Rate: 75
+Boss Bit: Yes
+Solo Multiplier: Yes
+Ignore Reflect: No
+Notes: This spell revives a target with HP = Vitality (Stamina) * 5.
+It is possible for this spell to fail in battle with Tellah. There is
+peculiar behavior when the Vitality/Stamina stat is 0. In the SNES version,
+reviving the character outside of battle will produce a 0HP "living" character,
+until battle starts and the characters reverts to death status. This character
+cannot be revived in battle. In the GBA version, reviving the character outside
+of battle will also produce a 0HP living character. If revived in battle, the
+character will have 1HP. A 0HP character will still function normally until
+damage is taken. This can be used in the SNES versions to get an extra kill
+on a monster for experience/item harvesting. Since monsters don't have a
+Vitality stat, they are "revived" with 0 HP, which results in another kill.
+This bug cannot be exposed vs bosses or Death resistant monsters.
+
+
+Life2/Full-Life
+Casting Time: 2
+MP Cost: 52
+Status Effect: removes Death status
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default ally
+Hit Rate: 80
+Boss Bit: Yes
+Solo Multiplier: Yes
+Ignore Reflect: No
+Notes: This spell revives a target to full HP.
+It is possible for this spell to fail in battle with Tellah. This can be used
+in the SNES versions to revive monsters for experience/item harvesting. This
+bug cannot be exposed vs bosses or Death resistant monsters.
+
+
+Size/Mini
+Casting Time: 4
+MP Cost: 6
+Status Effect: Mini
+Elemental: n/a
+Spell Power: n/a
+Targeting: one/all targets, default one enemy
+Hit Rate: 50
+Boss Bit: Yes
+Solo Multiplier: Yes
+Ignore Reflect: No
+Notes: Mini status decreases the defense and evasion of a target to 0 and
+doubles physical damage taken. It disables a number of commands. Monster
+spells are disabled in FF4A.
+
+
+Exit/Teleport
+Casting Time: 0
+MP Cost: 10
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This spell allow exiting a battle that you are allowed to run away from
+without penalty. If allowed by location, it teleports the group to the
+entrance of the level. If cast while on a damage tile and the characters are
+not floating, up to 2100HP will be lost in the SNES version.
+
+
+Sight
+Casting Time: 0
+MP Cost: 2
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: This spell creates a birds eye view in the SNES version. In the GBA
+version, this spell opens a special minimap. In the SNES version, the spell
+has a funky graphics effect when reflected.
+
+
+Float
+Casting Time: 1
+MP Cost: 8
+Status Effect: Float
+Elemental: n/a
+Spell Power: n/a
+Targeting: all allies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: In battle, this status will allow targets to avoid Quake.
+Outside of battle, it will prevent damage tiles from hurting every character.
+This status disables Yang's Kick command in the SNES version. This status is
+not retained in the SNES versions when it is loaded from a save.
+
+
+Toad
+Casting Time: 3 (2 in FF4ET)
+MP Cost: 7
+Status Effect: Toad
+Elemental: n/a
+Spell Power: n/a
+Targeting: one/all targets, default one enemy
+Hit Rate: 50
+Boss Bit: Yes
+Solo Multiplier: Yes
+Ignore Reflect: No
+Notes: This status reduces all evasion, defense, and magic evasion to 0.
+Spells other than Toad are disabled. Most commands are disabled. Toad status
+allows Edward to Sing Frog Song.
+
+
+Piggy
+Casting Time: 6 (1 in FF4ET)
+MP Cost: 1
+Status Effect: Piggy
+Elemental: n/a
+Spell Power: n/a
+Targeting: one/all targets, default one enemy
+Hit Rate: 10 (40 in FF4ET)
+Boss Bit: Yes
+Solo Multiplier: Yes
+Ignore Reflect: No
+Notes: This status disables commands and spells other than Piggy.
+
+
+Warp/Degen/Dejon
+Casting Time: 0
+MP Cost: 4
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: Outside of battle, it warps the character to a previous entrance.
+Repeats castings will eventually arrive at the exit. This spell was originally
+intended to inflict death status on enemies. The Marion/Puppeteer monster
+casts this spell as part of its Charm script and you could see the originally
+intended effect via Reflect/Wall.
+
+
+Venom/Poison
+Casting Time: 1
+MP Cost: 2
+Status Effect: Poison
+Elemental: n/a
+Spell Power: 0
+Targeting: one/all targets, default one enemy
+Hit Rate: 90
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: Poison resistance was not fixed until FF4A Euro version. Initial
+damage will always be 1, and damage from poison in battle will deal 1/8 of
+the target's maxHP with a minimum damage of 1. A high MaxHP for monsters
+or high Vitality/Stamina slows down the poison damage timer.
+
+
+Fire1/Fire
+Casting Time: 1 (0 in FF4ET)
+MP Cost: 5
+Status Effect: n/a
+Elemental: Fire
+Spell Power: 16
+Targeting: one/all targets, default one enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: 
+
+
+Fire2/Fira
+Casting Time: 3 (2 in FF4ET)
+MP Cost: 15
+Status Effect: n/a
+Elemental: Fire
+Spell Power: 64
+Targeting: one/all targets, default one enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: 
+
+
+Fire3/Firaga
+Casting Time: 4 (3 in FF4ET)
+MP Cost: 30
+Status Effect: n/a
+Elemental: Fire
+Spell Power: 256
+Targeting: one/all targets, default one enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: 
+
+
+Ice-1/Blizzard
+Casting Time: 1 (0 in FF4ET)
+MP Cost: 5
+Status Effect: n/a
+Elemental: Ice
+Spell Power: 16
+Targeting: one/all targets, default one enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: 
+
+
+Ice-2/Blizzara
+Casting Time: 3 (2 in FF4ET)
+MP Cost: 15
+Status Effect: n/a
+Elemental: Ice
+Spell Power: 64
+Targeting: one/all targets, default one enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: 
+
+
+Ice-3/Blizzaga
+Casting Time: 4 (3 in FF4ET)
+MP Cost: 30
+Status Effect: n/a
+Elemental: Ice
+Spell Power: 256
+Targeting: one/all targets, default one enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: 
+
+
+Lit-1/Bolt/Thunder
+Casting Time: 1 (0 in FF4ET)
+MP Cost: 5
+Status Effect: n/a
+Elemental: Lightning
+Spell Power: 16
+Targeting: one/all targets, default one enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: 
+
+
+Lit-2/Bolt2/Thundara
+Casting Time: 3 (2 in FF4ET)
+MP Cost: 15
+Status Effect: n/a
+Elemental: Lightning
+Spell Power: 64
+Targeting: one/all targets, default one enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: 
+
+
+Lit-3/Bolt3/Thundaga
+Casting Time: 4 (3 in FF4ET)
+MP Cost: 30
+Status Effect: n/a
+Elemental: Lightning
+Spell Power: 256
+Targeting: one/all targets, default one enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: 
+
+
+Virus/Bio
+Casting Time: 0
+MP Cost: 20
+Status Effect: HP Leak
+Elemental: n/a
+Spell Power: 128
+Targeting: one/all targets, default one enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: HP Leak does an additional 60 points of damage over time
+(assuming no Haste/Slow involvement).
+
+
+Weak/Tornado
+Casting Time: 2 (1 in FF4ET)
+MP Cost: 25
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 75
+Boss Bit: Yes
+Solo Multiplier: Yes
+Ignore Reflect: No
+Notes: Even if the spell succeeds via hit rate, it can fail if the randomly
+selected number between 1 and 9 is greater than the current HP of the target,
+This could happen against the Imp/Goblin. This spell can be multitargeted via
+Tellah's Recall/Remember command, due to command targeting having priority.
+
+
+Quake
+Casting Time: 2
+MP Cost: 30
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 200
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This spell hits all target that are not floating or are not weak
+vs wind elemental attacks (arrows, boomerangs, most spears).
+
+
+Sleep
+Casting Time: 3 (2 in FF4ET)
+MP Cost: 12
+Status Effect: Sleep
+Elemental: n/a
+Spell Power: n/a
+Targeting: one/all targets, default one enemy
+Hit Rate: 50
+Boss Bit: Yes
+Solo Multiplier: Yes
+Ignore Reflect: No
+Notes: This spell is level driven.  High Will Power/Spirit or monster
+Magic Power will reduce the duration of this status. When multitargeting,
+not all enemies may be put to sleep even if they are not resistant.
+
+
+Stone/Break
+Casting Time: 2 (1 in FF4ET)
+MP Cost: 15
+Status Effect: Stone
+Elemental: n/a
+Spell Power: n/a
+Targeting: one/all targets, default one enemy
+Hit Rate: 30 (40 in FF4ET)
+Boss Bit: Yes
+Solo Multiplier: Yes
+Ignore Reflect: No
+Notes: Monsters successfully hit by this spell immediately die instead.
+
+
+Fatal/Death
+Casting Time: 5 (2 in FF4ET)
+MP Cost: 35
+Status Effect: Death
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 60
+Boss Bit: Yes
+Solo Multiplier: Yes
+Ignore Reflect: No
+Notes: The palette of this spell turns bloody red when reflected in the SNES
+version. This spell can be multitargeted via Tellah's Recall/Remember command
+due to command targeting.
+
+
+Stop
+Casting Time: 2 (1 in FF4ET)
+MP Cost: 15
+Status Effect: Stop
+Elemental: n/a
+Spell Power: timer = 10
+Targeting: one target, default enemy
+Hit Rate: 80
+Boss Bit: Yes
+Solo Multiplier: Yes
+Ignore Reflect: No
+Notes: The palette of this spell turns green when reflected. A timer of 10
+is started for this status. All timers are stopped for the duration of this
+status. Casting Stop on a target that already has the Stop status will
+reset the timer to 10. The target's queued command is automatically removed
+when this status is inflicted.
+
+
+Drain
+Casting Time: 3 (2 in FF4ET)
+MP Cost: 18
+Status Effect: n/a
+Elemental: Drain
+Spell Power: 20 (80 in FF4ET)
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: FF4ET has this spell beefed up dramatically. Draining undead will
+invert damage and healing. Drain ignores the elemental property of the spell
+in its algo. This spell will do no damage if it targets the caster. The GBA
+version will not play the animation and sound effects.
+
+
+Psych/Osmose
+Casting Time: 5 (1 in FF4ET)
+MP Cost: 0
+Status Effect: n/a
+Elemental: Drain
+Spell Power: 16 (20 in FF4ET)
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: Draining undead will invert MP loss and healing. Psych/Osmose ignores
+the elemental property of the spell in its algo. The spell will do no damage
+if it targets the caster. The GBA version will not play the animation and
+sound effects.
+
+
+Meteo/Meteor
+Casting Time: 10 (5 in FF4ET)
+MP Cost: 99
+Status Effect: n/a
+Elemental: Holy
+Spell Power: 800
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: Tellah has enough base Wisdom/Intelligence (16) to do 9999 damage to an
+extra weak Holy elemental Golbez version (4x). 12 Wisdom would have been
+required. It requires 48 Wisdom to do 9999 damage consistently vs enemies
+with 0 magic defense. It requires 72 Wisdom to do 9999 damage consistently
+vs enemies with 254 magic defense.
+
+
+Nuke/Flare
+Casting Time: 0
+MP Cost: 50
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 400
+Targeting: on enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes:
+
+
+Imp/Goblin
+Casting Time: 0
+MP Cost: 1
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: n/a
+Boss Bit: n/a
+Solo Multiplier: n/a
+Ignore Reflect: Yes
+Notes: This is the spell you select in the Summon/Call screen.
+Casting time is adhered to. MP cost is used for menu selection/highlighting,
+not MP consumption. Every other aspect of the spell is dealt elsewhere.
+
+
+Bomb
+Casting Time: 0
+MP Cost: 10
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: n/a
+Boss Bit: n/a
+Solo Multiplier: n/a
+Ignore Reflect: Yes
+Notes: This is the spell you select in the Summon/Call screen.
+Casting time is adhered to. MP cost is used for menu selection/highlighting,
+not MP consumption. Every other aspect of the spell is dealt elsewhere.
+
+
+Cockatrice
+Casting Time: 2 (1 in FF4ET, even though it's not normally accessible)
+MP Cost: 15
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: n/a
+Boss Bit: n/a
+Solo Multiplier: n/a
+Ignore Reflect: Yes
+Notes: This is the spell you select in the Summon/Call screen.
+Casting time is adhered to. MP cost is used for menu selection/highlighting,
+not MP consumption. Every other aspect of the spell is dealt elsewhere.
+
+
+Mage/Mind Flayer
+Casting Time: 0
+MP Cost: 18
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: n/a
+Boss Bit: n/a
+Solo Multiplier: n/a
+Ignore Reflect: Yes
+Notes: This is the spell you select in the Summon/Call screen.
+Casting time is adhered to. MP cost is used for menu selection/highlighting,
+not MP consumption. Every other aspect of the spell is dealt elsewhere.
+
+
+Chocb/Chocobo
+Casting Time: 3 (2 in FF4ET)
+MP Cost: 7
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: n/a
+Boss Bit: n/a
+Solo Multiplier: n/a
+Ignore Reflect: Yes
+Notes: This is the spell you select in the Summon/Call screen.
+Casting time is adhered to. MP cost is used for menu selection/highlighting,
+not MP consumption. Every other aspect of the spell is dealt elsewhere.
+
+
+Shiva
+Casting Time: 4 (3 in FF4ET)
+MP Cost: 30
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: all enemies
+Hit Rate: n/a
+Boss Bit: n/a
+Solo Multiplier: n/a
+Ignore Reflect: Yes
+Notes: This is the spell you select in the Summon/Call screen.
+Casting time is adhered to. MP cost is used for menu selection/highlighting,
+not MP consumption. Every other aspect of the spell is dealt elsewhere.
+
+
+Indra/Ramuh
+Casting Time: 4 (3 in FF4ET)
+MP Cost: 30
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: all enemies
+Hit Rate: n/a
+Boss Bit: n/a
+Solo Multiplier: n/a
+Ignore Reflect: Yes
+Notes: This is the spell you select in the Summon/Call screen.
+Casting time is adhered to. MP cost is used for menu selection/highlighting,
+not MP consumption. Every other aspect of the spell is dealt elsewhere.
+
+
+Jinn/Ifrit
+Casting Time: 4 (3 in FF4ET)
+MP Cost: 30
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: all enemies
+Hit Rate: n/a
+Boss Bit: n/a
+Solo Multiplier: n/a
+Ignore Reflect: Yes
+Notes: This is the spell you select in the Summon/Call screen.
+Casting time is adhered to. MP cost is used for menu selection/highlighting,
+not MP consumption. Every other aspect of the spell is dealt elsewhere.
+
+
+Titan
+Casting Time: 5 (4 in FF4ET)
+MP Cost: 40
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: all enemies
+Hit Rate: n/a
+Boss Bit: n/a
+Solo Multiplier: n/a
+Ignore Reflect: Yes
+Notes: This is the spell you select in the Summon/Call screen.
+Casting time is adhered to. MP cost is used for menu selection/highlighting,
+not MP consumption. Every other aspect of the spell is dealt elsewhere.
+
+
+Mist/Dragon
+Casting Time: 3 (2 in FF4ET)
+MP Cost: 20
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: all enemies
+Hit Rate: n/a
+Boss Bit: n/a
+Solo Multiplier: n/a
+Ignore Reflect: Yes
+Notes: This is the spell you select in the Summon/Call screen.
+Casting time is adhered to. MP cost is used for menu selection/highlighting,
+not MP consumption. Every other aspect of the spell is dealt elsewhere.
+
+
+Sylph
+Casting Time: 1 (0 in FF4ET)
+MP Cost: 25
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: n/a
+Boss Bit: n/a
+Solo Multiplier: n/a
+Ignore Reflect: Yes
+Notes: This is the spell you select in the Summon/Call screen.
+Casting time is adhered to. MP cost is used for menu selection/highlighting,
+not MP consumption. Every other aspect of the spell is dealt elsewhere.
+
+
+Odin
+Casting Time: 2 (1 in FF4ET)
+MP Cost: 45
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: all enemies
+Hit Rate: n/a
+Boss Bit: n/a
+Solo Multiplier: n/a
+Ignore Reflect: Yes
+Notes: This is the spell you select in the Summon/Call screen.
+Casting time is adhered to. MP cost is used for menu selection/highlighting,
+not MP consumption. Every other aspect of the spell is dealt elsewhere.
+
+
+Levia/Leviathan
+Casting Time: 3 (2 in FF4ET)
+MP Cost: 50
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: all enemies
+Hit Rate: n/a
+Boss Bit: n/a
+Solo Multiplier: n/a
+Ignore Reflect: Yes
+Notes: This is the spell you select in the Summon/Call screen.
+Casting time is adhered to. MP cost is used for menu selection/highlighting,
+not MP consumption. Every other aspect of the spell is dealt elsewhere.
+
+
+Asura/Ashura
+Casting Time: 1
+MP Cost: 50
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: all enemies
+Hit Rate: n/a
+Boss Bit: n/a
+Solo Multiplier: n/a
+Ignore Reflect: Yes
+Notes: This is the spell you select in the Summon/Call screen.
+Casting time is adhered to. MP cost is used for menu selection/highlighting,
+not MP consumption. Every other aspect of the spell is dealt elsewhere.
+
+
+Baham/Bahamut
+Casting Time: 3 (2 in FF4ET)
+MP Cost: 60
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: all enemies
+Hit Rate: n/a
+Boss Bit: n/a
+Solo Multiplier: n/a
+Ignore Reflect: Yes
+Notes: This is the spell you select in the Summon/Call screen.
+Casting time is adhered to. MP cost is used for menu selection/highlighting,
+not MP consumption. Every other aspect of the spell is dealt elsewhere.
+
+
+Comet
+Casting Time: 0
+MP Cost: 20
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 80
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: The twins use this spell infrequently. MP is consumed by both twins
+because of the Twin command, not the spell itself. This is cast 64/256 of
+the time via the Twin command. The ratio is unknown for FF4A's Twin Stars
+equipment.
+
+
+Flare (Twin Spell)/Pyro
+Casting Time: 0
+MP Cost: 10
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 120
+Targeting: one target, default enemy (all enemies in FF4A)
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: The twins use this spell frequently unless they are equipped with FF4A's
+Twin Stars. MP is consumed by both twins because of the Twin command, not the
+spell itself. Also, the Twin command's targeting overrides the spell's
+default targeting. This is cast 191/256 of the time via the Twin command. The
+ratio is unknown for FF4A's Twin Stars equipment.
+
+
+Flame (Ninja Spell)/Katon
+Casting Time: 2 (1 in FF4ET)
+MP Cost: 15
+Status Effect: n/a
+Elemental: Fire
+Spell Power: 80
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: 
+
+
+Flood (Ninja Spell)/Suiton
+Casting Time: 2 (1 in FF4ET)
+MP Cost: 20
+Status Effect: n/a
+Elemental: Ice
+Spell Power: 120
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: 
+
+
+Blitz (Ninja Spell)/Raijin
+Casting Time: 2 (1 in FF4ET)
+MP Cost: 25
+Status Effect: n/a
+Elemental: Lightning
+Spell Power: 160
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: 
+
+
+Smoke
+Casting Time: 0
+MP Cost: 10
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: all allies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is a battle escaping magic.
+
+
+Pin/Needle
+Casting Time: 0
+MP Cost: 5
+Status Effect: Paralyze
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 75
+Boss Bit: Yes
+Solo Multiplier: Yes
+Ignore Reflect: No
+Notes: This is the same as Hold, except powered by Wisdom/Intelligence.
+
+
+Image
+Casting Time: 0
+MP Cost: 6
+Status Effect: Image (2)
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 99
+Boss Bit: No
+Solo Multiplier: Yes
+Ignore Reflect: Yes
+Notes: It's simply a self-induced Blink.
+
+
+Magic Arrow
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 28
+Targeting: one target, default enemy
+Hit Rate: 90
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: This is the spell attached to the Rod. You will find the reflecting
+this spell to be amusing. Since this is cast by a weapon, spell hit rate is
+ignored, like all weapon-item spells.
+
+
+Heal (Cure/Healing Staff version)
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 12
+Targeting: all allies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: This is the spell attached to the Cure/Healing Staff.
+
+
+Basuna
+Casting Time: 0
+MP Cost: 0
+Status Effect: remove Berserk, Charm, Sleep, Paralyze
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default ally
+Hit Rate: 75
+Boss Bit: No
+Solo Multiplier: Yes
+Ignore Reflect: No
+Notes: This is the spell attached to the Silver/Mythril Staff and is
+effectively the same as the Unicorn Horn, except single target.
+
+
+Poisona
+Casting Time: 0
+MP Cost: 0
+Status Effect: remove Poison
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default ally
+Hit Rate: 75
+Boss Bit: No
+Solo Multiplier: Yes
+Ignore Reflect: No
+Notes: This is the spell attached to the Staff.
+
+
+Dancing Dagger
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 40
+Targeting: one target, default enemy
+Hit Rate: 90
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is the spell attached to the Dancing Dagger.
+
+
+Imp/Goblin Punch
+Casting Time: 0
+MP Cost: 1
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 8
+Targeting: one enemy (single target summons use this exclusively)
+Hit Rate: 50
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: For some reason, the summon damage algorithm seems to set the hit
+rate of this spell to at least 100 somewhere.
+
+
+Bomb/Self-Destruct
+Casting Time: 0
+MP Cost: 15
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 1 (Current HP Modifier)
+Targeting: one enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: Yes
+Ignore Reflect: Yes
+Notes: The Solo Multiplier is involved since the damage is not based off
+the Spell Multiplier.
+
+
+Stone Beak/Petrifying Beak
+Casting Time: 0
+MP Cost: 15
+Status Effect: Stone
+Elemental: n/a
+Spell Power: 0
+Targeting: one enemy
+Hit Rate: 50
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: If the monster is not a boss, the monster will take 1 damage,
+regardless of Stone resistance. It is possible for this spell to set death
+and stone status on a target. This spell is dummied out of FF2 and FF4ET.
+
+
+Mage/Mind Blast
+Casting Time: 0
+MP Cost: 18
+Status Effect: Paralyze
+Elemental: n/a
+Spell Power: 96
+Targeting: one enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is the only other stun type spell (other than Stop) that can be
+reapplied to reset its timer. FF2 and FF4ET use a binding ring
+graphic (for paralysis) instead of a similar graphic that
+Protect/Shell/Blink/Image uses.
+
+
+Chocobo/Chocobo Kick
+Casting Time: 0
+MP Cost: 7
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 40
+Targeting: one enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: 
+
+
+Shiva/Snowstorm/Diamond Dust
+Casting Time: 0
+MP Cost: 30
+Status Effect: n/a
+Elemental: Ice
+Spell Power: 80
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: 
+
+
+Indra/Judgement Bolt
+Casting Time: 0
+MP Cost: 30
+Status Effect: n/a
+Elemental: Lightning
+Spell Power: 80
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: 
+
+
+Jinn/Hellfire
+Casting Time: 0
+MP Cost: 30
+Status Effect: n/a
+Elemental: Fire
+Spell Power: 80
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: 
+
+
+Titan/Rage of the Earth/Gaia's Wrath
+Casting Time: 0
+MP Cost: 40
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 160
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is just weaker Quake with a summon driving the spell.
+
+
+Mist/Mist Breath
+Casting Time: 0
+MP Cost: 20
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 1 (Current HP Modifier)
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: Yes
+Ignore Reflect: Yes
+Notes: The Solo Multiplier is used because the Spell Multiplier is not
+a factor. If the Mist Ring is equipped in FF4A, Image (1) is inflicted.
+
+
+Sylph/Wind's Whisper/Whisperwind
+Casting Time: 0
+MP Cost: 15
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 120
+Targeting: one enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: The damage dealt will be converted into healing, split between all
+characters on the field, minus those Hiding, Jumping, dead, or petrified.
+This spell consumes 0 MP in the SNES versions. It is a bug because it is
+probably considered a monster spell, which has a 0 MP consumption property.
+
+
+Odin/Zantetsuken
+Casting Time: 0
+MP Cost: 45
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: all enemies
+Hit Rate: 0
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is a spell driven primarily by the caster's Wisdom. The spell's
+hit rate is derived by Wisdom/2, so the highest hit rate possible is 49%.
+If you move Rydia into Slot 1 (middle slot), it should increase her chance
+to 61%. This spell will automatically fail if any target has the boss bit.
+When this spell succeeds, a sliced effect is used as the death animation.
+
+
+Leviathan/Tsunami
+Casting Time: 0
+MP Cost: 50
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 280
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: FF2 spells the attack Leviatan because of space limitations.
+
+
+Asura/Ashura (human face)
+Casting Time: 0
+MP Cost: 50
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 160
+Targeting: all allies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This spell heals better than Cure4/Curaja when multitargeting. FF2 and
+FF4ET use the Cure2/Cura graphic whereas FF4 and FF4A use the Cure3/Curaga
+graphic.
+
+
+Asura/Ashura (yellow angry face)
+Casting Time: 0
+MP Cost: 50
+Status Effect: n/a
+Elemental: n/a
+Spell Power: +5 Defense (240 base spell power for FF2)
+Targeting: all allies
+Hit Rate: 66 (100 for FF2)
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is Protect, like when you fought Asura in the boss battle. FF4ET
+uses the Cure3/Curaja graphic instead. FF2 uses the Cure3/Curaja graphic and
+does overpowered healing (9000 max for all targets in the best case scenario).
+
+
+Asura/Ashura (purple happy face)
+Casting Time: 0
+MP Cost: 50
+Status Effect: remove Death
+Elemental: n/a
+Spell Power: n/a
+Targeting: all allies
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: Yes
+Ignore Reflect: Yes
+Notes: This is a multitargeted Life spell.
+
+
+Bahamut/Mega Flare
+Casting Time: 0
+MP Cost: 60
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 480
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: For 20% for MP over Flare, you get 20% more damage spread to everyone,
+which makes this spell the most damage efficient over high magic defense
+targets (if you omit Meteor).
+
+
+W.Meteo (SNES version) - Refer to FF4A Section for Spell Data
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: Holy
+Spell Power: 800
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is only used by FuSoYa and Golbez initially in the SNES versions
+of this game, which is executed by a "Twin" command.
+
+
+Monster 15
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 0
+Targeting: self/no target
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is a blank spell slot separator. All spells above here are affected
+by Mute/Silence and Blind/Darkness.
+
+
+Monster 16
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 0
+Targeting: self/no target
+Hit Rate: n/a
+Boss Bit: n/a
+Solo Multiplier: n/a
+Ignore Reflect: n/a
+Notes: This is also a blank spell slot separator. All spells below here are
+not affected by Mute/Silence and Blind/Darkness.
+
+
+Glance/Gaze
+Casting Time: 0
+MP Cost: 0
+Status Effect: Charm, Sleep, Paralyze
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: This attack is made by the Red Eye/Bloody Eye monster. The status
+affliction is random, with an equal 1/3 chance for Charm, Sleep, or Paralyze.
+
+
+Bluster/Blaster
+Casting Time: 0
+MP Cost: 0
+Status Effect: Paralyze, Death
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: This attack is made by the Panther/Cait Sith and Black Cat/Coeurl (and
+Coeurl Regina in FF4A). The status affliction has a 1/2 distribution for Death
+or Paralysis. There is an annoying behavior in FF4A which causes the effect to
+be displayed, even though status resistance would normally cause it to fail
+and produce no graphical effect.
+
+
+Slap
+Casting Time: 0
+MP Cost: 0
+Status Effect: Paralyze, Curse, Silence
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by the Lilith (and one of the FF4 dev monsters).
+The status affliction has a 1/3 chance for Paralysis, Silence, or Curse.
+
+
+Powder/Cold Snap/Poison Powder
+Casting Time: 0
+MP Cost: 0
+Status Effect: Blind
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by monsters of the moth family. SandMoth/Flying
+Eyes, RockMoth/Hell Flapper, and GloomWing are included here.
+
+
+Glance/Pupil
+Casting Time: 0
+MP Cost: 0
+Status Effect: Charm
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by the Calbrena/Calcobrena and VampLady/Miss Vamp.
+
+
+Charm/Lure/Entice
+Casting Time: 0
+MP Cost: 0
+Status Effect: Charm
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by the Lamia and Queen Lamia.
+
+
+Tongue/Lick
+Casting Time: 0
+MP Cost: 0
+Status Effect: Sleep
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by the Naga.
+
+
+Curse
+Casting Time: 0
+MP Cost: 0
+Status Effect: Curse
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by the Milon-Z/Scarmaglione "Elements version",
+D.Fossil/Dinozombie, SwordMan/Dark Knight, and Warrior/Satanite.
+
+
+Ray/Fingertip
+Casting Time: 0
+MP Cost: 0
+Status Effect: 1/3 Petrify
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by the Medusa, Gorgon, and both versions of
+Valvalis/Barbariccia.
+
+
+Count/Doom
+Casting Time: 0
+MP Cost: 0
+Status Effect: Count/Doom
+Elemental: n/a
+Spell Power: timer = 10
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: This attack is used by the Fataleye/Allemagne/Ahriman, Plague,
+and Zeromus in FF4ET. The Plague overrides targeting and targets every
+character. This status has a timer set to 10, which can be reset on another
+casting. This attack is reflectable to kill the enemy.
+
+
+Beak/Peck
+Casting Time: 0
+MP Cost: 0
+Status Effect: Stone
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: This attack is made by all variations of the Cockatrice family,
+including the Eagle, Cockatrice, Roc Baby, and Mist Eagle (in FF4A).
+Treant/Wood Eyes also uses this.
+
+
+Petrify/Stone Gaze
+Casting Time: 0
+MP Cost: 0
+Status Effect: 1/3 Petrify
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by all variations of the Black Lizard family,
+including the BlackLiz, Basilisk, IceLiz/Ice Lizard, and Catoblepas (FF4A
+only).
+
+
+Blast/Mind Blast (monster version)
+Casting Time: 0
+MP Cost: 0
+Status Effect: Paralyze, HP Leak
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: This attack is made by the Mage/Mind Flayer monster (ironic)
+and Breath/Zemus's Breath. Even if the paralysis fails, the HP leak property
+always succeeds.
+
+
+Hug/Embrace
+Casting Time: 0
+MP Cost: 0
+Status Effect: Stone
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: This attack is made by the Kary/Moon Goddess/Selene Guardian and
+Zeromus in FF4ET. Before the target is petrified, it is fully healed like
+Cure4/Curaja was used. This contrasts to the Cockatrice Summon's attack.
+
+
+Breath/Bad Breath
+Casting Time: 0
+MP Cost: 0
+Status Effect: Toad, Mini, Piggy, Silence, Darkness, Charm
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: This attack is made by the Molbol/Marlboro, Great Marlboro, and
+D.Lunar/Lunarsaurus. If you are resistant to one of the statuses, you resist
+the entire attack. This is true for any multi-status attack. This attack will
+reapply all the statuses even if one or more of the statuses have been removed.
+
+
+Whisper
+Casting Time: 0
+MP Cost: 0
+Status Effect: Piggy
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by the Dark Elf (after the harp music is played)
+and Tricker/Rilmarder/Lil'Murderer (FF4ET only).
+
+
+Entangle/Wreathe
+Casting Time: 0
+MP Cost: 0
+Status Effect: Paralyze
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by the Gung-Ryu/Gold Dragon, Hydra,
+Python/Twin Asp/Twin Snake.
+
+
+Weak (monster version)/Wall (monster version)/Whirl
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by the Ogopogo/Tidarithan in response to Lightning
+and Zeromus in response to a Holy attack. It works better than the Black Magic
+version.
+
+
+Disrupt/Strain/Time Distortion
+Casting Time: 0
+MP Cost: 0
+Status Effect: removes Berserk, Float, Image (2), Image (1), Barrier, Reflect/
+Wall
+Elemental: n/a
+Spell Power: n/a
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is made by Zeromus before Cecil uses the Crystal on it to reveal
+his true form. It is used when he massively shakes. This spell also resets
+the speed modifier to the default of 16. This is a duplicate of Black Hole
+using a different visual.
+
+
+Cold Mist
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: Ice
+Spell Power: 8
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by the Mist Dragon in Mist form as a counter.
+
+
+Explode (Mombomb version)
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: Fire
+Spell Power: 32
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by the Mombomb before it splits into multiple
+bombs. This spell is simply an attack, and is not part of the conversion
+process. It is simply part of an uninterruptible attack sequence used by
+monster's battle script.
+
+
+DullSong/Cursed Song/Song of Curse
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: +8 Speed Modifier
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by Scarmaglione (undead) on Mt. Ordeals in FF4 and
+FF4A in response to Fire elemental magic. This is simply a multitargeted Slow
+attack. The message displayed is part of an uninterruptible counter.
+
+
+Hold Gas/Cursed Aura/Ice Bind
+Casting Time: 0
+MP Cost: 0
+Status Effect: Paralyze
+Elemental: n/a
+Spell Power: n/a
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is made by Golbez when you fight him in the Crystal Room of the
+Dwarves Castle. This is used by him in his scripted sequence. At this point,
+there is no equipment to resist the attack.
+
+
+Gas/Sleeping Gas
+Casting Time: 0
+MP Cost: 0
+Status Effect: Sleep
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by Dr. Lugae (the undead-ish Mech) as a counter to
+taking physical damage.
+
+
+Poison/Poison Gas
+Casting Time: 0
+MP Cost: 0
+Status Effect: Poison
+Elemental: n/a
+Spell Power: 8
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by Dr. Lugae (the undead-ish Mech) as part of his
+initial battle script.
+
+
+Maser/Laser/Piercing Laser
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 10 (Max HP Modifier)
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by the Attacker/Attack Sys/Attack Node from the CPU
+battle.
+
+
+Vanish
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is a "monster self suicide" spell used by enemies in scripted
+sequences such as every battle with Golbez.
+
+
+Demolish/Blk.Fang/Black Fangs
+Casting Time: 0
+MP Cost: 0
+Status Effect: Death
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is made by the Shadow Dragon monster in the scripted sequence
+during the underground Golbez battle.
+
+
+Blk.Hole/Black Hole
+Casting Time: 0
+MP Cost: 0
+Status Effect: removes Berserk, Float, Image (2), Image (1), Barrier, Reflect/
+Wall
+Elemental: n/a
+Spell Power: n/a
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by Zeromus and Brachioraidos (in FF4A only). This
+spell resets the speed modifier to 16. The message that comes with the spell
+in the Zeromus battle is part of the battle script, not the spell itself.
+
+
+Dancing
+Casting Time: 0
+MP Cost: 0
+Status Effect: Berserk
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: This attack is made by the Pinkpuff/Flan Princess.
+
+
+Disrupt (TrapDoor version)/Dimension 9/Ninth Dimension
+Casting Time: 0
+MP Cost: 0
+Status Effect: Death
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: This attack is made by the Trapdoor. It can be reflected to kill the
+monster.
+
+
+Storm/Maelstorm
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by Valvalis/Barbariccia in the Elements version,
+and Behemoths in response to a Holy magic attack.
+
+
+Magnet/Electromagnetic Field/Magnetic Radiation
+Casting Time: 0
+MP Cost: 0
+Status Effect: Stop
+Elemental: n/a
+Spell Power: timer = 50
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: This attack is made by Last Arm and MacGiant/Giant Soldier in a
+response to a lightning magic attack.
+
+
+Reaction/Chain Reaction
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is used by a Grenade/Dark Grenade in response to Lightning. The
+monster explodes and every monster explodes with it, causing all the
+enemies to die.
+
+
+Hatch
+Casting Time: 0
+MP Cost: 0
+Status Effect: removes Egg
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: Enemies starting in Egg status do this in reaction to taking any damage.
+This won't occur if the target dies or is in an uncontrollable state.
+
+
+Remedy (monster version)/Heal (monster version)/Restore
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: healing = 1/10 of target's Max HP
+Targeting: one target, default ally
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This spell is used by Kainazzo/Cagnazzo, D.Lunar/Lunarsaurus, Wyvern/
+Dark Bahamut, and Defender/DefenseSys/Defense Node.
+
+
+Absorb/Suction
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: healing = 1/3 of target's Current HP
+Targeting: self/no target
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This spell is made by the SwordMan/Black Knight, Warrior/Satanite,
+VampGirl/Draculady, and ZeromusEG (in FF4A).
+
+
+Heal (monster version)/Medic/Panacea
+Casting Time: 0
+MP Cost: 0
+Status Effect: remove Stone, Toad, Mini, Piggy, Mute, Darkness, Poison, Curse,
+Paralyze, Sleep, Charm, Gradual Petrification, Berserk (FF4A only)
+Elemental: n/a
+Spell Power: n/a
+Targeting: all allies
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This spell is used by both forms of Dr. Lugae with altered targeting.
+This works the same as Heal/Esuna.
+
+
+Big Bang
+Casting Time: 0
+MP Cost: 0
+Status Effect: HP Leak
+Elemental: n/a
+Spell Power: 200
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is used by Zeromus and ZeromusEG (in FF4A).
+
+
+Vampire/Blood Suck
+Casting Time: 0
+MP Cost: 0
+Status Effect: HP Leak
+Elemental: n/a
+Spell Power: 24
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by every bat monster in this game and various
+other monsters.
+
+
+Digest/Digestive Fluid/Digestive Acid
+Casting Time: 0
+MP Cost: 0
+Status Effect: HP Leak
+Elemental: n/a
+Spell Power: 60
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: This attack is made by the Molbol/Marlboro.
+
+
+Pollen
+Casting Time: 0
+MP Cost: 0
+Status Effect: HP Leak
+Elemental: n/a
+Spell Power: 12
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by the plant monsters, including the TrapRose/Blood
+Flower, and Cannibal/Death Flower.
+
+
+Crush/Crash Down
+Casting Time: 0
+MP Cost: 0
+Status Effect: Death
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by the EvilWall/Demon Wall.
+
+
+Alert/Alarm
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is used by Alert/Security Eye and Searcher monsters to summon an
+enemy. Group Slot 2 is reserved and emptied for the lone monster and the
+monster is "resurrected". Group Slot 3 is usually where the additional monsters
+accompany the Alert or Searcher. The annoying siren that plays ends when an
+attack is made.
+
+
+Call/Summon
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is used by the Marion/Puppeteer, Sorcerer, Conjurer/Summoner, and
+Mist Summoner. This has the same requirements that Alert/Alarm has for proper
+operation. The difference is the sound played when the spell is used.
+
+
+"Dummy" - Cause Other Monster Reaction
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is used to cause other monsters to use a special reaction.
+This is by Milon/Scarmaglion (living) on Mt. Ordeals to order his "undead
+children" to attack. King Eblan uses it to tell Queen Eblan to change her
+palette (this doesn't change it directly, it is just a trigger for it). The
+Baron General uses this to order his soldiers to attack. The Generals at the
+battle of Fabul and Toadlady/Toadwitch/Bog Witch at the Sylph's Cave uses this
+as well.
+
+
+Vanish (Zeromus version)
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is used by Zeromus to heal itself to the maximum after taking
+lots of damage for the first round.
+
+
+Search/Targeting
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is used by the Trap Door and Last Arm for targeting purposes.
+Before their next attack, Monsters change their targeting or select a new
+target, but this spell prevents the aforementioned from occurring. In the
+SNES version, the targeting is adhered to regardless for the next attack. In
+FF4A, it is retained only to the Last Arm's next script attack (not its
+suicide counter).
+
+
+Fission/Nuclear Explosion
+Casting Time: 0
+MP Cost: 0
+Status Effect: 0
+Elemental: n/a
+Spell Power: damage = caster's current HP
+Targeting: all enemies (one target, default enemy in FF4A)
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This works the same as the Bomb's explode (suicide) attack except it
+hurts every target equally. Last Arm does this when it gets weak. Targeting
+may be changed due to Search/Targeting in the SNES version.
+
+
+Retreat
+Casting Time: 0
+MP Cost: 0
+Status Effect: Death
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: The monsters "disappears", but in actuality kill themselves. However,
+you get nothing from the monster since you did not kill it.
+
+
+Heal (Golbez version)/Release
+Casting Time: 0
+MP Cost: 0
+Status Effect: remove Paralyze
+Elemental: n/a
+Spell Power: n/a
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is used by Golbez as part of a scripted attack to simulate Rydia
+doing something to remove the paralysis.
+
+
+Beam
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 10 (Max HP modifier)
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: Many mechanical monsters (even if they don't have the Mech property)
+use this attack.
+
+
+Globe 199/Number 199
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 1020
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is used by the CPU and the Brachioraidas (FF4A only). This is one
+of the few spells that has its spell powered at the maximum.
+
+
+Fire/Flame (monster versions)
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: Fire
+Spell Power: 5 (Max HP Modifier)
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: 
+
+
+Blaze
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: Ice
+Spell Power: 4 (Max HP Modifier)
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: 
+
+
+Blitz (monster version)/Lightning Flash
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: Lightning
+Spell Power: 2 (Max HP Modifier)
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: 
+
+
+Thunder/Lightning (monster versions)
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: Lightning
+Spell Power: 4 (Max HP Modifier)
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: 
+
+
+D.Breath/Dark Breath
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: Fire
+Spell Power: 4 (Max HP Modifier)
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is made by the Dark Elf/Dark Dragon.
+
+
+Big Wave/Big Tsunami/Tidal Wave
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 4 (Max HP Modifier)
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: 
+
+
+Blizzard/Snowstorm/Ice Storm
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: Ice
+Spell Power: 25 (Current HP Modifier)
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: 
+
+
+Wave/Tsunami
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 25 (Current HP Modifier)
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: 
+
+
+Tornado (monster version)/Whirlwind
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 20 (Current HP Modifier)
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: 
+
+
+Laser (Dr. Lugae version)
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 5 (Current HP Modifier)
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: This attack is made by Dr. Lugae (the undead-ish mech form).
+
+
+Explode (bomb version)/Self-Destruct
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: damage = caster's current HP
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: 
+
+
+Quake (monster version)/Earthquake
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 80
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is the weakest variation of Quake.
+
+
+Emission/Flame Thrower
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: Fire
+Spell Power: 20
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: 
+
+
+Heat Ray
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: Fire
+Spell Power: 60
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: 
+
+
+Glare/Flame Dragon/Scorch
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: Fire
+Spell Power: 360
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: The Elementals version of Rubicant/Rubicante ignores targeting.
+
+
+Odin/Zantetsuken (monster version)
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 160
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This attack is used by Odin when you fight him.
+
+
+MegaNuke/Mega Flare (monster version)
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 1020
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: No
+Notes: This is the strongest multitargeted spell... weaker than the Bahamut
+summon.
+
+
+Needle
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: caster's attack power * 2
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This follows the regular spell damage algo.
+
+
+Counter/Counter Horn
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: caster's attack power * 2
+Targeting: one target, default enemy
+Hit Rate: 100
+Boss Bit: Yes
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This follows the regular spell damage algo. Rydia at level 15 has
+a chance of evading the Antlion's attack.
+
+
+"Dummy"/Monster 000 - Set Monster Invincibility
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This hidden spell increases the invincibility counter. This is used by
+the Mist Dragon when changing into Mist form and Zeromus when Cecil does battle
+with it initially. It only works on the monster casting this.
+
+
+"Dummy"/Monster 000 - Remove Monster Invincibility
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This hidden spell decreases the invincibility counter. This is used by
+the Mist Dragon when reverting from Mist form and Zeromus after Cecil uses
+the Crystal on it. It only works on the monster casting this.
+
+
+Recover/Regenerate/Re-Form
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This spell is usually retargeted to revive all boss monsters on the
+field. All monsters revived by this method will have all statuses removed and
+full HP. However, MP is not recovered.
+
+
+Remedy/Reraise/Renew
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This spell is made by the "cell" monsters to recover all HP lost.
+
+
+The following spells are for the SNES version (starting at Spell #173/0xAD),
+but may have been relocated elsewhere in FF4A.
+
+
+(Unnamed) - Tradeoff/Switch Monster
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This spell is used by monsters to change into a different monster. The
+monsters that initiate this automatically die and nothing is gained. This
+is used by the Trap Door, Mombomb, Zeromus (to change forms), Dr. Lugae (in
+his attempt to rebuild Balnab/Barnabas), Calbrena/Calcobrena, Dark Elf, and
+the Elemental battle (from Rubicant/Rubicante to Kainazzo/Cagnazzo). The
+monsters "that are spawned" are actually hidden (like summoned monsters)
+and are revived by this spell.
+
+
+(Unnamed) - End Battle
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is used by various monsters to end the battle, such as the battle
+when Rydia summons Titan who casts this right after Quake (monster
+version) is used.
+
+
+(Unnamed) - EvilWall Move
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is used in conjunction with an attack to "show" the EvilWall's
+movement in the SNES version. No attack is combined in the GBA version
+because of potential bugs.
+
+
+(Unnamed) - Summons "Mist Dragon"
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is used by the Shadow Dragon as method of simulating Rydia "in
+the background" summoning the Mist Dragon to save Cecil.
+
+
+(Unnamed) - Reveal "Older Rydia"
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is used by Golbez to "unhide" Rydia.
+
+
+(Unnamed) - Unknown/Unused Audiovisual Effect
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: If I knew, I would let you know.
+
+
+(Unnamed) - Summons Anna
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is used by the WaterHag in that special sequence to "summon" Anna.
+
+
+(Unnamed) - Summons Edward and Tellah
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: In FF4A, a different character is shown when Edward is not in his
+original spot in the Tower of Prayers.
+
+
+(Unnamed) - Summons Palom and Porom
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: In FF4A, a different character is shown when Palom and/or Porom are
+not in their original spot in the Tower of Prayers.
+
+
+(Unnamed) - Summons Cid and Yang
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: In FF4A, a different character in shown when Cid and/or Yang are not
+in their original sport in the Tower of Prayers.
+
+
+(Unnamed) - Summons Golbez and FuSoYa
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: 
+
+
+(Unnamed) - Removes Character Images
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: For any character images that appear, this is used to remove them.
+This is most notable with Anna disappearing during said Waterhag battle.
+
+
+(Unnamed) - Unknown/Unused Audiovisual Effect
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: It's probably the opposite of the above spell.
+
+
+(Unnamed) - Revives All Characters
+Casting Time: 0
+MP Cost: 0
+Status Effect: remove Death
+Elemental: n/a
+Spell Power: n/a
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is used in Zeromus's battle script to revive all the characters.
+This is retargeted even though targeting is set...
+
+
+(Unnamed) - Zeromus Shakes
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: self/no target
+Hit Rate: 0
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is used by Zeromus to execute his massive shaking and linked/
+chained with other spells.
+
+
+(Unnamed) - "Mist Dragon" Spell Data
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: 80
+Targeting: all allies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This spell data is linked with the "Mist Dragon" the Shadow Dragon
+summons. Note that the targeting is to reflect the direction of the
+damage being dealt. This simply is not the original Mist Dragon damage algo.
+
+
+(Unnamed) - Unknown/Unused Haste Spell
+Casting Time: 1
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: -8 speed modifier
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: The default speed modifier is 16 for all targets.
+Haste decreases this modifier by 8 points. The lowest this modifier can be is
+at 12. At 12, the target's ATB seems to increase by 25%. This spell quickens
+every timer, except for Count/Doom.
+
+
+(Unnamed) - Elixir Healing
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is used in the final battle with Zeromus to fully heal characters.
+This is usually targeted against individual characters and executed by
+Zeromus's battle script.
+
+
+(unnamed) - Flashing Heal/Crystal Effect
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: n/a
+Spell Power: n/a
+Targeting: 0
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is used in the final battle with Zeromus for the healing given
+by the other characters. This is executed in Zeromus's battle script chained
+with Elixir Healing.
+
+
+The following spells are for the GBA version only
+
+
+Meteor - Spell #94/0x5E
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: Holy
+Spell Power: 1000
+Targeting: all enemies
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This custom Meteor is probably used by Zeromus instead of the original
+Meteor.
+
+
+Double Meteor - Spell #173/0xAD
+Casting Time: 0
+MP Cost: 0
+Status Effect: n/a
+Elemental: Holy
+Spell Power: 1000
+Targeting: 0
+Hit Rate: 100
+Boss Bit: No
+Solo Multiplier: No
+Ignore Reflect: Yes
+Notes: This is a revised version of Double Meteor that is used by the twins
+and Golbez/FuSoYa combo. It is a stronger version of Meteor due to how it is
+calculated and requires less Intelligence, particularly from Porom to make
+it deal 9999 damage. It requires 36 Intelligence vs a monster with 0 magic
+defense and 52 Intelligence vs a monster with 254 magic defense.
+
+
+------------------------------------------------------------------------------
+
+List of Spells Learned by Character
+-----------------------------------
+
+*  = initially learned
+** = learned by event, to be explained
+!  = not learned in FF2US and FF4ET
+level in parenthesis apply to FF2US and FF4ET only
+
+
+Paladin Cecil
+-------------
+
+03 - Sight
+08 - Peep/Scan
+15 - Cure2/Cura
+19 - Exit/Teleport
+24 - Heal/Esuna
+*  - Cure
+
+
+Young Rydia's White Magic
+-------------------------
+
+03 - Cure1
+04 - Sight
+07 - Hold
+
+
+Rydia's Black Magic (both Young+Older)
+-------------------
+
+02 - Ice-1/Blizzard
+05 - Lit-1/Thunder
+08 - Sleep
+10 - Venom/Poison
+12 - Warp/Dejon
+13 - Toad
+15 - Stop
+20 - Piggy
+26 - Virus/Bio
+32 (31) - Psych/Osmose
+36 (35) - Drain
+39 (38) - Ice-3/Blizzaga
+42 (40) - Fire3/Firaga
+45 (42) - Lit-3/Thundaga
+47 (44) - Quake
+49 (46) - Stone/Break
+51 (48) - Weak/Tornado
+52 (49) - Fatal/Death
+55 (50) - Nuke/Flare
+60 - Meteor
+** - Fire1/Fire (learned when removing the Ice at Mt. Hobs)
+** - Fire2/Fira (when Older Rydia joins in the underground)
+** - Ice-2/Blizzara (when Older Rydia joins)
+** - Lit-2/Thundara (when Older Rydia joins)
+
+
+Rydia's Summons (both Young+Older)
+---------------
+
+*  - Chocobo
+** - Mist/Dragon (when Older Rydia joins in the underground)
+** - Titan (when Older Rydia joins)
+** - Ifrit/Jinn (when Older Rydia joins)
+** - Shiva (when Older Rydia joins)
+** - Ramuh/Indra (when Older Rydia joins)
+** - Asura (learned after defeating Asura)
+** - Leviathan (learned after defeating Leviathan)
+** - Odin (learned after defeating Odin)
+** - Bahamut (learned after defeating Bahamut)
+** - Sylph (learned after hitting Yang over the head with the Frying Pan, or
+            talking to the Sylph after the Giant of Bab-il event)
+** - Imp/Goblin (learned after using the Imp/Goblin summon item on Rydia)
+** - Bomb (learned after using the Bomb summon item)
+** - Cockatrice! (learned after using the Cockatrice summon item)
+** - Mage/Mind Flayer (learned after using the Mage/Mind Flayer summon item)
+
+
+Rosa
+----
+
+11 - Life1
+12 - Protect!
+13 - Cure2/Cura
+15 - Mute/Silence
+18 - Heal/Esuna
+20 - Berserk
+23 - Blink
+24 - Charm
+29 - Shell!
+30 (28) - Cure3/Curaga
+30 (29) - Size/Mini
+31 - Dispel!
+33 (30) - Fast/Haste
+35 (32) - Float
+36 (34) - Wall/Reflect
+38 - Cure4/Curaja
+45 (42) - Life2/Full-Life
+55 (48) - White/Holy
+*  - Cure
+*  - Hold
+*  - Scan/Peep
+*  - Slow
+*  - Sight
+** - Exit/Teleport (learned when Rosa rejoins in the Tower of Zot)
+
+
+Palom
+-----
+
+11 - Ice-2/Blizzara
+11 - Piggy
+12 - Fire2/Fira
+13 - Lit-2/Thundara
+14 - Stop
+19 - Virus/Bio
+22 - Toad
+23 - Quake
+26 - Drain
+29 - Warp
+32 - Ice-3/Blizzaga
+33 - Fire3/Firaga
+34 - Lit-3/Thundaga
+36 - Stone/Break
+40 - Psych/Osmose
+46 - Fatal/Death
+48 - Weak/Tornado
+50 - Meteor
+52 - Nuke/Flare
+*  - Fire1
+*  - Ice-1/Blizzard
+*  - Lit-1/Thunder
+*  - Sleep
+*  - Venom/Poison
+
+
+Porom
+-----
+
+11 - Life1
+12 - Protect!
+13 - Cure2/Cura
+15 - Mute/Silence
+18 - Berserk
+19 - Exit/Teleport
+20 - Heal/Esuna
+23 - Blink
+25 - Charm
+29 - Shell!
+31 - Size
+31 - Dispel!
+33 - Cure3/Curaga
+38 - Fast/Haste
+40 - Float
+44 - Wall/Reflect
+48 - Cure4/Curaja
+52 - White/Holy
+56 - Life2/Full-Life
+*  - Cure
+*  - Hold
+*  - Scan/Peep
+*  - Slow
+*  - Sight
+
+
+Edge
+----
+
+27 - Pin/Needles
+33 - Smoke
+38 - Image
+*  - Flame/Katon
+** - Flood/Suiton (learned after encountering Rubicante in the Tower of Bab-il)
+** - Blitz/Raijin (learned after encountering Rubicante in the Tower of Bab-il)
+
+
+Tellah
+------
+
+*  - Cure2/Cura
+*  - Charm
+*  - Blink
+*  - Heal/Esuna
+*  - Life1
+*  - Exit/Teleport
+*  - Fire1
+*  - Ice-1/Blizzard
+*  - Lit-1/Thunder
+*  - Stop
+*  - Psych/Osmose
+
+Tellah learns almost all of the spells possible after Cecil becomes a Paladin
+on Mt. Ordeals. However, he doesn't learn Holy and any of the "dummied out"
+White Magic spells in FF2US and FF4ET. He also does not learn the Black Magic
+spells Quake, Flare, and Death/Fatal (even though Tellah remembers casting
+Death/Fatal...)
+
+
+FuSoYa
+------
+
+FuSoYa learns all the possible Black and White magic spells in the game.
+However, in FF2US and FF4ET, he will not learn the "dummied out" White Magic
+spells.
+
+
+
+------------------------------------------------------------------------------
+
+Credits
+-------
+
+All this work and research would not have been possible without the help of
+zyrothfar's editor. It's really nifty, but as of the current moment, it's still
+a bit buggy, but lots of other FF4 research and testing was accomplished
+with the help of this editor.
+
+BSiron's original FF2 Algo FAQ is the most awesome thing written for this game
+and even though it's mostly obsolete in some instances, it is the basis for
+so many bits and pieces that have been derived and expanded upon...
+
+I would like to thank Dragonsbrethren for tolerating me and answered questions
+I had about FF4, before I even realized there was more to the game than what
+I already knew after many many many years of playing this game.
+
+I thank Lenophis for putting up with me. :P
+
+JCE3000GT deserves special thanks for currently putting up a fairly good
+FF2 hack for this game and getting me very interested. I would say that it is
+the benchmark of all FF2/4 hacks to come.
+
+I would also like to thank Phoenix to go look into the code to find and
+verify stuff that have even yet to be documented (I'll have to get around to
+it).
+
+Entroper provided some nice datasheets for FF4A.
+
+Paladin provided a nice datasheet for FF2/4, although there was a bunch of
+data that finally confirms some stuff that was never quite finished for FF2/4.
+
+There's this Japanese site with all the cool info I'd like to thank too... but
+I can't read Japanese for the life of me, so bleh.
+
+Also, whoever wrote and/or contributed to the Tower of Bab-il documents should
+be thanked for providing quite of bit of insight to the internal game engine.
+
+Others that I can't remember off the top of my head, I thank you too!
+
+Whoever is hosting the forum with all the info that have been dug up and
+researched, I thank you too.
+
+I also thank and blame the idiots to make stupid unfounded statements about
+this game. Only you people make me furious enough to prove you wrong.
+
+I credit myself only because I selfishly want a better FF2/4 hack. :P
+
+Thanks to J2e for producing a decent translation for FF4, even though they
+don't seem to have any idea on battle mechanics and mislabeled certain
+equipment descriptions (the Avenger Sword for one).
+
+This guide would never have been possible without your help!
+
+Thanks to CJayC for hosting this guide on Gamefaqs.
+
+------------------------------------------------------------------------------
+
+Version Reference
+-----------------
+
+1.00 - Initial Version
+1.01 - Minor tweaks to certain details made
+1.02 - Added more information to Odin and the spells that make the characters
+appear and some more minor tweaks made
+1.10 - Revised various spell info and renamed Status Multiplier to Solo
+Multiplier... This version matches up with another FAQ to be released...
+1.11 - Revised descriptions for the spell format.
+1.12 - Added forgotten Mist Dragon info for FF4A and spells learned by
+character...
+1.13 - Revised description for the Bad Breath attack and revised more
+descriptions
+1.14 - Minor update for setting up consistency in reported data
+1.15 - Rearranged initial spell learning info to reflect internal data
+
+
+Future Versions?
+----------------
+
+There probably won't be any newer versions unless there's something new that
+has been found.
+
+
+------------------------------------------------------------------------------
+
+Legally Boring
+--------------
+
+If there are any errors, please e-mail me. Outright stupid e-mail will be
+ignored.
+
+Feel free to distribute this guide anywhere outside of GameFAQs as long as
+any/all of the content is not modified.
+
+Updates will be found at GameFAQs.
+
+DO NOT copy or plagiarize any portions of this guide as your work. If you wish
+to use portions of text in your guide, you MUST reference this guide
+as your source.
+
+Copyright 2009 Deathlike2

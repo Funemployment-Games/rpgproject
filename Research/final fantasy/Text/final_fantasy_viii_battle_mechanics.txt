@@ -1,0 +1,1803 @@
+===============================================================================
+Final Fantasy 8 Battle Mechanics FAQ v0.7
+===============================================================================
+
+by ForteGSOmega (ph0rt3 [at] yahoo [dot] de)
+
+This may be not be reproduced under any circumstances except for personal, 
+private use. It may not be placed on any web site or otherwise distributed 
+publicly without advance written permission. Use of this guide on any other 
+web site or as a part of any public display is strictly prohibited, and a 
+violation of copyright.
+
+===============================================================================
+                               Introduction
+===============================================================================
+
+This FAQ explains most aspects of the battle system in Final Fantasy VIII.
+All of the info in this document either got through testing or by reverse 
+engineering of the game, so everything should be mostly correct.
+Since this FAQ is not yet complete, some descriptions are incomplete and some
+things are missing for now.
+
+===============================================================================
+                             Table of Contents
+===============================================================================
+
+1.  Definitions, Terms
+
+2.  Random Number Generator
+
+3.  Battle Timing
+ 3.1  ATB
+ 3.2  Dead Time
+ 3.3  Global Counter
+
+4.  Damage Types
+ 4.1  Physical Damage
+ 4.2  Magical Damage
+ 4.3  Curative Spells
+
+5.  GF Mechanics
+ 5.1  Summoning
+ 5.2  Junctionable GFs
+ 5.3  Non-Junctionable GFs
+  5.3.1  Odin
+  5.3.2  Phoenix
+  5.3.3  Gilgamesh
+  5.3.4  Moomba
+  5.3.5  Boko
+
+6.  Damage Modification
+
+7.  Other Battle Skills
+ 7.1  Command Abilities
+  7.1.1  Draw
+  7.1.2  Item
+  7.1.3  Card
+  7.1.4  Defend
+  7.1.5  Darkside
+  7.1.6  Absorb
+  7.1.7  Kamikaze
+  7.1.8  Devour
+ 7.2  Character Abilities
+  7.2.1  Mug
+  7.2.2  Counter
+  7.2.3  Cover
+  7.2.4  Auto-Potion
+
+8.  Statuses
+ 8.1  Status Infliction
+ 8.2  Negative Statuses
+ 8.3  Positive Statuses
+
+9.  Limit Break Mechanics
+ 9.1  Crisis Level
+ 9.2  Squall
+ 9.3  Zell
+ 9.4  Irvine
+ 9.5  Quistis
+ 9.6  Rinoa
+  9.6.1  Angelo Limit Break
+  9.6.2  Other Angelo Skills
+  9.6.3  Angelo Search
+ 9.7  Selphie
+ 9.8  Seifer, Edea, Laguna, Kiros, Ward
+
+10.  Encounter Mechanics
+ 10.1  Encounters (World Map)
+ 10.2  Back attack, Struck first
+ 10.3  Running Away
+ 10.4  After the battle
+
+===============================================================================
+1.  Definitions, Terms
+===============================================================================
+
+Rounding:
+Generally, you should round down after every division, and in some cases 
+multiplication. However, even if you don't round down in damage calculations,
+the difference will be 5 to 10 damage points at most.
+
+Tick:
+Used in anything related to battle timing. A tick is a 1/60th second.
+
+[x..y]:
+Means "a random value from x to y". E.g. [0..4] would mean that the values
+0, 1, 2, 3 or 4 could be used. 
+
+Power:
+For both Physical and Magical Damage formulas, there's a variable called 
+Power; each spell and Limit Break attack has its own value and a higher
+value means more damage.
+
+x MOD y:
+Divide x by y but instead of using the division result, you use the remainder.
+E.g. "2 MOD 5" would result in 2 and "7 MOD 3" would result in 1.
+
+===============================================================================
+2. Random Number Generator
+===============================================================================
+
+A Random Number Generator, or RNG for short, is used to get random numbers
+which are used in probability calculations.
+In this game, there's a static list of 256 numbers, ranging from 0 to 255 
+(no two values are the same) in a certain order. 
+
+To determine which number from that list is used, an "index" is employed.
+The index simply keeps track of what random number to use next, e.g. if the
+index has the value 0, the very first number from the RNG list will be used
+and if the index has the value 255, the very last number from the list will
+be read. Each time a random number is used, the index value increases by one,
+pointing to the next integer in the RNG list.
+The index is reset to 0 after the 255. number is used.
+
+Unfortunately, this means that the RNG is not a "true" one and is pretty
+unreliable.
+
+You can't call it random if you know that after a "99", there's always a "6", 
+now can you?
+
+===============================================================================
+3.  Battle Timing
+===============================================================================
+
+Almost everything related to battle timing depends on the Battle Speed.
+Battle Speed is a setting in the Config menu and there are five values:
+5 (slowest), 4, 3 (standard), 2 and 1 (fastest)
+
+This setting will be referred to as BattleSpeed from now on.
+
+------------
+3.1  ATB Bar
+------------
+
+Although nothing changes visually, the size of the ATB bar changes depending
+on BattleSpeed
+
+  BarSize = BattleSpeed * 4000
+
+Every tick, the bar is increased by the BarIncrement
+
+  BarIncrement = (Spd + 30) * SpeedMod / 2
+
+SpeedMod:
+  1 Character has Slow status
+  2 Character has neither Slow nor Haste status
+  3 Character has Haste status
+
+In other words, it takes
+
+  200 * BattleSpeed / (3 * (Spd + 30))
+
+seconds to fill the ATB bar.
+
+At the start of battle, each enemy's and party member's starting ATB bar is
+determined by
+
+  StartingBar = Spd / 4 + [0..127] - 34
+  StartingBar = StartingBar * BattleSpeed * 40
+
+  Note: StartingBar cannot be greater than BarSize or lesser than 0
+
+With 255 Spd, that would mean the character starts with 29% - 100% of the bar
+filled.
+
+Note: For whatever reason, enemies' StartingBar is calculated before their
+      Spd stat is loaded, that means that it's always assumed that they have
+      0 Spd for this calculation.
+      Also, StartingBar changes if you get a Struck first/Back attack
+      See section 10. for more info.
+
+--------------
+3.2  Dead Time
+--------------
+
+The "Dead Time" timer is a variable with the initial value of 200 
+that counts down every 4th tick.
+
+This timer only counts down if there is nothing happening, so it will only
+decrease when no one attacks, just like the ATB bar could only fill when 
+nothing else is happening.
+
+After the timer reaches 0(after 13.3~ seconds), the following things will 
+be checked in that order:
+Will Gilgamesh appear?
+Will Angelo Recover be used?
+Will Angelo Reverse be used?
+Will Angelo Search be used?
+
+If you don't have one of these things, its check will be skipped. For more
+information on the individual skills, see the GF and Rinoa's Limit Break 
+sections.
+
+-------------------
+3.3  Global Counter
+-------------------
+
+Unlike the Dead Time timer, the Global Counter increases every tick by one, 
+even if you have ATB set to Wait and are in a sub-menu.
+
+This counter is only used for Angelo Search, see section 9.6.3 for more 
+details.
+
+===============================================================================
+4.  Damage Types
+===============================================================================
+
+--------------------
+4.1  Physical Damage
+--------------------
+
+Step 1: Hit Determination
+
+  Hit% = (AttackerLuck / 2 + AttackerHit - TargetEva - TargetLuck)
+
+  Note: If AttackerHit equals 255, this step is skipped and the Attacker will 
+        always hit the target.
+
+Step 2: Critical Determination
+
+  Critical% = (AttackerLuck + 1) / 256 * 100
+
+  Note: Skip this step if the attacker is Squall or Seifer
+  Instead of a chance to get a critical hit, they have their Trigger ability
+
+Step 3: Base Damage Calculation
+
+  Damage = AttackerStr^2 / 16 + AttackerStr
+  Damage = Damage * (265 - TargetVit) / 256
+  Damage = Damage * Power / 16
+
+  Note: A normal attack has a Power value of 20
+
+-------------------
+4.2  Magical Damage
+-------------------
+
+Base Damage Calculation
+
+  Damage = AttackerMag + Power
+  Damage = Damage * (265 - TargetSpr) / 4
+  Damage = Damage * Power / 256
+
+Power values of spells:
+
+  18  Fire, Blizzard, Thunder
+  20  Meteor
+  22  Aero
+  24  Fira, Blizzara, Thundara
+  26  Water, Drain
+  30  Bio
+  32  Meltdown
+  35  Firaga, Blizzaga, Thundaga
+  38  Tornado
+  40  Quake
+  48  Holy, Flare
+  80  Ultima
+  120 Apocalypse
+
+  15  Percent
+  180 Catastrophe
+
+  0   Status-inflicting spells
+
+If the spell is Demi:
+  Damage = TargetHP / 4
+
+--------------------
+4.3  Curative Spells
+--------------------
+
+Healing Calculation:
+
+  HealingAmount = (Power + HealerMag) * Power / 2
+
+Power values of curative spells:
+
+  18  Cure
+  36  Cura
+  60  Curaga
+
+  Note: Curative spells are only affected by the Random Damage Modifier and
+        Shell
+
+===============================================================================
+5.  GF Mechanics
+===============================================================================
+
+Both junctionable and non-junctionable GFs use this GF damage formula:
+
+  Damage = LevelMod * Level / 10 + Power + PowerMod
+  Damage = Damage * (265 - TargetSpr) / 8
+  Damage = Damage * Power / 256
+  Damage = Damage * Boost / 100
+  Damage = Damage * (100 + SummonMagBonus) / 100
+
+  Notes:
+  Boost equals 100 if you don't have the "Boost" ability or you didn't try 
+  to boost the summon.
+  SummonMagBonus are the SumnMag+x% abilities, stacked additively 
+  (all four means SummonMagBonus = 100).
+
+LevelMod, Power and PowerMod are static values different for every GF.
+
+  GF           | Attack Name    | Power | PowerMod | LevelMod | Element
+  -------------|----------------|-------|----------|----------|--------
+  Quezacotl    | Thunder Storm  |    44 |        0 |       60 | Thunder
+  Shiva        | Diamond Dust   |    43 |        0 |       62 | Ice
+  Ifrit        | Hell Fire      |    45 |        2 |       61 | Fire
+  Siren        | Silent Voice   |    35 |        0 |       55 | -
+  Brothers     | Brotherly Love |    46 |        4 |       60 | Earth
+  Leviathan    | Tsunami        |    47 |       10 |       63 | Water
+  Pandemona    | Tornado Zone   |    46 |       14 |       65 | Wind
+  Alexander    | Holy Judgment  |    48 |       20 |       63 | Holy
+  Doomtrain    | Runaway Train  |    45 |       10 |       58 | Poison
+  Bahamut      | Mega Flare     |    55 |       30 |       70 | -
+  Tonberry     | Chef's Knife   |    60 |        4 |       45 | -
+  Eden         | Eternal Breath |    70 |      250 |      100 | -
+  -------------|----------------|-------|----------|----------|--------
+  Phoenix      | Rebirth Flame  |    30 |       50 |      254 | Fire
+  -------------|----------------|-------|----------|----------|--------
+  Gilgamesh    | Excaliber      |    50 |      100 |      100 | -
+  Gilgamesh    | Masamune       |   100 |      100 |      100 | -
+  -------------|----------------|-------|----------|----------|--------
+  Boko         | ChocoFire      |    40 |      100 |      100 | Fire
+  Boko         | ChocoFlare     |    60 |      100 |      100 | -
+  Boko         | ChocoMeteor    |    80 |      100 |      100 | -
+  Boko         | ChocoBocle     |   100 |      100 |      100 | -
+
+  Note: Eternal Breath's and ChocoBocle's damage cap is 60,000
+        Eternal Breath and Mega Flare also ignore enemy Spr
+
+==============
+5.1  Summoning
+==============
+
+The relevant variable for the summoning duration is Compability.
+However, the value you see in the GF menu is a converted value, to get the 
+real value (where ShownCompability is what you see in the menu):
+
+  Compability = 6000 - 5 * ShownCompability
+
+How long it takes to summon the GF is calculated with
+  
+  Duration = Compability * BattleSpeed * 0.9143 / 32
+
+Duration is decreased by SpeedMod every tick and when it reaches 0, 
+the GF is summoned.
+
+=====================
+5.2  Junctionable GFs
+=====================
+
+The GFs which don't follow the normal GF damage formula are covered here.
+Also, the damage calculated here is not further modified.
+
+--------------
+5.2.1  Diablos
+--------------
+
+Damage = TargetMaxHP * Level / 100
+
+Note: The damage cap of 9999 still applies.
+
+--------------
+5.2.2  Cactuar
+--------------
+
+Damage = Level * 100
+
+Note: Ignores damage cap.
+
+--------------------------
+5.2.3  Carbuncle, Cerberus
+--------------------------
+
+Carbuncle inflicts Reflect on the party.
+Cerberus inflicts Double and Triple on the party.
+
+=========================
+5.3  Non-Junctionable GFs
+=========================
+
+The level of all non-junctionable GFs (except for Boko) is the average level 
+of all junctionable GFs in your possession.
+
+-----------
+5.3.1  Odin
+-----------
+
+At the start of non-boss battle, there is a 33/256 or 12.9% chance that Odin
+will appear and use Zantetsuken to kill every enemy not immune to it.
+
+--------------
+5.3.2  Phoenix
+--------------
+
+Phoenix appears if you use the Phoenix Pinion item and the damage he does is
+calculated via the normal GF damage formula. Additionally, he revives every
+KO'd party member with 12.5% of their Max HP
+
+If you have already summoned Phoenix at least once and if the whole party is 
+KO'd, there is a 65/256 or 25.4% chance that Phoenix is summoned.
+
+----------------
+5.3.3  Gilgamesh
+----------------
+
+At the start of battle, there is a 9/256 or 3.5% chance that Gilgamesh will
+appear.
+
+After Dead Time timer is 0 (see Battle Timing section):
+  If (12 >= [0..255]) Gilgamesh will appear (13/256 or 5.1%)
+  else perform Angelo checks (see Rinoa's Limit Break section)
+
+If Gilgamesh will appear, either at the start of through the Dead Time check:
+
+Gilgamesh will use..
+  Excaliber   with a probability of 65/256 or 25.4%
+  Excalipoor  with a probability of 64/256 or 25%
+  Masamune    with a probability of 64/256 or 25%
+  Zantetsuken with a probability of 63/256 or 24.6%
+
+Excaliber and Masamune use the normal GF damage formula to inflict damage.
+Excalipoor ignores Spr of the target and does 1 damage.
+Zantetsuken kills every enemy not immune to it.
+
+Note: Gilgamesh can only be summoned once per battle.
+
+-------------
+5.3.4  Moomba
+-------------
+
+Moomba can only be summoned with the item Friendship got through the 
+Pocket Station-exclusive mini game Chocobo World
+
+  Damage = TargetHP - 1
+
+Note: The damage cap of 9999 still applies.
+
+----------
+5.3.5 Boko
+----------
+
+Boko can only be summoned with the item Gysahl Greens got through the 
+Pocket Station-exclusive mini game Chocobo World.
+
+All of his attacks use the GF damage formula and to get better attacks, you
+have to collect power ups in the Chocobo World.
+Unlike other non-junctionable GFs, the level he uses for damage calculation
+is his level in the Chocobo World.
+
+===============================================================================
+6.  Damage Modification
+===============================================================================
+
+The damage calculated with the base formulas is further adjusted through 
+various other things, except when stated otherwise.
+The order of modifications is in the order presented, the terms in parentheses
+are what type of damage that step refers to.
+
+---------------------------------
+6.1  Random Damage Modifier (all)
+---------------------------------
+
+  Damage = Damage * ([0..32] + 240) / 256 
+
+---------------------------------
+6.2  Damage Multiplier (Physical)
+---------------------------------
+  
+  Damage = Damage * 1.5    //Squall's and Seifer's Trigger 
+  Damage = Damage * 2      //Critical hit
+  Damage = Damage * 1.5    //Berserk 
+  Damage = Damage * 2      //Target is attacked from behind
+
+  Damage = Damage / 2      //Target has Protect status effect
+  Damage = Damage / 2      //Target is Undead or has Zombie status effect
+  Damage = 0               //Target has Invincibility or Defend status
+
+------------------------------------
+6.3  Elemental Properties (Physical)
+------------------------------------
+
+  Note: Skip this if ElemAttack is 0%
+
+  DamageBonus = Damage * ElemAtt * (800 - ElemDef) / 10000
+  Damage = Damage + DamageBonus
+  
+  Notes:
+  ElemAtt can be between 0(0%) and 100(100%).
+  ElemDef starts at 800 (0%), 900 is 100% defense and 1000 is 100% absorption.
+  If an enemy is shown to be weak against an element, his ElemDef is below 800.
+  A value higher than 800 means the enemy resists/absorbs the element.
+  If Damage becomes negative (due to high ElemDef), the target will be healed
+  by that amount.
+
+--------------------------------
+6.4  Damage Multiplier (Magical)
+--------------------------------
+  
+  Damage = Damage * 5      //Rinoa's Angel Wing Limit
+
+  Damage = Damage / 2      //if target has Shell status
+  Damage = Damage / 2      //if target has Defend status
+  Damage = 0               //if target has Invincibility status
+
+---------------------------------------
+6.5  Elemental Properties (Magical, GF)
+---------------------------------------
+
+  Note: Skip this if the spell or GF is non-elemental
+
+  Damage = Damage * (900 - ElemDef) / 100
+
+  Notes:
+  ElemDef starts at 800 (0%), 900 is 100% defense and 1000 is 100% absorption.
+  If an enemy is shown to be weak against an element, his ElemDef is below 800.
+  A value higher than 800 means the enemy resists/absorbs the element.
+  If Damage becomes negative (due to high ElemDef), the target will be healed
+  by that amount.
+
+===============================================================================
+7.  Other Battle Skills
+===============================================================================
+
+======================
+7.1  Command Abilities
+======================
+
+Command Abilities make up your command menu in battle, apart from GF and 
+Magic, there are several other skills and the ones with special mechanics
+will be covered here.
+
+-----------
+7.1.1  Draw
+-----------
+
+  DrawAmount = (DrawerLevel - TargetLevel) / 2 + 4
+  DrawAmount = (DrawAmount + DrawerMag - DrawResist + [1..32]) / 5
+
+DrawResist values:
+
+  0   Cure, Fire, Blizzard, Thunder
+  1   Scan
+  2   Sleep, Silence
+  11  Float
+  12  Blind
+  13  Berserk
+  15  Cura, Zombie
+  16  Fira, Blizzara, Thundara, Double, Esuna
+  17  Protect, Shell, Aero
+  18  Haste, Slow, Drain, Water
+  20  Life, Dispel
+  22  Bio
+  26  Confuse
+  28  Stop
+  39  Break
+  33  Firaga, Blizzaga, Thundaga
+  34  Curaga, Death
+  35  Reflect, Meltdown
+  36  Triple, Regen, Demi
+  38  Full-life, Quake
+  39  Tornado
+  40  Aura, Pain, Holy, Flare
+  42  Meteor
+  44  Ultima
+  46  Apocalypse
+
+Draw(Stock):
+
+  DrawAmount is how much you will draw of that spell.
+  If DrawAmount < 1, Draw command fails
+  If DrawAmount > 9, DrawAmount = 9
+
+Draw(Cast):
+
+  Step 1: 
+    If (DrawAmount < 1) cast fails
+    else:
+
+  Step 2: 
+    Use section 4.2 to calculate the damage
+
+  Step 3: 
+    Damage = Damage * ([0..255] + 10) / 150
+
+-----------
+7.1.2  Item
+-----------
+
+Flare Stone, Holy Stone, Meteor Stone, Ultima Stone, Protect Stone, 
+Shell Stone, Aura Stone and Death Stone work as if the user is casting 
+the respective spell.
+Hero-trial and Holy War-trial work, despite their descriptions, 100% of the
+time.
+
+-----------
+7.1.3  Card
+-----------
+
+The actual formula is a bit complicated:
+(Note: you must round down after the first step)
+
+  Card% = (256 * TargetMaxHP - 255 * TargetHP) / TargetMaxHP
+  Card% = (Card% + 1) / 256 * 100
+
+or simplified:
+
+  Card% = 100 * (TargetMaxHP - TargetHP) / TargetMaxHP
+
+Just keep in mind that an enemy with full HP still has a chance of 1/128 to
+be carded.
+
+If the Card command succeeds, there is a 17/256 or 6.6% chance that you'll
+receive the rare card instead.
+
+-------------
+7.1.4  Defend
+-------------
+
+The user is inflicted with the Defend status, see section 8.3 for more info.
+
+---------------
+7.1.5  Darkside
+---------------
+
+This command is treated as if the character was using the "Attack" command, 
+only that the damage will be multiplied by three and the user will take damage
+equal to 1/10th of his MaxHP.
+
+-------------
+7.1.6  Absorb
+-------------
+
+This command works almost the same as the spell Drain.
+While Drain has a Power of 26, Absorb's Power is 14.
+However, Absorb is not affected by Shell.
+
+---------------
+7.1.7  Kamikaze
+---------------
+
+Kamikaze is an auto-hit physical attack that removes the user from battle.
+The game treats the character as dead, so any GF junctioned will still 
+receive AP and EXP.
+
+  Damage = MaxHP * 6
+
+  Note: The damage cap is set to 60,000 and this attack can critical. 
+
+-------------
+7.1.8  Devour
+-------------
+
+  If TargetHP > AttackerHP, Devour fails
+    Devour% = 100 * (AttackerHP - TargetHP) / AttackerHP
+
+If the Devour failed, the target receives 8 damage.
+
+========================
+7.2  Character Abilities
+========================
+
+Character abilities are passive abilities, which are always activated.
+Like with the Command abilities, only some will be covered.
+
+----------
+7.2.1  Mug
+----------
+
+Mug is a normal physical attack that has the added effect of stealing items.
+
+  Mug% = (MugDifficulty + (MuggerSpd / 2) + 1) / 256 * 100
+
+MugDifficulty is different for every enemy, but will be 128 or higher most
+of the time (giving you a base Mug% of 50% or higher, which is further
+increased by your Spd) 
+If you successfully mug an enemy, the game decides which item slot's item 
+you get:
+
+  rnd = [0..255]
+  if (rnd < 178) Slot = 0
+    else if (rnd < 229) Slot = 1
+      else if (rnd < 244) Slot = 2
+        else Slot = 3
+
+  Probability of..
+    Slot 0           178/256    69.5%
+    Slot 1            51/256    20%
+    Slot 2            15/256     5.8%
+    Slot 3            12/256     4.7%
+
+Higher slots usually contain better/rarer items.
+If you have the Rare Item party ability, the probabilities are modified:
+
+  rnd = [0..255]
+  if (rnd < 128) Slot = 0
+    else if (rnd < 242) Slot = 1
+      else if (rnd < 261) Slot = 2
+        else Slot = 3
+
+  Probability of..
+    Slot 0           128/256    50%
+    Slot 1           114/256    44.5%
+    Slot 2            14/256     5.5%
+    Slot 3             0/256     0%
+
+Since you can never get values higher than 255 from the RNG, it's impossible
+to get Slot = 3 with Rare Item.
+
+Note: You can only steal once from an enemy and if you do so successfully, 
+      the enemy will not drop any items.
+
+--------------
+7.2.2  Counter
+--------------
+
+Character uses his normal attack if he/she is attacked by a physical attack, 
+though it doesn't matter if any damage is received or if it even hits.
+
+------------
+7.2.3  Cover
+------------
+
+If a party member is attacked by a physical attack that would otherwise kill
+him/her, the chracter with this ability will step in front that party member,
+taking the damage and halving it.
+
+Note: This will only work if the character with Cover is adjascent to the one
+      being attacked and if the attack is not multi target.
+
+------------------
+7.2.4  Auto-Potion
+------------------
+
+The character will use a healing item if the damage received from an attack
+is greater than 0.
+
+Items that can be used are:
+Potion, Potion+, Hi-Potion, Hi-Potion+ and X-Potion
+
+The item selected depends on their order in the normal item menu
+(not the battle menu).
+ 
+===============================================================================
+8.  Statuses
+===============================================================================
+
+This section covers the rate of status infliction as well as every status in 
+the game.
+
+Some status effects wear over time (Sleep, Haste etc), but how long it will
+takes depends on what you have set as Battle Speed:
+
+  Duration = BaseDuration * BattleSpeed
+
+where BaseDuration is different for each status effect and Duration is the
+actual duration. It decreases by SpeedMod ever 4th tick, so divide by 15
+to get the duration in seconds.
+
+I will provide the time value of the BaseDuration in this section.
+
+======================
+8.1  Status Infliction
+======================
+
+The calculation of the infliction rate of negative status effects depends on
+whether you use a physical attack or the status magic(or other magical attacks
+that inflict statuses) itself.
+
+Status Infliction for physical attacks:
+
+  If (StatusDefense >= 200) Target doesn't get the status
+
+    else: Infliction% = AttackerStr / 4 - TargetVit / 4 
+          Infliction% = Infliction% - StatusDefense + StatusAttack
+
+For magical attacks:
+
+  
+  If (StatusDefense >= 200) Target doesn't get the status
+
+    else: Infliction% = AttackerMag / 4 - TargetSpr / 4 
+          Infliction% = Infliction% - StatusDefense + 200
+
+StatusDefense and StatusAttack start at 100 (0%) and the cap is 200 (100%). 
+
+======================
+8.2  Positive Statuses
+======================
+
+Positive status effects generally provide you with some advantage.
+All positive status effects except for Invincibility can be negated with
+Dispel.
+
+-----
+Regen
+-----
+
+BaseDuration: 320
+Time: 21.3~ seconds
+
+Heals 5% MaxHP every (80 * BattleSpeed) ticks. In other words, it will heal 
+the target 16 times per cast and will recover 80% MaxHP total.
+
+-------
+Protect
+-------
+
+BaseDuration: 480
+Time: 32 seconds
+
+Halves physical damage.
+
+-----
+Shell
+-----
+
+BaseDuration: 480
+Time: 32 seconds
+
+Halves magical damage but also curative spells.
+
+-------
+Reflect
+-------
+
+BaseDuration: 480
+Time: 32 seconds
+
+Reflects single target magical spells back to the caster.
+
+----
+Aura
+----
+
+BaseDuration: 100
+Time: 6.6~ seconds
+
+Increases Limit Break rate (see section 9.1)
+
+------
+Double
+------
+
+Permanent (until end of battle)
+
+Allows the target to cast a spell twice in a row.
+
+------
+Triple
+------
+
+Permanent (until end of battle)
+
+Allows the target to cast a spell three times in a row.
+
+-----
+Haste
+-----
+
+BaseDuration: 480
+Time: 32 seconds
+
+Increases the rate with which the target's ATB gauge fills (see section 3.1), 
+but also shortens the time positive effects last.
+
+-----
+Float
+-----
+
+BaseDuration: 176
+Time: 11.73~ seconds
+
+Makes the target immune against Earth-elemental attacks.
+
+------
+Defend
+------
+
+Effect lasts until the target selects another action
+
+Physical damage is nullified, magical damage is halved.
+Also, if the user is attacked by a physical attack that could inflict a 
+negative status, the status won't ever be inflicted.
+
+-------------
+Invincibility
+-------------
+
+BaseDuration: 360
+Time: 24 seconds
+
+Makes the target immune against most types of damage and status effects, 
+both negative and positive and nullifies negative status effects.
+However, curative spells and items still work.
+
+Also, the target still takes damage from Poison and the "Darkside" command.
+
+======================
+8.2  Negative Statuses
+======================
+
+Negative status effect generally put you at a disadvantage but some are also
+useful if you want to increase your Crisis Level (see section 9.1)
+
+----
+Slow
+----
+
+BaseDuration: 100
+Time: 6.6~ seconds
+
+Decreases the rate with which the target's ATB gauge fills (see section 3.1), 
+but also lengthens the time positive effects last.
+
+----
+Stop
+----
+
+BaseDuration: 200
+Time: 13.3~ seconds
+
+Nullifies Slow/Haste and stops every other status effect timer.
+Also, the target's ATB bar stops filling.
+
+Note: Target can't avoid attacks while Stopped.
+
+------
+Poison
+------
+
+Permanent
+
+The target takes damage after every action.
+
+  Damage = [5..7] * MaxHP / 100
+
+-----
+Blind
+-----
+
+Permanent
+
+The target's Hit% decreases by 75%.
+Note that characters with a base Hit% of 255 skip the Hit Determination and
+therefore are not affected by Blind.
+
+-------
+Confuse
+-------
+
+Permanent (until end of battle)
+
+This status is nullified if the character receives physical damage.
+Confuse causes the character to select a random command and uses it on either
+allies or enemies.
+
+Step 1: 
+  Randomly select one of the four commands a character has.
+  If selected command is neither "Attack", "Mug", "Magic" nor "Item", the 
+  selection defaults to "Attack"/"Mug"
+
+Step 2:
+  If either "Magic" or "Item" are selected, the game proceeds to select a
+  spell/item from the list of available spells/items randomly.
+
+Step 3:
+  The game decides which target group(allies or enemies) should be selected
+  with both groups having a 50% chance.
+
+  Note: If the selected action only has one target group (e.g. "Hero" item),
+        that group will always be selected.
+
+Step 4:
+  A random target from the target group is selected if the attack is 
+  single-target.
+
+-----
+Sleep
+-----
+
+BaseDuration: 200
+Time: 13.3~ seconds
+
+The target's ATB gauge stops filling, and all other status effect timers 
+are stopped.
+
+If the target is attacked by a physical attack, whether it hits or not, 
+this status is nullified.
+
+Note: The target's Evasion is not reduced.
+
+-------
+Silence
+-------
+
+Permanent
+
+Target can't use the "Magic", "GF" and "Draw" commands.
+
+-------
+Petrify
+-------
+
+Permanent
+
+Target is marked as dead. 
+
+------------
+Slow Petrify
+------------
+
+BaseDuration: 200
+Time: 13.3~ seconds
+
+After the timer for this status effect reaches 0, the target is inflicted with
+the Petrify status.
+
+-----
+Death
+-----
+
+Target is marked as dead, HP are reduced to 0.
+
+----
+Doom
+----
+
+BaseDuration: 240
+Time: 16 seconds
+
+After the timer for this status effect reaches 0, the the target is marked as
+dead and will have its HP reduced to 0.
+
+--------------
+Drain / Absorb
+--------------
+
+Not really a status effect. Drain/Absorb allows the caster to magically damage
+an enemy and receive the damage dealt as HP.
+If the target is immune to Drain, it will still take damage, but the caster
+won't heal.
+
+-------
+Berserk
+-------
+
+Permanent (until end of battle)
+
+The target will randomly use one of the four "Berserk-attacks" it has.
+Most enemies and all allies have four of the same attack, so you won't 
+notice a difference.
+The enemy/ally under this effect will randomly target someone from the
+opposite target group.
+
+Note: Damage dealt is increased by 50%.
+
+------
+Zombie
+------
+
+Permanent
+
+Healing for the target under this effect will be reversed. I.e., Potions and
+curative spells deal damage.
+Drain/Absorb will also deal damage to the caster unless the target of the spell
+is considered Undead or under the Zombie status itself.
+
+The target will also gain an immunity to Death and Doom and has its ElemDef
+for the Holy element set to 700, which means double damage.
+Additionally, all physical damage the target receives is halved.
+
+Note: Undead enemies are considered to be always under the Zombie effect, even
+      if it's not shown, so all of the above applies to them. 
+      Also, targets under the Zombie status do not deal more damage.
+
+-----
+Curse
+-----
+
+BaseDuration: 320
+Time: 21.3~ seconds
+
+Target will not be able to use Limit Breaks.
+
+----
+Vit0
+----
+
+Permanent (until end of battle)
+
+Target has its Vit and Spr reduced to 0.
+
+===============================================================================
+9.  Limit Break Mechanics
+===============================================================================
+
+This section covers everything related to everyone's Limits.
+It should be noted that a Limit Break move will never miss and is not
+affected by whatever you have junctioned to ElemAtt.
+
+=================
+9.1  Crisis Level
+=================
+
+Before we can determine what Crisis Level(or CL for short) the character is 
+at, we have to calculate what I call "LimitLevel"
+
+  HPMod = 2500 * CurrentHP / MaxHP
+  DeathBonus = DeadCharacters * 200 + 1600
+  StatusBonus = StatusSum * 10
+  RandomMod = [0..255] + 160
+
+  LimitLevel = (StatusBonus + DeathBonus - HPMod) / RandomMod
+
+  If (LimitLevel > 4) Limit Break can be used.
+
+Seifer uses a different HPMod:
+
+  HPMod = 1000 * CurrentHP / MaxHP
+
+Each status effect has a certain value. 
+The StatusSum variable is the sum of all statuses in effect.
+
+  200 Aura
+  15  Slow
+  30  Poison
+  30  Blind
+  30  Silence
+  30  Slow Petrify
+  45  Doom
+  0   Everything else
+   
+  E.g. If a character has Aura, Blind and Silence, StatusSum would be 260.
+
+LimitLevel to Crisis Level conversion:
+
+  LimitLevel  | Crisis Level
+  ------------|-------------
+  4 or lower  | 0
+  5           | 1
+  6           | 2
+  7           | 3
+  8 or higher | 4
+
+A higher Crisis Level means that the character's Limit Break is, in some 
+way, enhanced. You need at least Crisis Level 1 to be able to use a 
+Limit Break.
+
+-You need 11.2% HP with Aura to reach Crisis Level 4 100% of the time. 
+-51.84% HP to reach it 50% of the time
+-Without Aura and with 10% HP, there's a 3% chance to get Crisis Level 4.
+
+===========
+9.2  Squall
+===========
+
+The Crisis Level affects how many Renzokuken hits Squall performs and 
+increases the chance to perform a Finisher.
+
+  CL | # of Renzokuken hits
+  ---|---------------------
+   1 |          4
+   2 |          5
+   3 |          6
+   4 |          7
+
+There is a 50% probability that the amount of Renzokuken hits is increased by
+one, making the maximum possible amount 8.
+If the enemy has a special Renzokuken sequence, like Bahamut or Ultima Weapon,
+that amount of hits will always be performed instead.
+
+After Squall does his Renzokuken sequence, there's a chance he'll 
+perform a Finisher:
+
+  Finisher% = (CL * 60 + 1) / 256 * 100
+
+So, there's a (CrisisLevel * ~23.4%) chance that a Finisher is performed.
+
+Which Finisher is performed depends on which Squall has:
+
+  If he only has Rough Divide
+    100%  Rough Divide 
+
+  If he has Rough Divide and Fated Circle
+    25%   Rough Divide
+    75%   Fated Circle
+
+  If he has Rough Divide, Fated Circle and Blasting Zone
+    25%   Rough Divide
+    25%   Fated Circle
+    50%   Blasting Zone
+
+  If he has Rough Divide, Fated Circle, Blasting Zone and Lion Heart
+    25%   Rough Divide
+    25%   Fated Circle
+    25%   Blasting Zone
+    25%   Lion Heart
+
+All of Squall's Finishers are considered physical and can critical depending 
+on his Luck.
+You can use Trigger with the normal Renzokuken hits, they can't critical 
+themselves.
+
+His attacks and their Power values:
+  
+  Attack       | Power | Notes
+  -------------|-------|-----------------------------------------
+  Renzokuken   |    22 | his normal Renzokuken hit, single target
+  Rough Divide |    48 | one target
+  Fated Circle |    40 | all targets
+  Blasing Zone |    44 | all targets
+  Lion Heart   |   100 | one target, 17 hits
+
+=========
+9.3  Zell
+=========
+
+The time Zell gets to input button combinations in his Duel Limit Break 
+depending on what Crisis Level he has.
+
+  CL | Duel Time
+  ---|----------
+   1 |   4.66 s
+   2 |   6.66 s
+   3 |   9.33 s
+   4 |   12   s
+
+His attacks and their Power values:
+
+  Attack          | Power | Notes
+  ----------------|-------|---------------
+  Punch Rush      |    16 |  
+  Booya           |    18 |
+  Heel Drop       |    20 |
+  Mach Kick       |    24 |
+  Dolphin Blow    |    28 | 
+  Meteor Strike   |     - | Gravity damage
+  ----------------|-------|---------------
+  Burning Rave    |    48 | all targets
+  Meteor Barret   |    52 | one target
+  Different Beat  |    72 | one target
+  My Final Heaven |    50 | all targets
+
+  Note: All attacks are considered physical.
+        Meteor Strike's damage is TargetHP / 4, however, it's still considered
+        a physical attack, i.e. it's halved by Protect but can also critical.
+
+===========
+9.4  Irvine
+===========
+
+Like Zell's Limit, Irvine's Shoot's time is extended depending on what Crisis
+Level he has. 
+
+  CL | Shoot Time
+  ---|-----------
+   1 |   8    s
+   2 |   12   s
+   3 |   20   s
+   4 |   26.6 s
+
+Additionally, all shots he makes have increased Critical%:
+
+  Critical% = (Luck + 26) / 256 * 100
+
+His attacks and their Power values:
+
+  Attack          | Power | Notes
+  ----------------|-------|------------------------------
+  Normal Shot     |    16 |  
+  Scatter Shot    |    14 | hits all
+  Dark Shot       |    14 | can inflict negative statuses
+  Flame Shot      |    40 | hits all, fire elemental
+  Canister Shot   |    60 | 
+  Quick Shot      |     7 |
+  Armor Shot      |    80 | ignores Vit
+  Hyper Shot      |   120 |
+
+  Note: All of his attacks are physical.
+        Dark Shot can inflict Poison, Blind, Silence, Sleep or Slow.
+        The game assumes that Irvine has 100% for each status effect and it
+        uses the physical infliction formula (section 8.1)
+
+============
+9.5  Quistis
+============
+
+Quistis' Blue Magic powers up depending on what her Crisis Level is.
+
+All her skills which inflict normal damage and their Power values:
+
+  Attack           | CL1 | CL2 | CL3 | CL4 | Element  | Target(s)
+  -----------------|-----|-----|-----|-----|----------|----------
+  Laser Eye        |  40 |  48 |  58 |  64 | -        | one
+  Ultra Waves      |  27 |  33 |  40 |  48 | -        | all 
+  Electrocute      |  30 |  36 |  44 |  50 | Lighting | all
+  Aqua Breath      |  50 |  70 |  80 | 100 | Water    | all
+  Acid             |  30 |  38 |  44 |  52 | -        | all
+  Gatling Gun      |  60 |  80 | 100 | 120 | -        | one
+  Fire Breath      |  70 |  90 | 100 | 120 | Fire     | all
+  Homing laser     | 100 | 150 | 200 | 250 | -        | one
+  Ray-Bomb         |  80 |  90 | 100 | 110 | -        | all
+  Shockwave Pulsar | 150 | 200 | 200 | 250 | -        | all
+
+  Note: Shockwave Pulsar has a  damage cap of 60,000
+        Gatling Gun is physical, everything else is magical
+
+Acid may also inflict status effects depending on the Crisis Level:
+
+  CL1: Poison
+  CL2: Poison, Darkness
+  CL3: Poison, Darkness, Silence, Vit0
+  CL4: Poison, Darkness, Silence, Vit0, Petrify
+
+Her other Blue Magics:
+
+  LV? Death (all)
+    CL1: Casts Death on enemies whose level is a multiple of 4
+    CL2: Casts Death on enemies whose level is a multiple of 3
+    CL3: Casts Death on enemies whose level is a multiple of 2
+    CL4: Casts Death on enemies whose level is a multiple of 1
+
+  Degenerator (one)
+    Kills any enemy not immune to it.
+
+  Micro Missle (one), gravity damage
+    CL1: 50% HP
+    CL2: 75% HP
+    CL3: 87.5% HP
+    CL4: 93.75% HP   
+
+  Bad Breath (all), inflicts status effects
+    CL1: Poison, Darkness, Silence, Sleep, Slow, Confuse
+    CL2: Poison, Darkness, Silence, Sleep, Slow, Confuse, Berserk, Stop, 
+         Slow Petrify
+    CL3: Poison, Darkness, Silence, Sleep, Slow, Confuse, Berserk, Stop,
+         Slow Petrify, Petrify, Zombie
+    CL4: Poison, Darkness, Silence, Sleep, Slow, Confuse, Berserk, Stop,
+         Slow Petrify, Petrify, Zombie, Vit0, Doom, Death
+
+  White Wind (all allies), heals HP
+    HealingAmount = QuistisMaxHP - CurrentHP
+
+  Mighty Guard (all allies), inflicts status effects
+    CL1: Protect, Shell
+    CL2: Protect, Shell, Regen, Haste, Float
+    CL3: Protect, Shell, Regen, Haste, Float, Aura
+    CL4: Protect, Shell, Regen, Haste, Float, Aura
+
+==========
+9.6  Rinoa
+==========
+
+Rinoa has technically three sections: Angelo, Angel Wing and her 
+other skills (Angelo Rush, Angelo Search etc), two of which will be covered
+here.
+
+--------------------------
+9.6.1  Angelo Limit Breaks
+--------------------------
+
+Rinoa has four Limit Breaks which can be used by selecting Angelo>Combine.
+However, what attack is performed depends on your Crisis Level.
+
+  CL | Attack          | Power | Notes
+  ---|-----------------|-------|---------------------------------------------
+   1 | Angelo Cannon   |    72 | one target, physical damage
+   2 | Angelo Strike   |   120 | one target, physical damage
+   3 | Invincible Moon |     - | Invincibility status on all allies
+   4 | Wishing Star    |   130 | hits 8 times, random targets, magical damage
+
+If you get a certain CL but the attack in this slot is not learned, it 
+selects the attack in the next highest slot (=of a lower CL). 
+
+--------------------------
+9.6.2  Other Angelo Skills
+--------------------------
+
+First, if Rinoa is hit by the enemy, there's a chance that Angelo Rush or
+Angelo Recover will activate:
+
+  if (16 >= [0..255]) Angelo Recover is used on Rinoa (6.6%)
+    else if (16 >= [0..255]) Angelo Rush is used (6.2%)
+
+If Angelo Recover is not learned, it's skipped.
+
+Here's what each of her skills do:
+  
+  Skill          | Power | Notes
+  ---------------|-------|--------------------------------------------------
+  Angelo Rush    |    32 | handled as if a normal physical attack from Rinoa
+  Angelo Recover |     - | heals 62.5% HP
+  Angelo Reverse |     - | Restores a KO'd party member with 12.5% HP
+  Angelo Search  |     - | Searches items
+
+As mentioned in the Battle Timing section, after the Dead Time timer 
+reaches 0 (after 13.3~ seconds), several checks are performed:
+
+  if (12 >= [0..255]) Gilgamesh is summoned (5.1%)
+    else if (8 >= [0..255] Angelo Recover is used (3.3%)
+      else if (2 >= [0..255] Angelo Reverse is used (1%)
+        else if (8 >= [0..255] Angelo Search is used (3.2%)
+
+If you don't have one of the skills, its check is skipped.
+Angelo Recover and Angelo Reverse can only be checked/used if their conditions
+are met:
+  
+  Angelo Recover will only be checked if there's an ally with less than 25% 
+  of their MaxHP
+  Angelo Reverse will only be checked if there's a KO'd ally.
+
+--------------------
+9.6.3  Angelo Search
+--------------------
+
+If the game determined that Angelo Search will be used, it must first be 
+decided what algorithm should be used to calculate the item gotten from the
+search. That's where the Global Counter comes into play.
+
+  rnd = (value of Global Counter) MOD 256
+
+  (You could see rnd as "[0..255]" which doesn't use the RNG.)
+
+  if (rnd < 128) Algorithm_1
+    else if (rnd < 160) Algorithm_2
+      else if (rnd < 176) Algorithm_3
+        else if (rnd < 192) Algorithm_4
+          else if (rnd < 200) Algorithm_5
+            else Algorithm_6
+
+  Probability of..
+    Algorithm_1     128/256    50%
+    Algorithm_2      32/256    12.5%
+    Algorithm_3      16/256     6.2%
+    Algorithm_4      16/256     6.2%
+    Algorithm_5       8/256     3.1%
+    Algorithm_6      56/256    22%
+
+I should probably mention that I changed the formulas a bit so they're easier
+to read. 
+If the 0 from [0..255] would ever be selected, it bypasses the
+"if ItemID == 0, set ItemID to x", so I included a note.
+
+  Algorithm_1:
+    ItemID = [0..255] MOD 8 + 1
+
+  Algorithm_2:
+    ItemID = [0..255] MOD 98
+      if ItemID == 0, set ItemID to 98
+    ItemID = ItemID + 101
+
+    Note: There would be a 1/256 chance that ItemID == 101
+
+  Algorithm_3:
+    ItemID = [0..255] MOD 23  
+      if ItemID == 0, set ItemID to 23
+    ItemID = ItemID + 101 
+
+    Note: There would be a 1/256 chance that ItemID == 101
+
+  Algorithm_4: 
+    ItemID = [0..255] MOD 34
+      if ItemID == 0, set ItemID to 34
+    ItemID = ItemID + 66
+
+    Note: There would be a 1/256 chance that ItemID == 66
+
+  Algorithm_5:
+    ItemID = [0..255] MOD 32 + 33
+
+  Algorithm_6:
+    ItemID = [0..255] MOD 7 + 33
+
+    Note: There would be a 1/256 chance that ItemID == 33
+
+ItemID would be the ID of the item you get.
+
+Now, let me tell you why bothering with these algorithms is a waste of time.
+As I mentioned in section 2, the RNG is a simple, static list of integers.
+This means, for example, that after "5", there's always a "255".
+For Angelo Search to occur, a number less than 9, so 0-8, is needed. The 
+problem is that the game would always select the next number to be the input
+for "[0..255]", so it's predictable and not random at all.
+In other words, you always get the same thing from the same algorithm.
+
+Here's what values follow the ones that trigger Angelo Search:
+
+  "Random" Value | Value after that | Index of the value
+  ---------------|------------------|-------------------
+         6       |       240        |          1
+         1       |       193        |          7
+         2       |        23        |         47
+         8       |        86        |        129
+         0       |        59        |        163
+         4       |       224        |        184
+         3       |       152        |        227
+         7       |       244        |        230
+         5       |       255        |        250
+
+The only somewhat random thing would be the selection of the algorithm.
+With that, it's possible to compile a list of items that can be gotten:
+
+
+  Input value | Algorithm_1     | Algorithm_2     | Algorithm_3     
+  ------------|-----------------|-----------------|-----------------
+       240    | Potion          | North Wind      | Hero            
+       193    | Potion+         | Occult Fan II   | Hero-Trial      
+        23    | Mega Phoenix    | Sleep Powder    | Elixir          
+        86    | Phoenix Down    | Combat King 004 | Holy Stone      
+        59    | Hi-Potion+      | Cactus Thorn    | Shell Stone     
+       224    | Potion          | Curse Spike     | Holy Stone      
+       152    | Potion          | Dragon Fin      | Protect Stone   
+       244    | X-Potion        | Steel Orb       | Protect Stone   
+       255    | Mega Phoenix    | Cactus Thorn    | Antidote        
+  ------------|-----------------|-----------------|-----------------
+  Input value | Algorithm_4     | Algorithm_5     | Algorithm_6   
+  ------------|-----------------|-----------------|-----------------
+       240    | Energy Crystal  | Aegis Amulet    | Cottage
+       193    | Jet Engine      | Pet House       | G-Hi-Potion
+        23    | Jet Engine      | GF Scroll       | Cottage
+        86    | Force Armlet    | Magic Scroll    | Cottage
+        59    | Moon Curtain    | Healing Ring    | G-Potion
+       224    | Circlet         | Tent            | Tent
+       152    | Adamantine      | Draw Scroll     | G-Mega-Potion
+       244    | Gold Armor      | Status Guard    | G-Returner
+       255    | Rune Armlet     | Hungry Cookpot  | G-Potion
+
+For more info on this and how to exploit the RNG in this case, refer to the
+Angelo Search Limit Break FAQ by DarkLordOfTheSith.
+
+============
+9.7  Selphie
+============
+
+Selphie's Tombola has access to several spell sets from which a random spell
+is selected. The higher Selphie's level and Crisis Level is, the better spell
+sets she can select from.
+
+The first step is to calculate her "TombolaLevel":
+
+  TombolaLevel = Level / 10 + Crisis Level + [0..4] - 1
+
+While you can influence the TombolaLevel via her level and her Crisis Level,
+the next step, TombolaMod, is purely random:
+  
+  rnd = [0..255]
+
+  if (rnd >= 249) TombolaMod = 4
+    else if (rnd >= 209) TombolaMod = 3
+      else if (rnd >= 159) TombolaMod = 2
+        else if (rnd >= 39) TombolaMod = 1
+          else TombolaMod = 0
+
+  Probability of..
+    TombolaMod 0      39/256    15.2%
+    TombolaMod 1     120/256    47.9%
+    TombolaMod 2      50/256    19.5%
+    TombolaMod 3      40/256    15.6%
+    TombolaMod 4       7/256     2.7%
+
+  SpellSet# = TombolaMod * 12 + TombolaLevel
+
+There's a list in the game which determines what SpellSet you get, depending
+on what the value of SpellSet# is.
+
+        |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 |
+  ------|----|----|----|----|----|----|----|----|----|----|
+  00-09 |  0 |  0 |  0 |  0 |  0 |  0 |  0 |  0 |  0 |  0 |
+  10-19 |  1 |  1 |  0 |  0 |  0 |  0 |  0 |  1 |  1 |  2 |
+  20-29 |  2 |  2 |  3 |  4 |  9 |  9 |  9 | 10 | 10 | 11 |
+  30-39 | 11 | 12 | 12 | 13 | 13 | 14 |  0 |  0 |  1 |  1 |
+  40-49 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  0 |  1 |
+  50-59 |  2 | 15 |  3 |  4 |  5 |  6 |  7 |  8 |  8 | 15 |
+  60-65 |  1 |  2 |  4 |  2 |  7 |  2 |	
+
+  E.g., SpellSet# = 35 would get you Set 14
+
+As for what each set contains:
+
+  |---------------|---------------|---------------|---------------|     
+  |     Set 0     |     Set 1     |     Set 2     |     Set 3     |
+  |---------------|---------------|---------------|---------------|
+  | 2 | Fire      | 2 | Fira      | 2 | Firaga    | 3 | Water     |
+  | 2 | Blizzard  | 2 | Blizzara  | 2 | Blizzaga  | 3 | Aero      |
+  | 2 | Thunder   | 2 | Thundara  | 2 | Thundaga  | 2 | Bio       |
+  | 2 | Cure      | 1 | Cura      | 1 | Curaga    | 1 | Full-cure |
+  | 3 | Fire      | 3 | Cura      | 3 | Firaga    | 3 | Firaga    |
+  | 3 | Blizzard  | 3 | Blizzara  | 3 | Blizzaga  | 3 | Blizzaga  |
+  | 3 | Thunder   | 3 | Thundara  | 3 | Thundaga  | 3 | Thundaga  |
+  | 1 | Full-cure | 1 | Full-cure | 1 | Wall      | 1 | Rapture   |
+  |---------------|---------------|---------------|---------------|
+  |     Set 4     |     Set 5     |     Set 6     |     Set 7     |
+  |---------------|---------------|---------------|---------------|
+  | 3 | Water     | 3 | Bio       | 3 | Demi      | 3 | Holy      |
+  | 3 | Aero      | 3 | Demi      | 3 | Holy      | 3 | Flare     |
+  | 3 | Bio       | 2 | Holy      | 2 | Flare     | 1 | Meteor    |
+  | 3 | Demi      | 2 | Flare     | 1 | Meteor    | 2 | Quake     |
+  | 2 | Holy      | 2 | Meteor    | 1 | Quake     | 1 | Tornado   |
+  | 2 | Flare     | 1 | Quake     | 1 | Tornado   | 2 | Ultima    |
+  | 1 | Quake     | 1 | Tornado   | 1 | Ultima    | 1 | Rapture   |
+  | 1 | Rapture   | 1 | Rapture   | 1 | Rapture   | 2 | Tornado   |
+  |---------------|---------------|---------------|---------------|
+  |     Set 8     |     Set 9     |     Set 10    |     Set 11    |
+  |---------------|---------------|---------------|---------------|
+  | 2 | Meteor    | 3 | Blind     | 3 | Protect   | 3 | Break     |
+  | 3 | Holy      | 3 | Sleep     | 3 | Aura      | 3 | Float     |
+  | 1 | Ultima    | 3 | Silence   | 3 | Haste     | 3 | Regen     |
+  | 2 | Ultima    | 3 | Esuna     | 3 | Drain     | 3 | Protect   |
+  | 1 | Ultima    | 3 | Blind     | 3 | Blind     | 3 | Aura      |
+  | 2 | Ultima    | 3 | Sleep     | 3 | Sleep     | 3 | Haste     |
+  | 2 | Ultima    | 3 | Silence   | 3 | Silence   | 2 | Drain     |
+  | 2 | Ultima    | 1 | Full-cure | 1 | Full-cure | 1 | Wall      |
+  |---------------|---------------|---------------|---------------|
+  |     Set 12    |     Set 13    |     Set 14    |     Set 15    |
+  |---------------|---------------|---------------|---------------|
+  | 3 | Dispel    | 3 | Death     | 3 | Berserk   | 3 | Holy      |
+  | 3 | Shell     | 3 | Pain      | 3 | Death     | 2 | Meteor    |
+  | 3 | Double    | 3 | Stop      | 3 | Pain      | 1 | Ultima    |
+  | 3 | Slow      | 3 | Dispel    | 3 | Zombie    | 2 | Ultima    |
+  | 3 | Break     | 3 | Shell     | 3 | Meltdown  | 3 | Meteor    |
+  | 3 | Confuse   | 3 | Double    | 3 | Curaga    | 2 | Ultima    |
+  | 3 | Curaga    | 3 | Slow      | 3 | Reflect   | 3 | Ultima    |
+  | 1 | Wall      | 1 | Rapture   | 3 | Triple    | 1 | The End   |
+  |---------------|---------------|---------------|---------------|
+
+After the set is selected, the game randomly picks one spell from the
+set, which is what Selphie will be able to cast.
+The numbers next to the spells are the maximum amount of casts. The actual
+amount of casts is simply
+ 
+  Casts = [1..MaxAmount]
+
+If you select "do over", the whole process is repeated from the beginning, 
+with your old CL.
+
+There are some unique spells in the tombola:
+
+  Spell     | Effect
+  ----------|----------------------------------------
+  Full-cure | Heals all allies fully
+  Wall      | Protect + Shell for all allies
+  Rapture   | All enemies not immune to it are killed
+  The End   | All enemies except Undead are killed
+
+======================================
+9.8  Seifer, Edea, Laguna, Kiros, Ward
+======================================
+
+All of the temporary characters only have their Limit attack. Unlike
+the permanent characters, their Limits are not influenced by the Crisis Level.
+
+  Limit Break | Attack         | Power | Notes, targets
+  ------------|----------------|-------|----------------------
+  Fire Cross  | No Mercy       |   80  | physical, all
+  Sorcery     | Ice Strike     |  120  | magical, one 
+  Limit       | Desperado      |  140  | physical, all
+  Limit       | Blood Pain     |   25  | physical, 6 hits, one
+  Limit       | Massive Anchor |  150  | physical, one
+
+It's worth noting that Seifer's normal attack works like Squall's; he can't
+critical based on Luck (his Limit can) and instead uses his Trigger to 
+increase damage.
+Also, as seen in the Crisis Level section, it's easier for him to be able
+to use his Limit.
+
+===============================================================================
+10.  Encounter Mechanics
+===============================================================================
+
+This section covers various aspects of encounters, such as how the game
+determines when a battle occurs or what the chances for item/card drops are.
+
+----------------------------
+10.1  Encounters (World Map)
+----------------------------
+
+Every 51 steps you take(which is just one step visually), the game performs 
+a check that decides whether a battle starts or not. 
+There is a variable which increases by 3 each time the check is 
+performed(walking diagonally and down/uphill increases it by 4).
+If that variable + LocationMod is greater than [0..255], a battle is started.
+
+LocationMod
+  12  party is in a forest
+ 128  party is on Island closest to Hell/Heaven
+   2  anywhere else
+
+
+With the party ability "Enc-Half", the check is performed every 198 steps, 
+meaning that the Encounter rate is ~1/4 instead of just 1/2.
+
+If the ability "Enc-None" is equipped, the check is skipped completely.
+
+-------------------------------
+10.2  Back Attack, Struck First
+-------------------------------
+
+To determine whether you get an advantage/disadvantage over the enemy:
+
+  rnd = [0..255] + EncounterMod
+  if (rnd < 20) "Back attack!"
+    else if (rnd < 236) no change
+      else "Struck first!"
+
+  Note: EncounterMod can be either 0 or 20, depending on the enemies.
+
+  Probability of..
+    "Back attack!"    20/256 or  0/256    7.8% or  0%
+    no change             216/256            84.3%
+    "Struck first!"   20/256 or 40/256    7.8% or 15.6%
+
+  Note: Equipping the "Alert" party ability reduces "rnd" by 20, essentially
+        increasing the odds of "Back attack!" and decreasing odds of 
+        "Struck first!"
+
+Back attack:
+All allies will start with 100% of the ATB bar filled.
+Enemies start with 0% of the ATB bar filled.
+
+Struck first:
+All allies will start with 0% of the ATB bar filled.
+Enemies start with 100% of the ATB bar filled.
+
+No change:
+All enemies' and allies' starting ATB bar calculated normally, see section 3.1
+for more details.
+
+After this, the game checks if Odin/Gilgamesh should be summoned (section 5.3)
+
+------------------
+10.3  Running away
+------------------
+
+Pressing and holding the L2 and R2 buttons causes all party members to run
+away. Every second or so, the game will check if [0..255] is less than
+the "running difficulty" (provided you're holidng L2 and R2). 
+If that is the case, you'll run away.
+The running difficulty depends on each encounter, usually being 255 or 128.
+Bosses always have a running difficulty of 0, meaning you can't ever escape.
+
+By running away, you don't get any AP and only partial EXP.
+E.g. Damaging the enemy for 10% of it's max HP would mean you'd get 10% of the
+EXP the enemy would've normally dropped.
+
+----------------------
+10.4  After the battle
+----------------------
+
+After successfully defeating all enemies, the game first checks if their card,
+if they have one, is dropped. the chance for that is 9/256 or 3.5%
+
+The calculation for item drops is similar to mugging and is also affected by
+the "Rare item" party ability. In short, the probabilites are:
+
+  Slot              |    0    |    1    |    2    |    3
+  ------------------|---------|---------|---------|--------
+  Without Rare Item | 178/256 |  51/256 |  15/256 |  12/256
+  ------------------|---------|---------|---------|--------
+  With Rare Item    | 128/256 | 114/256 |  14/256 |   0/256
+
+Check section 7.2.1 for more details.
+Instead of a MuggingDifficulty, there's DropDifficulty which is not 
+necessarily the same value. A value of 255 would mean that an item is always
+dropped.
+
+===============================================================================
+                             Revision History
+===============================================================================
+
+04/13/10 - Corrected the GF damage formula and Curse duration.
+
+===============================================================================
+                                 Credits
+===============================================================================
+
+I would like to thank the following people:
+
+- CzarDragon for compiling various documents which helped me to figure out some
+  things faster
+- Everyone at the FF8 Message Boards, especially Vilurum and phiefer3

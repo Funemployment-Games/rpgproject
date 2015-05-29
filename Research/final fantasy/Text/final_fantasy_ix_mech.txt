@@ -1,0 +1,2196 @@
+-------------------------------------------------------------------------------
+Game:           Final Fantasy IX
+Guide Type:     Battle Mechanics
+Platform:       Playstation
+Version:        0.91, 18th January 2011
+Author:         Richard Bishop (rebirth flame 2002)
+Copyrighted to: (c) Richard Bishop - All rights reserved
+-------------------------------------------------------------------------------
+
+LEGAL DISCLAIMER:
+This may be not be reproduced under any circumstances except for personal, 
+private use. It may not be placed on any web site or otherwise distributed 
+publicly without advance written permission. Use of this guide on any other 
+web site or as a part of any public display is strictly prohibited, and a 
+violation of copyright.
+
+
+===============================================================================
+                               INTRODUCTION
+===============================================================================
+This FAQ explains most aspects of the battle system used in Final Fantasy IX.
+The information in this guide was got through hours of in-game testing or from
+people who hacked the information from the game itself.
+
+===============================================================================
+                             TABLE OF CONTENTS
+===============================================================================
+
+ATB                [1.0]        Black Magic       [10.0]
+Running Away       [2.0]        Status Effects    [11.0]
+Attack Command     [3.0]        White Magic       [12.0]
+Damage Alterations [4.0]        Summon Magic      [13.0]
+Trance             [5.0]        Blue Magic        [14.0]
+Steal              [6.0]        Dragon            [15.0]
+Skills             [7.0]        Flair             [16.0]
+Sword Arts         [8.0]        Support Abilities [17.0]
+Sword Magic        [9.0]
+
+
+===============================================================================
+[1.0]                                ATB
+===============================================================================
+The ATB bar is what determines how quick a character can act. The rate the
+ATB bar fills is affected by Battle Speed and Status (slow, normal, Haste).
+
+=======
+ATB Bar
+=======
+Although nothing changes visually, the length of a character's ATB bar is
+equal to:
+
+ Length = ((60 - Spd) * 160)
+
+Every tick, the bar is increased by the following:
+
+  +8  (slowest Battle Speed)
+  +10 (medium Battle Speed)
+  +14 (fastest Battle Speed)
+
+Slow has the effect of reducing the rate the ATB bar increases by 1/3. This
+means under Slow, the ATB bar fills by the following every tick:
+
+   +5 (slowest Battle Speed)
+   +6 (medium Battle Speed)
+   +9 (fastest Battle Speed)
+
+Haste has the effect of increasing the rate the ATB bar increases by 50%. This
+means under Haste, the ATB bar fills by the following every tick:
+
+  +12 (slowest Battle Speed)
+  +15 (medium Battle Speed)
+  +21 (fastest Battle Speed)
+
+
+============
+Starting ATB
+============
+At the start of a battle, your ATB bar is randomly filled based on:
+
+  Rnd MOD ([Rnd / ATB lenght] * ATB length)
+
+Notes:
+  The same random number is used in both parts of the formula.
+
+===============================================================================
+[2.0]                            RUNNING AWAY
+===============================================================================
+As long as you are holding L1 + R1, your party attempts to run away from the
+current battle (cannot run away from bosses). Your chance of running away is
+affected by party's average level (KO included) and the average of the enemy
+levels (dead monsters not included).
+
+=============
+Escape Chance
+=============
+  Chance = [Party Lvl Avg * [200 / Enemy Lvl Avg] / 16]
+
+After that, a random number is used to determine if you run away:
+
+  Rnd MOD 100 < Chance, party escapes
+
+Notes:
+  This check is performed once per second for as long as you hold L1 + R1.
+  You can only escape during the time the enemies ATB bars are filling.
+
+===============================================================================
+[3.0]                           ATTACK COMMAND
+===============================================================================
+This section deals with the Attack Command. Here you will find information on
+Add Status, Counter, Critical Hit, Hit/Evasion and damage calculation.
+
+===============
+Damage Formulas
+===============
+There are 6 different formulas used to determine basic Physical attack damage
+based on what Weapon you have equipped or if the Enemy is attacking:
+
+------------
+Enemy Attack
+------------
+  Base   = Atk - Def
+  Bonus  = Str + Rnd MOD ([(Lvl + Str) / 4] + 1)
+  Damage = Base * Bonus
+
+
+----------------
+Standard Weapons
+----------------
+  Base   = Atk - Def
+  Bonus  = Str + Rnd MOD ([(Lvl + Str) / 8] + 1)
+  Damage = Base * Bonus 
+
+Used by Dagger, Sword, Staff, Rod, Spear, Claw, Flute.
+
+
+--------------
+Save The Queen
+--------------
+  Base   = (Atk + Lvl) - Def
+  Bonus  = Str + Rnd MOD ([(Lvl + Str) / 8] + 1)
+  Damage = Base * Bonus
+
+
+----------------------------
+Thief Swords + Knight Swords
+----------------------------
+  Base   = Atk - Def
+  Bonus  = [(Str + Spr) / 2] + Rnd MOD ([(Lvl + Str) / 8] + 1)
+  Damage = Base * Bonus
+
+
+--------------
+Hammer + Forks
+--------------
+  Base   = Atk - Def
+  Bonus  = ((Rnd MOD (1 + Str - 1)) + 1) + Rnd MOD [(Lvl + Str) / 8]
+  Damage = Base * Bonus
+
+
+-------
+Rackets
+-------
+  Base   = Atk - Def
+  Bonus  = [(Str + Spd) / 2] + Rnd MOD ([(Lvl + Str) / 8] + 1)
+  Damage = Base * Bonus
+
+
+============
+Critical Hit
+============
+Your chance of a Critical Hit with the Attack Command is based on Spirit:
+
+  Rnd MOD [Spr / 4] > Rnd MOD 100, attack will critical
+
+
+===========
+Hit/Evasion
+===========
+When a party member or monster is selected as the attack target of a Physical
+attack, two checks are performed that decide if the attack will hit or miss.
+
+  Check 1: Rnd MOD 100 >= 100, attack misses
+  Check 2: Rnd MOD 100 <  Target Evade, attack misses
+
+If Accuracy+ is equipped, neither check is performed. Attacks always hit.
+
+
+Check 1 is the attacker's accuracy, Check 2 is the target's evasion chance. If
+the attacker succeeds in Check 1, the attack "hits" and Check 2 is then
+performed to determine if the target will Evade this hit.
+
+Normally, the attacker will never fail Check 1 due to having a 100% accuracy
+by default. This is where Confuse, Darkness, Defend, Distract and Vanish get
+involved.
+
+If the attacker is under Confuse, Darkness or the target is using Defend, has
+Distract equipped, the attacker's accuracy is reduced by 50%. Check 1 then
+becomes:
+
+  Check 1: Rnd MOD 100 >= 50, attack misses
+
+These conditions stack, so if two of the above conditions are in effect for
+example, Check 1 becomes:
+
+  Check 1: Rnd MOD 100 >= 25, attack misses
+
+If the target is under Vanish, the attacker's accuracy is reduced to 0. Check 1
+then becomes:
+
+  Check 1: Rnd MOD 100 >= 0, attack misses
+
+
+=======
+Counter
+=======
+If you have the Counter ability equipped, your chance to Counter with the
+Attack Command when hit by an enemy Physical attack is:
+
+  Spr >= Rnd MOD 100, you Counter
+
+If Eye 4 Eye is equipped, this becomes:
+
+  (Spr * 2) >= Rnd MOD 100, you counter
+
+
+==========
+Add Status
+==========
+If you have the Add Status ability equipped, you have a chance of inflicting
+the Added Status of the weapon you have equipped when using the Attack Command.
+Not all weapons have an Added Status and even some that do (Thief Swords) do
+not work with Add Status.
+
+Your chance of inflicting an Added Status is:
+
+  Add Status Accuracy > Rnd MOD 100, Added Status is inflicted
+
+----------------------
+Weapon/Status/Accuracy
+----------------------
+Mage Masher     = Silence  (20%)        Avenger         = Death    (15%)
+Gladius         = Slow     (35%)        Kaiser Knuckles = Trouble  (15%)
+Ice Brand       = Freeze   (10%)        Duel Claws      = Berserk  (25%)
+Flame Sabre     = Heat     (10%)        Rune Claws      = Darkness (30%)
+Rune Blade      = Darkness (25%)        Oak Staff       = Slow     (20%)
+Ultima Sword    = Sleep    (20%)        Cypress Pile    = Confuse  (20%)
+Ragnarok        = Slow     (30%)        Octagon Rod     = Trouble  (10%)
+Ice Lance       = Freeze   (10%)        High Mage Staff = Silence  (15%)
+Trident         = Darkness (20%)        Mace of Zeus    = Mini     (15%)
+Heavy Lance     = Stop     (10%)        Needle Fork     = Petrify  (10%)
+Obelisk         = Petrify  (10%)        Silver Fork     = Slow     (15%)
+Kain's Lance    = Confuse  (15%)        Bistro Fork     = Sleep    (20%)
+Poison Knuckles = Poison   (40%)        Gastro Fork     = Stop     (10%)
+Scissor Fangs   = Venom    (15%)
+
+===============================================================================
+[4.0]                       DAMAGE ALTERATIONS
+===============================================================================
+When using the Attack command, Elemental Spells or Abilities, damage can
+vary greatly depending on enemy weaknesses and whether you are using support
+abilities like MP Attack, Reflect x2, or Killer abilities etc.
+
+==================
+Elemental Weakness
+==================
+When using an Attack or Spell which has an element, your damage bonus can get
+an increase or decrease depending on the target resistances.
+
+Normal : Bonus is unaffected
+Weak   : Bonus is increased by 50%
+Half   : Bonus is reduced by 50%
+Neutral: Take 0 damage (Guard)
+Absorb : Absorbs all damage (Defence/Magic Defence is ignored)
+
+
+==============
+Attack Command
+==============
+When using the Attack Command, your damage bonus can get an increase or
+decrease depending on certain conditions. These conditions are applied in a
+certain order:
+
+[Bonus * 1.5]  if using a Killer ability
+[Bonus * 1.5]  if using MP Attack
+[Bonus * 1.5]  if you are in Trance
+[Bonus * 1.5]  if you are under Berserk
+[Bonus * 1.5]  if the target is Back Attacked (apply if attacking own party)
+[Bonus * 1.5]  if the target is under Sleep
+[Bonus * 1.5]  if the target is under Mini
+(Bonus * 2)    if the hit is a Critical
+
+[Bonus / 2]   if you are in the Back Row (ignore if attacking own party)
+[Bonus / 2]   if the target is under Protect
+
+[Bonus * 1.5] if the target is weak to the element of your weapon
+[Bonus * 1.5] if you are wearing an Elem-Atk raising item
+
+[Bonus / 2]   if the target halves the element of your weapon
+(Bonus = 1)   if you are under Mini
+
+
+==============
+Ipsen's Castle
+==============
+When in Ipsen's Castle your stronger weapons do lower damage than your weaker
+weapons. This is because in Ipsen's Castle the base part of the damage formula
+when using the Attack Command is altered to:
+
+  Base = (60 - Atk) - Def
+
+
+============
+Magic Spells
+============
+When using Magic Spells, your damage bonus can get an increase or decrease
+depending on certain conditions. These conditions are applied in a certain
+order:
+
+(Bonus * 2)   if using Reflect x2
+
+[Bonus / 2]   if you multi target the Spell
+[Bonus / 2]   If you are under Mini
+[Bonus / 2]   if the target is under Shell
+
+[Bonus * 1.5] if the target is weak to the element of your Spell
+[Bonus * 1.5] if you are wearing an Elem-Atk raising item
+
+[Bonus / 2]   if the target halves the element of your Spell
+
+
+=======
+Reflect
+=======
+If your entire party is under Reflect and you cast a spell on all party
+members, the spell will be reflected up to four times on to a random enemy.
+(only one animation is played though).
+
+If there is only one enemy in battle, it will take all four hits and your
+damage bonus won't be halved. If there are multiple enemies though, your
+damage bonus is halved and since reflected spells choose a random enemy, each
+enemy can be hit a different amount of times.
+
+Example, you face a group of 3 Mandragoras:
+
+1st Mandragora: 1 Hit               1st Mandragora: 3 Hit
+2nd Mandragora: 1 Hit               2nd Mandragora: 1 Hit
+3rd Mandragora: 2 Hit               3rd Mandragora: 0 Hit (Miss)
+
+1st Mandragora: 2 Hit               1st Mandragora: 4 Hit
+2nd Mandraogra: 2 Hit               2nd Mandragora: 0 Hit (Miss)
+3rd Mandraogra: 0 Hit (Miss)        3rd Mandragora: 0 Hit (Miss)
+
+This basically means a spell reflected off all party members can do up to four
+times normal damage to an enemy.
+
+===============================================================================
+[5.0]                            TRANCE
+===============================================================================
+When you take damage your Trance gauge fills. When your Trance gauge is full
+you enter Trance gaining new abilities as well as getting a 50% increase to
+your Physical damage Bonus. You are also cleared of all negative status effects
+when you enter Trance.
+
+============
+Trance Gauge
+============
+The Trance gauge ranges from 0 (empty) to 255 (full). Every time you take
+damage, this is filled by:
+
+  Rnd MOD Spr
+
+  or 
+
+  Spr (if High Tide is equipped)
+
+Every turn you take in Trance reduces the gauge and when it becomes empty you
+revert back to normal.
+
+  Deduction Rate = ([(300 - Lvl) / Spr] * 10) MOD 256
+
+
+===============
+Zidane's Trance
+===============
+Zidane's Skill command becomes Dyne. Each of Zidane's Skills now change to a
+specific Dyne. All Dynes are Physical attacks that target either one or all
+enemies in battle.
+
+Damage Formula:
+---------------
+  Base   = Dyne Power - Def
+  Bonus  = Str + Rnd MOD ([(Lvl + Str) / 8] + 1)
+  Damage = Base * [Bonus * 1.5]
+
+Notes:
+  Bonus is halved by Protect
+  Bonus is reduced to 1 whilst under Mini.
+
+Skill/Dyne/Power:
+-----------------
+Flee          = Free Energy     = [(Atk * 15) / 10]
+Detect        = Tidal Flame     = [(Atk * 15) / 10]
+What's That!? = Scoop Art       = Atk * 2
+Soul Blade    = Shift Break     = Atk * 2
+Annoy         = Stella Circle 5 = [(Atk Pwr * 25) / 10]
+Sacrifice     = Meo Twister     = [(Atk Pwr * 25) / 10] 
+Lucky Seven   = Solution 9      = Atk * 3
+Thievery      = Grand Lethal    = Atk * 4
+
+
+================
+Steiner's Trance
+================
+Steiner's Attack command becomes Trance Attack. When using the Attack command
+instead of the standard 50% increase to his Physical bonus, Steiner gains a
+300% increase. Exception to this is when using the Blood Sword, Steiner only
+gets the normal 50% increase when using it.
+
+
+=============
+Vivi's Trance
+=============
+Vivi's Black command becomes Dbl Blk. Vivi can now cast two Black Magic spells
+in a row.
+
+
+===============
+Dagger's Trance
+===============
+Dagger's Summon command becomes Eidolon. A summon used in Trance will now
+randomly cast itself for no MP cost. These summons however are much weaker than
+when normally cast and though these summons only show the half animation, their
+damage is not reduced by a third.
+
+Power:
+------
+Ramuh    : 31 Atk Pwr      Atomos : Damage = [(16 * Target Max HP) / 100]
+Leviathan: 63 Atk Pwr      Odin   : 49 Atk Pwr
+Ifrit    : 37 Atk Pwr      Bahamut: 77 Atk Pwr
+Shiva    : 34 Atk Pwr      Ark    : 87 Atk Pwr
+
+
+================
+Amarant's Trance
+================
+Amarant's Flair command becomes Elan. Amarant can now cast Flair commands on
+all enemies or all party members.
+
+
+==============
+Freya's Trance
+==============
+Freya's Jump command becomes Trance Jump. Freya will now stay in the air until
+her Trance gauge runs out and attack all enemies in battle instead of just one.
+
+Damage Formula:
+---------------
+  Base   = Atk - Def
+  Bonus  = ((Rnd MOD (1 + Str - 3)) + 3) + Rnd MOD [(Lvl + Str) / 8]
+  Damage = Base * [Bonus * 1.5]
+
+If High Jump is equipped:
+
+  Base   = Atk - Def
+  Bonus  = ((Rnd MOD (1 + Str - 2)) + 2) + Rnd MOD [(Lvl + Str) / 8]
+  Damage = Base * (Bonus * 2)
+
+Notes:
+  Final Damage is divided by the number of targets in battle.
+  Bonus is halved by Protect
+  Bonus is reduced to 1 whilst under Mini.
+
+
+==============
+Quina's Trance
+==============
+Quina's Eat command becomes Cook. Quina can now learn a Blue Magic when the
+enemy has 50% or less of its HP remaining instead of 25%.
+
+
+=============
+Eiko's Trance
+=============
+Eiko's White command becomes Dbl Wht. Eiko can now cast two White Magic spells
+in a row.
+
+===============================================================================
+[6.0]                            STEAL
+===============================================================================
+Steal allows you to steal up to four items from an enemy. There are a total of
+3 steps to Steal:
+
+======
+Step 1
+======
+Steal has to successfully hit the target.
+
+  Atk = Rnd MOD (Lvl + Spr)
+  Def = Rnd MOD (Enemy Lvl)
+
+If Atk is equal or greater than Def, Steal is a success and moves to Step 2.
+This step can be ignored if Bandit is equipped: Bandit causes any Steal to
+have a 100% success rate.
+
+
+======
+Step 2
+======
+Checks to see if you get an item, they're 4 possible slots to choose from.
+
+  Rare     :   1/256
+  Semi-Rare:  16/256
+  Uncommon :  64/256
+  Common   : 256/256
+
+Slots are checked from Rare to Common. If you fail to get the item in the
+Rare slot it moves down to Semi-Rare, fail to get the item in the Semi-Rare
+slot it moves down to Uncommon, fail to get the item in Uncommon slot and 
+you'll get what ever item is in the Common slot.
+
+If you get a slot that has no item or you already stole it, Steal will fail.
+
+If you equip Master Thief, the Rare and Semi-Rare slots are changed from 1/256
+and 16/256 to 32/256. Steal will also now ignore empty slots.
+
+If you succeed in getting an item, Steal moves to Step 3.
+
+
+======
+Step 3
+======
+This Step deals with Mug and Steal Gil.
+
+  Mug Damage = Rnd MOD [Zidane's Lvl * Target Lvl / 2]
+
+  Stolen Gil = Rnd MOD [Zidane's Lvl * Target Lvl / 4] + 1
+
+===============================================================================
+[7.0]                            SKILLS
+===============================================================================
+Skills range from dealing damage, casting status effects to listing enemy
+Steal items as well as helping to escape from battle quicker.
+
+====
+Flee
+====
+Allows you to escape from a non boss battle with a 100% success rate.
+
+Notes:
+  You lose Gil equal to 10% of the Gil held by the opponents.
+
+
+======
+Detect
+======
+Shows the enemy Steal items. Items are listed from Rare to Common.
+
+
+=============
+What's That!?
+=============
+Turns the enemy around allowing for a back attack.
+
+
+==========
+Soul Blade
+==========
+Inflicts the Added Status of your Thief Sword with a 100% success rate.
+
+Notes:
+  Does not work with Daggers.
+
+
+=====
+Annoy
+=====
+Inflicts Trouble on one enemy.
+
+Notes:
+  50% Accuracy.
+
+
+=========
+Sacrifice
+=========
+KO's Zidane to fully restore the other party members HP and MP.
+
+
+===========
+Lucky Seven
+===========
+Does 7, 77, 777, or 7777 damage if Zidane's HP ends in 7. Otherwise it does 1.
+
+
+========
+Thievery
+========
+A Non-Element attack to one enemy.
+
+  Damage = [# of successful Steals * Zidane's Speed / 2]
+
+Notes:
+  Steals done by Blank, Marcus, or Cinna count.
+  Steals done before you get Thievery count.
+
+===============================================================================
+[8.0]                          SWORD ARTS
+===============================================================================
+Sword Arts range from simply doing damage to lowering the stats of the enemy
+and even killing them instantly.
+
+========
+Darkside
+========
+A Shadow element attack to one enemy. Each use costs 1/8 of Steiner's Max HP.
+
+  Base   = [(Atk * 14) / 10] - Def
+  Bonus  = Str + Rnd MOD ([(Lvl + Str) / 8] + 1)
+  Damage = Base * Bonus
+
+Notes:
+  Ignores Protect.
+  Unaffected by Mini.
+
+
+============
+Minus Strike
+============
+An attack that does damage equal to Max HP - Current HP.
+
+
+==========
+Iai Strike
+==========
+Causes Death to one enemy.
+
+Notes:
+  30% Accuracy.
+
+
+===========
+Power Break
+===========
+Reduces the Strength of one enemy.
+
+  [(Str * 75) / 100]
+
+Notes:
+  50% Accuracy.
+  Can be used repeatedly to lower the stat even more.
+
+
+============
+Armour Break
+============
+Reduces the Defence of one enemy.
+
+  [Def / 2]
+
+Notes:
+  50% Accuracy.
+  Can be used repeatedly to lower the stat even more.
+
+
+============
+Mental Break
+============
+Reduces the Magic Defence of one enemy.
+
+  [Mag Def / 2]
+
+Notes:
+  50% Accuracy.
+  Can be used repeatedly to lower the stat even more.
+
+
+===========
+Magic Break
+===========
+Reduces the Magic of one enemy.
+
+  [(Mag * 75) / 100]
+
+Notes:
+  50% Accuracy.
+  Can be used repeatedly to lower the stat even more.
+
+
+=======
+Charge!
+=======
+Causes all critical HP party members to use a standard Physical attack.
+
+
+=============
+Thunder Slash
+=============
+A Thunder element attack to one enemy reducing their HP by a percentage.
+
+  Damage = [19 * Target Max HP / 100]
+
+Notes:
+  0% Accuracy.
+  Does not work on bosses.
+
+
+===========
+Stock Break
+===========
+A Physical attack to all enemies.
+
+  Base   = [(Atk * 15) / 10] - Def
+  Bonus  = Str + Rnd MOD ([(Lvl + Str) / 8] + 1)
+  Damage = Base * Bonus
+
+Notes:
+  Takes on the element of your equipped weapon.
+  Bonus is not increased when wearing Elem-Atk raising items.
+  Bonus is halved by Protect.
+  Bonus is reduced to 1 whilst under Mini.
+
+  
+===========
+Climhazzard
+===========
+A Magical attack to all enemies.
+
+  Base   = Atk * 2 - Mag Def
+  Bonus  = Str + Rnd MOD ([(Lvl + Str) / 8] + 1)
+  Damage = Base * Bonus
+
+Notes:
+  Bonus is halved by Shell.
+  Bonus is halved whilst under Mini.
+
+
+=====
+Shock
+=====
+A Physical attack to one enemy.
+
+  Base   = Atk * 3 - Def
+  Bonus  = Str + Rnd MOD ([(Lvl + Str) / 8] + 1)
+  Damage = Base * Bonus
+
+Notes:
+  Takes on the element of your equipped weapon.
+  Bonus is not increased when wearing Elem-Atk raising items.
+  Bonus is halved by Protect.
+  Bonus is reduced to 1 whilst under Mini.
+
+===============================================================================
+[9.0]                          SWORD MAGIC
+===============================================================================
+Sword Magic are Physical attacks that Steiner can only use if Vivi is the
+same party. Sword Magic raises Steiner's equipped weapons attack power and
+gives it the element (if it has one) of the Spell used by Vivi.
+
+==============
+Damage Formula
+==============
+  Base   = Atk + Power - Def
+  Bonus  = Str + Rnd MOD ([(Lvl + Str) / 8] + 1)
+  Damage = Base * Bonus
+
+Notes:
+  Ignores Protect.
+  Does not remove Sleep.
+  Cannot be used if either Steiner or Vivi are under Mini.
+
+-----
+Power
+-----
+  Fire    : 5  (St)
+  Fira    : 10 (St)
+  Firaga  : 30 (St)
+  Blizzard: 5  (St)
+  Blizzara: 10 (St)
+  Blizzaga: 30 (St)
+  Thunder : 5  (St)
+  Thundara: 10 (St)
+  Thundaga: 30 (St)
+  Bio     : 20 (St)
+  Water   : 25 (St)
+  Flare   : 60 (St)
+  Doomsday: 40 (Mt)
+
+===============================================================================
+[10.0]                         BLACK MAGIC
+===============================================================================
+Each of Vivi's spells has an attack power like all weapons do. Black Magic
+ranges from doing damage to inflicting status effects.
+
+==============
+Damage Formula
+==============
+  Base   = Spell Power - Mag Def
+  Bonus  = Mag + Rnd MOD ([(Lvl + Mag) / 8] + 1)
+  Damage = Base * Bonus
+
+Notes:
+  Bonus is halved by Shell.
+  Bonus is halved whilst under Mini.
+  Bonus is halved if you multi target the Spell.
+  If the Spell naturally multi target's, Bonus is not halved.
+
+-----------
+Spell Power
+-----------
+The below spells use the above formula except for those marked with *.
+
+  Fire    : 14  (St/Mt)        Osmose* : 15  (St)
+  Fira    : 29  (St/Mt)        Drain   : 32  (St)
+  Firaga  : 72  (St/Mt)        Bio     : 42  (St/Mt)
+  Blizzard: 14  (St/Mt)        Demi*   : 30  (St/Mt)
+  Blizzara: 29  (St/Mt)        Water   : 64  (St/Mt)
+  Blizzaga: 72  (St/Mt)        Comet*  : 56  (St)
+  Thunder : 14  (St/Mt)        Meteor* : 88  (Mt)
+  Thundara: 29  (St/Mt)        Flare   : 119 (St)
+  Thundaga: 72  (St/Mt)        Doomsday: 112 (Mt)
+
+
+=====
+Focus
+=====
+Increases Vivi's Magic stat.
+
+  [(Magic * 125) / 100]
+
+Notes:
+  Lasts for entire duration of battle, even if KO'd and revived.
+  Can be used repeatedly (has no effect once Magic reaches 99).
+
+
+======
+Osmose
+======
+Osmose restores MP to Vivi by draining it from the target.
+
+  Base        = Spell Power - Mag Def
+  Bonus       = Mag + Rnd MOD ([(Lvl + Mag) / 8] + 1)
+  MP Restored = [(Base * Bonus) / 4]
+
+
+===
+Bio
+===
+A non-elemental attack to one or all enemies with a chance of inflicting the
+Poison status. The chance of Bio inflicting Poison is:
+
+  20 > Rnd MOD 100, Poison is inflicted
+
+
+====
+Demi
+====
+Reduces the targets HP by a percentage. Unlike most Magic, damage is not
+affected if you multi target the Spell.
+
+  Damage = [(30 * Target Max HP) / 100]
+
+Notes:
+  40% Accuracy.
+  Does not work on bosses.
+
+
+==============
+Comet + Meteor
+==============
+Comet and Meteor ignore Magic Defence and do random damage. Both Spells can
+also miss the target.
+
+  Base   = Spell Power
+  Bonus  = 1 ... (Lvl + Mag) - 1
+  Damage = Base * Bonus
+
+The chance of Comet and Meteor hitting are as follows:
+
+  Comet : 171 > Rnd MOD 256, Comet hits
+  Meteor: ([Lvl / 2] + Spr) >= Rnd MOD 100, Meteor hits
+
+===============================================================================
+[11.0]                        STATUS EFFECTS
+===============================================================================
+All characters can inflict some sort of Status Effect whether it be positive
+or negative. While positive Status Effects always succeed, negative Status
+Effects can fail to hit the target. Remember, if all characters are inflicted
+with KO, Petrify, Stop or Venom, Game Over is declared.
+
+========================
+Status Effect Infliction
+========================
+Your chance of inflicting a Status Effect is equal to:
+
+  Chance = Status Accuracy + Lvl + [Mag / 4] - Target Level
+
+After that, two random numbers are used to determine if the spell will hit:
+
+  Check 1: Rnd MOD 100 >= Chance, attack misses
+  Check 2: Rnd MOD 100 <  Target Magic Evade, attack misses
+
+---------------
+Status Accuracy
+---------------
+Annoy     : 50%      Iai Strike  : 30%
+Bad Breath: 40%      Mini        : 50%
+Berserk   : 75%      Mustard Bomb: 30%
+Blind     : 75%      Night       : 100%
+Break     : 40%      Odin        : [Ore / 2]%
+Confuse   : 50%      Poison      : 60%
+Countdown : 50%      Silence     : 50%
+Death     : 35%      Sleep       : 50%
+Doom      : 25%      Slow        : 60%
+Frost     : 30%      Stop        : 40%
+
+
+======================
+Status Effect Duration
+======================
+Like the ATB bar, Status Effect duration decreases by a rate based on Battle
+Speed and Status (slow, normal, haste). The duration of a Status Effect is
+equal to:
+
+  Protect        : Spirit * 360 
+  Shell          : Spirit * 360  
+  Regen          : Spirit * 360 
+  Reflect        : Spirit * 320  
+  Haste          : Spirit * 320 
+  Float          : Spirit * 240 
+  Vanish         : Spirit * 240
+  Slow           : (60 - Spirit) * 320 
+  Poison         : (60 - Spirit) * 240 
+  Sleep          : (60 - Spirit) * 200
+  Doom           : (60 - Spirit) * 200
+  Gradual Petrify: (60 - Spirit) * 200
+  Freeze         : (60 - Spirit) * 160
+  Heat           : (60 - Spirit) * 160
+
+Normally, Status Effect duration will decrease by the following every 4th
+tick:
+
+  -8  (slowest Battle Speed)
+  -10 (normal Battle Speed)
+  -14 (fastest Battle Speed)
+
+Under Slow, Status Effect duration will decrease by the following every 4th
+tick:
+
+  -5  (slowest Battle Speed)
+  -6  (medium Battle Speed)
+  -9  (fastest Battle Speed)
+
+Under Haste, Status Effect duration will decrease by the following every 4th
+tick:
+
+  -12 (slowest Battle Speed)
+  -15 (medium Battle Speed)
+  -21 (fastest Battle Speed)
+
+--------------------
+Regen, Poison, Venom
+--------------------
+For these Status Effects, a secondard hit timer is used to determine when they
+add or subtract HP from a character. This hit timer follows the same rate of
+deduction as the spell duration.
+
+Regen : (60 - Spirit) * 40
+Poison: Spirit * 40
+Venom : Spirit * 80
+
+
+=======================
+Positive Status Effects
+=======================
+---------
+Auto-Life
+---------
+Effect      : If Character is KO'd, they are revived with 1 HP
+Duration    : Until KO'd
+Protected by: Petrify
+Cured by    : Dispel
+
+
+-----
+Float
+-----
+Effect      : Character becomes immune to Earth Elemental spells
+Duration    : Spirit * 240
+Protected by: Petrify
+Cured by    : Dispel
+
+
+-----
+Haste
+-----
+Effect      : Rate ATB bar fills is increased by 50%
+              Rate Status Effects wear off is increased by 50%
+Duration    : Spirit * 320
+Protected by: Petrify
+Cured by    : Dispel
+
+
+-------
+Protect
+-------
+Effect      : Character takes 50% less damage from Physical attacks
+Duration    : Spirit * 360
+Protected by: Petrify
+Cured by    : Dispel
+
+
+-------
+Reflect
+-------
+Effect      : Reflects most spells to random Enemy
+Duration    : Spirit * 320
+Protected by: Petrify
+Cured by    : Dispel
+
+
+-----
+Regen
+-----
+Effect      : Characters recovers [1/16 of max HP] at certain intervals
+Duration    : Spirit * 360
+Protected by: Petrify
+Cured by    : Dispel
+
+
+-----
+Shell
+-----
+Effect      : Character takes 50% less damage from Magical attacks
+Duration    : Spirit * 360
+Protected by: Petrify
+Cured by    : Dispel
+
+
+------
+Vanish
+------
+Effect      : Character cannot be hit by single target Physical attacks
+              When Character attacks, target cannot Evade
+Duration    : Spirit * 240
+Protected by: Petrify
+Cured by    : Magic Attack, Dispel
+
+
+=======================
+Negative Status Effects
+=======================
+-------
+Berserk
+-------
+Effect      : Character cannot be controlled
+              Character attacks random Enemy
+              Character's Physical Attacks deal 50% more damage
+Duration    : Until end of battle
+Protected by: Petrify
+Cured by    : Gysahl Green
+
+
+-------
+Confuse
+-------
+Effect      : Character cannot be controlled
+              Character randomly attacks allies and enemies
+              Character's Hit Accuracy reduced by 50%
+              Character's Evade reduced to 0
+Duration    : Until end of battle
+Protected by: Petrify, Clear Headed
+Cured by    : Physical Attack, Esuna
+
+
+--------
+Darkness
+--------
+Effect      : Character's Hit Accuracy reduced by 50%
+              Character's Evade reduced to 0
+Duration    : Until cured
+Protected by: Petrify, Bright Eyes
+Cured by    : Eye Drops, Remedy, Esuna
+
+
+-----
+Death
+-----
+Effect      : Inflicts KO
+Duration    : -
+Protected by: Petrify, Zombie
+Cured by    : -
+
+
+----
+Doom
+----
+Effect      : Inflicts KO once timer reduces 0
+Duration    : (60 - Spirit) * 200
+Protected by: Petrify, Zombie
+Cured by    : -
+
+
+------
+Freeze
+------
+Effect      : Character cannot act
+              Character's Evade reduced to 0
+              Character is KO'd if hit by a Physical Attack
+Duration    : (60 - Spirit) * 160
+Protected by: Petrify, Body Temp
+Cured by    : Fire Elemental attack, Esuna
+
+
+---------------
+Gradual Petrify
+---------------
+Effect      : Inflicts Petrify once timer reaches 0
+Duration    : (60 - Spirit) * 200
+Protected by: Petrify, Jelly
+Cured by    : Remedy, Stona, Esuna
+
+
+----
+Heat
+----
+Effect      : Character is KO'd if they act
+Duration    : (60 - Spirit) * 160
+Protected by: Petrify, Body Temp
+Cured by    : Ice Elemental attack, Esuna
+
+
+--
+KO
+--
+Effect      : Character cannot act
+              ATB bar reduced to 0 and stops
+              Removes all Status Effects except Virus and Zombie
+              Character gains no EXP or AP if still under KO after battle
+Duration    : Until cured
+Protected by: -
+Cured by    : Life, Full-Life, Revive, Phoenix, Phoenix Down, Phoenix Pinion
+
+
+----------
+Near Death
+----------
+Effect      : -
+Duration    : Until cured
+Protected by: -
+Cured by    : Anything that can raise your HP over 1/6 of your max HP
+
+
+-------
+Petrify
+-------
+Effect      : Character cannot act
+              ATB bar stops
+              Status Effect timers stop
+              All Physical damage reduced to 0
+              All Magical damage/healing reduced to 0
+              Immune to other Status Effects
+              Character gains no EXP or AP if still under Petrify after battle
+Duration    : Until Cured
+Protected by: Jelly
+Cured by    : Soft, Stona
+
+
+------
+Poison
+------
+Effect      : Character loses [1/16 of max HP] at certain intervals
+Duration    : (60 - Spirit) * 240
+Protected by: Petrify, Antibody
+Cured by    : Antidote, Remedy, Panacea, Esuna
+
+
+----
+Mini
+----
+Effect      : Character's Physical bonus is reduced to 1
+              Character's Magical bonus is reduced by 50%
+              Character takes 50% more damage from Physical attacks
+Duration    : Until end of battle
+Protected by: Petrify
+Cured by    : Remedy, Mini, Esuna
+
+
+-------
+Silence
+-------
+Effect      : Character cannot use any form of Magic
+Duration    : Until cured
+Protected by: Petrify, Loudmouth
+Cured by    : Echo Screen, Remedy, Esuna
+
+
+-----
+Sleep
+-----
+Effect      : Character cannot act
+              Character's Evade reduced to 0
+              Character takes 50% more damage from Physical attacks
+Duration    : (60 - Spirit) * 200
+Protected by: Petrify, Insomniac
+Cured by    : Physical Attack, Esuna
+
+
+----
+Slow
+----
+Effect      : Rate ATB bar fills is reduced by 1/3
+              Rate Status Effects wear off is reduced by 1/3
+Duration    : (60 - Spirit) * 320
+Protected by: Petrify, Auto-Haste
+Cured by    : Dispel
+
+
+----
+Stop
+----
+Effect      : ATB bar stops
+              Status Effect timers stop
+              Character's Evade reduced to 0
+Duration    : Until end of battle
+Protected by: Petrify, Locomotion
+Cured by    : Remedy, Dispel
+
+
+-------
+Trouble
+-------
+Effect      : [1/2] the damage a Character takes is also taken by their allies
+Duration    : Until cured
+Protected by: Petrify
+Cured by    : Annoyntment
+
+
+-----
+Venom
+-----
+Effect      : Character cannot act
+              Character's Evade reduced to 0
+              Character loses [1/16 of max HP] at certain intervals
+              Character loses [1/16 of max MP] at certain intervals
+Duration    : Until cured
+Protected by: Petrify, Antibody
+Cured by    : Antidote, Remedy, Panacea
+
+
+-----
+Virus
+-----
+Effect      : Character's Evade reduced to 0
+              Character gains no EXP or AP if still under Virus after battle
+Duration    : Until cured
+Protected by: Petrify
+Cured by    : Vaccine
+
+
+------
+Zombie
+------
+Effect      : Effect of Healing Spells and Items is reversed
+              Character is KO'd by Life, Full-Life, Revive and Phoenix
+              Character HP is reduced to 0-9 by Phoenix Down and Phoenix Pinion
+              Immune to effect of Death and Doom
+              Death and Doom fully recover HP
+              Character Trance gauge is reduced to 0 and cannot increase
+              Character gains no EXP or AP if still under Zombie after battle
+Duration    : Until cured
+Protected by: Petrify
+Cured by    : Magic Tag
+
+===============================================================================
+[12.0]                         WHITE MAGIC
+===============================================================================
+White Magic mostly concentrates on healing spells and positive status effects.
+It also contains a few negative status effects as well as an attack magic.
+
+==============
+Damage Formula
+==============
+Holy follows the same damage formula as Vivi's normal Black Magic. 
+
+  Base   = Spell Power - Mag Def
+  Bonus  = Mag + Rnd MOD ([(Lvl + Mag) / 8] + 1)
+  Damage = Base * Bonus
+
+Cure, Cura, and Curaga are slightly different as they ignore Magic Defence.
+
+  Base        = Spell Power
+  Bonus       = Mag + Rnd MOD ([(Lvl + Mag) / 8] + 1)
+  HP Restored = Base * Bonus
+
+Notes:
+  HP Restored = Base * [Bonus * 1.5] if Concentrate is equipped.
+
+-----------
+Spell Power
+-----------
+  Cure  : 16   (St/Mt)
+  Cura  : 38   (St/Mt)
+  Curaga: 107  (St/Mt)
+  Holy  : 113  (St)
+
+
+====
+Life
+====
+Revives a character from KO and restores HP equal to:
+
+  [((Target Spr + 5) * Target Max HP) / 100]
+
+Notes:
+  HP restored is doubled if Concentrate is equipped.
+
+
+=========
+Full-Life
+=========
+Revives a character from KO and restores HP equal to:
+
+  [((Target Spr + 100) * Target Max HP) / 100]
+
+Notes:
+  HP restored is doubled if Concentrate is equipped.
+
+
+=====
+Might
+=====
+Increases the targets Strength stat.
+
+  [(Str * 125) / 100]
+
+Notes:
+  Lasts for entire duration of battle, even if KO'd and revived.
+  Can be used repeatedly (has no effect once Strength reaches 99).
+
+
+=====
+Jewel
+=====
+Extracts 1 Ore from the target.
+
+Notes:
+  50% Accuracy
+  Can be used repeatedly.
+
+===============================================================================
+[13.0]                         SUMMON MAGIC
+===============================================================================
+Eidolon attack power depends on the amount of Jewels in your inventory that
+correspond to that Summon. Eidolons mostly do damage but one casts positive
+status effects on the party whilst another can revive characters from KO.
+
+================
+Summon Animation
+================
+There are two animations you can get when you use a summon, Full and Half. The
+first time you use a summon you get the full animation. After that, you have a
+33% or 10% chance to get the full animation again based on the following.
+
+If MP < (Summon MP Cost * 2), your chance of getting the full animation is:
+
+  Rnd MOD 256 >= 170, use full animation
+
+Otherwise, your chance of getting the full animation is:
+
+  Rnd MOD 256 >= 230, use full animation
+
+Notes:
+  Equip Boost to have a 100% chance of getting the full animation.
+  MP refers to the MP you have before the cost is subtracted.
+  The value used for Summon MP Cost is not affected by Half MP.
+  
+
+==============
+Damage Formula
+==============
+The animation length you get when you cast a summon affects the damage they
+do. The full animation does maximum damage except for the full animation you
+get the first time you use a summon (only does half animation damage). The
+half animation reduces the damage a summon does by 1/3.
+
+  Base   = Eidolon Power - Mag Def
+  Bonus  = Mag + Rnd MOD ([(Lvl + Mag) / 8] + 1)
+  Damage = Base * Bonus
+
+Notes:
+  Damage = [((Base * Bonus) * 2) / 3] if the half animation is shown.
+
+-------------
+Eidolon Power
+-------------
+  Ramuh    :  32 + Peridots        Bahamut:  88 + Garnet
+  Leviathan:  59 + Aquamarine      Ark    : 106 + Lapis Lazuli
+  Ifrit    :  42 + Topaz           Fenrir :  42 + Sapphire
+  Shiva    :  36 + Opal            Fenrir :  44 + Sapphire
+  Atomos   :  30 + Amethyst        Phoenix:  40
+  Odin     : 145 - Ore             Madeen :  71 + Eiko's Level
+
+
+======
+Atomos
+======
+Atomos causes damage equal to a percentage based on its Attack power. Since
+it's a Demi based summon, Atomos will not work on bosses.
+
+Full Animation:
+  Damage = [((30 + Amethyst) * Target Max HP) / 100]
+
+Half Animation:
+  Damage = [[(((30 + Amethyst) * Target Max HP) / 100] * 2) / 3]
+
+
+====
+Odin
+====
+When summoned, Odin either causes Death to the enemy or it misses. The chance
+of Odin causing Death is equal to:
+
+  Chance = [Ore / 2] + Lvl + [Mag / 4] - Target Lvl
+
+If the support ability Odin's Sword is equipped, Odin will now do Non-Elemental
+damage if he fails to cause Death. The strength of this ability is 145 - Ore.
+
+
+=========
+Carbuncle
+=========
+This Summon does no damage but instead inflicts a positive status effect on
+your entire party. Normally the status effect Carbuncle inflicts is Reflect,
+however this can be changed by equipping Eiko with certain Add-Ons:
+
+  --       : Ruby Light    = Reflect (+ Protect if full animation)
+  Emerald  : Emerald Light = Haste   (+ Protect if full animation)
+  Diamond  : Diamond Light = Vanish  (+ Protect if full animation)
+  Moonstone: Pearl Light   = Shell   (+ Protect if full animation)
+
+
+=======
+Phoenix
+=======
+When summoned Phoenix causes Fire element damage to all enemies. On top of that
+Phoenix also revives all KO'd party members and restores their HP equal to:
+
+  [((Target Spr + 30) * Target Max HP) / 100]
+
+Notes:
+  HP restored is doubled if Concentrate is equipped.
+
+If Eiko is in your party, there is a chance Phoenix will automatically revive
+your party if they are all KO'd. The chance of this happening is equal to:
+
+  [(# of Phoenix Pinions / 256) * 100]
+
+This automatic Rebirth Flame has a different animation than normal. It also
+deals no damage to the enemy and uses no MP.
+
+===============================================================================
+[14.0]                         BLUE MAGIC
+===============================================================================
+Blue Magic contains a bit of everything from healing HP, inflicting positive
+and negative status effect to dealing HP and MP damage to the enemy.
+
+==============
+Damage Formula
+==============
+  Base   = Spell Power - Mag Def
+  Bonus  = Mag + Rnd MOD ([(Lvl + Mag) / 8] + 1)
+  Damage = Base * Bonus
+
+Notes:
+  Bonus is halved by Shell.
+  Bonus is halved whilst under Mini.
+
+-----------
+Spell Power
+-----------
+Earth Shake : 75
+Goblin Punch: 20
+LV4 Holy    : 34
+
+
+===
+Eat
+===
+To learn Blue Magic Quina must successful Eat the enemy. You can only do that
+if the enemy has 25% or less of their maximum HP remaining.
+
+
+============
+Goblin Punch
+============
+A Magical attack to one enemy. If Quina's level is the same as the targets it
+uses this formula, if not use the standard Damage formula.
+
+  Base   = 20
+  Bonus  = (Lvl + Mag) + Rnd MOD ([(Lvl + Mag) / 8] + 1)
+  Damage = Base * Bonus
+
+Notes:
+  Bonus is halved by Shell.
+  Bonus is halved whilst under Mini.
+
+
+============
+LV3 Def-Less
+============
+Randomly reduces the Defence and Magic Defence of all enemies with a level
+that is a multiple of 3 from:
+ 
+  0 ... Target Maximum Defence/Magic Defence
+
+
+===========
+Aqua Breath
+===========
+Does Water element damage to all enemies reducing their HP by a percentage.
+
+  Damage = [(25 * Target Max HP) / 100]
+
+Notes:
+  50% Accuracy.
+  Does not work on bosses.
+
+
+===========
+Matra Magic
+===========
+Reduces the targets HP to 1.
+
+Notes:
+  20% Accuracy.
+  Does not work on bosses.
+
+
+============
+Pumpkin Head
+============
+Does damage equal to Max HP - Current HP to one enemy.
+
+
+=======
+Twister
+=======
+Twister is a Wind elemental attack that ignores Magic Defence and does random
+damage to all enemies.
+
+  Base   = 55
+  Bonus  = 1 ... (Lvl + Mag) - 1
+  Damage = Base * Bonus
+
+
+=========
+Frog Drop
+=========
+A Non-Element attack to one enemy.
+
+  Damage = (Quina's Level * # of Frogs caught)
+
+
+==========
+White Wind
+==========
+Restores HP to all party members.
+
+  HP Restored = [Quina's Max HP / 3]
+
+
+============
+Magic Hammer
+============
+Reduces the targets MP by a random amount ranging from:
+
+  0 ... Targets Current MP.
+
+===============================================================================
+[15.0]                          DRAGON
+===============================================================================
+Dragon ranges from doing damage to restoring or lowering the HP and MP of your
+party members.
+
+====
+Jump
+====
+A Physical attack to one enemy.
+
+  Base   = Atk - Def
+  Bonus  = Str + Rnd MOD ([(Lvl + Str) / 8] + 1)
+  Damage = Base * [Bonus * 1.5]
+
+Notes:
+  Damage = Base * (Bonus * 2) if High Jump is equipped.
+  Bonus is halved by Protect.
+  Bonus is reduced to 1 whilst under Mini.
+
+
+======
+Lancer
+======
+A Physical attack to one enemy. Also drains enemy MP equal to 1/16 of the
+damage done.
+
+  Base   = [(Atk * 12) / 10] - Def
+  Bonus  = Str + Rnd MOD ([(Lvl + Str) / 8] + 1)
+  Damage = Base * Bonus
+
+Notes:
+  Bonus is halved by Protect.
+  Bonus is reduced to 1 whilst under Mini.
+
+
+===========
+Reis's Wind
+===========
+Casts Regen on all party members.
+
+
+===============
+Dragon's Breath
+===============
+Does damage equal to target Max HP - Current HP to all enemies.
+
+
+==========
+White Draw
+==========
+Restores a random amount of MP to all party members from:
+
+  0 ... ((Enemy Lvl * 2) - 1)
+
+
+====
+Luna
+====
+Casts Berserk on all enemies and party members.
+
+
+============
+Six Dragon's
+============
+Does one of the following 6 things to each character:
+
+1. Fully heals HP (20%)
+2. Fully heals MP (20%)
+3. Fully heals HP and MP (10%)
+4. Reduces HP to 1 (15%)
+5. Reduces MP to 1 (15%)
+6. Reduces HP and MP to 1 (20%)
+
+ 
+==============
+Cherry Blossom
+==============
+A Magical attack to all enemies.
+
+  Base   = [(Atk * 15) / 10] - Mag Def
+  Bonus  = Str + Rnd MOD ([(Lvl + Str) / 8] + 1)
+  Damage = Base * Bonus
+
+Notes:
+  Does not remove Sleep.
+  Bonus is halved by Shell.
+  Bonus is halved whilst under Mini.
+
+
+==============
+Dragon's Crest
+==============
+A Non-Element attack to one enemy.
+
+  Damage = (# of Dragons Killed * # of Dragons Killed)
+
+Notes:
+  Freya doesn't need to be the one that kills the Dragons.
+  Dragons killed before getting Dragon's Crest count.
+
+===============================================================================
+[16.0]                            FLAIR
+===============================================================================
+Flair ranges from doing damage, restoring HP and MP, inflicting status effects
+and adding additional elemental weaknesses to the enemy.
+
+=====
+Throw
+=====
+A Physical attack to one enemy.
+
+  Base   = Thrown Weapons Atk * 2 - Def
+  Bonus  = Str + Rnd MOD ([(Lvl + Str) / 8] + 1)
+  Damage = Base * Bonus
+
+Notes:
+  Bonus is increased by 50% if the target is of the Aerial class.
+  Bonus is increased by 50% if Power Throw is equipped.
+  Bonus is halved by Protect.
+  Bonus is reduced to 1 whilst under Mini.
+
+
+======
+Chakra
+======
+Restores the HP and MP of one party member.
+
+  HP Restored = [(20 * Target Max HP) / 100]
+  MP Restored = [(20 * Target Max HP) / 100]
+
+Notes:
+  HP and MP restored are doubled if Power Up is equipped.
+
+
+============
+Spare Change
+============
+Does Non-Element damage to one enemy.
+
+  Gil Used = Amarant's Lvl * 101
+  Damage   = [(Gil Used * Gil Used * Spirit) / (Gil Owned * 10)]
+
+
+========
+No Mercy
+========
+A Physical attack to one enemy.
+
+  Base   = [(Atk * 17) / 10] - Def
+  Bonus  = Str + Rnd MOD ([(Lvl + Str) / 8] + 1)
+  Damage = Base * Bonus
+
+Notes:
+  Base   = [(Atk * 16) / 10] - Def when in Trance.
+  Takes on the element of your equipped weapon.
+  Bonus is not increased when wearing Elem-Atk raising items.
+  Bonus is halved by Protect.
+  Bonus is reduced to 1 whilst under Mini.
+
+
+====
+Aura
+====
+Casts Regen and Auto-Life on one party member.
+
+
+=====
+Curse
+=====
+Gives one enemy an extra elemental weakness.
+
+Notes:
+  Can be used repeatedly to give an enemy multiple weaknesses.
+
+
+======
+Revive
+======
+Revives a party member from KO and restores HP equal to:
+
+  [((Target Spr + 20) * Target Max HP) / 100]
+
+
+==========
+Demi Shock
+==========
+Reduces the targets HP by a percentage.
+
+  Damage = [(20 * Target Max HP) / 100]
+
+Notes:
+  50% Accuracy.
+  Does not work on bosses.
+
+
+=========
+Countdown
+=========
+Inflicts Doom on one enemy.
+
+Notes:
+  50% Accuracy.
+
+===============================================================================
+[17.0]                       SUPPORT ABILITIES
+===============================================================================
+A list of support abilities and the effects. Most are pretty obvious but some
+are not explained very well in game.
+
+==========
+Ability Up
+==========
+The Character receives double AP after battle.
+
+
+=========
+Absorb MP
+=========
+When hit by an enemy Spell, the character recovers MP equal to the MP cost of
+the spell that hit them.
+
+
+=========
+Accuracy+
+=========
+The character cannot miss with the Attack Command.
+
+
+==========
+Add Status
+==========
+Gives you the chance to inflict the Added Status of your weapon.
+
+
+=====
+Alert
+=====
+Reduces your chance of being Back Attacked from 24/256 to 0%.
+
+
+========
+Antibody
+========
+The character is immune to the Poison and Venom statuses.
+
+
+==========
+Auto-Float
+==========
+The character is permanently under the Float status.
+
+
+==========
+Auto-Haste
+==========
+The character is permanently under the Haste status. The character is immune
+to the Slow status.
+
+
+=========
+Auto-Life
+=========
+The character starts the battle under the Auto-Life status. When KO'd, the
+character will immediately be revived with 1HP (only works once per battle).
+
+
+===========
+Auto-Potion
+===========
+The character automatically uses a Potion when they lose HP. If there are no
+Potions in your inventory, the character uses a Hi-Potion.
+
+
+============
+Auto-Reflect
+============
+The character is permanently under the Reflect status.
+
+
+==========
+Auto-Regen
+==========
+The character is permanently under the Regen status.
+
+
+======
+Bandit
+======
+Steal will always hit the target.
+
+
+============
+Beast Killer
+============
+Increases your Bonus by 50% when attacking a Beast class monster with the
+Attack Command (does not stack with other Killer abilities).
+
+
+===========
+Bird Killer
+===========
+Increases your Bonus by 50% when attacking a Aerial class monster with the
+Attack Command (does not stack with other Killer abilities).
+
+
+=========
+Body Temp
+=========
+The character is immune to the Heat and Freeze statuses.
+
+
+=====
+Boost
+=====
+The full animation always plays when using a Summon.
+
+
+===========
+Bright Eyes
+===========
+The character is immune to the Darkness status.
+
+
+==========
+Bug Killer
+==========
+Increases your Bonus by 50% when attacking a Bug class monster with the
+Attack Command (does not stack with other Killer abilities).
+
+
+=======
+Chemist
+=======
+Doubles the effect of Potion, Hi-Potion and Ether during battle.
+
+
+============
+Clear Headed
+============
+The character is immune to the Confuse status.
+
+
+===========
+Concentrate
+===========
+Increases the healing Bonus of Cure/a/aga by 50%. Doubles the amount of HP
+restored by Life, Full-Life and Phoenix.
+
+
+=======
+Counter
+=======
+When hit by a Physical attack, the character may Counter Attack.
+
+
+=====
+Cover
+=====
+A character with this equipped will take the damage of an enemy Physical
+attack that targets a character with 1/6 of their Max HP or less remaining.
+
+
+============
+Devil Killer
+============
+Increases your Bonus by 50% when attacking a Devil class monster with the
+Attack Command (does not stack with other Killer abilities).
+
+
+========
+Distract
+========
+Increases the chance of evading Physical attacks.
+
+
+=============
+Dragon Killer
+=============
+Increases your Bonus by 50% when attacking a Dragon class monster with the
+Attack Command (does not stack with other Killer abilities).
+
+
+=========
+Eye 4 Eye
+=========
+Doubles your chance to Counter attack.
+
+
+========
+Flee-Gil
+========
+When you escape a battle with L1 + R1, you gain 10% of the Gil held by your
+opponents. If Millionaire is equipped you gain 15%.
+
+
+==============
+Gamble Defence
+==============
+The characters Defence stat changes randomly when attacked between 0 and
+Defence * 2.
+
+
+============
+Guardian Mog
+============
+Removes all status effects from Eiko (except KO) after battle before EXP and
+AP are rewarded.
+
+
+=======
+Half MP
+=======
+Reduces the MP costs of Spells by 50%.
+
+
+======
+Healer
+======
+A character heals the target when using the Attack Command. Undead enemies
+take damage from this ability.
+
+
+=========
+High Jump
+=========
+Doubles the Bonus when using the Jump Command.
+
+
+=========
+High Tide
+=========
+Increases the rate a characters Trance gauge fills.
+
+
+======
+HP+10%
+======
+Increases the characters max HP by 10%.
+
+
+======
+HP+20%
+======
+Increases the characters max HP by 20%.
+
+
+==========
+Initiative
+==========
+Increases your chance of a Pre-emptive Strike from 16/256 to 85/256.
+
+
+=========
+Insomniac
+=========
+The character is immune to the Sleep status.
+
+
+=====
+Jelly
+=====
+The character is immune to the Petrify and Gradual Petrify statuses.
+
+
+========
+Level Up
+========
+The character receives 50% more EXP after battle.
+
+
+==========
+Locomotion
+==========
+The character is immune to the Stop status.
+
+
+==========
+Long Reach
+==========
+When using the Attack Command from the Back Row, your Physical Bonus is not
+reduced by 50%.
+
+
+=========
+Loudmouth
+=========
+The character is immune to the Silence status.
+
+
+=============
+Mag Elem Null
+=============
+Turns all the characters Spells in to Non-elemental attacks.
+
+
+=========
+Man Eater
+=========
+Increases your Bonus by 50% when attacking a Human class monster with the
+Attack Command (does not stack with other Killer abilities).
+
+
+============
+Master Thief
+============
+When stealing from an enemy, changes the 1/256 and 16/256 items to 32/256.
+Steal also now ignores empty slots.
+
+
+===========
+Millionaire
+===========
+Receive 50% more Gil after battle.
+
+
+=========
+MP Attack
+=========
+Increases your Bonus by 50% when using the Attack command at the cost of
+1/8 of the characters max MP every attack.
+
+
+======
+MP+10%
+======
+Increases the characters max MP by 10%.
+
+
+======
+MP+20%
+======
+Increases the characters max MP by 20%.
+
+
+===
+Mug
+===
+When you successfully steal an item, the target receives damage.
+
+
+============
+Odin's Sword
+============
+If Odin fails to kill the target, the target receives Non-elemental damage.
+
+
+===========
+Power Throw
+===========
+Increases the Bonus when using Throw by 50%.
+
+
+========
+Power Up
+========
+The HP and MP restored by Chakra is doubled.
+
+
+=============
+Protect Girls
+=============
+If Dagger, Eiko or Freya have 50% or less of their max HP remaining and the
+enemy targets them with an attack, Zidane will take the damage instead.
+
+
+============
+Reflect-Null
+============
+Allows the character to bypass the Reflect status.
+
+
+==========
+Reflect x2
+==========
+The Bonus of a characters Spell is doubled if Reflected.
+
+
+==========
+Restore HP
+==========
+If a character has 1/6 of their max HP or less remaining and they take
+damage from an enemy attack and survive, they recover 50% of their max HP.
+
+
+============
+Return Magic
+============
+If hit by an enemy Spell, the character Counter attacks with the same spell.
+
+
+=========
+Steal Gil
+=========
+When you successfully steal an item, you also steal Gil.
+
+
+============
+Stone Killer
+============
+Increases your Bonus by 50% when attacking a Stone class monster with the
+Attack Command (does not stack with other Killer abilities).
+
+
+=============
+Undead Killer
+=============
+Increases your Bonus by 50% when attacking a Undead class monster with the
+Attack Command (does not stack with other Killer abilities).
+
+===============================================================================
+                                CREDITS
+===============================================================================
+I would like to thank all of the following people:
+
+Terence (especially), SoftReset (especially), ForteGSOmega, Theoden, Ultima13,
+the phoenix, KADFC, Endless_Dusk, Drops, Ryan86, Supernova 163, TranceKujaFF9
+and the rest of the FFIX board.

@@ -1,0 +1,618 @@
+/¯¯¯¯¯¯¯¯¯¯¯¯¯¯/    /¯¯¯¯¯¯¯¯¯¯¯¯¯¯/    /¯¯¯¯¯¯¯¯¯¯\       |¯¯¯¯¯¯¯¯¯¯¯¯¯|
+|       ______/     |       ______/     |   ___    |       |____     ____|
+|      /            |      /            |__/  /    /            |   |
+|      \            |      \                 /    /             |   |
+|   F   ¯¯|         |   F   ¯¯|             / 2  /              | J |
+|       __|         |       __|            /    /               |   |
+|      /            |      /              /    /          ____  |   |
+|      |            |      |             /    /           \   \_|   |
+|      |            |      |            |     ¯¯¯¯¯|       \        |
+\______/            \______/            |__________|        \_______|
+--------------------------------------------------------------------------
+Final Fantasy 2j
+Leveling Up and Other Useful Tips and Tricks Guide
+By David J. Rivera
+Version 1.10
+2003
+
+Final Fantasy 2j is copyright 1988 Square(c)
+
+This FAQ is copyright
+CyberPlanet Industries 
+Consumer Affairs Dept.
+OnionKid2002
+http://www.geocities.com/cyberpirate88/
+timekeeper2021@fastmail.fm
+--------------------------------------------------------------------------
+Table of Contents
+
+i. Introduction
+
+I Leveling
+	a. Honest method
+	b. Beating the stuffing out of your characters
+	c. Senseless waste of MP
+	d. Selecting/Canceling
+II Leveling Part 2
+	a. Mystida
+	b. Change Trick
+	c. Optimal leveling
+III Tips and Tricks
+	a. Gil Management
+		i. Inns
+		ii. Equipment buying
+		iii. Early Mystidan Enemies
+		iv. Dungeons
+		v. Mages
+		vi. Captains
+		vii. Ships and Airships
+	b. The fourth character
+	c. Notable spells and equipment
+	d. Chocobo
+IV Credits
+--------------------------------------------------------------------------
+
+i. Introduction
+
+Hello all!  This is my second FAQ.  FF2j is quite a great game.  Although 
+it never made it to the US or for that matter anywhere out of Japan, all 
+the reviews for the most part state the game SUX!  Not true.  What they 
+mainly complain about is the leveling system and the battles.  First off,
+if you follow any of the advice in this guide, you will find the leveling
+easier and even fun in certain cases. As for battles, this is a NES GAME! 
+Blazing speed on such an old system is unheard of.  Ineffective hits allow
+more strategy than just holding down a key. The music is great.  If 
+anything it is too short.  But yes, selecting/canceling magic is annoying 
+but hey you're not really supposed to do that.  Of course errors in battle
+are another story. 
+ 
+I might put spoilers unknowingly in this guide.  YOU HAVE BEEN WARNED!
+
+--------------------------------------------------------------------------
+I Leveling
+
+	a. Honest Method
+
+As I have come to believe, Nasir (programmer of FF1, 2, and 3) originally 
+implemented the leveling system as follows:
+The more you get hurt not on purpose, the more HP you gain.
+The more MP required to kill a foe, the more MP you get.
+The more and more you use a certain magic, the higher in level it becomes.
+The more and more you use a certain weapon class, the better you use that
+weapon.
+
+Of course Vitality, Power, Magic Power, Shield Level, Soul, Intelligence,
+etc. are raised in similar ways.  Unfortunately, there are two problems 
+with this:
+
+1.  The way this game is set up, if you don't cheat or get the stuffing 
+beat out of you in every battle, you'll never beat it.
+2.  A bug in the programming allows commands to be counted toward the 
+progression of most stats (Select/Cancel).
+
+But, if you do decide to venture out into the world with your starting 
+stats and let them raise as you battle normally, don't expect to be beat 
+the game fast. Doing so will be a big waste of time better spent 
+"cheating".  But I salute you and you're bravery.  Don't read on if you 
+want to just follow the Honest Method.
+--------------------------------------------------------------------------
+
+	b. Beating the stuffing out of your characters
+
+The more damage you take within battle without getting killed, the more 
+damage you are able to take.  In other words, the more HP you lose, the 
+more HP and Vitality you receive.  
+
+Of course, enemies don't need to damage you only; you can inflict yourself
+with near-fatal blows.  I've found that you need to lose more than half 
+your max HP in order to gain HP and Vitality bonuses.  To be on the safe 
+side, get your characters into their "low-HP" Positions.  Only attempt 
+this method of gaining Health near an Inn or with the Cure spell.  Only 
+attempt it against weak enemies such as Goblin or Hornet.  Against such 
+easy enemies, losing excess health to the point of death is not a threat. 
+These enemies do however flee quite often which is very aggravating.  
+
+An interesting note:  If you accidentally have one of your characters 
+kill himself, they will remain standing but act as if they were dead for 
+one round.  They might even do the victory dance and walk off screen.
+
+*note:  Running away or being inflicted with statuses will not result in 
+ANY bonuses.
+--------------------------------------------------------------------------
+	c. Senseless Waste of MP
+
+The more MP used during battle, the more MP gained there after.  
+
+Again, you do not have to actually use that much magic strategically; you
+can senselessly use cure on non-undead foes, cure your own perfectly 
+healed guys, life the living, fire yourself, etc.  For best results, use 
+up all your MP. Then again, losing half is only necessary.  If you plan on
+wasting it all, stay close to an Inn and only fight weaklings like Goblin 
+and Hornet.  
+
+*note:  Running away or being inflicted with statuses will not result in 
+ANY bonuses.
+--------------------------------------------------------------------------
+	d. Selecting/Canceling
+
+The more and more you use swing around your weapon, the more adapt you 
+become with that particular weapon class.  Or more specifically, the more 
+xHits you get.  The more and more you use a particular magic the better 
+you become at casting that magic.  Or more specifically, the more accurate
+and stronger the magic becomes.
+
+The formula for weapon skill gains is:  
+Number of times selected - current skill level + enemy strength factor + 1
+
+It takes 100 pts to reach the next level.  Pts is displayed next to your 
+current skill level in the stats screen.  Enemy strength level ranges from
+1 to about 7.  Before the Ice Cavern, the groups of enemies have a 
+strength factor of one.  After that, it varies greatly.  Enemies that 
+mainly appear in groups of one (Hill Gigas) have the higher strength 
+levels.  
+
+To select and cancel and gain weapon skill or shield skill, equip the 
+character you want with the weapon class you want to increase in their 
+correct hand (Everyone but Layla and Lionheart are right-handed) and the 
+shield in the other hand.  Then select FIGHT, select a target and when it
+moves on to the next character, press B and repeat however many times 
+you need to.  I always select/cancel 5 more times than I need to make 
+sure.  You may only advance one level at a time.  You may have something 
+in your other hand other than a shield and it will level up as well.  If 
+you have 3 characters, only the first two may do this; if you have four, 
+only three may do this.  
+
+*note:  Running away or being inflicted with statuses will not result in 
+ANY bonuses.
+
+The formula for magic skill gains is:
+Number of times selected - current spell level + enemy strength factor + 3
+
+It takes again 100 pts reach the next level.  Selecting/Canceling is much 
+more frustrating than before, seeing as you must enter the magic menu, 
+choose a magic, choose a target, then repeat.  I still always do it 5 more
+times than necessary to make sure.  Turning off the music helps and so 
+does a little FPS boost if you are running an emulator.  You may only
+advance one level at a time.  Only the first 2/3 characters or 3/4 may do
+this.  
+
+*note:  Running away or being inflicted with statuses will not result in 
+ANY bonuses.
+--------------------------------------------------------------------------
+II Leveling Part 2
+
+	a. Mystida
+
+You are only supposed to visit the Magical town of Mystida after the 
+retaking of Phin by the rebels.  But it is accessible via two areas early 
+on.  The first way to access this place and the only way if you haven't 
+gotten Layla yet, is to head West over the bridge by Gatea, then head 
+south a long while.  Head directly south. Mystida is a village with the 
+sprites of a group of houses.  A canoe is required.  
+
+The second way, and the wiser, is to wait until you get Layla.  Then with
+your ship, sail to the peninsula south of Altea.  Head west until you find
+a ring of mountains. Head to the south of the ring of mountains and head 
+directly south.  On land, head right of the mountain trail, southwest into
+the marshes and finally to Mystida.  
+
+Now, the land around and leading to Mystida is filled with near impossible
+to INSANELY powerful beasts.  To conquer these wrenched monsters you can
+either become uber using the methods in Leveling Part 1 or by doing this:
+
+1.  Depending on where you want to start from, make a save file there.  
+2.  Walk several steps; save.  
+3.  Walk several more steps and if you get into a battle, reset.  
+4.  Load up and repeat until you get to Mystida,
+
+Note that this works anywhere but is only useful in crossing the desert to
+Arena or getting to Mystida early,
+
+
+Now, why in all of the world would I want to get to Mystida?  Well, it has
+to do with the shops here.  Here is the list:
+
+Item||Price
+
+Fire 400 
+Bolt 400
+Ice 400
+Cure 400
+Blink 400
+Safe 400
+Shell 400
+Life 1500
+Anti 1500
+Warp 1500
+Exit 1500
+Fear 800
+Peep 800
+Heal 800
+Mute 800
+Barrier 8000
+Wall 8000
+Change 8000
+Holy 20000
+Ice Shield 5000
+Knight Armor 5000
+Thief Gauntlet 1000
+Giant Gauntlet 2000
+Power Stave 8000
+Flame Spear 15000
+Ogre Axe 15000
+Ice Bow 5000
+
+Yes, there is that much magic.  Of all the items, I suggest only getting:
+
+Change
+Ice Shield
+Knight Armor
+Thief and Giant Gauntlets
+Ogre Axe 
+Ice Bow
+And of course the elemental spells and cure, life, and exit if you didn't
+get them already.  
+
+Also in Mystida is a mysterious bookcase that gives you stories of certain
+passwords. I won't tell which house it's in nor what it says only because
+that's half the fun.  
+
+--------------------------------------------------------------------------
+	b. Change Trick
+
+One of the magic books available in Mystida is the book of change.  It has
+two uses: lowering the HP of bosses and leveling.  What change does is 
+swap HP and MP of the caster and target.  It only works on one target at a
+time.  If you have lower HP than that of a boss, use it for that.  If you 
+use it on a target with less HP/MP than you, you gain HP and MP bonuses.
+Change works on all levels 1-16 but doesn't work on all enemies/bosses.  
+Even though the spell works on level one, you will see more ineffective
+strikes and waste more time than if you level it up.  I suggest anything 
+over level 5. Of course, I'm so lazy, I only have mine on level 2!
+
+
+*note:  Running away or being inflicted with statuses will not result in 
+ANY bonuses.
+--------------------------------------------------------------------------
+	c. Optimal Leveling
+
+Requirements:
+Three or Four characters each with Change5 or higher
+Enemies around Altea and Gatea like Goblin.
+Several thousand Gil.
+
+1.  Get into a battle with a Goblin, Hornet, et cetera.
+2.  The character with the lowest HP casts Change5 on the Goblin, Hornet,
+    et cetera.
+3.  Win the battle.  The character wins HP and MP bonuses as well as 
+    others in some cases
+4.  Get into another battle.
+5.  The character with the second lowest HP casts Change5 on the character
+    with the lowest HP.
+6.  Win the battle.  The character wins HP and MP bonuses as well as 
+    others in some cases.  But most importantly, the first character has 
+    some HP and MP.
+7.  Get into another battle.
+8.  The character with the third highest/highest HP (with three characters
+    only) casts Change5 on the second lowest HP character.
+9.  Win the battle.  The character wins HP and MP bonuses as well as 
+    others in some cases.  But most importantly, the first two characters
+    have some HP and MP.
+10. **Only with four characters; otherwise skip to step 13** Get into 
+    another battle.
+11. The character with the highest HP casts Change5 on the third highest 
+    HP character.
+12. Win the battle.  The character gets bonuses, but most importantly, 
+    three characters have some HP and MP.  
+13. Repeat for as long as possible.
+
+Now, you may ask, "Why don't I just do this in one battle?"  Well there 
+are several reasons.  First, many enemies in the areas around Altea and 
+Gatea flee.  The battle wouldn't last long enough.  Second, you may run 
+out of MP and need to visit an Inn. Third, you may get statuses which 
+don't reward you with any bonuses.  Remember to save in-between battles 
+just in case.  This is the fastest method of leveling up.
+
+
+*note:  Running away or being inflicted with statuses will not result in 
+ANY bonuses.
+-------------------------------------------------------------------------- 
+III Tips and Tricks
+
+	a.  Gil Management
+
+As SQUARE's foreshadowing in this game is blatantly obvious, I won't doubt
+you've found the game's starting Gil of 400 insufficient.  This is a sign
+for things to come.  The first time I was playing this game, I constantly
+found myself out of gil.  Whether for inns or for potions I never had 
+enough money.  
+
+But this last time, and as this FAQ is being written I am in the middle 
+of, I found several ways to save gil and be able to buy the sun and moon 
+and still have enough money to blow in Las Vegas!
+
+		i.  Inns
+
+There is no doubt in my mind that you will need to visit an Inn.  Here's a
+method to save time and gil:  Upon entering the Inn of your choice, use 
+cure on all of your characters until they are all at maximum HP.  Then pay
+the innkeeper.  This way, you will save money seeing as the price for Inns
+has to do with your current HP/MP out of your maximum HP/MP.  It costs 
+1 gil per MP.  HP is Max HP-Current HP divided by four.  Also, it will 
+increase the strength of your cure spell
+
+		ii.  Equipment Buying
+
+Why of course you'll be buying equipment!  But you don't have to buy 
+everything as it becomes available to you.  My advice is to only buy stuff 
+as you need it.  Don't buy inferior equipment. If you are unsure of how 
+good your current equip. is compared to the "new" stuff, either refer to an
+FAQ or just save, buy the new stuff, and if it isn't satisfactory, reset.  
+A lot of good equipment is found in dungeons.  Make sure not to buy 
+anything until it's absolutely necessary to do so.  Keep these ideas in 
+mind and you will save money.
+
+		iii.  Early Mystidian Enemies
+
+In order to get a lot of money early on, I always fight Mystidian enemies. 
+Of course you don't actually have to be in the area of Mystida to encounter
+such enemies.  If you travel DIRECTLY south of Altea until you can no 
+longer go and walk left and right, you will fight very tough monsters.  The
+majority of beasts here are found near Mystida but I have found Behemoths 
+here. 
+
+The trick is to save on this peninsula and then reset whenever you find 
+enemies that are too tough.  If you are on the weak side, only fight Bombs,
+Mines, Puddings (only with high fire magic), and Mallows (With high bolt 
+magic).  But if you are strong enough, fight all who oppose your uber-ness.
+The rewards are quite valuable, if you don't get the near or over 1000 gil.
+
+		iv.  Dungeons
+
+One tip:  get everything.  I don't care if you have to kill millions of 
+beasts with your bare hands, get everything in a dungeon.  If it doesn't 
+live up to your standards, sell it!  If this doesn't raise your income, 
+nothing will.  Another area of this tip is to go through an entire dungeon 
+again if the boss gives good items.  Who needs that extra 1000 gil when an 
+armor of invincibility is available?  If the dungeon is non-renter able, 
+then you should definitely get everything.
+
+		v.  Mages
+
+These are great enemies.  Easy to encounter.  Wondrous gifts.  And even 
+their palette swaps (wizards, sorcerers) are great.  But I specifically am 
+going to mention Mages because of their easy beat-ability and the fact that
+they are easy to locate.  Below are it's stats:
+
+80 HP
+30 MP
+
+Rewards:
+50 gil 
+Magic Stave 
+Fire Book  
+Thunder Book
+Aero Book
+Break Book
+Berserk Book 
+ 
+All of these books are worth a pretty penny if you sell them and some are 
+useful to learn.
+
+		vi.  Captians
+
+These are the most reliable sources of gil until you re-take Phin.  In 
+case you don't know, Captains are the guys in Phin and the Warship before 
+Phin is re-taken and the Warship is destroyed.  And since the Warship is 
+no where near an Inn or a shop to sell the stuff you get, I suggest the 
+Captians in Phin.
+
+Captains are not a walk in the park.  They are designed to keep you out of 
+Phin and drive you mad in the Warship.  Most walkthroughs will tell you to 
+not talk to these guys.  I will say fight them.  All you need is at least 
+a weapon of moderate power leveled to level 5 or 6 and a lot of HP.
+
+Stats of Captains:
+
+750 HP
+30 MP
+
+Rewards:
+200 gil
+300 gil
+Flame Bow
+Gold Armor
+Curse Book
+Toad Book
+
+Captains NEVER die.  Except they do leave when Phin is re-taken.  You can 
+fight Captains until the NES completely disintegrates.  All the rewards 
+are sure to please.
+
+		vii.  Ships and Airships
+
+Don't take them.  It's that simple.  All locations that can be paid to 
+take you somewhere are easily reached on foot for free.  Only use the 
+ships and airships when you get them during the storyline for free.  
+--------------------------------------------------------------------------
+	b. The Fourth Character                                           
+                                                                          
+Upon your quest to ultimately destroy the Emperor, you will find many     
+souls who will join you on your journey.  Below are the characters and my 
+opinions of them.                                                         
+                                                                          
+Character:::::::::Opinion:::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+Minh::::::::::::::Minh, the white mage of the rebels makes an adequate 
+::::::::::::::::::member of your party just don't buy him much if 
+::::::::::::::::::anything.
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+Josef:::::::::::::Josef, the man from Salamando comes ready equipped with 
+::::::::::::::::::his fists; it's all you'll need.  He doesn't stay on 
+::::::::::::::::::your team for very long; don't buy him anything.
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+Gordon::::::::::::Ha!  Kill him and leave him dead. Rob his dead body 
+::::::::::::::::::blind and throw him in a river.  Seriously though, don't 
+::::::::::::::::::bother leveling him or buying him anything.
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+Layla:::::::::::::Finally a GOOD character.  I recommend leveling her and 
+::::::::::::::::::buying her somedecent equipment.
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+Richard:::::::::::I'm on the fence about the last dragoon.  While he is  
+::::::::::::::::::not as worthwhile as Layla in terms of how long you keep
+::::::::::::::::::him, he is still a worthy ally.  I say buy Richard a  
+::::::::::::::::::few spells and use your old equipment you would 
+::::::::::::::::::otherwise sell for him.
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+Lionheart:::::::::Being the final fourth character, I would suppose you  
+::::::::::::::::::must use Lionheart to the fullest.  While it may be your
+::::::::::::::::::choice to leave him dead or use him, I will suggest you 
+::::::::::::::::::buy him a payload of spells and get optimal equipment 
+::::::::::::::::::for a swords and shield man.
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+--------------------------------------------------------------------------
+	c.  Notable Spells and Equipment
+
+In this section, I will list spells and equipment upgrades that I feel are
+worth pointing out. This, hopefully, will help you choose which spell to 
+buy and which not to and if upgrading to that sword or shield is worth it.
+If you don't see it listed here, it probably isn't worth the gil.  
+However, if you think it is, e-mail me (timekeeper2021@fastmail.fm) with 
+why you think so.
+
+Spells
+--------
+
+1) The 3 Elements (Fire, Ice, and Bolt)
+
+While I may not be a huge fan of these magic spells, they are very helpful
+against adamant foes like the Puddings, Mallows, and Jellies.  It helps to
+level these spells around level 5.
+
+2) Cure
+
+Buy it.  EXTREMELY useful and as long as you level it as your characters' 
+HP rise, it will prove its worth.  Get it to level 16.
+
+3) Heal
+
+Also useful.  It is much better to have one Heal spell at least at level 5
+than all the items in the whole game.  
+
+4) Life
+
+Of course this will be useful.  Out of battle, Life1 will do but in battle
+a higher level is required.  Try at least level 5 or be ready to spend 
+several turns wasting MP.
+
+5) Exit
+
+Much better than Warp but it does take a toll on the user's HP.  Just make
+sure to cure that character after using it, that's all.  A high level 
+isn't required.
+
+6) Change
+
+As mentioned before in "the Change trick", change is useful for leveling 
+but also for a quick cure and lowering a Boss's HP/MP.  Level 5 or more 
+will do.
+
+7) Berserk
+
+Somewhat worthwhile and that's why I'm mentioning it.  While it's not as 
+great as Haste, it does temporarily raise the Power stat and can really 
+help in a tight spot.  Any level you see fit will do, really.
+
+8) Haste
+
+It raises your X Hit's; extremely useful.  Level it to the moon!
+
+9) Drain/Aspil
+
+Used against Undeads, it has the same effect as wasting HP/MP 
+respectively.
+
+10) Flare
+
+I'm not one for attack magic (reason that Holy and Ultima aren't here) but
+if you must use attack magic, Flare is the one to use.  The higher the 
+level, the more the damage.
+
+Equipment
+-----------
+
+1) Broad Sword, Axe, Bow, Leather Equipment
+
+While it may be a pain to have to gather up enough gil to buy EVERYONE a 
+ton of equipment, it is most definitely worth it.  Just battle a whole lot
+ early on and you'll find enough dough.
+
+2) Everything up to the Mythril
+
+If you find the starting equipment sufficient up until you give the 
+Mythril to Tobul, keep it. Really, the stuff from Broad Sword to Mythril 
+Sword isn't worth it.
+
+3) Mythril
+
+Ok this will be the last time you must buy a whole bunch of equipment.  
+From here on in, most of the good equipment will be found in dungeons.  
+Buy every last bit of Mythril stuff you need.
+
+4) Mystidia
+
+As soon as you get the ship, go to Mystidia.  Forget all the crap in 
+between, get some really powerful weapons and armor ahead of time.  
+The stuff here along with what you get in dungeons will last you until the
+Whirlwind.  No joke.
+
+5) Whirlwind, Jade, and Paramekia
+
+Just pick up all the treasure in these dungeons and you'll be with the 
+game's progression into harder enemies.
+
+6) Pandemonium
+
+Get the Genji gear and the Masamune from their respective captors.  Be 
+sure also to find some Iron Giants for extra Genji equipment and 
+Excaliburs.  They are rarely found in Pandemonium but are on the last few 
+floors of the Hell Castle.
+
+7) Blood Swords
+
+The seemingly useless Blood Swords are both found in Phin.  The first in 
+Phin's basement, the second in Paul's house.  They are weak as anything 
+but are EXTREMELY useful against undead foes and the bosses Asteroth and 
+the Final Boss as well.   
+
+--------------------------------------------------------------------------
+	d.  Chocobo
+
+The chocobo is one of the most definable things in a Final Fantasy and it 
+all started here.  To reach the chocobo, travel directly south of 
+Kashoun's entrance.  Upon entering the forest, find the chocobo and talk 
+to him.  A dialogue will pop up saying "Found a Chocobo".  Press B and 
+exit the forest.  Press A on him on the world map and ride around faster 
+and without the threat of monsters.  This guy is especially useful in 
+crossing the desert near arena and going to the Warship.
+
+--------------------------------------------------------------------------
+IV Credits
+
+Alex Jackson-  For the formulas in getting bonuses
+
+Skylark-  For his monster list of FF2J and all the other FF games.
+
+AgriasOaks (Red Scarlet)- For being such a great inspiration.
+
+If you know something I don't or you want to comment,
+e-mail me at timekeeper2021@fastmail.fm.
+
+Copyright Cyber Planet Industries 2003
+Consumer Affairs Dept.
+OnionKid2002
+
+David J. Rivera
+Timekeeper2021@fastmail.fm
+http://geocities.com/cyberpirate88/
