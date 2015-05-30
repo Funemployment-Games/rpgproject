@@ -1,0 +1,314 @@
+~~~Final Fantasy 1~~~
+White Magic Buffs
+FOG
+RUSE
+INVS
+ALIT
+AFIR
+AICE
+FOG2
+INV2
+ARUB
+WALL
+
+White Magic Debuffs
+MUTE
+FEAR
+XFER - bugged
+
+White Magic Heal
+CURE
+CUR2
+HEAL
+CUR3
+HEL2
+LIFE
+LAMP
+PURE
+AMUT
+SOFT
+CUR4
+HEL3
+LIF2
+
+White Magic Damage
+HARM
+HRM2
+HRM3
+HRM4
+FADE
+
+White Magic Other
+EXIT
+
+Black Magic Buffs
+TMPR - Bugged
+FAST
+SABR - Bugged
+
+Black Magic Debuffs
+SLEP
+LOCK - Bugged
+SLOW
+DARK
+HOLD
+LOK2 - Bugged
+CONF
+SLP2
+SLO2
+STUN
+BLND
+STOP
+
+Black Magic Damage
+FIRE
+LIT
+ICE
+FIR2
+LIT2
+ICE2
+FIR3
+LIT3
+ICE3
+NUKE
+
+Black Magic Insta-Kill
+BANE
+QUAKE
+RUB
+BRAK
+XXXX
+ZAP!
+
+Black Magic Other
+WARP
+
+~~~Final Fantasy 2~~~
+White Magic Buff
+Barrier
+Basuna
+Blink
+Protect
+Shell
+Wall
+
+White Magic Debuff
+Dispel - Bugged
+Fear
+Fog
+Mini
+Rasp
+Silence
+Slow
+
+White Magic Heal
+Cure
+Esuna
+Raise
+
+White Magic Damage
+Holy
+Ultima
+
+White Magic Other
+Teleport
+
+Black Magic Buff
+Aura
+Haste
+
+
+Black Magic Debuff
+Berserk
+Blind
+Break
+Confuse
+Curse
+Sleep
+Stop
+Stun
+Toad
+
+Black Magic Heal
+Aspil
+
+Black Magic Damage
+Aero
+Blizzard
+Fire
+Flare
+Thunder
+
+Black Magic Other
+Death
+Dezone
+
+~~~FF3~~~
+White Magic Buff
+Safe
+Haste
+Wall
+
+White Magic Debuff
+Toad
+Mini
+Confu
+Mute
+
+White Magic Heal
+Pure
+Cure
+Cure2
+Wash
+Cure3
+Life
+Soft
+Cure4
+Heal
+Life2
+
+White Magic Damage
+Aero
+Aero2
+WWind
+HOly
+
+White Magic Other
+Sight
+Exit
+Libra
+
+Black Magic Buff
+
+Black Magic Debuff
+Sleep
+Venom
+Blind
+Shade
+Break
+Erase
+Brak2
+
+Black Magic Heal
+Drain
+
+Black Magic Damage
+Fire
+Ice
+Bolt
+Bolt2
+Fire2
+Ice2
+Ice3
+Bolt3
+Fire3
+Bio
+Quake
+Flare
+Meteo
+
+Black Magic Other
+Kill
+Warp
+Death
+
+~~~FF4~~~
+White Magic Buff
+Berserk
+Blink
+Fast
+Float
+Wall
+
+White Magic Debuff
+Charm
+Hold
+Mute
+Size
+Slow
+
+White Magic Heal
+Cure1
+Cure2
+Cure3
+Cure4
+Heal (Esuna)
+Life1
+Life2
+
+White Magic Damage
+White (Holy)
+
+White Magic Other
+Exit
+Peep
+Sight
+
+Black Magic Buff
+
+Black Magic Debuff
+Piggy
+Sleep
+Stone
+Toad
+Venom
+
+Black Magic Heal
+Drain
+Psych
+
+Black Magic Damage
+Fire1
+Fire2
+Fire3
+Ice1
+Ice2
+Ice3
+Lit1
+Lit2
+Lit3
+Meteo
+Nuke
+Quake
+Virus (Bio)
+
+Black Magic Other
+Fatal
+Warp
+Weak
+
+FF5
+White Magic Buff
+White Magic Debuff
+White Magic Heal
+White Magic Damage
+White Magic Other
+Black Magic Buff
+Black Magic Debuff
+Black Magic Heal
+Black Magic Damage
+Black Magic Other
+
+FF6
+White Magic Buff
+White Magic Debuff
+White Magic Heal
+White Magic Damage
+White Magic Other
+Black Magic Buff
+Black Magic Debuff
+Black Magic Heal
+Black Magic Damage
+Black Magic Other
+
+FF7
+White Magic Buff
+White Magic Debuff
+White Magic Heal
+White Magic Damage
+White Magic Other
+Black Magic Buff
+Black Magic Debuff
+Black Magic Heal
+Black Magic Damage
+Black Magic Other
