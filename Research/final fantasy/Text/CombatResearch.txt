@@ -1,0 +1,154 @@
+~~~~FF1~~~~
+
+1. Determine chance to hit:
+     Chance to Hit = (BC + H)* - E
+     BC = base chance to hit
+     H = attacker hit percentage
+     E = defender evade percentage
+     --If the Target is Asleep or Paralyzed, Chance to Hit = BC
+     
+     The value in parenthesis is capped at 255 _before_ Evasion is subtracted
+
+    
+ 2. Perform a hit roll
+     A Hit Roll is done and a random number is selected from 0 to 200. 
+
+     If that number is less than or equal to the Chance to Hit, the Hit connects. 0 is an
+     automatic hit, and 200 is an automatic miss.
+
+3. Resolve Damage
+	 Damage = A...2A - D
+     A = attack power
+     D = target's defense
+     --If the Target is weak to an Elemental or Enemy-Type attribute of the weapon,
+     add +4 to A (this is bugged and doesn't work on the NES version)
+
+Damage Formulas:
+    Standard
+	Attack = Weapon Attack + STR/2
+
+	Armed BB/MA or BM/BW 
+	Attack = Weapon Attack + STR/2 + 1
+
+	Unarmed BB/MA
+	Attack = Level*2
+
+Defense Formulas:
+	Standard
+	Defense = Sum of Equipped Armor
+
+	Unequipped* BB/MA
+	Defense = Level
+
+~~~~FF2~~~~
+???
+
+
+~~~~FF3~~~~
+Attack Damage = (Weapon Damage) + (Strength/4)
+Attack Multiplier = (Agility/16) + (Level/16) + 1
+Hit%: Hit% = (Weapon Hit%) + (Agility/4) + (Skill/4)
+Defense = sum of all worn (Armour Defense) + (Vitality/2)
+(with shield):
+
+Defense Multiplier = (Agility/16) + (Level/16) + 1 * (number of shields
+                     equipped)
+
+(without shield):
+
+Defense Multiplier = (Agility/32) + (Level/32)
+Evade% = sum of all worn (Armour Evade%) + (Agility/4)
+Magic Defense = sum of all worn (Armour Magic Defense)
+Magic Evade% = (Intellect/2) + (Spirit/2)
+
+1) CALCULATE BASE DAMAGE
+      Base Damage = Attack Damage = (Weapon Damage) + (Strength/4)
+
+2) APPLY BASE DAMAGE BONUSES AND PENALTIES
+      Base Damage = (Base Damage + (additive bonuses)) * (multiplicative bonuses
+                    or penalties)
+
+3) APPLY RANDOM RANGE TO BASE DAMAGE
+      Base Damage = (Base Damage..Base Damage*1.5)
+
+4) SUBTRACT TARGET'S DEFENSE
+      Base Damage = Base Damage - Defense
+
+5) CALCULATE NET ATTACK MULTIPLIER
+      M (on average) ~= ((Attack Multiplier) * Hit%) - ((Defense Multiplier) *
+                        Evade%)
+
+6) MULTIPLY BASE DAMAGE BY NET ATTACK MULTIPLIER
+      Final Damage = Base Damage * M
+
+7) APPLY FINAL DAMAGE BONUSES AND PENALTIES
+      Final Damage = Final Damage * (bonuses or penalties)
+
+8) DUAL WIELDING OR MULTIPLE TARGETS
+      Repeat Steps 1-7 for each weapon in each hand.
+      Repeat Steps 1-7 for each target.
+
+~~~~FF4~~~~
+Step 1: Compute the Attacker's Base Attack Power
+Step 2: Modify the Base Attack Power
+Step 3: Compute the Attacker's Hit Rate aka Attack% or Precision
+Step 4: Factor in the Hit Rate Modifiers
+Step 5: Calculate the Attack Multiplier
+Step 6: Calculate Target's Defense
+Step 7: Factor in Defense Modifiers
+Step 8: Calculate Evade AKA Defense%
+Step 9: Apply Evade Modifiers
+Step 10: Compute Defense Multiplier
+Step 11: Modify the Attack Multiplier
+Step 12: Plugging All The Numbers In...
+Step 13: Inflicting Statuses
+
+~~~~FF5~~~~
+1) Determine initial Hit% and Evade% values.
+2) Apply appropriate modifiers to Hit% and Evade%
+3) Determine whether the attack hits or not.  
+   If the attack misses, do not follow any more steps
+4) If the Attack hits, get initial values for Attack, Defense and M, using the
+   appropriate section in the Damage Parameters section.
+5) Apply appropriate modifiers to Attack, Defense and M
+6) Calculate Final Damage
+6) Apply any appropriate Status Effects.
+
+~~~~FF6~~~~
+Damage Calculation
+Step 1. Maximum damage calculation
+Step 2. Atlas Armlet / Earring
+Step 3. Multiple targets
+Step 4. Attacker's row
+Step 5. Damage Multipliers #1
+Step 6. Damage modification
+Step 7. Damage multipliers #2
+Step 8. Petrify damage
+Step 9. Elemental resistance
+
+Hit Calculation
+Step 1. Clear
+Step 2. Death Protection
+Step 3. Unblockable attacks
+Step 4. Check to hit for normal attacks
+Step 5. Check to hit for attacks that can be blocked by Stamina
+
+~~~~FF7~~~~
+Base Damage = Att + [(Att + Lvl) / 32] * [(Att * Lvl) / 32]
+
+~~~~FF8~~~~
+Step 1: Hit Determination
+
+  Hit% = (AttackerLuck / 2 + AttackerHit - TargetEva - TargetLuck)
+
+Step 2: Critical Determination
+
+  Critical% = (AttackerLuck + 1) / 256 * 100
+
+Step 3: Base Damage Calculation
+
+  Damage = AttackerStr^2 / 16 + AttackerStr
+  Damage = Damage * (265 - TargetVit) / 256
+  Damage = Damage * Power / 16
+
+  Note: A normal attack has a Power value of 20
