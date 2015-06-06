@@ -22,9 +22,12 @@ MiniRPG/frameworks/runtime-src/proj.win32/Debug.win32
 MiniRPG/frameworks/cocos2d-x/cocos/network/proj.win32/Debug.win32
 MiniRPG/frameworks/cocos2d-x/cocos/audio/proj.win32/Debug.win32
 MiniRPG/*.lua
+MiniRPG/runtime/mac/*
 
 *.class
 
 *.o
 
 *.d
+
+MiniRPG/runtime/mac/MiniRPG Mac.app/Contents/MacOS/MiniRPG Mac
