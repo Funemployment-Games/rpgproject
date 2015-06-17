@@ -8,6 +8,7 @@
 
 #include "HudLayer.h"
 #include "NPCManager.h"
+#include "MenuStatusScene.h"
 
 Layer* HudLayer::createLayer()
 {
@@ -122,4 +123,7 @@ void HudLayer::onSearchButtonCallback(Ref* pSender)
 
 void HudLayer::onMenuButtonCallback(Ref* pSender)
 {
+    printf("Menu!\n");
+    auto scene = MenuStatusScene::createScene();
+    Director::getInstance()->pushScene(scene);
 }

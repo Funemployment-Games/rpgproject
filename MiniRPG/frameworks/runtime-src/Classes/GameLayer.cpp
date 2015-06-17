@@ -477,6 +477,7 @@ bool GameLayer::scanNPCLayer(Vec2 tileCoord)
          {
              printf("Collided with: %s\n",collidedSprite->getCharacterName().c_str());
              m_pHudLayer->setContextButtonVisibility(kContextMenuButton_Talk, true);
+             m_pHudLayer->setContextButtonVisibility(kContextMenuButton_Menu, false);
          }
          return true;
      }
@@ -485,6 +486,11 @@ bool GameLayer::scanNPCLayer(Vec2 tileCoord)
          if (m_pHudLayer->getContextButtonVisibility(kContextMenuButton_Talk))
          {
              m_pHudLayer->setContextButtonVisibility(kContextMenuButton_Talk, false);
+         }
+         
+         if(!m_pHudLayer->getContextButtonVisibility(kContextMenuButton_Menu))
+         {
+            m_pHudLayer->setContextButtonVisibility(kContextMenuButton_Menu, true);
          }
      }
     

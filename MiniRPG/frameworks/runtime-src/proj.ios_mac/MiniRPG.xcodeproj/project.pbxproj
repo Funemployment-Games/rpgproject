@@ -77,6 +77,8 @@
 		7A39F0A21B1F7A83005D2831 /* NPCSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0851B1F7A83005D2831 /* NPCSprite.cpp */; };
 		7A39F0A31B1F7A83005D2831 /* SimpleDPad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0871B1F7A83005D2831 /* SimpleDPad.cpp */; };
 		7A39F0A41B1F7A83005D2831 /* SimpleDPad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0871B1F7A83005D2831 /* SimpleDPad.cpp */; };
+		7A776D891B23932E0022045B /* MenuStatusScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A776D881B23932E0022045B /* MenuStatusScene.cpp */; };
+		7A776D8A1B23932E0022045B /* MenuStatusScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A776D881B23932E0022045B /* MenuStatusScene.cpp */; };
 		9FC760431A67791200D1E6E7 /* lang in Resources */ = {isa = PBXBuildFile; fileRef = 9FC760401A67791200D1E6E7 /* lang */; };
 		9FC760451A677A4A00D1E6E7 /* SimpleConfigParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC760411A67791200D1E6E7 /* SimpleConfigParser.cpp */; };
 		9FF504841A5E87B100AFDA55 /* ConsoleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF504811A5E87B100AFDA55 /* ConsoleWindow.xib */; };
@@ -266,6 +268,8 @@
 		7A39F0861B1F7A83005D2831 /* NPCSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NPCSprite.h; path = ../Classes/NPCSprite.h; sourceTree = "<group>"; };
 		7A39F0871B1F7A83005D2831 /* SimpleDPad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SimpleDPad.cpp; path = ../Classes/SimpleDPad.cpp; sourceTree = "<group>"; };
 		7A39F0881B1F7A83005D2831 /* SimpleDPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleDPad.h; path = ../Classes/SimpleDPad.h; sourceTree = "<group>"; };
+		7A776D871B2392FF0022045B /* MenuStatusScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuStatusScene.h; path = ../Classes/MenuStatusScene.h; sourceTree = "<group>"; };
+		7A776D881B23932E0022045B /* MenuStatusScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuStatusScene.cpp; path = ../Classes/MenuStatusScene.cpp; sourceTree = "<group>"; };
 		9FC7603F1A67791200D1E6E7 /* CodeIDESupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeIDESupport.h; sourceTree = "<group>"; };
 		9FC760401A67791200D1E6E7 /* lang */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lang; sourceTree = "<group>"; };
 		9FC760411A67791200D1E6E7 /* SimpleConfigParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleConfigParser.cpp; sourceTree = "<group>"; };
@@ -537,6 +541,8 @@
 				7A39F0881B1F7A83005D2831 /* SimpleDPad.h */,
 				7A39F07C1B1F7A83005D2831 /* lua_cocos2dx_custom.hpp */,
 				9FC7603E1A67791200D1E6E7 /* ide-support */,
+				7A776D871B2392FF0022045B /* MenuStatusScene.h */,
+				7A776D881B23932E0022045B /* MenuStatusScene.cpp */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -763,6 +769,7 @@
 				9FFE00A01ACCF59E00D6E35A /* lua_debugger.c in Sources */,
 				7A39F0A41B1F7A83005D2831 /* SimpleDPad.cpp in Sources */,
 				5023813317EBBCE400990C9B /* AppDelegate.cpp in Sources */,
+				7A776D8A1B23932E0022045B /* MenuStatusScene.cpp in Sources */,
 				9FF504851A5E87B100AFDA55 /* ConsoleWindowController.m in Sources */,
 				7A39F0A01B1F7A83005D2831 /* NPCManager.cpp in Sources */,
 				7A39F08A1B1F7A83005D2831 /* ActionSprite.cpp in Sources */,
@@ -793,6 +800,7 @@
 				7A39F0A31B1F7A83005D2831 /* SimpleDPad.cpp in Sources */,
 				7A39F09D1B1F7A83005D2831 /* MenuYesNo.cpp in Sources */,
 				9FFE009F1ACCF59E00D6E35A /* lua_debugger.c in Sources */,
+				7A776D891B23932E0022045B /* MenuStatusScene.cpp in Sources */,
 				7A39F09F1B1F7A83005D2831 /* NPCManager.cpp in Sources */,
 				7A39F08F1B1F7A83005D2831 /* GameLayer.cpp in Sources */,
 				7A39F0951B1F7A83005D2831 /* HudLayer.cpp in Sources */,
