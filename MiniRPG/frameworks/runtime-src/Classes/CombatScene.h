@@ -11,6 +11,7 @@
 
 #include "cocos2d.h"
 #include "HeroSprite.h"
+#include <iostream>
 
 USING_NS_CC;
 
@@ -20,17 +21,6 @@ enum CombatMenuButton
     kCombatMenuButton_Undo,
     kCombatMenuButton_Max,
     kCombatMenuButton_None = -1,
-};
-
-#include <iostream>   
-class A
-{
-public:
-    int x;
-    
-    A() : x(0) { }
-    virtual void printMe() { std::cout << "Value: " << x <<  std::endl; }
-    virtual ~A() { }
 };
 
 class CombatScene: public cocos2d::Scene

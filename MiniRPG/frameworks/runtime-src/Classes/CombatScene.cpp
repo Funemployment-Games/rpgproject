@@ -31,9 +31,6 @@ bool CombatScene::init()
     initMonsterSprites();
     initCombatMenu();
     
-    printf("sizeof a: %lu\n",sizeof(A));
-    printf("sizeof int: %lu\n",sizeof(int));
-    
     this->scheduleUpdate();
     
     return true;
