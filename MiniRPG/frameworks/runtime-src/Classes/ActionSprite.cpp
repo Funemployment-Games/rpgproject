@@ -120,7 +120,7 @@ void ActionSprite::walkNumTilesWithDirection(int numTilesToMove, ActionSpriteDir
 
 void ActionSprite::walkOneTileInCurrentDirection()
 {
-    printf("ActionSprite::walkOneTileInCurrentDirection\n");
+    //printf("ActionSprite::walkOneTileInCurrentDirection\n");
     if (this->getPosition() == m_vDesiredPosition)
     {
         //printf("ActionSprite::walkOneTileInCurrentDirection - early out\n");
@@ -150,7 +150,7 @@ void ActionSprite::walkOneTileInCurrentDirection()
     }
     else
     {
-        printf("ActionSprite::walkOneTileInCurrentDirection - m_actionState: %d\n", m_actionState);
+        //printf("ActionSprite::walkOneTileInCurrentDirection - m_actionState: %d\n", m_actionState);
     }
 }
 
@@ -158,7 +158,7 @@ Vec2 ActionSprite::determineDestinationPositon(int numTilesToMove, ActionSpriteD
 {
     Vec2 destination = Vec2::ZERO;
     
-    printf("ActionSprite::determineDestinationPositon - start X: %f, Y: %f\n", getPosition().x, getPosition().y);
+    //printf("ActionSprite::determineDestinationPositon - start X: %f, Y: %f\n", getPosition().x, getPosition().y);
     
     switch (directionToMove) {
         case kActionSpriteDirectionEast:
@@ -190,7 +190,7 @@ Vec2 ActionSprite::determineDestinationPositon(int numTilesToMove, ActionSpriteD
             break;
     }
     
-    printf("ActionSprite::determineDestinationPositon x: %f, y: %f\n", destination.x, destination.y);
+    //printf("ActionSprite::determineDestinationPositon x: %f, y: %f\n", destination.x, destination.y);
     //printf("ActionSprite::determineDestinationPositon TileCoord x: %f, y: %f\n", destination.x/16.f, (640.0f-destination.y)/16.0f - 1);
 
     return destination;
