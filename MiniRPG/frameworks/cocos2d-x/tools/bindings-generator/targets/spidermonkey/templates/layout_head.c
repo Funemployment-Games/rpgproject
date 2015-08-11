@@ -1,8 +1,16 @@
 \#include "${out_file}.hpp"
+#if $macro_judgement
+$macro_judgement
+#end if 
 \#include "cocos2d_specifics.hpp"
 #for header in $headers
 \#include "${os.path.basename(header)}"
 #end for
+#if $cpp_headers
+#for header in $cpp_headers
+\#include "${header}"
+#end for
+#end if 
 
 template<class T>
 static bool dummy_constructor(JSContext *cx, uint32_t argc, jsval *vp) {

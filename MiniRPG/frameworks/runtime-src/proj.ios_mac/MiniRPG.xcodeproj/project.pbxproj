@@ -49,36 +49,6 @@
 		5200BECA1A53D9A500AC45E4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5200BEC91A53D9A500AC45E4 /* Security.framework */; };
 		521A8E7019F0C3D200D177D7 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6E19F0C3D200D177D7 /* Default-667h@2x.png */; };
 		521A8E7119F0C3D200D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */; };
-		7A39F0891B1F7A83005D2831 /* ActionSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F06C1B1F7A83005D2831 /* ActionSprite.cpp */; };
-		7A39F08A1B1F7A83005D2831 /* ActionSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F06C1B1F7A83005D2831 /* ActionSprite.cpp */; };
-		7A39F08B1B1F7A83005D2831 /* ChatBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F06E1B1F7A83005D2831 /* ChatBox.cpp */; };
-		7A39F08C1B1F7A83005D2831 /* ChatBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F06E1B1F7A83005D2831 /* ChatBox.cpp */; };
-		7A39F08D1B1F7A83005D2831 /* CombatScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0701B1F7A83005D2831 /* CombatScene.cpp */; };
-		7A39F08E1B1F7A83005D2831 /* CombatScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0701B1F7A83005D2831 /* CombatScene.cpp */; };
-		7A39F08F1B1F7A83005D2831 /* GameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0731B1F7A83005D2831 /* GameLayer.cpp */; };
-		7A39F0901B1F7A83005D2831 /* GameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0731B1F7A83005D2831 /* GameLayer.cpp */; };
-		7A39F0911B1F7A83005D2831 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0751B1F7A83005D2831 /* GameScene.cpp */; };
-		7A39F0921B1F7A83005D2831 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0751B1F7A83005D2831 /* GameScene.cpp */; };
-		7A39F0931B1F7A83005D2831 /* HeroSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0771B1F7A83005D2831 /* HeroSprite.cpp */; };
-		7A39F0941B1F7A83005D2831 /* HeroSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0771B1F7A83005D2831 /* HeroSprite.cpp */; };
-		7A39F0951B1F7A83005D2831 /* HudLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0791B1F7A83005D2831 /* HudLayer.cpp */; };
-		7A39F0961B1F7A83005D2831 /* HudLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0791B1F7A83005D2831 /* HudLayer.cpp */; };
-		7A39F0971B1F7A83005D2831 /* lua_cocos2dx_custom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F07B1B1F7A83005D2831 /* lua_cocos2dx_custom.cpp */; };
-		7A39F0981B1F7A83005D2831 /* lua_cocos2dx_custom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F07B1B1F7A83005D2831 /* lua_cocos2dx_custom.cpp */; };
-		7A39F0991B1F7A83005D2831 /* LuaGlobalManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F07D1B1F7A83005D2831 /* LuaGlobalManager.cpp */; };
-		7A39F09A1B1F7A83005D2831 /* LuaGlobalManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F07D1B1F7A83005D2831 /* LuaGlobalManager.cpp */; };
-		7A39F09B1B1F7A83005D2831 /* MenuShopIntro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F07F1B1F7A83005D2831 /* MenuShopIntro.cpp */; };
-		7A39F09C1B1F7A83005D2831 /* MenuShopIntro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F07F1B1F7A83005D2831 /* MenuShopIntro.cpp */; };
-		7A39F09D1B1F7A83005D2831 /* MenuYesNo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0811B1F7A83005D2831 /* MenuYesNo.cpp */; };
-		7A39F09E1B1F7A83005D2831 /* MenuYesNo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0811B1F7A83005D2831 /* MenuYesNo.cpp */; };
-		7A39F09F1B1F7A83005D2831 /* NPCManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0831B1F7A83005D2831 /* NPCManager.cpp */; };
-		7A39F0A01B1F7A83005D2831 /* NPCManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0831B1F7A83005D2831 /* NPCManager.cpp */; };
-		7A39F0A11B1F7A83005D2831 /* NPCSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0851B1F7A83005D2831 /* NPCSprite.cpp */; };
-		7A39F0A21B1F7A83005D2831 /* NPCSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0851B1F7A83005D2831 /* NPCSprite.cpp */; };
-		7A39F0A31B1F7A83005D2831 /* SimpleDPad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0871B1F7A83005D2831 /* SimpleDPad.cpp */; };
-		7A39F0A41B1F7A83005D2831 /* SimpleDPad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A39F0871B1F7A83005D2831 /* SimpleDPad.cpp */; };
-		7A776D891B23932E0022045B /* MenuStatusScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A776D881B23932E0022045B /* MenuStatusScene.cpp */; };
-		7A776D8A1B23932E0022045B /* MenuStatusScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A776D881B23932E0022045B /* MenuStatusScene.cpp */; };
 		9FC760431A67791200D1E6E7 /* lang in Resources */ = {isa = PBXBuildFile; fileRef = 9FC760401A67791200D1E6E7 /* lang */; };
 		9FC760451A677A4A00D1E6E7 /* SimpleConfigParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC760411A67791200D1E6E7 /* SimpleConfigParser.cpp */; };
 		9FF504841A5E87B100AFDA55 /* ConsoleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF504811A5E87B100AFDA55 /* ConsoleWindow.xib */; };
@@ -221,7 +191,7 @@
 		5023811517EBBCAC00990C9B /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		5023811617EBBCAC00990C9B /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		5023811717EBBCAC00990C9B /* RootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RootViewController.mm; sourceTree = "<group>"; };
-		5023816B17EBBCE400990C9B /* MiniRPG Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MiniRPG Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5023816B17EBBCE400990C9B /* MiniRPG-desktop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MiniRPG-desktop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5023817217EBBE3400990C9B /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		5023817317EBBE3400990C9B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5023817517EBBE3400990C9B /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
@@ -239,37 +209,6 @@
 		5200BEC91A53D9A500AC45E4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		521A8E6E19F0C3D200D177D7 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
-		7A39F06C1B1F7A83005D2831 /* ActionSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ActionSprite.cpp; path = ../Classes/ActionSprite.cpp; sourceTree = "<group>"; };
-		7A39F06D1B1F7A83005D2831 /* ActionSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSprite.h; path = ../Classes/ActionSprite.h; sourceTree = "<group>"; };
-		7A39F06E1B1F7A83005D2831 /* ChatBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ChatBox.cpp; path = ../Classes/ChatBox.cpp; sourceTree = "<group>"; };
-		7A39F06F1B1F7A83005D2831 /* ChatBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatBox.h; path = ../Classes/ChatBox.h; sourceTree = "<group>"; };
-		7A39F0701B1F7A83005D2831 /* CombatScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CombatScene.cpp; path = ../Classes/CombatScene.cpp; sourceTree = "<group>"; };
-		7A39F0711B1F7A83005D2831 /* CombatScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CombatScene.h; path = ../Classes/CombatScene.h; sourceTree = "<group>"; };
-		7A39F0721B1F7A83005D2831 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = ../Classes/config.h; sourceTree = "<group>"; };
-		7A39F0731B1F7A83005D2831 /* GameLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameLayer.cpp; path = ../Classes/GameLayer.cpp; sourceTree = "<group>"; };
-		7A39F0741B1F7A83005D2831 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = ../Classes/GameLayer.h; sourceTree = "<group>"; };
-		7A39F0751B1F7A83005D2831 /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameScene.cpp; path = ../Classes/GameScene.cpp; sourceTree = "<group>"; };
-		7A39F0761B1F7A83005D2831 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = ../Classes/GameScene.h; sourceTree = "<group>"; };
-		7A39F0771B1F7A83005D2831 /* HeroSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HeroSprite.cpp; path = ../Classes/HeroSprite.cpp; sourceTree = "<group>"; };
-		7A39F0781B1F7A83005D2831 /* HeroSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeroSprite.h; path = ../Classes/HeroSprite.h; sourceTree = "<group>"; };
-		7A39F0791B1F7A83005D2831 /* HudLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HudLayer.cpp; path = ../Classes/HudLayer.cpp; sourceTree = "<group>"; };
-		7A39F07A1B1F7A83005D2831 /* HudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HudLayer.h; path = ../Classes/HudLayer.h; sourceTree = "<group>"; };
-		7A39F07B1B1F7A83005D2831 /* lua_cocos2dx_custom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lua_cocos2dx_custom.cpp; path = ../Classes/lua_cocos2dx_custom.cpp; sourceTree = "<group>"; };
-		7A39F07C1B1F7A83005D2831 /* lua_cocos2dx_custom.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = lua_cocos2dx_custom.hpp; path = ../Classes/lua_cocos2dx_custom.hpp; sourceTree = "<group>"; };
-		7A39F07D1B1F7A83005D2831 /* LuaGlobalManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LuaGlobalManager.cpp; path = ../Classes/LuaGlobalManager.cpp; sourceTree = "<group>"; };
-		7A39F07E1B1F7A83005D2831 /* LuaGlobalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuaGlobalManager.h; path = ../Classes/LuaGlobalManager.h; sourceTree = "<group>"; };
-		7A39F07F1B1F7A83005D2831 /* MenuShopIntro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuShopIntro.cpp; path = ../Classes/MenuShopIntro.cpp; sourceTree = "<group>"; };
-		7A39F0801B1F7A83005D2831 /* MenuShopIntro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuShopIntro.h; path = ../Classes/MenuShopIntro.h; sourceTree = "<group>"; };
-		7A39F0811B1F7A83005D2831 /* MenuYesNo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuYesNo.cpp; path = ../Classes/MenuYesNo.cpp; sourceTree = "<group>"; };
-		7A39F0821B1F7A83005D2831 /* MenuYesNo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuYesNo.h; path = ../Classes/MenuYesNo.h; sourceTree = "<group>"; };
-		7A39F0831B1F7A83005D2831 /* NPCManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NPCManager.cpp; path = ../Classes/NPCManager.cpp; sourceTree = "<group>"; };
-		7A39F0841B1F7A83005D2831 /* NPCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NPCManager.h; path = ../Classes/NPCManager.h; sourceTree = "<group>"; };
-		7A39F0851B1F7A83005D2831 /* NPCSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NPCSprite.cpp; path = ../Classes/NPCSprite.cpp; sourceTree = "<group>"; };
-		7A39F0861B1F7A83005D2831 /* NPCSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NPCSprite.h; path = ../Classes/NPCSprite.h; sourceTree = "<group>"; };
-		7A39F0871B1F7A83005D2831 /* SimpleDPad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SimpleDPad.cpp; path = ../Classes/SimpleDPad.cpp; sourceTree = "<group>"; };
-		7A39F0881B1F7A83005D2831 /* SimpleDPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleDPad.h; path = ../Classes/SimpleDPad.h; sourceTree = "<group>"; };
-		7A776D871B2392FF0022045B /* MenuStatusScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuStatusScene.h; path = ../Classes/MenuStatusScene.h; sourceTree = "<group>"; };
-		7A776D881B23932E0022045B /* MenuStatusScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuStatusScene.cpp; path = ../Classes/MenuStatusScene.cpp; sourceTree = "<group>"; };
 		9FC7603F1A67791200D1E6E7 /* CodeIDESupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeIDESupport.h; sourceTree = "<group>"; };
 		9FC760401A67791200D1E6E7 /* lang */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lang; sourceTree = "<group>"; };
 		9FC760411A67791200D1E6E7 /* SimpleConfigParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleConfigParser.cpp; sourceTree = "<group>"; };
@@ -293,7 +232,7 @@
 		C07828F718B4D72E00BD2287 /* SimulatorApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SimulatorApp.mm; sourceTree = "<group>"; };
 		D6B061341803AC000077942B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
 		DA9E7D871AB1ABCC004B27C8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		F293B3C815EB7BE500256477 /* MiniRPG iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MiniRPG iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F293B3C815EB7BE500256477 /* MiniRPG-mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MiniRPG-mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F293B3CC15EB7BE500256477 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F293B3CE15EB7BE500256477 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		F293B3D015EB7BE500256477 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -471,8 +410,8 @@
 		F293B3C915EB7BE500256477 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F293B3C815EB7BE500256477 /* MiniRPG iOS.app */,
-				5023816B17EBBCE400990C9B /* MiniRPG Mac.app */,
+				F293B3C815EB7BE500256477 /* MiniRPG-mobile.app */,
+				5023816B17EBBCE400990C9B /* MiniRPG-desktop.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -508,41 +447,10 @@
 		F293BB7C15EB830F00256477 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				7A39F06C1B1F7A83005D2831 /* ActionSprite.cpp */,
-				F293BB7E15EB831F00256477 /* AppDelegate.cpp */,
-				7A39F06E1B1F7A83005D2831 /* ChatBox.cpp */,
-				7A39F0701B1F7A83005D2831 /* CombatScene.cpp */,
-				7A39F0731B1F7A83005D2831 /* GameLayer.cpp */,
-				7A39F0751B1F7A83005D2831 /* GameScene.cpp */,
-				7A39F0771B1F7A83005D2831 /* HeroSprite.cpp */,
-				7A39F0791B1F7A83005D2831 /* HudLayer.cpp */,
-				7A39F07B1B1F7A83005D2831 /* lua_cocos2dx_custom.cpp */,
-				7A39F07D1B1F7A83005D2831 /* LuaGlobalManager.cpp */,
-				7A39F07F1B1F7A83005D2831 /* MenuShopIntro.cpp */,
-				7A39F0811B1F7A83005D2831 /* MenuYesNo.cpp */,
-				7A39F0831B1F7A83005D2831 /* NPCManager.cpp */,
-				7A39F0851B1F7A83005D2831 /* NPCSprite.cpp */,
-				7A39F0871B1F7A83005D2831 /* SimpleDPad.cpp */,
-				7A39F06D1B1F7A83005D2831 /* ActionSprite.h */,
-				F293BB7F15EB831F00256477 /* AppDelegate.h */,
-				7A39F06F1B1F7A83005D2831 /* ChatBox.h */,
-				7A39F0711B1F7A83005D2831 /* CombatScene.h */,
-				7A39F0721B1F7A83005D2831 /* config.h */,
-				7A39F0741B1F7A83005D2831 /* GameLayer.h */,
-				7A39F0761B1F7A83005D2831 /* GameScene.h */,
-				7A39F0781B1F7A83005D2831 /* HeroSprite.h */,
-				7A39F07A1B1F7A83005D2831 /* HudLayer.h */,
-				15427CE2198F237300DC375D /* lua_module_register.h */,
-				7A39F07E1B1F7A83005D2831 /* LuaGlobalManager.h */,
-				7A39F0801B1F7A83005D2831 /* MenuShopIntro.h */,
-				7A39F0821B1F7A83005D2831 /* MenuYesNo.h */,
-				7A39F0841B1F7A83005D2831 /* NPCManager.h */,
-				7A39F0861B1F7A83005D2831 /* NPCSprite.h */,
-				7A39F0881B1F7A83005D2831 /* SimpleDPad.h */,
-				7A39F07C1B1F7A83005D2831 /* lua_cocos2dx_custom.hpp */,
 				9FC7603E1A67791200D1E6E7 /* ide-support */,
-				7A776D871B2392FF0022045B /* MenuStatusScene.h */,
-				7A776D881B23932E0022045B /* MenuStatusScene.cpp */,
+				15427CE2198F237300DC375D /* lua_module_register.h */,
+				F293BB7E15EB831F00256477 /* AppDelegate.cpp */,
+				F293BB7F15EB831F00256477 /* AppDelegate.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -561,9 +469,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5023812617EBBCE400990C9B /* MiniRPG Mac */ = {
+		5023812617EBBCE400990C9B /* MiniRPG-desktop */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5023816817EBBCE400990C9B /* Build configuration list for PBXNativeTarget "MiniRPG Mac" */;
+			buildConfigurationList = 5023816817EBBCE400990C9B /* Build configuration list for PBXNativeTarget "MiniRPG-desktop" */;
 			buildPhases = (
 				5023813117EBBCE400990C9B /* Sources */,
 				5023813617EBBCE400990C9B /* Frameworks */,
@@ -577,14 +485,14 @@
 				152A34B9199CE758004B68DC /* PBXTargetDependency */,
 				C0A2F04118975FF80072A7AB /* PBXTargetDependency */,
 			);
-			name = "MiniRPG Mac";
-			productName = MyLuaGame;
-			productReference = 5023816B17EBBCE400990C9B /* MiniRPG Mac.app */;
+			name = "MiniRPG-desktop";
+			productName = MiniRPG;
+			productReference = 5023816B17EBBCE400990C9B /* MiniRPG-desktop.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F293B3C715EB7BE500256477 /* MiniRPG iOS */ = {
+		F293B3C715EB7BE500256477 /* MiniRPG-mobile */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F293B6C415EB7BEA00256477 /* Build configuration list for PBXNativeTarget "MiniRPG iOS" */;
+			buildConfigurationList = F293B6C415EB7BEA00256477 /* Build configuration list for PBXNativeTarget "MiniRPG-mobile" */;
 			buildPhases = (
 				F293B3C415EB7BE500256477 /* Sources */,
 				F293B3C515EB7BE500256477 /* Frameworks */,
@@ -598,9 +506,9 @@
 				152A349F199CE72E004B68DC /* PBXTargetDependency */,
 				15D1F3091994BBCA00302043 /* PBXTargetDependency */,
 			);
-			name = "MiniRPG iOS";
-			productName = MyLuaGame;
-			productReference = F293B3C815EB7BE500256477 /* MiniRPG iOS.app */;
+			name = "MiniRPG-mobile";
+			productName = MiniRPG;
+			productReference = F293B3C815EB7BE500256477 /* MiniRPG-mobile.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -609,7 +517,7 @@
 		F293B3BF15EB7BE500256477 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					F293B3C715EB7BE500256477 = {
 						DevelopmentTeam = MDDB52YB8L;
@@ -644,8 +552,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				F293B3C715EB7BE500256477 /* MiniRPG iOS */,
-				5023812617EBBCE400990C9B /* MiniRPG Mac */,
+				F293B3C715EB7BE500256477 /* MiniRPG-mobile */,
+				5023812617EBBCE400990C9B /* MiniRPG-desktop */,
 			);
 		};
 /* End PBXProject section */
@@ -761,26 +669,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A39F09A1B1F7A83005D2831 /* LuaGlobalManager.cpp in Sources */,
-				7A39F0941B1F7A83005D2831 /* HeroSprite.cpp in Sources */,
-				7A39F0A21B1F7A83005D2831 /* NPCSprite.cpp in Sources */,
-				7A39F09E1B1F7A83005D2831 /* MenuYesNo.cpp in Sources */,
 				C07828FA18B4D72E00BD2287 /* SimulatorApp.mm in Sources */,
 				9FFE00A01ACCF59E00D6E35A /* lua_debugger.c in Sources */,
-				7A39F0A41B1F7A83005D2831 /* SimpleDPad.cpp in Sources */,
 				5023813317EBBCE400990C9B /* AppDelegate.cpp in Sources */,
-				7A776D8A1B23932E0022045B /* MenuStatusScene.cpp in Sources */,
 				9FF504851A5E87B100AFDA55 /* ConsoleWindowController.m in Sources */,
-				7A39F0A01B1F7A83005D2831 /* NPCManager.cpp in Sources */,
-				7A39F08A1B1F7A83005D2831 /* ActionSprite.cpp in Sources */,
-				7A39F0961B1F7A83005D2831 /* HudLayer.cpp in Sources */,
-				7A39F0901B1F7A83005D2831 /* GameLayer.cpp in Sources */,
-				7A39F08C1B1F7A83005D2831 /* ChatBox.cpp in Sources */,
 				C07828F818B4D72E00BD2287 /* main.m in Sources */,
-				7A39F0981B1F7A83005D2831 /* lua_cocos2dx_custom.cpp in Sources */,
-				7A39F0921B1F7A83005D2831 /* GameScene.cpp in Sources */,
-				7A39F09C1B1F7A83005D2831 /* MenuShopIntro.cpp in Sources */,
-				7A39F08E1B1F7A83005D2831 /* CombatScene.cpp in Sources */,
 				9FFE00A21ACCF59E00D6E35A /* RuntimeLuaImpl.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -789,27 +682,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A39F08D1B1F7A83005D2831 /* CombatScene.cpp in Sources */,
 				9FC760451A677A4A00D1E6E7 /* SimpleConfigParser.cpp in Sources */,
 				5023812517EBBCAC00990C9B /* RootViewController.mm in Sources */,
-				7A39F0991B1F7A83005D2831 /* LuaGlobalManager.cpp in Sources */,
 				F293BB9C15EB831F00256477 /* AppDelegate.cpp in Sources */,
-				7A39F08B1B1F7A83005D2831 /* ChatBox.cpp in Sources */,
-				7A39F0A11B1F7A83005D2831 /* NPCSprite.cpp in Sources */,
-				7A39F0971B1F7A83005D2831 /* lua_cocos2dx_custom.cpp in Sources */,
-				7A39F0A31B1F7A83005D2831 /* SimpleDPad.cpp in Sources */,
-				7A39F09D1B1F7A83005D2831 /* MenuYesNo.cpp in Sources */,
 				9FFE009F1ACCF59E00D6E35A /* lua_debugger.c in Sources */,
-				7A776D891B23932E0022045B /* MenuStatusScene.cpp in Sources */,
-				7A39F09F1B1F7A83005D2831 /* NPCManager.cpp in Sources */,
-				7A39F08F1B1F7A83005D2831 /* GameLayer.cpp in Sources */,
-				7A39F0951B1F7A83005D2831 /* HudLayer.cpp in Sources */,
 				5023812417EBBCAC00990C9B /* main.m in Sources */,
-				7A39F09B1B1F7A83005D2831 /* MenuShopIntro.cpp in Sources */,
 				9FFE00A11ACCF59E00D6E35A /* RuntimeLuaImpl.cpp in Sources */,
-				7A39F0891B1F7A83005D2831 /* ActionSprite.cpp in Sources */,
-				7A39F0931B1F7A83005D2831 /* HeroSprite.cpp in Sources */,
-				7A39F0911B1F7A83005D2831 /* GameScene.cpp in Sources */,
 				5023811817EBBCAC00990C9B /* AppController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -870,6 +748,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = ../../../runtime/mac;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -897,7 +776,6 @@
 					"$(_COCOS_LIB_MAC_BEGIN)",
 					"$(_COCOS_LIB_MAC_END)",
 				);
-				PRODUCT_NAME = "MiniRPG Mac";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/cocos/platform/mac $(SRCROOT)/../../cocos2d-x/external/glfw3/include/mac $(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END)";
 			};
@@ -907,6 +785,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = mac/Prefix.pch;
@@ -932,7 +811,6 @@
 					"$(_COCOS_LIB_MAC_BEGIN)",
 					"$(_COCOS_LIB_MAC_END)",
 				);
-				PRODUCT_NAME = "MiniRPG Mac";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/cocos/platform/mac $(SRCROOT)/../../cocos2d-x/external/glfw3/include/mac $(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END)";
 			};
@@ -952,6 +830,7 @@
 					USE_FILE32API,
 					"CC_LUA_ENGINE_ENABLED=1",
 					"CC_ENABLE_CHIPMUNK_INTEGRATION=1",
+					"CC_ENABLE_BULLET_INTEGRATION=1",
 					GLFW_EXPOSE_NATIVE_COCOA,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -975,6 +854,7 @@
 					USE_FILE32API,
 					"CC_LUA_ENGINE_ENABLED=1",
 					"CC_ENABLE_CHIPMUNK_INTEGRATION=1",
+					"CC_ENABLE_BULLET_INTEGRATION=1",
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1019,7 +899,6 @@
 					"-image_base",
 					100000000,
 				);
-				PRODUCT_NAME = "MiniRPG iOS";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/cocos/platform/ios $(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END)";
@@ -1059,7 +938,6 @@
 					"-image_base",
 					100000000,
 				);
-				PRODUCT_NAME = "MiniRPG iOS";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../cocos2d-x/cocos/platform/ios $(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END)";
@@ -1070,7 +948,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5023816817EBBCE400990C9B /* Build configuration list for PBXNativeTarget "MiniRPG Mac" */ = {
+		5023816817EBBCE400990C9B /* Build configuration list for PBXNativeTarget "MiniRPG-desktop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5023816917EBBCE400990C9B /* Debug */,
@@ -1088,7 +966,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F293B6C415EB7BEA00256477 /* Build configuration list for PBXNativeTarget "MiniRPG iOS" */ = {
+		F293B6C415EB7BEA00256477 /* Build configuration list for PBXNativeTarget "MiniRPG-mobile" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F293B6C515EB7BEA00256477 /* Debug */,
