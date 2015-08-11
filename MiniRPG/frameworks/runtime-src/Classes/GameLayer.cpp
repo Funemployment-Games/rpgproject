@@ -117,8 +117,8 @@ bool GameLayer::loadSavedData()
     {
         
         int index = 0;
-        for (rapidjson::Value::ConstMemberIterator itr = questFlagsJSON.MemberonBegin();
-             itr != questFlagsJSON.MemberonEnd();
+        for (rapidjson::Value::ConstMemberIterator itr = questFlagsJSON.MemberBegin();
+             itr != questFlagsJSON.MemberEnd();
              ++itr)
         {
             //printf("member is %s %s\n", itr->name.GetString(), vQuestFlags[index] ? "true" : "false");
@@ -203,6 +203,8 @@ void GameLayer::loadMapNamed(std::string mapName)
     
     std::string mapScript = "res/lua/" + mapName + ".lua";
     m_pLuaEngine->executeScriptFile(mapScript.c_str());
+    
+    CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("res/music/Overworld.mp3", true);
 }
 
 void GameLayer::initTheHeros()

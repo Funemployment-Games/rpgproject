@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "config.h"
 #include "CCLuaEngine.h"
+#include "SimpleAudioEngine.h" 
 #include "SimpleDPad.h"
 #include "HudLayer.h"
 #include "HeroSprite.h"
@@ -20,6 +21,37 @@
 
 
 USING_NS_CC;
+
+struct GameCharacter
+{
+    std::string characterName;
+    std::string characterClass;
+    unsigned char currentLevel; //1
+    unsigned char Strength; //1
+    unsigned char Agility; //1
+    unsigned char Vitality; //1
+    unsigned char Intellect; //1
+    unsigned char Spirit; //1
+    unsigned char AttackDamage; //1
+    unsigned char HitPercent; //1
+    unsigned char Defense; //1
+    unsigned char EvadePercent; //1
+    unsigned char MagicDef; //1
+    unsigned char MagicEvaPercent; //1
+    unsigned short currentHP; //2
+    unsigned short maxHP; //2
+    unsigned short currentMP; //2
+    unsigned short maxMP; //2
+    unsigned int currentXP; //4
+    unsigned int neededXP; //4
+};
+
+struct PartyStruct
+{
+    int m_iPartyGold;
+    Vec2 m_vPartyCoordinates;
+    GameCharacter theCharacters[4];
+};
 
 class GameLayer : public cocos2d::Layer
 {
@@ -89,6 +121,7 @@ private:
     NPCManager* m_pNPCManager;
     HudLayer* m_pHudLayer;
     ChatBox* m_pChatbox;
+    PartyStruct m_aParty;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

@@ -5,6 +5,7 @@
 #include "lua_module_register.h"
 #include "GameScene.h"
 #include "CombatScene.h"
+//#include "MenuStatusScene.h"
 
 using namespace CocosDenshion;
 
@@ -58,6 +59,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     // create a scene. it's an autorelease object
     //auto scene = CombatScene::createScene();
     auto scene = GameScene::createScene();
+    //auto scene = MenuStatusScene::createScene();
     
     // run
     director->runWithScene(scene);
