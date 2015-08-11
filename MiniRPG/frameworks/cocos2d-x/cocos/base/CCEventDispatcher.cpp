@@ -31,6 +31,7 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventListenerCustom.h"
 #include "base/CCEventListenerFocus.h"
+#include "base/CCEventListenerJoystick.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "base/CCEventListenerController.h"
 #endif
@@ -93,6 +94,9 @@ static EventListener::ListenerID __getListenerID(Event* event)
             // Touch listener is very special, it contains two kinds of listeners, EventListenerTouchOneByOne and EventListenerTouchAllAtOnce.
             // return UNKNOWN instead.
             CCASSERT(false, "Don't call this method if the event is for touch.");
+            break;
+        case Event::Type::JOYSTICK:
+            ret = EventListenerJoystick::LISTENER_ID;
             break;
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         case Event::Type::GAME_CONTROLLER:

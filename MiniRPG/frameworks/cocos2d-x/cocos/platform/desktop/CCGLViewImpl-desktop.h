@@ -153,6 +153,7 @@ protected:
 
 private:
     CC_DISALLOW_COPY_AND_ASSIGN(GLViewImpl);
+    void pollJoystickEvent(int id);
 };
 
 NS_CC_END   // end of namespace   cocos2d
