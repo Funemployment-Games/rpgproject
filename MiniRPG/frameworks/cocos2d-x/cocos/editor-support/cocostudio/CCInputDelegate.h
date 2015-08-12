@@ -30,7 +30,6 @@ THE SOFTWARE.
 #include "base/CCEvent.h"
 #include "base/ccTypes.h"
 #include "base/CCEventKeyboard.h"
-#include "base/CCEventJoystick.h"
 #include "base/CCEventListener.h"
 #include "cocostudio/CocosStudioExport.h"
 

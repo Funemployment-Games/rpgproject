@@ -1837,14 +1837,12 @@
 		5E9F612B1A3FFE3D0038DE01 /* CCPlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E9F61241A3FFE3D0038DE01 /* CCPlane.cpp */; };
 		5E9F612C1A3FFE3D0038DE01 /* CCPlane.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E9F61251A3FFE3D0038DE01 /* CCPlane.h */; };
 		5E9F612D1A3FFE3D0038DE01 /* CCPlane.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E9F61251A3FFE3D0038DE01 /* CCPlane.h */; };
-		7AC6AF4D1B7AB63B0004EF1A /* CCEventJoystick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC6AF491B7AB63B0004EF1A /* CCEventJoystick.cpp */; };
-		7AC6AF4E1B7AB63B0004EF1A /* CCEventJoystick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC6AF491B7AB63B0004EF1A /* CCEventJoystick.cpp */; };
-		7AC6AF4F1B7AB63B0004EF1A /* CCEventJoystick.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AC6AF4A1B7AB63B0004EF1A /* CCEventJoystick.h */; };
-		7AC6AF501B7AB63B0004EF1A /* CCEventJoystick.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AC6AF4A1B7AB63B0004EF1A /* CCEventJoystick.h */; };
-		7AC6AF511B7AB63B0004EF1A /* CCEventListenerJoystick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC6AF4B1B7AB63B0004EF1A /* CCEventListenerJoystick.cpp */; };
-		7AC6AF521B7AB63B0004EF1A /* CCEventListenerJoystick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC6AF4B1B7AB63B0004EF1A /* CCEventListenerJoystick.cpp */; };
-		7AC6AF531B7AB63B0004EF1A /* CCEventListenerJoystick.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AC6AF4C1B7AB63B0004EF1A /* CCEventListenerJoystick.h */; };
-		7AC6AF541B7AB63B0004EF1A /* CCEventListenerJoystick.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AC6AF4C1B7AB63B0004EF1A /* CCEventListenerJoystick.h */; };
+		7A6E71771B7ACA5C00D60C6F /* CCController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E61781C1966A5A300DE83F5 /* CCController.cpp */; };
+		7A6E71781B7ACA6D00D60C6F /* CCEventListenerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E6176641960F89B00DE83F5 /* CCEventListenerController.h */; };
+		7A6E71791B7ACAA600D60C6F /* CCEventController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E6176611960F89B00DE83F5 /* CCEventController.cpp */; };
+		7A6E717A1B7ACAE300D60C6F /* CCController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E6176561960F89B00DE83F5 /* CCController.h */; };
+		7AC6AF571B7AC2F90004EF1A /* CCController-desktop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC6AF551B7AC2F90004EF1A /* CCController-desktop.cpp */; };
+		7AC6AF581B7AC2F90004EF1A /* CCController-desktop.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AC6AF561B7AC2F90004EF1A /* CCController-desktop.h */; };
 		826294331AAF001C00CB7CF7 /* HttpAsynConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B47A2A1A5349A3004E4C60 /* HttpAsynConnection.m */; };
 		826294341AAF003E00CB7CF7 /* HttpClient-apple.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52B47A2B1A5349A3004E4C60 /* HttpClient-apple.mm */; };
 		826294351AAF004C00CB7CF7 /* HttpCookie.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52B47A2C1A5349A3004E4C60 /* HttpCookie.cpp */; };
@@ -4601,10 +4599,8 @@
 		5E9F61231A3FFE3D0038DE01 /* CCFrustum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFrustum.h; sourceTree = "<group>"; };
 		5E9F61241A3FFE3D0038DE01 /* CCPlane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCPlane.cpp; sourceTree = "<group>"; };
 		5E9F61251A3FFE3D0038DE01 /* CCPlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPlane.h; sourceTree = "<group>"; };
-		7AC6AF491B7AB63B0004EF1A /* CCEventJoystick.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCEventJoystick.cpp; path = ../base/CCEventJoystick.cpp; sourceTree = "<group>"; };
-		7AC6AF4A1B7AB63B0004EF1A /* CCEventJoystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCEventJoystick.h; path = ../base/CCEventJoystick.h; sourceTree = "<group>"; };
-		7AC6AF4B1B7AB63B0004EF1A /* CCEventListenerJoystick.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCEventListenerJoystick.cpp; path = ../base/CCEventListenerJoystick.cpp; sourceTree = "<group>"; };
-		7AC6AF4C1B7AB63B0004EF1A /* CCEventListenerJoystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCEventListenerJoystick.h; path = ../base/CCEventListenerJoystick.h; sourceTree = "<group>"; };
+		7AC6AF551B7AC2F90004EF1A /* CCController-desktop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "CCController-desktop.cpp"; path = "../base/CCController-desktop.cpp"; sourceTree = "<group>"; };
+		7AC6AF561B7AC2F90004EF1A /* CCController-desktop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CCController-desktop.h"; path = "../base/CCController-desktop.h"; sourceTree = "<group>"; };
 		8525E3A11B291E42008EE815 /* clipper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = clipper.hpp; sourceTree = "<group>"; };
 		85B374381B204B9400C488D6 /* clipper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clipper.cpp; sourceTree = "<group>"; };
 		A07A4D641783777C0073F6A7 /* libcocos2d iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libcocos2d iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -5800,6 +5796,7 @@
 				50ABBDC71925AB6E00A911A9 /* ccCArray.cpp */,
 				50ABBDCA1925AB6E00A911A9 /* CCConfiguration.cpp */,
 				50ABBDCC1925AB6E00A911A9 /* CCConsole.cpp */,
+				7AC6AF551B7AC2F90004EF1A /* CCController-desktop.cpp */,
 				3E61781C1966A5A300DE83F5 /* CCController.cpp */,
 				50ABBDCE1925AB6E00A911A9 /* CCData.cpp */,
 				50ABBDD01925AB6E00A911A9 /* CCDataVisitor.cpp */,
@@ -5810,14 +5807,12 @@
 				50ABBDD81925AB6E00A911A9 /* CCEventCustom.cpp */,
 				50ABBDDA1925AB6E00A911A9 /* CCEventDispatcher.cpp */,
 				50ABBDDC1925AB6E00A911A9 /* CCEventFocus.cpp */,
-				7AC6AF491B7AB63B0004EF1A /* CCEventJoystick.cpp */,
 				50ABBDDE1925AB6E00A911A9 /* CCEventKeyboard.cpp */,
 				50ABBDE01925AB6E00A911A9 /* CCEventListener.cpp */,
 				50ABBDE21925AB6E00A911A9 /* CCEventListenerAcceleration.cpp */,
 				3E6176631960F89B00DE83F5 /* CCEventListenerController.cpp */,
 				50ABBDE41925AB6E00A911A9 /* CCEventListenerCustom.cpp */,
 				50ABBDE61925AB6E00A911A9 /* CCEventListenerFocus.cpp */,
-				7AC6AF4B1B7AB63B0004EF1A /* CCEventListenerJoystick.cpp */,
 				50ABBDE81925AB6E00A911A9 /* CCEventListenerKeyboard.cpp */,
 				50ABBDEA1925AB6E00A911A9 /* CCEventListenerMouse.cpp */,
 				50ABBDEC1925AB6E00A911A9 /* CCEventListenerTouch.cpp */,
@@ -5853,6 +5848,7 @@
 				50ABBDC91925AB6E00A911A9 /* ccConfig.h */,
 				50ABBDCB1925AB6E00A911A9 /* CCConfiguration.h */,
 				50ABBDCD1925AB6E00A911A9 /* CCConsole.h */,
+				7AC6AF561B7AC2F90004EF1A /* CCController-desktop.h */,
 				3E6176561960F89B00DE83F5 /* CCController.h */,
 				50ABBDCF1925AB6E00A911A9 /* CCData.h */,
 				50ABBDD11925AB6E00A911A9 /* CCDataVisitor.h */,
@@ -5863,14 +5859,12 @@
 				50ABBDD91925AB6E00A911A9 /* CCEventCustom.h */,
 				50ABBDDB1925AB6E00A911A9 /* CCEventDispatcher.h */,
 				50ABBDDD1925AB6E00A911A9 /* CCEventFocus.h */,
-				7AC6AF4A1B7AB63B0004EF1A /* CCEventJoystick.h */,
 				50ABBDDF1925AB6E00A911A9 /* CCEventKeyboard.h */,
 				50ABBDE11925AB6E00A911A9 /* CCEventListener.h */,
 				50ABBDE31925AB6E00A911A9 /* CCEventListenerAcceleration.h */,
 				3E6176641960F89B00DE83F5 /* CCEventListenerController.h */,
 				50ABBDE51925AB6E00A911A9 /* CCEventListenerCustom.h */,
 				50ABBDE71925AB6E00A911A9 /* CCEventListenerFocus.h */,
-				7AC6AF4C1B7AB63B0004EF1A /* CCEventListenerJoystick.h */,
 				50ABBDE91925AB6E00A911A9 /* CCEventListenerKeyboard.h */,
 				50ABBDEB1925AB6E00A911A9 /* CCEventListenerMouse.h */,
 				50ABBDED1925AB6E00A911A9 /* CCEventListenerTouch.h */,
@@ -8841,6 +8835,7 @@
 				5034CA39191D591100CE6051 /* ccShader_PositionColorLengthTexture.frag in Headers */,
 				292DB14B19B4574100A80320 /* UIEditBoxImpl-mac.h in Headers */,
 				B6CAB39D1AF9AA1A00B9B856 /* btCharacterControllerInterface.h in Headers */,
+				7AC6AF581B7AC2F90004EF1A /* CCController-desktop.h in Headers */,
 				B29A7E3F19EE1B7700872B35 /* AnimationState.h in Headers */,
 				B6CAB50F1AF9AA1A00B9B856 /* btList.h in Headers */,
 				D0FD03591A3B51AA00825BB5 /* CCAllocatorStrategyDefault.h in Headers */,
@@ -9044,6 +9039,7 @@
 				B665E2F41AA80A6500DDB1C5 /* CCPULineEmitterTranslator.h in Headers */,
 				B6DD2FB91B04825B00E47F5F /* DetourAlloc.h in Headers */,
 				B6DD2FF71B04825B00E47F5F /* fastlz.h in Headers */,
+				7A6E71781B7ACA6D00D60C6F /* CCEventListenerController.h in Headers */,
 				B665E2D81AA80A6500DDB1C5 /* CCPUJetAffector.h in Headers */,
 				1A570093180BC5A10088DEC7 /* CCActionTween.h in Headers */,
 				B6CAB3CF1AF9AA1A00B9B856 /* btSequentialImpulseConstraintSolver.h in Headers */,
@@ -9414,6 +9410,7 @@
 				B6CAB4CB1AF9AA1A00B9B856 /* SpuCollisionShapes.h in Headers */,
 				1A12775B18DFCC540005F345 /* CCTweenFunction.h in Headers */,
 				B6CAB4271AF9AA1A00B9B856 /* btSolveProjectedGaussSeidel.h in Headers */,
+				7A6E717A1B7ACAE300D60C6F /* CCController.h in Headers */,
 				1A5702CA180BCE370088DEC7 /* CCTextFieldTTF.h in Headers */,
 				15EFA213198A2BB5000C57D3 /* CCProtectedNode.h in Headers */,
 				B6CAB3551AF9AA1A00B9B856 /* gim_linear_math.h in Headers */,
@@ -9434,7 +9431,6 @@
 				B6CAB3A51AF9AA1A00B9B856 /* btConeTwistConstraint.h in Headers */,
 				15AE181E19AAD2F700C27E9E /* CCBundle3DData.h in Headers */,
 				1A5702F8180BCE750088DEC7 /* CCTMXTiledMap.h in Headers */,
-				7AC6AF531B7AB63B0004EF1A /* CCEventListenerJoystick.h in Headers */,
 				B665E2801AA80A6500DDB1C5 /* CCPUDoScaleEventHandlerTranslator.h in Headers */,
 				5034CA21191D591100CE6051 /* ccShader_PositionTextureColorAlphaTest.frag in Headers */,
 				D0FD03491A3B51AA00825BB5 /* CCAllocatorBase.h in Headers */,
@@ -9684,7 +9680,6 @@
 				50ABBE5B1925AB6F00A911A9 /* CCEventKeyboard.h in Headers */,
 				B6CAB2D31AF9AA1A00B9B856 /* btMultiSphereShape.h in Headers */,
 				B665E1F41AA80A6500DDB1C5 /* CCPUAffector.h in Headers */,
-				7AC6AF4F1B7AB63B0004EF1A /* CCEventJoystick.h in Headers */,
 				1A01C69E18F57BE800EFE3A6 /* CCString.h in Headers */,
 				50ABC00F1926664800A911A9 /* CCFileUtils.h in Headers */,
 				B665E2981AA80A6500DDB1C5 /* CCPUEmitterManager.h in Headers */,
@@ -10011,7 +10006,6 @@
 				B6CAB2781AF9AA1A00B9B856 /* btUnionFind.h in Headers */,
 				B6CAB4A81AF9AA1A00B9B856 /* SequentialThreadSupport.h in Headers */,
 				B6CAB2D81AF9AA1A00B9B856 /* btOptimizedBvh.h in Headers */,
-				7AC6AF501B7AB63B0004EF1A /* CCEventJoystick.h in Headers */,
 				B6CAB3DA1AF9AA1A00B9B856 /* btSolverBody.h in Headers */,
 				50ABC0141926664800A911A9 /* CCGLView.h in Headers */,
 				B6CAB5341AF9AA1A00B9B856 /* btTransformUtil.h in Headers */,
@@ -10448,7 +10442,6 @@
 				15AE18C419AAD33D00C27E9E /* CCLayerGradientLoader.h in Headers */,
 				B6CAB1EA1AF9AA1A00B9B856 /* btAxisSweep3.h in Headers */,
 				B665E3511AA80A6500DDB1C5 /* CCPUOnPositionObserverTranslator.h in Headers */,
-				7AC6AF541B7AB63B0004EF1A /* CCEventListenerJoystick.h in Headers */,
 				B6CAB3A21AF9AA1A00B9B856 /* btKinematicCharacterController.h in Headers */,
 				1A570313180BCF190088DEC7 /* CCComponentContainer.h in Headers */,
 				B6CAB5381AF9AA1A00B9B856 /* btVector3.h in Headers */,
@@ -11009,6 +11002,7 @@
 				B665E2B61AA80A6500DDB1C5 /* CCPUForceFieldAffector.cpp in Sources */,
 				B6DD2FD51B04825B00E47F5F /* DetourCrowd.cpp in Sources */,
 				1A570079180BC5A10088DEC7 /* CCActionInstant.cpp in Sources */,
+				7A6E71791B7ACAA600D60C6F /* CCEventController.cpp in Sources */,
 				15AE1A7019AAD40300C27E9E /* b2Contact.cpp in Sources */,
 				15AE18A619AAD33D00C27E9E /* CCScrollViewLoader.cpp in Sources */,
 				15AE18F619AAD35000C27E9E /* CCBatchNode.cpp in Sources */,
@@ -11022,6 +11016,7 @@
 				15AE189F19AAD33D00C27E9E /* CCNodeLoaderLibrary.cpp in Sources */,
 				B665E2761AA80A6500DDB1C5 /* CCPUDoPlacementParticleEventHandlerTranslator.cpp in Sources */,
 				1A570081180BC5A10088DEC7 /* CCActionManager.cpp in Sources */,
+				7AC6AF571B7AC2F90004EF1A /* CCController-desktop.cpp in Sources */,
 				15AE1A6119AAD40300C27E9E /* b2Fixture.cpp in Sources */,
 				505385041B01887A00793096 /* CCProperties.cpp in Sources */,
 				1A570085180BC5A10088DEC7 /* CCActionPageTurn3D.cpp in Sources */,
@@ -11189,7 +11184,6 @@
 				B24AA985195A675C007B4522 /* CCFastTMXLayer.cpp in Sources */,
 				B665E2061AA80A6500DDB1C5 /* CCPUBaseCollider.cpp in Sources */,
 				15AE1A6A19AAD40300C27E9E /* b2ChainAndCircleContact.cpp in Sources */,
-				7AC6AF4D1B7AB63B0004EF1A /* CCEventJoystick.cpp in Sources */,
 				B665E38A1AA80A6500DDB1C5 /* CCPUPlane.cpp in Sources */,
 				B665E2161AA80A6500DDB1C5 /* CCPUBeamRender.cpp in Sources */,
 				B6CAB4B71AF9AA1A00B9B856 /* SpuFakeDma.cpp in Sources */,
@@ -11480,6 +11474,7 @@
 				382384281A2590F9002C4610 /* NodeReader.cpp in Sources */,
 				B6CAB3671AF9AA1A00B9B856 /* btConvexCast.cpp in Sources */,
 				50ABC01D1926664800A911A9 /* CCThread.cpp in Sources */,
+				7A6E71771B7ACA5C00D60C6F /* CCController.cpp in Sources */,
 				15AE180C19AAD2F700C27E9E /* CCAnimate3D.cpp in Sources */,
 				15AE183019AAD2F700C27E9E /* CCOBB.cpp in Sources */,
 				15AE191F19AAD35000C27E9E /* CCUtilMath.cpp in Sources */,
@@ -11635,7 +11630,6 @@
 				B665E23E1AA80A6500DDB1C5 /* CCPUCircleEmitterTranslator.cpp in Sources */,
 				15AE1BB719AADFEF00C27E9E /* WebSocket.cpp in Sources */,
 				B6CAB21F1AF9AA1A00B9B856 /* btBoxBoxDetector.cpp in Sources */,
-				7AC6AF511B7AB63B0004EF1A /* CCEventListenerJoystick.cpp in Sources */,
 				B665E20A1AA80A6500DDB1C5 /* CCPUBaseColliderTranslator.cpp in Sources */,
 				B665E3E61AA80A6600DDB1C5 /* CCPUSineForceAffectorTranslator.cpp in Sources */,
 				B6CAB32F1AF9AA1A00B9B856 /* btGImpactQuantizedBvh.cpp in Sources */,
@@ -12464,7 +12458,6 @@
 				B29A7DDC19EE1B7700872B35 /* Event.c in Sources */,
 				50ABBEB41925AB6F00A911A9 /* CCUserDefault-apple.mm in Sources */,
 				1A1645B1191B726C008C7C7F /* ConvertUTF.c in Sources */,
-				7AC6AF521B7AB63B0004EF1A /* CCEventListenerJoystick.cpp in Sources */,
 				B6CAB2F21AF9AA1A00B9B856 /* btTetrahedronShape.cpp in Sources */,
 				B665E2FF1AA80A6500DDB1C5 /* CCPUMaterialTranslator.cpp in Sources */,
 				50ABBE3A1925AB6F00A911A9 /* CCData.cpp in Sources */,
@@ -12480,7 +12473,6 @@
 				50ABBE7A1925AB6F00A911A9 /* CCEventMouse.cpp in Sources */,
 				B665E3BF1AA80A6500DDB1C5 /* CCPUScaleAffector.cpp in Sources */,
 				15EFA212198A2BB5000C57D3 /* CCProtectedNode.cpp in Sources */,
-				7AC6AF4E1B7AB63B0004EF1A /* CCEventJoystick.cpp in Sources */,
 				50ABBD981925AB4100A911A9 /* CCGLProgramStateCache.cpp in Sources */,
 				B6CAB4A61AF9AA1A00B9B856 /* SequentialThreadSupport.cpp in Sources */,
 				B6CAB25E1AF9AA1A00B9B856 /* btInternalEdgeUtility.cpp in Sources */,

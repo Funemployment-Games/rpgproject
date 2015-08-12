@@ -32,7 +32,8 @@ THE SOFTWARE.
 #include "base/CCTouch.h"
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventKeyboard.h"
-#include "base/CCEventJoystick.h"
+#include "base/CCGameController.h"
+#include "base/CCController-desktop.h"
 #include "base/CCEventMouse.h"
 #include "base/CCIMEDispatcher.h"
 #include "base/ccUtils.h"
@@ -453,31 +454,14 @@ bool GLViewImpl::windowShouldClose()
 
 void GLViewImpl::pollEvents()
 {
-    glfwPollEvents();
-    pollJoystickEvent(GLFW_JOYSTICK_1);
-    pollJoystickEvent(GLFW_JOYSTICK_2);
-}
-
-// TODO - joystick- optimize - cache joystick availability and name
-// TODO - joystick - add key mapping support - follow SDL's example so that we can pull default mapping when publishing on Steam
-void GLViewImpl::pollJoystickEvent(int id)
-{
-    int count = 0;
-    bool isPresent = glfwJoystickPresent(id);
-    EventJoystick event;
-    if( isPresent )
+    // TODO - controller - make this optional and give the option for how many controllers to check for
+    if( _mainWindow )
     {
-        event.setPresent(true);
-        event.setId(id);
-        const char* name = glfwGetJoystickName(id);
-        event.setName(name);
-        const unsigned char* values = glfwGetJoystickButtons(id, &count);
-        event.setButtonValues(count, values);
-        // ps3: left: x,y right:x,y x (left)-1<=x<=1(right) (up)-1<=y<=1(down)
-        const float* axes = glfwGetJoystickAxes(id, &count);
-        event.setAxes(count, axes);
+        glfwPollEvents();
+        // TODO - controller - make this optional and give the option for how many controllers to check for
+        ControllerImpl::pollJoystick(GLFW_JOYSTICK_1);
+        ControllerImpl::pollJoystick(GLFW_JOYSTICK_2);
     }
-    Director::getInstance()->getEventDispatcher()->dispatchEvent(&event);
 }
 
 void GLViewImpl::enableRetina(bool enabled)

@@ -31,7 +31,6 @@
 #include "base/CCTouch.h"
 #include "base/CCEventTouch.h"
 #include "base/CCEventKeyboard.h"
-#include "base/CCEventJoystick.h"
 #include <map>
 #include <string>
 #include <list>
