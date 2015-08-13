@@ -76,7 +76,7 @@ bool GameLayer::loadSavedData()
     if ( questFlagsJSON.HasParseError() )
     {
         // report to the user the failure
-		printf("Error parsing questflags.json %s\n", questFlagsJSON.GetParseError());
+		printf("Error parsing questflags.json %u\n", questFlagsJSON.GetParseError());
         return false;
     }
     
@@ -97,7 +97,7 @@ bool GameLayer::loadSavedData()
     if ( gameConfigJSON.HasParseError() )
     {
         // report to the user the failure
-        printf("Error parsing initialconfig.json %s\n", gameConfigJSON.GetParseError() );
+        printf("Error parsing initialconfig.json %u\n", gameConfigJSON.GetParseError() );
         return false;
     }
     
@@ -156,7 +156,7 @@ bool GameLayer::loadStringTable(std::string fileName)
     if ( m_currentStringTable.HasParseError() )
     {
         // report to the user the failure
-        printf("Error parsing %s %s\n", fileName.c_str(), m_currentStringTable.GetParseError());
+        printf("Error parsing %s %u\n", fileName.c_str(), m_currentStringTable.GetParseError());
         return false;
     }
     
