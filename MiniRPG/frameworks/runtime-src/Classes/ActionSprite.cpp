@@ -45,6 +45,11 @@ void ActionSprite::noAction()
 
 void ActionSprite::walkWithDirection(Vec2 direction, bool directionChanged)
 {
+    if (direction == Vec2::ZERO)
+    {
+        return;
+    }
+    
     if (m_actionState == kActionStateIdle)
     {
         stopAllActions();
