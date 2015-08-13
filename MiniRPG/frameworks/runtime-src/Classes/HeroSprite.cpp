@@ -59,7 +59,7 @@ bool HeroSprite::initWithParameters(std::string spriteName, ActionSpriteDirectio
         return false;
     }
     
-    m_fWalkSpeed = .5f;
+    m_fWalkSpeed = .4f;
     m_strSpriteName = spriteName;
     m_currentDirection = currentDirection;
     m_actionState = kActionStateAutoWalkDone;
