@@ -50,11 +50,18 @@ void SimpleDPad::onEnterTransitionDidFinish()
 {    
     m_pEventListener = EventListenerTouchOneByOne::create();
     m_pEventListener->setSwallowTouches(true);
-    
+#if CC_TARGET_PLATFORM == CC_PLATFORM_MAC
     m_pKeyboardEventListener = EventListenerKeyboard::create();
     m_pKeyboardEventListener->onKeyPressed = CC_CALLBACK_2(SimpleDPad::onKeyPressed, this);
     m_pKeyboardEventListener->onKeyReleased = CC_CALLBACK_2(SimpleDPad::onKeyReleased, this);
-    
+
+    m_pControllerEventListener = EventListenerController::create();
+    m_pControllerEventListener->onConnected = CC_CALLBACK_2(SimpleDPad::onConnectController,this);
+    m_pControllerEventListener->onDisconnected = CC_CALLBACK_2(SimpleDPad::onDisconnectedController,this);
+    m_pControllerEventListener->onKeyDown = CC_CALLBACK_3(SimpleDPad::onKeyDown, this);
+    m_pControllerEventListener->onKeyUp = CC_CALLBACK_3(SimpleDPad::onKeyUp, this);
+    m_pControllerEventListener->onAxisEvent = CC_CALLBACK_3(SimpleDPad::onAxisEvent, this);
+#endif
     m_pEventListener->onTouchBegan = CC_CALLBACK_2(SimpleDPad::onTouchBegan, this);
     m_pEventListener->onTouchMoved = CC_CALLBACK_2(SimpleDPad::onTouchMoved, this);
     m_pEventListener->onTouchEnded = CC_CALLBACK_2(SimpleDPad::onTouchEnded, this);
@@ -62,11 +69,19 @@ void SimpleDPad::onEnterTransitionDidFinish()
     auto dispatcher = Director::getInstance()->getEventDispatcher();
     
     dispatcher->addEventListenerWithSceneGraphPriority(m_pEventListener, this);
+#if CC_TARGET_PLATFORM == CC_PLATFORM_MAC
     dispatcher->addEventListenerWithSceneGraphPriority(m_pKeyboardEventListener, this);
-
+    dispatcher->addEventListenerWithSceneGraphPriority(m_pControllerEventListener, this);
+#endif
+    
+    //This function should be called for iOS platform
+    //Controller::startDiscoveryController();
     
     m_pEventListener->retain();
+#if CC_TARGET_PLATFORM == CC_PLATFORM_MAC
     m_pKeyboardEventListener->retain();
+    m_pControllerEventListener->retain();
+#endif
 }
 
 void SimpleDPad::onExit()
@@ -106,78 +121,6 @@ void SimpleDPad::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *event)
     m_pThePlayer->simpleDPadTouchEnded();
 }
 
-void SimpleDPad::onKeyPressed(EventKeyboard::KeyCode keycode, cocos2d::Event* event)
-{
-    m_bIsHeld = true;
-    if (keycode == cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
-    {
-        //right
-        m_vDirection = Vec2(1.0, 0.0);
-    }
-    /*
-    else if (degrees > 22.5 && degrees < 67.5)
-    {
-        //bottomright
-        m_vDirection = Vec2(1.0, -1.0);
-    }
-     */
-    else if (keycode == cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW)
-    {
-        //bottom
-        m_vDirection = Vec2(0.0, -1.0);
-    }
-    /*
-    else if (degrees > 112.5 && degrees < 157.5)
-    {
-        //bottomleft
-        m_vDirection = Vec2(-1.0, -1.0);
-    }
-     */
-    else if (keycode == cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW)
-    {
-        //left
-        m_vDirection = Vec2(-1.0, 0.0);
-    }
-    /*
-    else if (degrees < -22.5 && degrees > -67.5)
-    {
-        //topright
-        m_vDirection = Vec2(1.0, 1.0);
-    }
-     */
-    else if (keycode == cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW)
-    {
-        //top
-        m_vDirection = Vec2(0.0, 1.0);
-    }
-    /*
-    else if (degrees < -112.5 && degrees > -157.5)
-    {
-        //topleft
-        m_vDirection = Vec2(-1.0, 1.0);
-    }
-     */
-    else if (keycode == cocos2d::EventKeyboard::KeyCode::KEY_Z)
-    {
-
-    }
-    
-    //printf("onKeyPressed %d\n", keycode);
-    m_lastKeyPressed = keycode;
-    m_pThePlayer->didChangeDirectionTo(m_vDirection);
-}
-
-void SimpleDPad::onKeyReleased(EventKeyboard::KeyCode keycode, cocos2d::Event* event)
-{
-    //printf("onKeyReleased %d\n", keycode);
-    if (m_lastKeyPressed == keycode)
-    {
-        m_vDirection = Vec2::ZERO;
-        m_bIsHeld = false;
-        m_pThePlayer->simpleDPadTouchEnded();
-    }
-}
-
 void SimpleDPad::updateDirectionForTouchLocation(Vec2 location)
 {
     float radians = (location - this->getPosition()).getAngle();
@@ -205,6 +148,164 @@ void SimpleDPad::updateDirectionForTouchLocation(Vec2 location)
     }
     m_pThePlayer->didChangeDirectionTo(m_vDirection);
 }
+
+#if CC_TARGET_PLATFORM == CC_PLATFORM_MAC
+//Keyboard
+void SimpleDPad::onKeyPressed(EventKeyboard::KeyCode keycode, cocos2d::Event* event)
+{
+    m_bIsHeld = true;
+    if (keycode == cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
+    {
+        //right
+        m_vDirection = Vec2(1.0, 0.0);
+    }
+    /*
+     else if (degrees > 22.5 && degrees < 67.5)
+     {
+     //bottomright
+     m_vDirection = Vec2(1.0, -1.0);
+     }
+     */
+    else if (keycode == cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW)
+    {
+        //bottom
+        m_vDirection = Vec2(0.0, -1.0);
+    }
+    /*
+     else if (degrees > 112.5 && degrees < 157.5)
+     {
+     //bottomleft
+     m_vDirection = Vec2(-1.0, -1.0);
+     }
+     */
+    else if (keycode == cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW)
+    {
+        //left
+        m_vDirection = Vec2(-1.0, 0.0);
+    }
+    /*
+     else if (degrees < -22.5 && degrees > -67.5)
+     {
+     //topright
+     m_vDirection = Vec2(1.0, 1.0);
+     }
+     */
+    else if (keycode == cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW)
+    {
+        //top
+        m_vDirection = Vec2(0.0, 1.0);
+    }
+    /*
+     else if (degrees < -112.5 && degrees > -157.5)
+     {
+     //topleft
+     m_vDirection = Vec2(-1.0, 1.0);
+     }
+     */
+    else if (keycode == cocos2d::EventKeyboard::KeyCode::KEY_Z)
+    {
+        
+    }
+    
+    //printf("onKeyPressed %d\n", keycode);
+    m_lastKeyPressed = (int)keycode;
+    m_pThePlayer->didChangeDirectionTo(m_vDirection);
+}
+
+void SimpleDPad::onKeyReleased(EventKeyboard::KeyCode keycode, cocos2d::Event* event)
+{
+    //printf("onKeyReleased %d\n", keycode);
+    if (m_lastKeyPressed == (int)keycode)
+    {
+        m_vDirection = Vec2::ZERO;
+        m_bIsHeld = false;
+        m_pThePlayer->simpleDPadTouchEnded();
+    }
+}
+
+//Controller
+void SimpleDPad::onKeyDown(Controller* controller, int keycode, Event* event)
+{
+    CCLOG("KeyDown:%d", keycode);
+    m_lastKeyPressed = keycode;
+    
+    m_bIsHeld = true;
+    if (keycode == cocos2d::Controller::Key::BUTTON_DPAD_RIGHT)
+    {
+        CCLOG("RIGHT");
+        m_vDirection = Vec2(1.0, 0.0);
+    }
+    else if (keycode == cocos2d::Controller::Key::BUTTON_DPAD_DOWN)
+    {
+        CCLOG("DOWN");
+        m_vDirection = Vec2(0.0, -1.0);
+    }
+    else if (keycode == cocos2d::Controller::Key::BUTTON_DPAD_LEFT)
+    {
+        CCLOG("LEFT");
+        m_vDirection = Vec2(-1.0, 0.0);
+    }
+    else if (keycode == cocos2d::Controller::Key::BUTTON_DPAD_UP)
+    {
+        CCLOG("UP");
+        m_vDirection = Vec2(0.0, 1.0);
+    }
+    else if (keycode == cocos2d::Controller::Key::BUTTON_A)
+    {
+        CCLOG("A");
+    }
+    else if (keycode == cocos2d::Controller::Key::BUTTON_B)
+    {
+        CCLOG("B");
+    }
+    else if (keycode == cocos2d::Controller::Key::BUTTON_X)
+    {
+        CCLOG("X");
+    }
+    else if (keycode == cocos2d::Controller::Key::BUTTON_Y)
+    {
+        CCLOG("Y");
+    }
+}
+
+void SimpleDPad::onKeyUp(Controller* controller, int keycode, Event* event)
+{
+    //You can get the controller by tag, deviceId or devicename if there are multiple controllers
+    CCLOG("tag:%d DeviceId:%d DeviceName:%s", controller->getTag(), controller->getDeviceId(), controller->getDeviceName().c_str());
+    CCLOG("KeyUp:%d", keycode);
+    
+    if (m_lastKeyPressed == (int)keycode)
+    {
+        m_vDirection = Vec2::ZERO;
+        m_bIsHeld = false;
+        m_pThePlayer->simpleDPadTouchEnded();
+    }
+}
+
+/*
+void SimpleDPad::onButtonEvent(int keyCode, bool isPressed, float value, bool isAnalog)
+{
+    CCLOG("onButtonEvent:%d isPressed:%d value:%f isAnalog:%d", keyCode, isPressed, value, isAnalog);
+}
+ */
+
+//The axis includes X-axis and Y-axis and its range is from -1 to 1. X-axis is start from left to right and Y-axis is bottom to top.
+void SimpleDPad::onAxisEvent(cocos2d::Controller* controller, int keycode, cocos2d::Event* event)
+{
+    //const auto& keyStatus = controller->getKeyStatus(keycode);
+    //CCLOG("Axis KeyCode:%d Axis Value:%f", keycode, keyStatus.value);
+}
+
+void SimpleDPad::onConnectController(Controller* controller, Event* event)
+{
+    CCLOG("Game controller connected");
+}
+
+void SimpleDPad::onDisconnectedController(Controller* controller, Event* event)
+{
+    CCLOG("Game controller disconnected");
+}
+#endif
 
 void SimpleDPad::setTheHero(HeroSprite *thePlayer)
 {

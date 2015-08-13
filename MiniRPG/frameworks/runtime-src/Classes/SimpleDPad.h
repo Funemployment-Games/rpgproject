@@ -11,6 +11,7 @@
 
 #include "cocos2d.h"
 #include "HeroSprite.h"
+#include "CCController.h"
 
 USING_NS_CC;
 
@@ -34,13 +35,23 @@ public:
     virtual void onExit();
     
     //Touches
-    virtual bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event);
-    virtual void onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *event);
-    virtual void onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *event);
+    virtual bool onTouchBegan(Touch *touch, Event *event);
+    virtual void onTouchMoved(Touch *touch, Event *event);
+    virtual void onTouchEnded(Touch *touch, Event *event);
     
-    virtual void onKeyPressed(EventKeyboard::KeyCode keycode, cocos2d::Event* event);
-    virtual void onKeyReleased(EventKeyboard::KeyCode keycode, cocos2d::Event* event);
+    //Keys
+#if CC_TARGET_PLATFORM == CC_PLATFORM_MAC
+    virtual void onKeyPressed(cocos2d::EventKeyboard::KeyCode keycode, Event* event);
+    virtual void onKeyReleased(cocos2d::EventKeyboard::KeyCode keycode, Event* event);
     
+    //Controller
+    virtual void onKeyDown(cocos2d::Controller* controller, int keycode, Event* event);
+    virtual void onKeyUp(cocos2d::Controller* controller, int keycode, Event* event);
+    //virtual void onButtonEvent(int keyCode, bool isPressed, float value, bool isAnalog);
+    virtual void onAxisEvent(cocos2d::Controller* controller, int keyCode, cocos2d::Event* event);
+    virtual void onConnectController(cocos2d::Controller* controller, Event* event);
+    virtual void onDisconnectedController(Controller* controller, Event* event);
+#endif
     void updateDirectionForTouchLocation(Vec2 location);
     
     //Accessors
@@ -51,10 +62,13 @@ private:
     float m_fRadius;
     bool m_bIsHeld;
     HeroSprite* m_pThePlayer;
-    EventKeyboard::KeyCode m_lastKeyPressed;
+    int m_lastKeyPressed;
     
     EventListenerTouchOneByOne* m_pEventListener;
+#if CC_TARGET_PLATFORM == CC_PLATFORM_MAC
     EventListenerKeyboard* m_pKeyboardEventListener;
+    EventListenerController* m_pControllerEventListener;
+#endif
 };
 
 #endif
