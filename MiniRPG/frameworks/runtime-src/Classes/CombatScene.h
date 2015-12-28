@@ -18,9 +18,21 @@ USING_NS_CC;
 enum CombatMenuButton
 {
     kCombatMenuButton_Fight,
-    kCombatMenuButton_Undo,
+    kCombatMenuButton_Run,
+    kCombatMenuButton_Magic,
+    kCombatMenuButton_Item,
     kCombatMenuButton_Max,
     kCombatMenuButton_None = -1,
+};
+
+enum CombatMenuInputMode
+{
+    kCombatMenuInputMode_MainMenu,
+    kCombatMenuInputMode_SubMenu,
+    kCombatMenuInputMode_TargetSelect,
+    kCombatMenuInputMode_Max,
+    kCombatMenuInputMode_None = -1,
+    
 };
 
 class CombatScene: public cocos2d::Scene
@@ -44,14 +56,26 @@ private:
     void onFightButtonCallback(Ref* pSender);
     void onMagicButtonCallback(Ref* pSender);
     void onItemButtonCallback(Ref* pSender);
-    void onDefendButtonCallback(Ref* pSender);
+    void onRunButtonCallback(Ref* pSender);
     void onUndoButtonCallback(Ref* pSender);
+    
+    virtual void onKeyPressed(cocos2d::EventKeyboard::KeyCode keycode, Event* event);
+    virtual void onKeyReleased(cocos2d::EventKeyboard::KeyCode keycode, Event* event);
+    
+    void HandleMainMenuInput(cocos2d::EventKeyboard::KeyCode keycode);
+    void HandleSubMenuInput(cocos2d::EventKeyboard::KeyCode keycode);
+    void HandleTargetSelectInput(cocos2d::EventKeyboard::KeyCode keycode);
     
     Menu* m_pCombatMenu;
     MenuItemImage* m_pCombatMenuButtons[kCombatMenuButton_Max];
-    SpriteBatchNode *m_pActors;
+    //SpriteBatchNode *m_pActors;
     std::vector<HeroSprite*> m_vHeroes;
+    std::vector<Sprite*> m_vMonsters;
+    Sprite* m_pSpriteCursor;
     int m_iCurrentHeroIndex;
+    CombatMenuInputMode m_eCurrentInputMode;
+    
+    EventListenerKeyboard* m_pKeyboardEventListener;
 };
 
 #endif

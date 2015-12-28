@@ -12,7 +12,7 @@ using namespace CocosDenshion;
 USING_NS_CC;
 using namespace std;
 
-static cocos2d::Size designResolutionSize = cocos2d::Size(320, 480);
+static cocos2d::Size designResolutionSize = cocos2d::Size(256, 240);
 
 AppDelegate::AppDelegate()
 {
@@ -57,8 +57,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     director->setAnimationInterval(1.0 / 60);
     
     // create a scene. it's an autorelease object
-    //auto scene = CombatScene::createScene();
-    auto scene = GameScene::createScene();
+    auto scene = CombatScene::createScene();
+    //auto scene = GameScene::createScene();
     //auto scene = MenuStatusScene::createScene();
     
     // run

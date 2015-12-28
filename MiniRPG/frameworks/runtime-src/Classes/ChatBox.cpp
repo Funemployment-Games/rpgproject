@@ -43,15 +43,15 @@ bool ChatBox::initWithDialogue(std::string npcName, std::string npcDialogue)
     
     Sprite* backroundSprite = Sprite::create("res/ui/chat-box.png");
     backroundSprite->getTexture()->setAliasTexParameters();
-    backroundSprite->setScale(4);
+    backroundSprite->setScale(1);
     backroundSprite->setPosition(Vec2(0,0));
     backroundSprite->setAnchorPoint(Vec2(0,0));
     this->addChild(backroundSprite, 0);
 
-    m_pLabel = Label::createWithTTF("", "res/fonts/Warior-Quest-III.ttf", 16, Size(300,60), TextHAlignment::LEFT, TextVAlignment::TOP);
+    m_pLabel = Label::createWithTTF("", "res/fonts/Warior-Quest-III.ttf", 14, Size(256,64), TextHAlignment::LEFT, TextVAlignment::TOP);
     m_pLabel->setColor(Color3B::WHITE);
     m_pLabel->setAnchorPoint(Vec2(0, 0));
-    m_pLabel->setPosition(Vec2(6,15));
+    m_pLabel->setPosition(Vec2(5,-5));
     
     this->addChild(m_pLabel, 1);
     

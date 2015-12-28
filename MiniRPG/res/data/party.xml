@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<party>
+<partygold>0</partygold>
+<currentmap>agc-throne</currentmap>
+<character id="Melda" active="true">
+	  <name>Melda</name>
+      <class>Royal Princess</class>
+      <currentlevel>1</currentlevel>
+      <currentexp>0</currentexp>
+      <Strength>1</Strength>
+      <Agility>1</Agility>
+      <Vitality>1</Vitality>
+      <Intellect>1</Intellect>
+      <Spirit>1</Spirit>
+      <currentHP>10</currentHP>
+      <maxHP>10</maxHP>
+      <currentMP>10</currentMP>
+      <maxMP>10</maxMP>
+</character>
+<character id="Bodhmall" active="false">
+	  <name>Bodhmall</name>
+      <class>Druid</class>
+      <currentlevel>1</currentlevel>
+      <currentexp>0</currentexp>
+      <Strength>1</Strength>
+      <Agility>1</Agility>
+      <Vitality>1</Vitality>
+      <Intellect>1</Intellect>
+      <Spirit>1</Spirit>
+      <currentHP>10</currentHP>
+      <maxHP>10</maxHP>
+      <currentMP>10</currentMP>
+      <maxMP>10</maxMP>
+</character>
+<character id="Callahan" active="false">
+	  <name>Callahan</name>
+      <class>Priest</class>
+      <currentlevel>1</currentlevel>
+      <currentexp>0</currentexp>
+      <Strength>1</Strength>
+      <Agility>1</Agility>
+      <Vitality>1</Vitality>
+      <Intellect>1</Intellect>
+      <Spirit>1</Spirit>
+      <currentHP>10</currentHP>
+      <maxHP>10</maxHP>
+      <currentMP>10</currentMP>
+      <maxMP>10</maxMP>
+</character>
+<character id="Trenmor" active="false">
+	  <name>Trenmor</name>
+      <class>Warrior</class>
+      <currentlevel>1</currentlevel>
+      <currentexp>0</currentexp>
+      <Strength>1</Strength>
+      <Agility>1</Agility>
+      <Vitality>1</Vitality>
+      <Intellect>1</Intellect>
+      <Spirit>1</Spirit>
+      <currentHP>10</currentHP>
+      <maxHP>10</maxHP>
+      <currentMP>10</currentMP>
+      <maxMP>10</maxMP>
+</character>
+</party>

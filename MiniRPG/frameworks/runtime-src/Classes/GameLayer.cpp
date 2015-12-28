@@ -650,7 +650,7 @@ void GameLayer::showNPCDialogue(std::string npcName, std::string dialogueId, std
             break;
     }
     
-    Vec2 vCenteredBoxPos = Vec2(this->getPosition().x * -1.f, this->getPosition().y * -2.65f);
+    Vec2 vCenteredBoxPos = Vec2(this->getPosition().x * -1.f, this->getPosition().y * -1.5f);
     m_pChatbox->setPosition(Vec2(vCenteredBoxPos));
     this->addChild(m_pChatbox, 5);
     m_pChatbox->advanceTextOrHide();

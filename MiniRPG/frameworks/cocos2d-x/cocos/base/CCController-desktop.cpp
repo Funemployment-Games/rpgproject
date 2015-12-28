@@ -41,6 +41,7 @@ void ControllerImpl::pollJoystick( int id )
         const char* name = glfwGetJoystickName(id);
         ControllerDesktop* controller = (ControllerDesktop*)Controller::getControllerByTag(id);
         const ButtonMapping* buttonMapping = NULL;
+        
         if (controller == NULL)
         {
             // It's a new controller being connected.
@@ -52,8 +53,15 @@ void ControllerImpl::pollJoystick( int id )
             // TODO - controller - handle more controller types
             // TODO - controller - handle unknown controllers
             const ButtonMapping* buttonMapping = &buttonMappingXBox360PC;
+            
+            // MBTODO: FIX THIS IT DOESNT WORK.
+            /*
             if (strstr(name, "3"))	// looking for the "3" in PS3
+            {
                 buttonMapping = &buttonMappingPS3;
+            }
+             */
+            
             controller->setButtonMapping(buttonMapping);
             //controller->mapButton = mapButton;
             
@@ -67,6 +75,14 @@ void ControllerImpl::pollJoystick( int id )
         const unsigned char* values = glfwGetJoystickButtons(id, &count);
         // TODO - controller - efficiently check out of bounds on index
         // trying to avoid conditional statements here for optimization reasons
+        for (int i=0;i<count;++i)
+        {
+            if (values[i] != 0)
+            {
+                log("Controller: %d %u", i, values[i]);
+            }
+        }
+        
         controller->onButtonEvent(Controller::Key::BUTTON_A, values[buttonMapping->BUTTON_A] ? true : false, values[buttonMapping->BUTTON_A], false);
         controller->onButtonEvent(Controller::Key::BUTTON_B, values[buttonMapping->BUTTON_B] ? true : false, values[buttonMapping->BUTTON_B], false);
         controller->onButtonEvent(Controller::Key::BUTTON_X, values[buttonMapping->BUTTON_X] ? true : false, values[buttonMapping->BUTTON_X], false);
