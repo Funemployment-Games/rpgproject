@@ -29,3 +29,12 @@ MiniRPG/runtime/mac/*
 *.d
 
 MiniRPG/runtime/mac/MiniRPG Mac.app/Contents/MacOS/MiniRPG Mac
+*.obj
+*.log
+*.tlog
+*.lastbuildstate
+*.idb
+*.pdb
+*.exe
+*.ilk
+MiniRPG/simulator/win32/
