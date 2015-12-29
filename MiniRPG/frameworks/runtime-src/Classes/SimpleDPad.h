@@ -11,7 +11,9 @@
 
 #include "cocos2d.h"
 #include "HeroSprite.h"
+#if CC_TARGET_PLATFORM == CC_PLATFORM_MAC
 #include "CCController.h"
+#endif
 
 USING_NS_CC;
 
