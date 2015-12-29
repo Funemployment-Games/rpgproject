@@ -26,7 +26,7 @@ bool MenuYesNo::initWithDialogueAndResponses(std::string npcName, std::string np
     m_strNoResponse = noResponse;
     m_bChoiceMade = false;
 
-    m_pMenu = CCMenu::create();
+    m_pMenu = Menu::create();
     CreateMenuButtons();
     this->addChild(m_pMenu, 0);
     m_pMenu->setVisible(false);

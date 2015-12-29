@@ -28,7 +28,7 @@ bool MenuStatusScene::init()
         return false;
     }
     
-    m_pStatusScreenMenu = CCMenu::create();
+    m_pStatusScreenMenu = Menu::create();
     
     Point buttonPositions [kMenuStatusSceneButton_Max] =
     {

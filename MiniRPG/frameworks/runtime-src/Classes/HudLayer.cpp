@@ -32,7 +32,7 @@ bool HudLayer::init()
     m_pTheDPad = (SimpleDPad*)SimpleDPad::createSprite();
     this->addChild(m_pTheDPad);
     
-    m_pContextMenu = CCMenu::create();
+    m_pContextMenu = Menu::create();
     CreateContextMenuButtons();
     
     this->addChild(m_pContextMenu, 0);

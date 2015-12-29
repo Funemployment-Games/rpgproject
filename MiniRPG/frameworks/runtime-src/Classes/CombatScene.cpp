@@ -141,7 +141,7 @@ void CombatScene::initMonsterSprites()
 
 void CombatScene::initCombatMenu()
 {
-    m_pCombatMenu = CCMenu::create();
+    m_pCombatMenu = Menu::create();
     
     Point buttonPositions [kCombatMenuButton_Max] =
     {
