@@ -276,6 +276,7 @@ void GameLayer::initTheNPCs(std::string mapName)
 NPCType GameLayer::convertStringToNPCType(std::string typeString)
 {
     std::unordered_map<std::string, NPCType>  npcMap;
+	/*
     npcMap = {
         {"normal",kNPCType_Normal},
         {"yesno",kNPCType_YesNo},
@@ -284,8 +285,8 @@ NPCType GameLayer::convertStringToNPCType(std::string typeString)
         {"inn",kNPCType_Inn},
         {"church",kNPCType_Church}
     };
-    
-    NPCType returnVal = npcMap[typeString];
+    */
+	NPCType returnVal = kNPCType_Normal;// npcMap[typeString];
     
     return returnVal;
 }
