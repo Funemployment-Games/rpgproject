@@ -268,13 +268,16 @@ void RuntimeLuaImpl::onReload(const rapidjson::Document &dArgParse, rapidjson::D
     // lua
     if (dArgParse.HasMember("modulefiles"))
     {
+        auto& allocator = dReplyParse.GetAllocator();
         rapidjson::Value bodyvalue(rapidjson::kObjectType);
         const rapidjson::Value& objectfiles = dArgParse["modulefiles"];
         for (rapidjson::SizeType i = 0; i < objectfiles.Size(); i++)
         {
             if (!reloadScript(objectfiles[i].GetString()))
             {
-                bodyvalue.AddMember(objectfiles[i].GetString(), 1, dReplyParse.GetAllocator());
+                bodyvalue.AddMember(rapidjson::Value(objectfiles[i].GetString(), allocator)
+                                    , rapidjson::Value(1)
+                                    , allocator);
             }
         }
         if (0 == objectfiles.Size())
@@ -296,7 +299,6 @@ void RuntimeLuaImpl::startScript(const std::string& strDebugArg)
     const ProjectConfig &project = RuntimeEngine::getInstance()->getProjectConfig();
     
     // set search path
-    stack->addSearchPath(project.getProjectDir().c_str());
     string path = FileUtils::getInstance()->fullPathForFilename(project.getScriptFileRealPath().c_str());
     size_t pos;
     while ((pos = path.find_first_of("\\")) != std::string::npos)
