@@ -191,10 +191,27 @@ xcopy "$(ProjectDir)..\..\..\src" "$(LocalDebuggerWorkingDirectory)\src" /D /E /
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Classes\ActionSprite.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\ChatBox.h" />
+    <ClInclude Include="..\Classes\CombatScene.h" />
+    <ClInclude Include="..\Classes\config.h" />
+    <ClInclude Include="..\Classes\GameLayer.h" />
+    <ClInclude Include="..\Classes\GameScene.h" />
+    <ClInclude Include="..\Classes\HeroSprite.h" />
+    <ClInclude Include="..\Classes\HudLayer.h" />
     <ClInclude Include="..\Classes\ide-support\CodeIDESupport.h" />
     <ClInclude Include="..\Classes\ide-support\lua_debugger.h" />
     <ClInclude Include="..\Classes\ide-support\RuntimeLuaImpl.h" />
+    <ClInclude Include="..\Classes\LuaGlobalManager.h" />
+    <ClInclude Include="..\Classes\lua_cocos2dx_custom.hpp" />
+    <ClInclude Include="..\Classes\lua_module_register.h" />
+    <ClInclude Include="..\Classes\MenuShopIntro.h" />
+    <ClInclude Include="..\Classes\MenuStatusScene.h" />
+    <ClInclude Include="..\Classes\MenuYesNo.h" />
+    <ClInclude Include="..\Classes\NPCManager.h" />
+    <ClInclude Include="..\Classes\NPCSprite.h" />
+    <ClInclude Include="..\Classes\SimpleDPad.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SimulatorWin.h" />
@@ -202,9 +219,24 @@ xcopy "$(ProjectDir)..\..\..\src" "$(LocalDebuggerWorkingDirectory)\src" /D /E /
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Classes\ActionSprite.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\ChatBox.cpp" />
+    <ClCompile Include="..\Classes\CombatScene.cpp" />
+    <ClCompile Include="..\Classes\GameLayer.cpp" />
+    <ClCompile Include="..\Classes\GameScene.cpp" />
+    <ClCompile Include="..\Classes\HeroSprite.cpp" />
+    <ClCompile Include="..\Classes\HudLayer.cpp" />
     <ClCompile Include="..\Classes\ide-support\lua_debugger.c" />
     <ClCompile Include="..\Classes\ide-support\RuntimeLuaImpl.cpp" />
+    <ClCompile Include="..\Classes\LuaGlobalManager.cpp" />
+    <ClCompile Include="..\Classes\lua_cocos2dx_custom.cpp" />
+    <ClCompile Include="..\Classes\MenuShopIntro.cpp" />
+    <ClCompile Include="..\Classes\MenuStatusScene.cpp" />
+    <ClCompile Include="..\Classes\MenuYesNo.cpp" />
+    <ClCompile Include="..\Classes\NPCManager.cpp" />
+    <ClCompile Include="..\Classes\NPCSprite.cpp" />
+    <ClCompile Include="..\Classes\SimpleDPad.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SimulatorWin.cpp" />
     <ClCompile Include="stdafx.cpp" />
