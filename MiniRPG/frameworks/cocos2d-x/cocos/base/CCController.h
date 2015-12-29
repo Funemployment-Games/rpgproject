@@ -180,12 +180,11 @@ public:
      */
     int getTag() const { return _controllerTag;}
 
-protected:
-    Controller();
-    virtual ~Controller();
-    
 private:
     static std::vector<Controller*> s_allController;
+
+    Controller();
+    virtual ~Controller();
 
     void init();
 

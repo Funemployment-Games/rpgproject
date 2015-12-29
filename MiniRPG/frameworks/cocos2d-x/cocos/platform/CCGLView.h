@@ -28,16 +28,15 @@ THE SOFTWARE.
 
 #include "base/ccTypes.h"
 #include "base/CCEventTouch.h"
+
 #include <vector>
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #include <windows.h>
-#include "glfw3.h"
 #endif /* (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) */
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 typedef void* id;
-#include "glfw3.h"
 #endif /* (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) */
 
 /** There are some Resolution Policy for Adapt to the screen. */
@@ -379,7 +378,7 @@ protected:
     void updateDesignResolutionSize();
     
     void handleTouchesOfEndOrCancel(EventTouch::EventCode eventCode, int num, intptr_t ids[], float xs[], float ys[]);
-    
+
     // real screen size
     Size _screenSize;
     // resolution size, it is the size appropriate for the app resources.
