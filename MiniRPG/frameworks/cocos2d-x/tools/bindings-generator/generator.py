@@ -152,6 +152,7 @@ class NativeType(object):
         self.is_object = False
         self.is_function = False
         self.is_enum = False
+        self.is_numeric = False
         self.not_supported = False
         self.param_types = []
         self.ret_type = None
@@ -252,6 +253,9 @@ class NativeType(object):
         # mark argument as not supported
         if nt.name == INVALID_NATIVE_TYPE:
             nt.not_supported = True
+
+        if re.search("(short|int|double|float|long|ssize_t)$", nt.name) != None:
+            nt.is_numeric = True;
 
         return nt
 
@@ -556,6 +560,7 @@ class NativeFunction(object):
         return replaceStr
 
     def generate_code(self, current_class=None, generator=None, is_override=False, is_ctor=False):
+        self.is_ctor = is_ctor
         gen = current_class.generator if current_class else generator
         config = gen.config
         if not is_ctor:
@@ -617,6 +622,7 @@ class NativeOverloadedFunction(object):
         self.min_args = 100
         self.is_constructor = False
         self.is_overloaded = True
+        self.is_ctor = False
         for m in func_array:
             self.min_args = min(self.min_args, m.min_args)
 
@@ -655,6 +661,7 @@ class NativeOverloadedFunction(object):
         self.implementations.append(func)
 
     def generate_code(self, current_class=None, is_override=False, is_ctor=False):
+        self.is_ctor = is_ctor
         gen = current_class.generator
         config = gen.config
         static = self.implementations[0].static
@@ -987,6 +994,7 @@ class Generator(object):
         self.generated_classes = {}
         self.rename_functions = {}
         self.rename_classes = {}
+        self.replace_headers = {}
         self.out_file = opts['out_file']
         self.script_control_cpp = opts['script_control_cpp'] == "yes"
         self.script_type = opts['script_type']
@@ -1050,6 +1058,12 @@ class Generator(object):
             for rename in list_of_class_renames:
                 class_name, renamed_class_name = rename.split("::")
                 self.rename_classes[class_name] = renamed_class_name
+
+        if opts['replace_headers']:
+            list_of_replace_headers = re.split(",\n?", opts['replace_headers'])
+            for replace in list_of_replace_headers:
+                header, replaced_header = replace.split("::")
+                self.replace_headers[header] = replaced_header
 
 
     def should_rename_function(self, class_name, method_name):
@@ -1495,6 +1509,7 @@ def main():
             gen_opts = {
                 'prefix': config.get(s, 'prefix'),
                 'headers':    (config.get(s, 'headers'        , 0, dict(userconfig.items('DEFAULT')))),
+                'replace_headers': config.get(s, 'replace_headers') if config.has_option(s, 'replace_headers') else None,
                 'classes': config.get(s, 'classes').split(' '),
                 'classes_need_extend': config.get(s, 'classes_need_extend').split(' ') if config.has_option(s, 'classes_need_extend') else [],
                 'clang_args': (config.get(s, 'extra_arguments', 0, dict(userconfig.items('DEFAULT'))) or "").split(" "),
