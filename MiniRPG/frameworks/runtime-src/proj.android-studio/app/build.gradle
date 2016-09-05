@@ -5,7 +5,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.racetothemoon.rpg"
+        applicationId "org.cocos2dx.MiniRPG"
         minSdkVersion 10
         targetSdkVersion 22
         versionCode 1
