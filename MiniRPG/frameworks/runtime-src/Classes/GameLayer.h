@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 #include "config.h"
-#include "CCLuaEngine.h"
+#include "scripting/lua-bindings/manual/CCLuaEngine.h"
 #include "SimpleAudioEngine.h" 
 #include "SimpleDPad.h"
 #include "HudLayer.h"

@@ -18,7 +18,7 @@ extern "C" {
 #endif
 
 #include "cocos2d.h"
-#include "CCLuaEngine.h"
+#include "scripting/lua-bindings/manual/CCLuaEngine.h"
 #include "NPCSprite.h"
 
 USING_NS_CC;

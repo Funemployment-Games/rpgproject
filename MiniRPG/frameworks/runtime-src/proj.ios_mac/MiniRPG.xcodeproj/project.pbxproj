@@ -50,6 +50,40 @@
 		5200BECA1A53D9A500AC45E4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5200BEC91A53D9A500AC45E4 /* Security.framework */; };
 		521A8E7019F0C3D200D177D7 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6E19F0C3D200D177D7 /* Default-667h@2x.png */; };
 		521A8E7119F0C3D200D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */; };
+		7A91933A1D7D038300FCB8BA /* ActionSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193121D7D038300FCB8BA /* ActionSprite.cpp */; };
+		7A91933B1D7D038300FCB8BA /* ChatBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193141D7D038300FCB8BA /* ChatBox.cpp */; };
+		7A91933C1D7D038300FCB8BA /* CombatScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193161D7D038300FCB8BA /* CombatScene.cpp */; };
+		7A91933D1D7D038300FCB8BA /* GameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193191D7D038300FCB8BA /* GameLayer.cpp */; };
+		7A91933E1D7D038300FCB8BA /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A91931B1D7D038300FCB8BA /* GameScene.cpp */; };
+		7A91933F1D7D038300FCB8BA /* HeroSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A91931D1D7D038300FCB8BA /* HeroSprite.cpp */; };
+		7A9193401D7D038300FCB8BA /* HudLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A91931F1D7D038300FCB8BA /* HudLayer.cpp */; };
+		7A9193411D7D038300FCB8BA /* lang in Resources */ = {isa = PBXBuildFile; fileRef = 7A9193231D7D038300FCB8BA /* lang */; };
+		7A9193421D7D038300FCB8BA /* lua_debugger.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193241D7D038300FCB8BA /* lua_debugger.c */; };
+		7A9193431D7D038300FCB8BA /* RuntimeLuaImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193261D7D038300FCB8BA /* RuntimeLuaImpl.cpp */; };
+		7A9193441D7D038300FCB8BA /* SimpleConfigParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193281D7D038300FCB8BA /* SimpleConfigParser.cpp */; };
+		7A9193451D7D038300FCB8BA /* lua_cocos2dx_custom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A91932A1D7D038300FCB8BA /* lua_cocos2dx_custom.cpp */; };
+		7A9193461D7D038300FCB8BA /* LuaGlobalManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A91932C1D7D038300FCB8BA /* LuaGlobalManager.cpp */; };
+		7A9193471D7D038300FCB8BA /* MenuShopIntro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A91932E1D7D038300FCB8BA /* MenuShopIntro.cpp */; };
+		7A9193481D7D038300FCB8BA /* MenuStatusScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193301D7D038300FCB8BA /* MenuStatusScene.cpp */; };
+		7A9193491D7D038300FCB8BA /* MenuYesNo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193321D7D038300FCB8BA /* MenuYesNo.cpp */; };
+		7A91934A1D7D038300FCB8BA /* NPCManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193341D7D038300FCB8BA /* NPCManager.cpp */; };
+		7A91934B1D7D038300FCB8BA /* NPCSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193361D7D038300FCB8BA /* NPCSprite.cpp */; };
+		7A91934C1D7D038300FCB8BA /* SimpleDPad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193381D7D038300FCB8BA /* SimpleDPad.cpp */; };
+		7ABCEBF11D7D0B26007F4931 /* CombatScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193161D7D038300FCB8BA /* CombatScene.cpp */; };
+		7ABCEBF21D7D0B2D007F4931 /* ActionSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193121D7D038300FCB8BA /* ActionSprite.cpp */; };
+		7ABCEBF31D7D0B32007F4931 /* ChatBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193141D7D038300FCB8BA /* ChatBox.cpp */; };
+		7ABCEBF41D7D0B46007F4931 /* GameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193191D7D038300FCB8BA /* GameLayer.cpp */; };
+		7ABCEBF51D7D0B49007F4931 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A91931B1D7D038300FCB8BA /* GameScene.cpp */; };
+		7ABCEBF61D7D0B4D007F4931 /* HeroSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A91931D1D7D038300FCB8BA /* HeroSprite.cpp */; };
+		7ABCEBF71D7D0B50007F4931 /* HudLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A91931F1D7D038300FCB8BA /* HudLayer.cpp */; };
+		7ABCEBF81D7D0B53007F4931 /* lua_cocos2dx_custom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A91932A1D7D038300FCB8BA /* lua_cocos2dx_custom.cpp */; };
+		7ABCEBF91D7D0B56007F4931 /* LuaGlobalManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A91932C1D7D038300FCB8BA /* LuaGlobalManager.cpp */; };
+		7ABCEBFA1D7D0B5A007F4931 /* MenuShopIntro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A91932E1D7D038300FCB8BA /* MenuShopIntro.cpp */; };
+		7ABCEBFB1D7D0B5D007F4931 /* MenuStatusScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193301D7D038300FCB8BA /* MenuStatusScene.cpp */; };
+		7ABCEBFC1D7D0B61007F4931 /* MenuYesNo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193321D7D038300FCB8BA /* MenuYesNo.cpp */; };
+		7ABCEBFD1D7D0B64007F4931 /* NPCManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193341D7D038300FCB8BA /* NPCManager.cpp */; };
+		7ABCEBFE1D7D0B67007F4931 /* NPCSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193361D7D038300FCB8BA /* NPCSprite.cpp */; };
+		7ABCEBFF1D7D0B6C007F4931 /* SimpleDPad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9193381D7D038300FCB8BA /* SimpleDPad.cpp */; };
 		9FA3AE4E1BE9BCC900FC9645 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FA3AE4D1BE9BCC900FC9645 /* CFNetwork.framework */; };
 		9FF504841A5E87B100AFDA55 /* ConsoleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF504811A5E87B100AFDA55 /* ConsoleWindow.xib */; };
 		9FF504851A5E87B100AFDA55 /* ConsoleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF504831A5E87B100AFDA55 /* ConsoleWindowController.m */; };
@@ -126,6 +160,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = A07A4C241783777C0073F6A7;
 			remoteInfo = "libcocos2d iOS";
+		};
+		7A91934E1D7D038300FCB8BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15A8A4031834BDA200142BE0 /* cocos2d_libs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 507B40FD1C31BDD30067B53E;
+			remoteInfo = "libcocos2d tvOS";
+		};
+		7A9193511D7D038300FCB8BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C03781AE18BF654500FE4F13 /* cocos2d_lua_bindings.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 507B43531C31FA0C0067B53E;
+			remoteInfo = "libluacocos2d tvOS";
 		};
 		9FEE0E431A5FC95000FEA1B0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -207,6 +255,45 @@
 		5200BEC91A53D9A500AC45E4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		521A8E6E19F0C3D200D177D7 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
+		7A9193121D7D038300FCB8BA /* ActionSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ActionSprite.cpp; path = ../Classes/ActionSprite.cpp; sourceTree = "<group>"; };
+		7A9193131D7D038300FCB8BA /* ActionSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSprite.h; path = ../Classes/ActionSprite.h; sourceTree = "<group>"; };
+		7A9193141D7D038300FCB8BA /* ChatBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ChatBox.cpp; path = ../Classes/ChatBox.cpp; sourceTree = "<group>"; };
+		7A9193151D7D038300FCB8BA /* ChatBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatBox.h; path = ../Classes/ChatBox.h; sourceTree = "<group>"; };
+		7A9193161D7D038300FCB8BA /* CombatScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CombatScene.cpp; path = ../Classes/CombatScene.cpp; sourceTree = "<group>"; };
+		7A9193171D7D038300FCB8BA /* CombatScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CombatScene.h; path = ../Classes/CombatScene.h; sourceTree = "<group>"; };
+		7A9193181D7D038300FCB8BA /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = ../Classes/config.h; sourceTree = "<group>"; };
+		7A9193191D7D038300FCB8BA /* GameLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameLayer.cpp; path = ../Classes/GameLayer.cpp; sourceTree = "<group>"; };
+		7A91931A1D7D038300FCB8BA /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = ../Classes/GameLayer.h; sourceTree = "<group>"; };
+		7A91931B1D7D038300FCB8BA /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameScene.cpp; path = ../Classes/GameScene.cpp; sourceTree = "<group>"; };
+		7A91931C1D7D038300FCB8BA /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = ../Classes/GameScene.h; sourceTree = "<group>"; };
+		7A91931D1D7D038300FCB8BA /* HeroSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HeroSprite.cpp; path = ../Classes/HeroSprite.cpp; sourceTree = "<group>"; };
+		7A91931E1D7D038300FCB8BA /* HeroSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeroSprite.h; path = ../Classes/HeroSprite.h; sourceTree = "<group>"; };
+		7A91931F1D7D038300FCB8BA /* HudLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HudLayer.cpp; path = ../Classes/HudLayer.cpp; sourceTree = "<group>"; };
+		7A9193201D7D038300FCB8BA /* HudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HudLayer.h; path = ../Classes/HudLayer.h; sourceTree = "<group>"; };
+		7A9193221D7D038300FCB8BA /* CodeIDESupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeIDESupport.h; sourceTree = "<group>"; };
+		7A9193231D7D038300FCB8BA /* lang */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lang; sourceTree = "<group>"; };
+		7A9193241D7D038300FCB8BA /* lua_debugger.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lua_debugger.c; sourceTree = "<group>"; };
+		7A9193251D7D038300FCB8BA /* lua_debugger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua_debugger.h; sourceTree = "<group>"; };
+		7A9193261D7D038300FCB8BA /* RuntimeLuaImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RuntimeLuaImpl.cpp; sourceTree = "<group>"; };
+		7A9193271D7D038300FCB8BA /* RuntimeLuaImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuntimeLuaImpl.h; sourceTree = "<group>"; };
+		7A9193281D7D038300FCB8BA /* SimpleConfigParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleConfigParser.cpp; sourceTree = "<group>"; };
+		7A9193291D7D038300FCB8BA /* SimpleConfigParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleConfigParser.h; sourceTree = "<group>"; };
+		7A91932A1D7D038300FCB8BA /* lua_cocos2dx_custom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lua_cocos2dx_custom.cpp; path = ../Classes/lua_cocos2dx_custom.cpp; sourceTree = "<group>"; };
+		7A91932B1D7D038300FCB8BA /* lua_cocos2dx_custom.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = lua_cocos2dx_custom.hpp; path = ../Classes/lua_cocos2dx_custom.hpp; sourceTree = "<group>"; };
+		7A91932C1D7D038300FCB8BA /* LuaGlobalManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LuaGlobalManager.cpp; path = ../Classes/LuaGlobalManager.cpp; sourceTree = "<group>"; };
+		7A91932D1D7D038300FCB8BA /* LuaGlobalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuaGlobalManager.h; path = ../Classes/LuaGlobalManager.h; sourceTree = "<group>"; };
+		7A91932E1D7D038300FCB8BA /* MenuShopIntro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuShopIntro.cpp; path = ../Classes/MenuShopIntro.cpp; sourceTree = "<group>"; };
+		7A91932F1D7D038300FCB8BA /* MenuShopIntro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuShopIntro.h; path = ../Classes/MenuShopIntro.h; sourceTree = "<group>"; };
+		7A9193301D7D038300FCB8BA /* MenuStatusScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuStatusScene.cpp; path = ../Classes/MenuStatusScene.cpp; sourceTree = "<group>"; };
+		7A9193311D7D038300FCB8BA /* MenuStatusScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuStatusScene.h; path = ../Classes/MenuStatusScene.h; sourceTree = "<group>"; };
+		7A9193321D7D038300FCB8BA /* MenuYesNo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuYesNo.cpp; path = ../Classes/MenuYesNo.cpp; sourceTree = "<group>"; };
+		7A9193331D7D038300FCB8BA /* MenuYesNo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuYesNo.h; path = ../Classes/MenuYesNo.h; sourceTree = "<group>"; };
+		7A9193341D7D038300FCB8BA /* NPCManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NPCManager.cpp; path = ../Classes/NPCManager.cpp; sourceTree = "<group>"; };
+		7A9193351D7D038300FCB8BA /* NPCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NPCManager.h; path = ../Classes/NPCManager.h; sourceTree = "<group>"; };
+		7A9193361D7D038300FCB8BA /* NPCSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NPCSprite.cpp; path = ../Classes/NPCSprite.cpp; sourceTree = "<group>"; };
+		7A9193371D7D038300FCB8BA /* NPCSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NPCSprite.h; path = ../Classes/NPCSprite.h; sourceTree = "<group>"; };
+		7A9193381D7D038300FCB8BA /* SimpleDPad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SimpleDPad.cpp; path = ../Classes/SimpleDPad.cpp; sourceTree = "<group>"; };
+		7A9193391D7D038300FCB8BA /* SimpleDPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleDPad.h; path = ../Classes/SimpleDPad.h; sourceTree = "<group>"; };
 		9FA3AE4D1BE9BCC900FC9645 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
 		9FF504781A5E86D600AFDA55 /* libsimulator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libsimulator.xcodeproj; path = "../../cocos2d-x/tools/simulator/libsimulator/proj.ios_mac/libsimulator.xcodeproj"; sourceTree = "<group>"; };
 		9FF504811A5E87B100AFDA55 /* ConsoleWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleWindow.xib; sourceTree = "<group>"; };
@@ -294,6 +381,7 @@
 			children = (
 				15A8A4171834BDA200142BE0 /* libcocos2d Mac.a */,
 				15A8A4251834BDA200142BE0 /* libcocos2d iOS.a */,
+				7A91934F1D7D038300FCB8BA /* libcocos2d tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -355,6 +443,22 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
+		7A9193211D7D038300FCB8BA /* ide-support */ = {
+			isa = PBXGroup;
+			children = (
+				7A9193221D7D038300FCB8BA /* CodeIDESupport.h */,
+				7A9193231D7D038300FCB8BA /* lang */,
+				7A9193241D7D038300FCB8BA /* lua_debugger.c */,
+				7A9193251D7D038300FCB8BA /* lua_debugger.h */,
+				7A9193261D7D038300FCB8BA /* RuntimeLuaImpl.cpp */,
+				7A9193271D7D038300FCB8BA /* RuntimeLuaImpl.h */,
+				7A9193281D7D038300FCB8BA /* SimpleConfigParser.cpp */,
+				7A9193291D7D038300FCB8BA /* SimpleConfigParser.h */,
+			);
+			name = "ide-support";
+			path = "../Classes/ide-support";
+			sourceTree = "<group>";
+		};
 		9FF504791A5E86D600AFDA55 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +473,7 @@
 			children = (
 				15427CC2198F220600DC375D /* libluacocos2d Mac.a */,
 				15427CD2198F220600DC375D /* libluacocos2d iOS.a */,
+				7A9193521D7D038300FCB8BA /* libluacocos2d tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -431,9 +536,41 @@
 		F293BB7C15EB830F00256477 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				15427CE2198F237300DC375D /* lua_module_register.h */,
+				7A9193121D7D038300FCB8BA /* ActionSprite.cpp */,
 				F293BB7E15EB831F00256477 /* AppDelegate.cpp */,
+				7A9193141D7D038300FCB8BA /* ChatBox.cpp */,
+				7A9193161D7D038300FCB8BA /* CombatScene.cpp */,
+				7A9193191D7D038300FCB8BA /* GameLayer.cpp */,
+				7A91931B1D7D038300FCB8BA /* GameScene.cpp */,
+				7A91931D1D7D038300FCB8BA /* HeroSprite.cpp */,
+				7A91931F1D7D038300FCB8BA /* HudLayer.cpp */,
+				7A91932A1D7D038300FCB8BA /* lua_cocos2dx_custom.cpp */,
+				7A91932C1D7D038300FCB8BA /* LuaGlobalManager.cpp */,
+				7A91932E1D7D038300FCB8BA /* MenuShopIntro.cpp */,
+				7A9193301D7D038300FCB8BA /* MenuStatusScene.cpp */,
+				7A9193321D7D038300FCB8BA /* MenuYesNo.cpp */,
+				7A9193341D7D038300FCB8BA /* NPCManager.cpp */,
+				7A9193361D7D038300FCB8BA /* NPCSprite.cpp */,
+				7A9193381D7D038300FCB8BA /* SimpleDPad.cpp */,
+				7A9193131D7D038300FCB8BA /* ActionSprite.h */,
 				F293BB7F15EB831F00256477 /* AppDelegate.h */,
+				7A9193151D7D038300FCB8BA /* ChatBox.h */,
+				7A9193171D7D038300FCB8BA /* CombatScene.h */,
+				7A9193181D7D038300FCB8BA /* config.h */,
+				7A91931A1D7D038300FCB8BA /* GameLayer.h */,
+				7A91931C1D7D038300FCB8BA /* GameScene.h */,
+				7A91931E1D7D038300FCB8BA /* HeroSprite.h */,
+				7A9193201D7D038300FCB8BA /* HudLayer.h */,
+				15427CE2198F237300DC375D /* lua_module_register.h */,
+				7A91932D1D7D038300FCB8BA /* LuaGlobalManager.h */,
+				7A91932F1D7D038300FCB8BA /* MenuShopIntro.h */,
+				7A9193311D7D038300FCB8BA /* MenuStatusScene.h */,
+				7A9193331D7D038300FCB8BA /* MenuYesNo.h */,
+				7A9193351D7D038300FCB8BA /* NPCManager.h */,
+				7A9193371D7D038300FCB8BA /* NPCSprite.h */,
+				7A9193391D7D038300FCB8BA /* SimpleDPad.h */,
+				7A91932B1D7D038300FCB8BA /* lua_cocos2dx_custom.hpp */,
+				7A9193211D7D038300FCB8BA /* ide-support */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -565,6 +702,20 @@
 			remoteRef = 15A8A4241834BDA200142BE0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		7A91934F1D7D038300FCB8BA /* libcocos2d tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libcocos2d tvOS.a";
+			remoteRef = 7A91934E1D7D038300FCB8BA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7A9193521D7D038300FCB8BA /* libluacocos2d tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libluacocos2d tvOS.a";
+			remoteRef = 7A9193511D7D038300FCB8BA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9FF5047E1A5E86D600AFDA55 /* libsimulator Mac.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -607,6 +758,7 @@
 				5023811917EBBCAC00990C9B /* Default-568h@2x.png in Resources */,
 				5091733917ECE17A00D62437 /* Icon-58.png in Resources */,
 				5023811F17EBBCAC00990C9B /* Icon-152.png in Resources */,
+				7A9193411D7D038300FCB8BA /* lang in Resources */,
 				5023812017EBBCAC00990C9B /* Icon-57.png in Resources */,
 				521A8E7019F0C3D200D177D7 /* Default-667h@2x.png in Resources */,
 				C03781B918BF655400FE4F13 /* res in Resources */,
@@ -646,10 +798,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ABCEBF11D7D0B26007F4931 /* CombatScene.cpp in Sources */,
+				7ABCEBFC1D7D0B61007F4931 /* MenuYesNo.cpp in Sources */,
+				7ABCEBFE1D7D0B67007F4931 /* NPCSprite.cpp in Sources */,
 				C07828FA18B4D72E00BD2287 /* SimulatorApp.mm in Sources */,
 				5023813317EBBCE400990C9B /* AppDelegate.cpp in Sources */,
 				9FF504851A5E87B100AFDA55 /* ConsoleWindowController.m in Sources */,
+				7ABCEBF91D7D0B56007F4931 /* LuaGlobalManager.cpp in Sources */,
+				7ABCEBF21D7D0B2D007F4931 /* ActionSprite.cpp in Sources */,
+				7ABCEBFB1D7D0B5D007F4931 /* MenuStatusScene.cpp in Sources */,
+				7ABCEBF41D7D0B46007F4931 /* GameLayer.cpp in Sources */,
+				7ABCEBFD1D7D0B64007F4931 /* NPCManager.cpp in Sources */,
 				C07828F818B4D72E00BD2287 /* main.m in Sources */,
+				7ABCEBF51D7D0B49007F4931 /* GameScene.cpp in Sources */,
+				7ABCEBF81D7D0B53007F4931 /* lua_cocos2dx_custom.cpp in Sources */,
+				7ABCEBF71D7D0B50007F4931 /* HudLayer.cpp in Sources */,
+				7ABCEBF61D7D0B4D007F4931 /* HeroSprite.cpp in Sources */,
+				7ABCEBF31D7D0B32007F4931 /* ChatBox.cpp in Sources */,
+				7ABCEBFA1D7D0B5A007F4931 /* MenuShopIntro.cpp in Sources */,
+				7ABCEBFF1D7D0B6C007F4931 /* SimpleDPad.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,9 +824,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A91933C1D7D038300FCB8BA /* CombatScene.cpp in Sources */,
 				5023812517EBBCAC00990C9B /* RootViewController.mm in Sources */,
+				7A91933A1D7D038300FCB8BA /* ActionSprite.cpp in Sources */,
+				7A9193461D7D038300FCB8BA /* LuaGlobalManager.cpp in Sources */,
 				F293BB9C15EB831F00256477 /* AppDelegate.cpp in Sources */,
+				7A9193441D7D038300FCB8BA /* SimpleConfigParser.cpp in Sources */,
+				7A9193451D7D038300FCB8BA /* lua_cocos2dx_custom.cpp in Sources */,
+				7A91933B1D7D038300FCB8BA /* ChatBox.cpp in Sources */,
+				7A91933D1D7D038300FCB8BA /* GameLayer.cpp in Sources */,
+				7A9193481D7D038300FCB8BA /* MenuStatusScene.cpp in Sources */,
 				5023812417EBBCAC00990C9B /* main.m in Sources */,
+				7A91933E1D7D038300FCB8BA /* GameScene.cpp in Sources */,
+				7A91934C1D7D038300FCB8BA /* SimpleDPad.cpp in Sources */,
+				7A9193471D7D038300FCB8BA /* MenuShopIntro.cpp in Sources */,
+				7A9193401D7D038300FCB8BA /* HudLayer.cpp in Sources */,
+				7A91934B1D7D038300FCB8BA /* NPCSprite.cpp in Sources */,
+				7A9193421D7D038300FCB8BA /* lua_debugger.c in Sources */,
+				7A91934A1D7D038300FCB8BA /* NPCManager.cpp in Sources */,
+				7A91933F1D7D038300FCB8BA /* HeroSprite.cpp in Sources */,
+				7A9193431D7D038300FCB8BA /* RuntimeLuaImpl.cpp in Sources */,
+				7A9193491D7D038300FCB8BA /* MenuYesNo.cpp in Sources */,
 				5023811817EBBCAC00990C9B /* AppController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

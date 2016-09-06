@@ -7,12 +7,12 @@
 //
 
 #include "LuaGlobalManager.h"
-#include "LuaBasicConversions.h"
+#include "scripting/lua-bindings/manual/LuaBasicConversions.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include  "tolua_fix.h"
+#include  "scripting/lua-bindings/manual/tolua_fix.h"
 #ifdef __cplusplus
 }
 #endif

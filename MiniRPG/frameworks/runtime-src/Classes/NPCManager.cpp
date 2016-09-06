@@ -17,7 +17,7 @@
 #include "config.h"
 
 #include "GameLayer.h"
-#include "LuaBasicConversions.h"
+#include "scripting/lua-bindings/manual/LuaBasicConversions.h"
 
 // singleton stuff
 static NPCManager *s_sharedNPCManager = nullptr;

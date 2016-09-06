@@ -1,5 +1,4 @@
 #include "AppDelegate.h"
-#include "CCLuaEngine.h"
 #include "SimpleAudioEngine.h"
 #include "scripting/lua-bindings/manual/CCLuaEngine.h"
 #include "audio/include/SimpleAudioEngine.h"
@@ -23,6 +22,8 @@ using namespace CocosDenshion;
 
 USING_NS_CC;
 using namespace std;
+
+static cocos2d::Size designResolutionSize = cocos2d::Size(256, 240);
 
 AppDelegate::AppDelegate()
 {

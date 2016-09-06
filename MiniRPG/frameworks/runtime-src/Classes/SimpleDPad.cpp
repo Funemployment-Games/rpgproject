@@ -229,6 +229,7 @@ void SimpleDPad::onKeyReleased(EventKeyboard::KeyCode keycode, cocos2d::Event* e
     }
 }
 
+#if Controller
 //Controller
 void SimpleDPad::onKeyDown(Controller* controller, int keycode, Event* event)
 {
@@ -311,6 +312,7 @@ void SimpleDPad::onDisconnectedController(Controller* controller, Event* event)
 {
     CCLOG("Game controller disconnected");
 }
+#endif
 #endif
 
 void SimpleDPad::setTheHero(HeroSprite *thePlayer)
