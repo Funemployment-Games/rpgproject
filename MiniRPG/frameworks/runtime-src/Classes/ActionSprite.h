@@ -10,7 +10,7 @@
 #define PompaDroid_ActionSprite_h
 
 #include "cocos2d.h"
-#include "SimpleAudioEngine.h"
+#include "audio/include/SimpleAudioEngine.h"
 
 USING_NS_CC;
 

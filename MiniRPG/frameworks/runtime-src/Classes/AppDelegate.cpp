@@ -1,5 +1,4 @@
 #include "AppDelegate.h"
-#include "SimpleAudioEngine.h"
 #include "scripting/lua-bindings/manual/CCLuaEngine.h"
 #include "audio/include/SimpleAudioEngine.h"
 #include "cocos2d.h"
@@ -60,7 +59,7 @@ static int register_all_packages()
 bool AppDelegate::applicationDidFinishLaunching()
 {
     // set default FPS
-    Director::getInstance()->setAnimationInterval(1.0 / 60.0f);
+    Director::getInstance()->setAnimationInterval(1.0f / 60.0f);
 
     // register lua module
     auto engine = LuaEngine::getInstance();
@@ -102,7 +101,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
     
     // set FPS. the default value is 1.0/60 if you don't call this
-    director->setAnimationInterval(1.0 / 60);
+    director->setAnimationInterval(1.0f / 60.0f);
     
     // create a scene. it's an autorelease object
     auto scene = CombatScene::createScene();

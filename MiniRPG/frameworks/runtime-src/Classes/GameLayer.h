@@ -4,7 +4,7 @@
 #include "cocos2d.h"
 #include "config.h"
 #include "scripting/lua-bindings/manual/CCLuaEngine.h"
-#include "SimpleAudioEngine.h" 
+#include "audio/include/SimpleAudioEngine.h"
 #include "SimpleDPad.h"
 #include "HudLayer.h"
 #include "HeroSprite.h"
