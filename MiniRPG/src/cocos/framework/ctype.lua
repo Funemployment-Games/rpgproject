@@ -1,6 +1,6 @@
 --[[
 
-Copyright (c) 2011-2016 chukong-incc.com
+Copyright (c) 2015 gameboxcloud.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +22,22 @@ THE SOFTWARE.
 
 ]]
 
-require "cocos.cocos2d.Cocos2d"
-require "cocos.cocos2d.Cocos2dConstants"
-require "cocos.framework.init"
+local math_floor = math.floor
 
-cc.exports.__G__TRACKBACK__ = function(msg)
-    local msg = debug.traceback(msg, 3)
-    print(msg)
-    return msg
+function cc.checknumber(value, base)
+    return tonumber(value, base) or 0
+end
+
+function cc.checkint(value)
+    value = tonumber(value) or 0
+    return math_floor(value + 0.5)
+end
+
+function cc.checkbool(value)
+    return (value ~= nil and value ~= false)
+end
+
+function cc.checktable(value)
+    if type(value) ~= "table" then value = {} end
+    return value
 end
