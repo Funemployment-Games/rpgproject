@@ -32,12 +32,12 @@
 #include "extensions/ExtensionMacros.h"
 #include "extensions/ExtensionExport.h"
 
-/**
- * @addtogroup ui
- * @{
- */
 NS_CC_EXT_BEGIN
 
+/**
+ * @addtogroup GUI
+ * @{
+ */
 
 class ScrollView;
 
@@ -93,7 +93,6 @@ public:
     static ScrollView* create();
     /**
      * @js ctor
-     * @lua new
      */
     ScrollView();
     /**
@@ -102,7 +101,7 @@ public:
      */
     virtual ~ScrollView();
 
-    bool init() override;
+    bool init();
     /**
      * Returns a scroll view object
      *
@@ -128,10 +127,6 @@ public:
      * @param dt        The animation duration.
      */
     void setContentOffsetInDuration(Vec2 offset, float dt); 
-    /**
-     * Halts the movement animation of the inner content started with setContentOffset() or setContentOffsetInDuration()
-     */
-    void stopAnimatedContentOffset();
 
     void setZoomScale(float s);
     /**
@@ -239,10 +234,10 @@ public:
     bool isClippingToBounds() { return _clippingToBounds; }
     void setClippingToBounds(bool bClippingToBounds) { _clippingToBounds = bClippingToBounds; }
 
-    virtual bool onTouchBegan(Touch *touch, Event *event) override;
-    virtual void onTouchMoved(Touch *touch, Event *event) override;
-    virtual void onTouchEnded(Touch *touch, Event *event) override;
-    virtual void onTouchCancelled(Touch *touch, Event *event) override;
+    virtual bool onTouchBegan(Touch *touch, Event *event);
+    virtual void onTouchMoved(Touch *touch, Event *event);
+    virtual void onTouchEnded(Touch *touch, Event *event);
+    virtual void onTouchCancelled(Touch *touch, Event *event);
     
     // Overrides
     virtual void setContentSize(const Size & size) override;
@@ -257,13 +252,10 @@ public:
     virtual void addChild(Node * child, int zOrder, int tag) override;
     virtual void addChild(Node * child, int zOrder, const std::string &name) override;
 
-    virtual void removeAllChildren() override;
-    virtual void removeAllChildrenWithCleanup(bool cleanup) override;
-    virtual void removeChild(Node* child, bool cleanup = true) override;
     /**
      * CCActionTweenDelegate
      */
-    void updateTweenAction(float value, const std::string& key) override;
+    void updateTweenAction(float value, const std::string& key);
 
     bool hasVisibleParents() const;
 protected:
@@ -327,7 +319,7 @@ protected:
      */
     Node* _container;
     /**
-     * Determines whether user touch is moved after begin phase.
+     * Determiens whether user touch is moved after begin phase.
      */
     bool _touchMoved;
     /**
@@ -382,16 +374,11 @@ protected:
     
     CustomCommand _beforeDrawCommand;
     CustomCommand _afterDrawCommand;
-
-    /**
-     * Action created with setContentOffsetInDuration(), saved so it can be halted
-     */
-    Action* _animatedScrollAction;
 };
 
+// end of GUI group
+/// @}
 
 NS_CC_EXT_END
-// end of ui group
-/// @}
 
 #endif /* __CCSCROLLVIEW_H__ */

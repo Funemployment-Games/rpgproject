@@ -10,11 +10,10 @@
 -- @function [parent=#ActionMoveFrame] setPosition 
 -- @param self
 -- @param #vec2_table pos
--- @return ActionMoveFrame#ActionMoveFrame self (return value: ccs.ActionMoveFrame)
         
 --------------------------------
 -- Gets the ActionInterval of ActionFrame.<br>
--- param duration   the duration time of ActionFrame<br>
+-- parame duration   the duration time of ActionFrame<br>
 -- return ActionInterval
 -- @function [parent=#ActionMoveFrame] getAction 
 -- @param self
@@ -32,6 +31,5 @@
 -- Default constructor
 -- @function [parent=#ActionMoveFrame] ActionMoveFrame 
 -- @param self
--- @return ActionMoveFrame#ActionMoveFrame self (return value: ccs.ActionMoveFrame)
         
 return nil

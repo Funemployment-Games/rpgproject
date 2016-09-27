@@ -26,7 +26,7 @@ THE SOFTWARE.
 #define __CC_APPLICATION_WINRT_H__
 
 #include "platform/CCPlatformConfig.h"
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
 
 #include "platform/CCStdC.h"
 #include "platform/CCCommon.h"
@@ -49,13 +49,13 @@ public:
     int run();
 
     /**
-    @brief    Get current application instance.
+    @brief    Get current applicaiton instance.
     @return Current application instance pointer.
     */
     static Application* getInstance();
 
     /* override functions */
-    virtual void setAnimationInterval(float interval);
+    virtual void setAnimationInterval(double interval);
     virtual LanguageType getCurrentLanguage();
     virtual const char * getCurrentLanguageCode();
 
@@ -63,11 +63,6 @@ public:
      @brief Get target platform
      */
     virtual Platform getTargetPlatform() override;
-
-    /**
-     @brief Get application version
-     */
-    virtual std::string getVersion() override;
     
     /**
      @brief Open url in default browser
@@ -116,6 +111,6 @@ protected:
 
 NS_CC_END
 
-#endif // CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
+#endif // CC_TARGET_PLATFORM == CC_PLATFORM_WP8
 
 #endif    // __CC_APPLICATION_WINRT_H__

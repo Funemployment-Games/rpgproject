@@ -22,17 +22,16 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
-#include "scripting/lua-bindings/manual/network/Lua_web_socket.h"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#include "Lua_web_socket.h"
 #include <map>
 #include <string>
-#include "scripting/lua-bindings/manual/tolua_fix.h"
-
-#include "scripting/lua-bindings/manual/CCLuaStack.h"
-#include "scripting/lua-bindings/manual/CCLuaValue.h"
-#include "scripting/lua-bindings/manual/CCLuaEngine.h"
-#include "scripting/lua-bindings/manual/cocos2d/LuaScriptHandlerMgr.h"
-#include "deprecated/CCString.h"
+#include "tolua_fix.h"
+#include "cocos2d.h"
+#include "CCLuaStack.h"
+#include "CCLuaValue.h"
+#include "CCLuaEngine.h"
+#include "LuaScriptHandlerMgr.h"
 
 using namespace cocos2d;
 
@@ -133,7 +132,7 @@ void LuaWebSocket::onError(WebSocket* ws, const WebSocket::ErrorCode& error)
 {
     LuaWebSocket* luaWs = dynamic_cast<LuaWebSocket*>(ws);
     if (NULL != luaWs) {
-        int nHandler = ScriptHandlerMgr::getInstance()->getObjectHandler((void*)this,ScriptHandlerMgr::HandlerType::WEBSOCKET_ERROR);
+        int nHandler = 0;//luaWs->getScriptHandler(LuaWebSocket::kWebSocketScriptHandlerError);
         if (0 != nHandler)
         {
             CommonScriptData data(nHandler,"");

@@ -1,6 +1,6 @@
 /****************************************************************************
 Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2015 Chukong Technologies
+Copyright (c) 2013-2014 Chukong Technologies
 
 http://www.cocos2d-x.org
 
@@ -22,10 +22,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
-
 #ifndef __CCSTRING_H__
 #define __CCSTRING_H__
-/// @cond DO_NOT_SHOW
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_BLACKBERRY)
 #include <string.h>
@@ -34,12 +32,9 @@ THE SOFTWARE.
 #include <stdarg.h>
 #include <string>
 #include <functional>
-#include "deprecated/CCArray.h"
+#include <sstream>
+#include "CCArray.h"
 #include "base/CCRef.h"
-
-// We need to include `StringUtils::format()` and `StringUtils::toString()`
-// for keeping the backward compatibility
-#include "base/ccUTF8.h"
 
 NS_CC_BEGIN
 
@@ -189,7 +184,7 @@ public:
      * @js NA
      * @lua NA
      */
-    virtual __String* clone() const override;
+    virtual __String* clone() const;
     
 private:
 
@@ -210,10 +205,23 @@ struct StringCompare : public std::binary_function<__String *, __String *, bool>
 #define StringMake(str) String::create(str)
 #define ccs             StringMake
 
+namespace StringUtils {
+
+template<typename T>
+std::string toString(T arg)
+{
+    std::stringstream ss;
+    ss << arg;
+    return ss.str();
+}
+
+std::string CC_DLL format(const char* format, ...) CC_FORMAT_PRINTF(1, 2);
+    
+} // namespace StringUtils {
+
 // end of data_structure group
 /// @}
 
 NS_CC_END
 
-/// @endcond
 #endif //__CCSTRING_H__

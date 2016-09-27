@@ -29,11 +29,12 @@ THE SOFTWARE.
 #include "2d/CCSpriteBatchNode.h"
 #include "2d/CCSprite.h"
 #include "base/CCDirector.h"
-#include "base/CCProfiling.h"
-#include "base/ccUTF8.h"
 #include "renderer/CCTextureCache.h"
 #include "renderer/CCRenderer.h"
 #include "renderer/CCQuadCommand.h"
+
+#include "deprecated/CCString.h" // For StringUtils::format
+
 
 NS_CC_BEGIN
 
@@ -44,14 +45,10 @@ NS_CC_BEGIN
 SpriteBatchNode* SpriteBatchNode::createWithTexture(Texture2D* tex, ssize_t capacity/* = DEFAULT_CAPACITY*/)
 {
     SpriteBatchNode *batchNode = new (std::nothrow) SpriteBatchNode();
-    if(batchNode && batchNode->initWithTexture(tex, capacity))
-    {
-        batchNode->autorelease();
-        return batchNode;
-    }
-    
-    delete batchNode;
-    return nullptr;
+    batchNode->initWithTexture(tex, capacity);
+    batchNode->autorelease();
+
+    return batchNode;
 }
 
 /*
@@ -61,26 +58,17 @@ SpriteBatchNode* SpriteBatchNode::createWithTexture(Texture2D* tex, ssize_t capa
 SpriteBatchNode* SpriteBatchNode::create(const std::string& fileImage, ssize_t capacity/* = DEFAULT_CAPACITY*/)
 {
     SpriteBatchNode *batchNode = new (std::nothrow) SpriteBatchNode();
-    if(batchNode && batchNode->initWithFile(fileImage, capacity))
-    {
-        batchNode->autorelease();
-        return batchNode;
-    }
-    
-    delete batchNode;
-    return nullptr;
+    batchNode->initWithFile(fileImage, capacity);
+    batchNode->autorelease();
+
+    return batchNode;
 }
 
 /*
 * init with Texture2D
 */
-bool SpriteBatchNode::initWithTexture(Texture2D *tex, ssize_t capacity/* = DEFAULT_CAPACITY*/)
+bool SpriteBatchNode::initWithTexture(Texture2D *tex, ssize_t capacity)
 {
-    if(tex == nullptr)
-    {
-        return false;
-    }
-    
     CCASSERT(capacity>=0, "Capacity must be >= 0");
     
     _blendFunc = BlendFunc::ALPHA_PREMULTIPLIED;
@@ -90,7 +78,7 @@ bool SpriteBatchNode::initWithTexture(Texture2D *tex, ssize_t capacity/* = DEFAU
     }
     _textureAtlas = new (std::nothrow) TextureAtlas();
 
-    if (capacity <= 0)
+    if (capacity == 0)
     {
         capacity = DEFAULT_CAPACITY;
     }
@@ -103,7 +91,7 @@ bool SpriteBatchNode::initWithTexture(Texture2D *tex, ssize_t capacity/* = DEFAU
 
     _descendants.reserve(capacity);
     
-    setGLProgramState(GLProgramState::getOrCreateWithGLProgramName(GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR, tex));
+    setGLProgramState(GLProgramState::getOrCreateWithGLProgramName(GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR));
     return true;
 }
 
@@ -117,7 +105,7 @@ bool SpriteBatchNode::init()
 /*
 * init with FileImage
 */
-bool SpriteBatchNode::initWithFile(const std::string& fileImage, ssize_t capacity/* = DEFAULT_CAPACITY*/)
+bool SpriteBatchNode::initWithFile(const std::string& fileImage, ssize_t capacity)
 {
     Texture2D *texture2D = Director::getInstance()->getTextureCache()->addImage(fileImage);
     return initWithTexture(texture2D, capacity);
@@ -146,7 +134,7 @@ void SpriteBatchNode::visit(Renderer *renderer, const Mat4 &parentTransform, uin
     // The alternative is to have a void Sprite#visit, but
     // although this is less maintainable, is faster
     //
-    if (! _visible)
+    if (! _visible || !isVisitableByVisitingCamera())
     {
         return;
     }
@@ -155,23 +143,21 @@ void SpriteBatchNode::visit(Renderer *renderer, const Mat4 &parentTransform, uin
 
     uint32_t flags = processParentFlags(parentTransform, parentFlags);
 
-    if (isVisitableByVisitingCamera())
-    {
-        // IMPORTANT:
-        // To ease the migration to v3.0, we still support the Mat4 stack,
-        // but it is deprecated and your code should not rely on it
-        _director->pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
-        _director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, _modelViewTransform);
-        
-        draw(renderer, _modelViewTransform, flags);
-        
-        _director->popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
-        // FIX ME: Why need to set _orderOfArrival to 0??
-        // Please refer to https://github.com/cocos2d/cocos2d-x/pull/6920
-        //    setOrderOfArrival(0);
-        
-        CC_PROFILER_STOP_CATEGORY(kProfilerCategoryBatchSprite, "CCSpriteBatchNode - visit");
-    }
+    // IMPORTANT:
+    // To ease the migration to v3.0, we still support the Mat4 stack,
+    // but it is deprecated and your code should not rely on it
+    Director* director = Director::getInstance();
+    director->pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
+    director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, _modelViewTransform);
+
+    draw(renderer, _modelViewTransform, flags);
+
+    director->popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
+    // FIX ME: Why need to set _orderOfArrival to 0??
+    // Please refer to https://github.com/cocos2d/cocos2d-x/pull/6920
+//    setOrderOfArrival(0);
+
+    CC_PROFILER_STOP_CATEGORY(kProfilerCategoryBatchSprite, "CCSpriteBatchNode - visit");
 }
 
 void SpriteBatchNode::addChild(Node *child, int zOrder, int tag)
@@ -251,7 +237,7 @@ void SpriteBatchNode::removeAllChildrenWithCleanup(bool doCleanup)
     Node::removeAllChildrenWithCleanup(doCleanup);
 
     _descendants.clear();
-    if (_textureAtlas) {_textureAtlas->removeAllQuads();}
+    _textureAtlas->removeAllQuads();
 }
 
 //override sortAllChildren
@@ -259,7 +245,7 @@ void SpriteBatchNode::sortAllChildren()
 {
     if (_reorderChildDirty)
     {
-        sortNodes(_children);
+        std::sort(std::begin(_children), std::end(_children), nodeComparisonLess);
 
         //sorted now check all children
         if (!_children.empty())
@@ -294,6 +280,7 @@ void SpriteBatchNode::updateAtlasIndex(Sprite* sprite, ssize_t* curIndex)
     {
         oldIndex = sprite->getAtlasIndex();
         sprite->setAtlasIndex(*curIndex);
+        sprite->setOrderOfArrival(0);
         if (oldIndex != *curIndex){
             swap(oldIndex, *curIndex);
         }
@@ -308,6 +295,7 @@ void SpriteBatchNode::updateAtlasIndex(Sprite* sprite, ssize_t* curIndex)
             //all children are in front of the parent
             oldIndex = sprite->getAtlasIndex();
             sprite->setAtlasIndex(*curIndex);
+            sprite->setOrderOfArrival(0);
             if (oldIndex != *curIndex)
             {
                 swap(oldIndex, *curIndex);
@@ -323,6 +311,7 @@ void SpriteBatchNode::updateAtlasIndex(Sprite* sprite, ssize_t* curIndex)
             {
                 oldIndex = sprite->getAtlasIndex();
                 sprite->setAtlasIndex(*curIndex);
+                sprite->setOrderOfArrival(0);
                 if (oldIndex != *curIndex) {
                     this->swap(oldIndex, *curIndex);
                 }
@@ -337,6 +326,7 @@ void SpriteBatchNode::updateAtlasIndex(Sprite* sprite, ssize_t* curIndex)
         {//all children have a zOrder < 0)
             oldIndex = sprite->getAtlasIndex();
             sprite->setAtlasIndex(*curIndex);
+            sprite->setOrderOfArrival(0);
             if (oldIndex != *curIndex) {
                 swap(oldIndex, *curIndex);
             }
@@ -376,12 +366,15 @@ void SpriteBatchNode::draw(Renderer *renderer, const Mat4 &transform, uint32_t f
         return;
     }
 
-    for (const auto &child : _children)
-    {
+    for(const auto &child: _children)
         child->updateTransform();
-    }
 
-    _batchCommand.init(_globalZOrder, getGLProgram(), _blendFunc, _textureAtlas, transform, flags);
+    _batchCommand.init(
+                       _globalZOrder,
+                       getGLProgram(),
+                       _blendFunc,
+                       _textureAtlas,
+                       transform);
     renderer->addCommand(&_batchCommand);
 }
 
@@ -544,18 +537,6 @@ void SpriteBatchNode::appendChild(Sprite* sprite)
     // add children recursively
     auto& children = sprite->getChildren();
     for(const auto &child: children) {
-#if CC_SPRITE_DEBUG_DRAW
-        // when using CC_SPRITE_DEBUG_DRAW, a DrawNode is appended to sprites. remove it since only Sprites can be used
-        // as children in SpriteBatchNode
-        // Github issue #14730
-        if (dynamic_cast<DrawNode*>(child)) {
-            // to avoid calling Sprite::removeChild()
-            sprite->Node::removeChild(child, true);
-        }
-        else
-#else
-        CCASSERT(dynamic_cast<Sprite*>(child) != nullptr, "You can only add Sprites (or subclass of Sprite) to SpriteBatchNode");
-#endif
         appendChild(static_cast<Sprite*>(child));
     }
 }
@@ -663,22 +644,22 @@ void SpriteBatchNode::updateQuadFromSprite(Sprite *sprite, ssize_t index)
     CCASSERT(sprite != nullptr, "Argument must be non-nil");
     CCASSERT(dynamic_cast<Sprite*>(sprite) != nullptr, "CCSpriteBatchNode only supports Sprites as children");
     
-    // make needed room
-    while (index >= _textureAtlas->getCapacity() || _textureAtlas->getCapacity() == _textureAtlas->getTotalQuads())
+	// make needed room
+	while (index >= _textureAtlas->getCapacity() || _textureAtlas->getCapacity() == _textureAtlas->getTotalQuads())
     {
-        this->increaseAtlasCapacity();
+		this->increaseAtlasCapacity();
     }
     
-    //
-    // update the quad directly. Don't add the sprite to the scene graph
-    //
-    sprite->setBatchNode(this);
+	//
+	// update the quad directly. Don't add the sprite to the scene graph
+	//
+	sprite->setBatchNode(this);
     sprite->setAtlasIndex(index);
     
-    sprite->setDirty(true);
-    
-    // UpdateTransform updates the textureAtlas quad
-    sprite->updateTransform();
+	sprite->setDirty(true);
+	
+	// UpdateTransform updates the textureAtlas quad
+	sprite->updateTransform();
 }
 
 SpriteBatchNode * SpriteBatchNode::addSpriteWithoutQuad(Sprite*child, int z, int aTag)

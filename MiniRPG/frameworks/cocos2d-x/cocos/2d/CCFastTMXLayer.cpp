@@ -37,14 +37,13 @@ THE SOFTWARE.
 #include "2d/CCFastTMXLayer.h"
 #include "2d/CCFastTMXTiledMap.h"
 #include "2d/CCSprite.h"
-#include "2d/CCCamera.h"
 #include "renderer/CCTextureCache.h"
 #include "renderer/CCGLProgramCache.h"
 #include "renderer/ccGLStateCache.h"
 #include "renderer/CCRenderer.h"
 #include "renderer/CCVertexIndexBuffer.h"
 #include "base/CCDirector.h"
-#include "base/ccUTF8.h"
+#include "deprecated/CCString.h"
 
 NS_CC_BEGIN
 namespace experimental {
@@ -62,7 +61,6 @@ TMXLayer * TMXLayer::create(TMXTilesetInfo *tilesetInfo, TMXLayerInfo *layerInfo
         ret->autorelease();
         return ret;
     }
-    CC_SAFE_DELETE(ret);
     return nullptr;
 }
 
@@ -140,21 +138,11 @@ TMXLayer::~TMXLayer()
 void TMXLayer::draw(Renderer *renderer, const Mat4& transform, uint32_t flags)
 {
     updateTotalQuads();
-
-    bool isViewProjectionUpdated = true;
-    auto visitingCamera = Camera::getVisitingCamera();
-    auto defaultCamera = Camera::getDefaultCamera();
-    if (visitingCamera == defaultCamera) {
-        isViewProjectionUpdated = visitingCamera->isViewProjectionUpdated();
-    }
     
-    if( flags != 0 || _dirty || _quadsDirty || isViewProjectionUpdated)
+    if( flags != 0 || _dirty || _quadsDirty )
     {
-        Size s = Director::getInstance()->getVisibleSize();
-        auto rect = Rect(Camera::getVisitingCamera()->getPositionX() - s.width * 0.5f,
-                     Camera::getVisitingCamera()->getPositionY() - s.height * 0.5f,
-                     s.width,
-                     s.height);
+        Size s = Director::getInstance()->getWinSize();
+        auto rect = Rect(0, 0, s.width, s.height);
         
         Mat4 inv = transform;
         inv.inverse();
@@ -166,7 +154,7 @@ void TMXLayer::draw(Renderer *renderer, const Mat4& transform, uint32_t flags)
         _dirty = false;
     }
     
-    if(_renderCommands.size() < static_cast<size_t>(_primitives.size()))
+    if(_renderCommands.size() < _primitives.size())
     {
         _renderCommands.resize(_primitives.size());
     }
@@ -177,8 +165,7 @@ void TMXLayer::draw(Renderer *renderer, const Mat4& transform, uint32_t flags)
         if(iter.second->getCount() > 0)
         {
             auto& cmd = _renderCommands[index++];
-            auto blendfunc = _texture->hasPremultipliedAlpha() ? BlendFunc::ALPHA_PREMULTIPLIED : BlendFunc::ALPHA_NON_PREMULTIPLIED;
-            cmd.init(iter.first, _texture->getName(), getGLProgramState(), blendfunc, iter.second, _modelViewTransform, flags);
+            cmd.init(iter.first, _texture->getName(), getGLProgramState(), BlendFunc::ALPHA_NON_PREMULTIPLIED, iter.second, _modelViewTransform);
             renderer->addCommand(&cmd);
         }
     }
@@ -216,7 +203,7 @@ void TMXLayer::updateTiles(const Rect& culledRect)
     // for the bigger tiles.
     int tilesOverX = 0;
     int tilesOverY = 0;
-    // for diagonal orientation tiles
+    // for diagonal oriention tiles
     float tileSizeMax = std::max(tileSize.width, tileSize.height);
     if (_layerOrientation == FAST_TMX_ORIENTATION_ORTHO)
     {
@@ -500,7 +487,7 @@ void TMXLayer::updateTotalQuads()
                 
                 if(tileGID & kTMXTileDiagonalFlag)
                 {
-                    // FIXME: not working correctly
+                    // FIXME: not working correcly
                     quad.bl.vertices.x = left;
                     quad.bl.vertices.y = bottom;
                     quad.bl.vertices.z = z;
@@ -578,7 +565,7 @@ Sprite* TMXLayer::getTileAt(const Vec2& tileCoordinate)
     
     // if GID == 0, then no tile is present
     if( gid ) {
-        int index = (int) tileCoordinate.x + (int) tileCoordinate.y * _layerSize.width;
+        int index = tileCoordinate.x + tileCoordinate.y * _layerSize.width;
         
         auto it = _spriteContainer.find(index);
         if (it != _spriteContainer.end())
@@ -613,7 +600,7 @@ int TMXLayer::getTileGIDAt(const Vec2& tileCoordinate, TMXTileFlags* flags/* = n
     CCASSERT(tileCoordinate.x < _layerSize.width && tileCoordinate.y < _layerSize.height && tileCoordinate.x >=0 && tileCoordinate.y >=0, "TMXLayer: invalid position");
     CCASSERT(_tiles, "TMXLayer: the tiles map has been released");
     
-    int idx = static_cast<int>(((int) tileCoordinate.x + (int) tileCoordinate.y * _layerSize.width));
+    int idx = static_cast<int>((tileCoordinate.x + tileCoordinate.y * _layerSize.width));
     
     // Bits on the far end of the 32-bit global tile ID are used for tile flags
     int tile = _tiles[idx];
@@ -679,7 +666,7 @@ void TMXLayer::removeTileAt(const Vec2& tileCoordinate)
     
     if( gid ) {
         
-        int z = (int) tileCoordinate.x + (int) tileCoordinate.y * _layerSize.width;
+        int z = tileCoordinate.x + tileCoordinate.y * _layerSize.width;
         
         // remove tile from GID map
         setFlaggedTileGIDByIndex(z, 0);
@@ -753,19 +740,19 @@ void TMXLayer::parseInternalProperties()
 //CCTMXLayer2 - obtaining positions, offset
 Vec2 TMXLayer::calculateLayerOffset(const Vec2& pos)
 {
-    Vec2 ret;
+    Vec2 ret = Vec2::ZERO;
     switch (_layerOrientation) 
     {
     case FAST_TMX_ORIENTATION_ORTHO:
-        ret.set( pos.x * _mapTileSize.width, -pos.y *_mapTileSize.height);
+        ret = Vec2( pos.x * _mapTileSize.width, -pos.y *_mapTileSize.height);
         break;
     case FAST_TMX_ORIENTATION_ISO:
-        ret.set((_mapTileSize.width /2) * (pos.x - pos.y),
+        ret = Vec2((_mapTileSize.width /2) * (pos.x - pos.y),
                   (_mapTileSize.height /2 ) * (-pos.x - pos.y));
         break;
     case FAST_TMX_ORIENTATION_HEX:
     default:
-        CCASSERT(pos.isZero(), "offset for this map not implemented yet");
+        CCASSERT(pos.equals(Vec2::ZERO), "offset for this map not implemented yet");
         break;
     }
     return ret;    
@@ -798,13 +785,13 @@ void TMXLayer::setTileGID(int gid, const Vec2& tileCoordinate, TMXTileFlags flag
     // empty tile. create a new one
     else if (currentGID == 0)
     {
-        int z = (int) tileCoordinate.x + (int) tileCoordinate.y * _layerSize.width;
+        int z = tileCoordinate.x + tileCoordinate.y * _layerSize.width;
         setFlaggedTileGIDByIndex(z, gidAndFlags);
     }
     // modifying an existing tile with a non-empty tile
     else
     {
-        int z = (int) tileCoordinate.x + (int) tileCoordinate.y * _layerSize.width;
+        int z = tileCoordinate.x + tileCoordinate.y * _layerSize.width;
         auto it = _spriteContainer.find(z);
         if (it != _spriteContainer.end())
         {
@@ -828,7 +815,7 @@ void TMXLayer::setTileGID(int gid, const Vec2& tileCoordinate, TMXTileFlags flag
     }
 }
 
-void TMXLayer::setupTileSprite(Sprite* sprite, const Vec2& pos, int gid)
+void TMXLayer::setupTileSprite(Sprite* sprite, Vec2 pos, int gid)
 {
     sprite->setPosition(getPositionAt(pos));
     sprite->setPositionZ((float)getVertexZForPos(pos));

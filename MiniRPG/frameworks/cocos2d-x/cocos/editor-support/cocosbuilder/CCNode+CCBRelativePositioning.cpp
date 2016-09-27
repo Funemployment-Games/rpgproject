@@ -1,5 +1,5 @@
-#include "editor-support/cocosbuilder/CCNode+CCBRelativePositioning.h"
-#include "editor-support/cocosbuilder/CCBReader.h"
+#include "CCNode+CCBRelativePositioning.h"
+#include "CCBReader.h"
 
 using namespace cocos2d;
 
@@ -7,7 +7,7 @@ namespace cocosbuilder {
 
 CC_DLL Vec2 getAbsolutePosition(const Vec2 &pt, CCBReader::PositionType type, const Size &containerSize, const std::string& propName)
 {
-    Vec2 absPt;
+    Vec2 absPt = Vec2(0,0);
     if (type == CCBReader::PositionType::RELATIVE_BOTTOM_LEFT)
     {
         absPt = pt;

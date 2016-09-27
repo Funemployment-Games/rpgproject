@@ -26,9 +26,13 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "2d/CCProtectedNode.h"
+#include "CCProtectedNode.h"
 
 #include "base/CCDirector.h"
+
+#if CC_USE_PHYSICS
+#include "physics/CCPhysicsBody.h"
+#endif
 #include "2d/CCScene.h"
 
 NS_CC_BEGIN
@@ -39,8 +43,8 @@ ProtectedNode::ProtectedNode() : _reorderProtectedChildDirty(false)
 
 ProtectedNode::~ProtectedNode()
 {
+    
     CCLOGINFO( "deallocing ProtectedNode: %p - tag: %i", this, _tag );
-    removeAllProtectedChildren();
 }
 
 ProtectedNode * ProtectedNode::create(void)
@@ -59,14 +63,6 @@ ProtectedNode * ProtectedNode::create(void)
 
 void ProtectedNode::cleanup()
 {
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeJavascript)
-    {
-        if (ScriptEngineManager::sendNodeEventToJSExtended(this, kNodeOnCleanup))
-            return;
-    }
-#endif // #if CC_ENABLE_SCRIPT_BINDING
-    
     Node::cleanup();
     // timers
     for( const auto &child: _protectedChildren)
@@ -102,8 +98,20 @@ void ProtectedNode::addProtectedChild(Node *child, int zOrder, int tag)
     child->setTag(tag);
     
     child->setParent(this);
-
-    child->updateOrderOfArrival();
+    child->setOrderOfArrival(s_globalOrderOfArrival++);
+    
+#if CC_USE_PHYSICS
+    // Recursive add children with which have physics body.
+    for (Node* node = this; node != nullptr; node = node->getParent())
+    {
+        Scene* scene = dynamic_cast<Scene*>(node);
+        if (scene != nullptr && scene->getPhysicsWorld() != nullptr)
+        {
+            scene->addChildToPhysicsWorld(child);
+            break;
+        }
+    }
+#endif
     
     if( _running )
     {
@@ -162,6 +170,13 @@ void ProtectedNode::removeProtectedChild(cocos2d::Node *child, bool cleanup)
             child->onExit();
         }
         
+#if CC_USE_PHYSICS
+        if (child->getPhysicsBody() != nullptr)
+        {
+            child->getPhysicsBody()->removeFromWorld();
+        }
+        
+#endif
         // If you don't do cleanup, the child's actions will not get removed and the
         // its scheduledSelectors_ dict will not get released!
         if (cleanup)
@@ -172,13 +187,6 @@ void ProtectedNode::removeProtectedChild(cocos2d::Node *child, bool cleanup)
         // set parent nil at the end
         child->setParent(nullptr);
         
-#if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
-        auto sEngine = ScriptEngineManager::getInstance()->getScriptEngine();
-        if (sEngine)
-        {
-            sEngine->releaseScriptObject(this, child);
-        }
-#endif // CC_ENABLE_GC_FOR_NATIVE_OBJECTS
         _protectedChildren.erase(index);
     }
 }
@@ -202,17 +210,17 @@ void ProtectedNode::removeAllProtectedChildrenWithCleanup(bool cleanup)
             child->onExit();
         }
         
+#if CC_USE_PHYSICS
+        if (child->getPhysicsBody() != nullptr)
+        {
+            child->getPhysicsBody()->removeFromWorld();
+        }
+#endif
+        
         if (cleanup)
         {
             child->cleanup();
         }
-#if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
-        auto sEngine = ScriptEngineManager::getInstance()->getScriptEngine();
-        if (sEngine)
-        {
-            sEngine->releaseScriptObject(this, child);
-        }
-#endif // CC_ENABLE_GC_FOR_NATIVE_OBJECTS
         // set parent nil at the end
         child->setParent(nullptr);
     }
@@ -239,13 +247,6 @@ void ProtectedNode::removeProtectedChildByTag(int tag, bool cleanup)
 // helper used by reorderChild & add
 void ProtectedNode::insertProtectedChild(cocos2d::Node *child, int z)
 {
-#if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
-    auto sEngine = ScriptEngineManager::getInstance()->getScriptEngine();
-    if (sEngine)
-    {
-        sEngine->retainScriptObject(this, child);
-    }
-#endif // CC_ENABLE_GC_FOR_NATIVE_OBJECTS
     _reorderProtectedChildDirty = true;
     _protectedChildren.pushBack(child);
     child->setLocalZOrder(z);
@@ -254,7 +255,7 @@ void ProtectedNode::insertProtectedChild(cocos2d::Node *child, int z)
 void ProtectedNode::sortAllProtectedChildren()
 {
     if( _reorderProtectedChildDirty ) {
-        sortNodes(_protectedChildren);
+        std::sort( std::begin(_protectedChildren), std::end(_protectedChildren), nodeComparisonLess );
         _reorderProtectedChildDirty = false;
     }
 }
@@ -263,14 +264,14 @@ void ProtectedNode::reorderProtectedChild(cocos2d::Node *child, int localZOrder)
 {
     CCASSERT( child != nullptr, "Child must be non-nil");
     _reorderProtectedChildDirty = true;
-    child->updateOrderOfArrival();
+    child->setOrderOfArrival(s_globalOrderOfArrival++);
     child->setLocalZOrder(localZOrder);
 }
 
 void ProtectedNode::visit(Renderer* renderer, const Mat4 &parentTransform, uint32_t parentFlags)
 {
     // quick return if not visible. children won't be drawn.
-    if (!_visible)
+    if (!_visible || !isVisitableByVisitingCamera())
     {
         return;
     }
@@ -281,7 +282,7 @@ void ProtectedNode::visit(Renderer* renderer, const Mat4 &parentTransform, uint3
     // To ease the migration to v3.0, we still support the Mat4 stack,
     // but it is deprecated and your code should not rely on it
     Director* director = Director::getInstance();
-    CCASSERT(nullptr != director, "Director is null when setting matrix stack");
+    CCASSERT(nullptr != director, "Director is null when seting matrix stack");
     director->pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
     director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, _modelViewTransform);
     
@@ -353,14 +354,6 @@ void ProtectedNode::onEnter()
 
 void ProtectedNode::onEnterTransitionDidFinish()
 {
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeJavascript)
-    {
-        if (ScriptEngineManager::sendNodeEventToJSExtended(this, kNodeOnEnterTransitionDidFinish))
-            return;
-    }
-#endif
-    
     Node::onEnterTransitionDidFinish();
     for( const auto &child: _protectedChildren)
         child->onEnterTransitionDidFinish();
@@ -368,14 +361,6 @@ void ProtectedNode::onEnterTransitionDidFinish()
 
 void ProtectedNode::onExitTransitionDidStart()
 {
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeJavascript)
-    {
-        if (ScriptEngineManager::sendNodeEventToJSExtended(this, kNodeOnExitTransitionDidStart))
-            return;
-    }
-#endif
-    
     Node::onExitTransitionDidStart();
     for( const auto &child: _protectedChildren)
         child->onExitTransitionDidStart();
@@ -383,14 +368,6 @@ void ProtectedNode::onExitTransitionDidStart()
 
 void ProtectedNode::onExit()
 {
-#if CC_ENABLE_SCRIPT_BINDING
-    if (_scriptType == kScriptTypeJavascript)
-    {
-        if (ScriptEngineManager::sendNodeEventToJSExtended(this, kNodeOnExit))
-            return;
-    }
-#endif
-    
     Node::onExit();
     for( const auto &child: _protectedChildren)
         child->onExit();
@@ -452,19 +429,6 @@ void ProtectedNode::disableCascadeOpacity()
     for(auto child : _protectedChildren){
         child->updateDisplayedOpacity(255);
     }
-}
-
-void ProtectedNode::setCameraMask(unsigned short mask, bool applyChildren)
-{
-    Node::setCameraMask(mask, applyChildren);
-    if (applyChildren)
-    {
-        for (auto& iter: _protectedChildren)
-        {
-            iter->setCameraMask(mask);
-        }
-    }
-    
 }
 
 NS_CC_END

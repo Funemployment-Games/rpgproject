@@ -21,20 +21,20 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
-#include "scripting/lua-bindings/manual/network/lua_xml_http_request.h"
+#include "lua_xml_http_request.h"
 #include <string>
-#include "scripting/lua-bindings/manual/tolua_fix.h"
-#include "scripting/lua-bindings/manual/CCLuaStack.h"
-#include "scripting/lua-bindings/manual/CCLuaValue.h"
-#include "scripting/lua-bindings/manual/CCLuaEngine.h"
-#include "scripting/lua-bindings/manual/cocos2d/LuaScriptHandlerMgr.h"
+#include "tolua_fix.h"
+#include "CCLuaStack.h"
+#include "CCLuaValue.h"
+#include "CCLuaEngine.h"
+#include "LuaScriptHandlerMgr.h"
 
 
 using namespace cocos2d;
 using namespace std;
 
 LuaMinXmlHttpRequest::LuaMinXmlHttpRequest()
-:
+:_isNetwork(true),
 _url(""),
 _meth(""),
 _type(""),
@@ -45,7 +45,6 @@ _statusText(""),
 _responseType(ResponseType::STRING),
 _timeout(0),
 _isAsync(false),
-_isNetwork(true),
 _withCredentialsValue(true),
 _errorFlag(false),
 _isAborted(false)
@@ -59,7 +58,6 @@ LuaMinXmlHttpRequest::~LuaMinXmlHttpRequest()
 {
     _httpHeader.clear();
     _requestHeader.clear();
-    CC_SAFE_RELEASE_NULL(_httpRequest);
 }
 
 /**
@@ -70,7 +68,7 @@ void LuaMinXmlHttpRequest::_gotHeader(string header)
 {
 	// Get Header and Set StatusText
     // Split String into Tokens
-    char * cstr = new (std::nothrow) char [header.length()+1];
+    char * cstr = new char [header.length()+1];
     
     // check for colon.
     size_t found_header_field = header.find_first_of(":");
@@ -118,7 +116,7 @@ void LuaMinXmlHttpRequest::_gotHeader(string header)
                 pch = strtok (NULL, " ");
                 mystream << pch;
                 
-                pch = strtok (NULL, "\n");
+                pch = strtok (NULL, " ");
                 mystream << " " << pch;
                 
                 _statusText = mystream.str();
@@ -206,6 +204,8 @@ void LuaMinXmlHttpRequest::_sendRequest()
         }
         
         long statusCode = response->getResponseCode();
+        char statusString[64] = {};
+        sprintf(statusString, "HTTP Status Code: %ld, tag = %s", statusCode, response->getHttpRequest()->getTag());
         
         if (!response->isSucceed())
         {
@@ -267,6 +267,7 @@ void LuaMinXmlHttpRequest::_sendRequest()
         release();
     });
     network::HttpClient::getInstance()->sendImmediate(_httpRequest);
+    _httpRequest->release();
     retain();
 }
 
@@ -284,7 +285,7 @@ static void lua_reg_xml_http_request(lua_State* L)
 static int lua_collect_xml_http_request (lua_State* L)
 {
     LuaMinXmlHttpRequest* self = (LuaMinXmlHttpRequest*) tolua_tousertype(L,1,0);
-    self->release();
+    Mtolua_delete(self);
     return 0;
 }
 
@@ -301,8 +302,10 @@ static int lua_cocos2dx_XMLHttpRequest_constructor(lua_State* L)
     if (argc == 0)
     {
         self = new (std::nothrow) LuaMinXmlHttpRequest();
-        tolua_pushusertype(L, (void*)self, "cc.XMLHttpRequest");
-        tolua_register_gc(L, lua_gettop(L));
+        self->autorelease();
+        int ID =  self? (int)self->_ID : -1;
+        int* luaID = self? &self->_luaID : NULL;
+        toluafix_pushusertype_ccobject(L, ID, luaID, (void*)self, "cc.XMLHttpRequest");
         return 1;
     }
     
@@ -683,7 +686,7 @@ static int lua_get_XMLHttpRequest_response(lua_State* L)
         
         LuaValueArray array;
         
-        uint8_t* tmpData = new (std::nothrow) uint8_t[self->getDataSize()];
+        uint8_t* tmpData = new uint8_t[self->getDataSize()];
         if (nullptr == tmpData)
         {
             return 0;
@@ -789,7 +792,7 @@ static int lua_cocos2dx_XMLHttpRequest_open(lua_State* L)
                 self->getHttpRequest()->setRequestType(network::HttpRequest::Type::UNKNOWN);
             }
             
-            self->getHttpRequest()->setUrl(url);
+            self->getHttpRequest()->setUrl(url.c_str());
             
         }
         

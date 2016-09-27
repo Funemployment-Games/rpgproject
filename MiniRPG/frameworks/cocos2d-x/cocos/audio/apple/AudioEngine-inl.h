@@ -31,14 +31,14 @@
 #include <unordered_map>
 
 #include "base/CCRef.h"
-#include "audio/apple/AudioCache.h"
-#include "audio/apple/AudioPlayer.h"
+#include "AudioCache.h"
+#include "AudioPlayer.h"
 
 NS_CC_BEGIN
-class Scheduler;
+    namespace experimental{
+#define MAX_AUDIOINSTANCES 32
 
-namespace experimental{
-#define MAX_AUDIOINSTANCES 24
+class AudioEngineThreadPool;
 
 class AudioEngineImpl : public cocos2d::Ref
 {
@@ -52,7 +52,7 @@ public:
     void setLoop(int audioID, bool loop);
     bool pause(int audioID);
     bool resume(int audioID);
-    void stop(int audioID);
+    bool stop(int audioID);
     void stopAll();
     float getDuration(int audioID);
     float getCurrentTime(int audioID);
@@ -61,11 +61,13 @@ public:
     
     void uncache(const std::string& filePath);
     void uncacheAll();
-    AudioCache* preload(const std::string& filePath, std::function<void(bool)> callback);
+    
     void update(float dt);
     
 private:
     void _play2d(AudioCache *cache, int audioID);
+    
+    AudioEngineThreadPool* _threadPool;
     
     ALuint _alSources[MAX_AUDIOINSTANCES];
     
@@ -76,13 +78,17 @@ private:
     std::unordered_map<std::string, AudioCache> _audioCaches;
     
     //audioID,AudioInfo
-    std::unordered_map<int, AudioPlayer*>  _audioPlayers;
+    std::unordered_map<int, AudioPlayer>  _audioPlayers;
+    
     std::mutex _threadMutex;
+    
+    std::vector<AudioCache*> _toRemoveCaches;
+    std::vector<int> _toRemoveAudioIDs;
     
     bool _lazyInitLoop;
     
     int _currentAudioID;
-    Scheduler* _scheduler;
+    
 };
 }
 NS_CC_END

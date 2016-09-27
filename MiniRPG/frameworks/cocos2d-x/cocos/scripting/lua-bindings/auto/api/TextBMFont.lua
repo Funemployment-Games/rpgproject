@@ -5,6 +5,12 @@
 -- @parent_module ccui
 
 --------------------------------
+--  init a bitmap font atlas with an initial string and the FNT file 
+-- @function [parent=#TextBMFont] setFntFile 
+-- @param self
+-- @param #string fileName
+        
+--------------------------------
 -- Gets the string length of the label.<br>
 -- Note: This length will be larger than the raw string length,<br>
 -- if you want to get the raw string length, you should call this->getString().size() instead<br>
@@ -15,35 +21,15 @@
         
 --------------------------------
 -- 
--- @function [parent=#TextBMFont] getString 
--- @param self
--- @return string#string ret (return value: string)
-        
---------------------------------
--- 
 -- @function [parent=#TextBMFont] setString 
 -- @param self
 -- @param #string value
--- @return TextBMFont#TextBMFont self (return value: ccui.TextBMFont)
         
 --------------------------------
 -- 
--- @function [parent=#TextBMFont] getRenderFile 
+-- @function [parent=#TextBMFont] getString 
 -- @param self
--- @return ResourceData#ResourceData ret (return value: cc.ResourceData)
-        
---------------------------------
---  init a bitmap font atlas with an initial string and the FNT file 
--- @function [parent=#TextBMFont] setFntFile 
--- @param self
--- @param #string fileName
--- @return TextBMFont#TextBMFont self (return value: ccui.TextBMFont)
-        
---------------------------------
--- reset TextBMFont inner label
--- @function [parent=#TextBMFont] resetRender 
--- @param self
--- @return TextBMFont#TextBMFont self (return value: ccui.TextBMFont)
+-- @return string#string ret (return value: string)
         
 --------------------------------
 -- @overload self, string, string         
@@ -79,11 +65,8 @@
 -- @return size_table#size_table ret (return value: size_table)
         
 --------------------------------
--- Default constructor<br>
--- js ctor<br>
--- lua new
+-- Default constructor
 -- @function [parent=#TextBMFont] TextBMFont 
 -- @param self
--- @return TextBMFont#TextBMFont self (return value: ccui.TextBMFont)
         
 return nil

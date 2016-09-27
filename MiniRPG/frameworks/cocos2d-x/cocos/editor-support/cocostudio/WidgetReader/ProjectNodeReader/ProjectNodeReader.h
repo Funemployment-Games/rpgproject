@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
  
  http://www.cocos2d-x.org
@@ -25,9 +25,9 @@
 #ifndef __cocos2d_libs__ProjectNodeReader__
 #define __cocos2d_libs__ProjectNodeReader__
 
-#include "base/CCRef.h"
-#include "editor-support/cocostudio/CocosStudioExport.h"
-#include "editor-support/cocostudio/WidgetReader/NodeReaderProtocol.h"
+#include "cocos2d.h"
+#include "cocostudio/CocosStudioExport.h"
+#include "cocostudio/WidgetReader/NodeReaderProtocol.h"
 
 
 namespace cocostudio
@@ -40,13 +40,12 @@ namespace cocostudio
         ~ProjectNodeReader();
         
         static ProjectNodeReader* getInstance();
-        /** @deprecated Use method destroyInstance() instead */
-        CC_DEPRECATED_ATTRIBUTE static void purge();
-        static void destroyInstance();
+        static void purge();
         
         flatbuffers::Offset<flatbuffers::Table> createOptionsWithFlatBuffers(const tinyxml2::XMLElement* objectData,
                                                                              flatbuffers::FlatBufferBuilder* builder);
-
+        flatbuffers::Offset<flatbuffers::Table> createOptionsWithFlatBuffersForSimulator(const tinyxml2::XMLElement* objectData,
+                                                                                         flatbuffers::FlatBufferBuilder* builder);
         void setPropsWithFlatBuffers(cocos2d::Node* node, const flatbuffers::Table* projectNodeOptions);
         cocos2d::Node* createNodeWithFlatBuffers(const flatbuffers::Table* nodeOptions) { return nullptr; };
     };

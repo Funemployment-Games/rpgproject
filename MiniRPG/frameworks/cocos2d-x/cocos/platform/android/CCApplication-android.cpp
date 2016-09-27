@@ -26,8 +26,9 @@ THE SOFTWARE.
 #include "platform/CCPlatformConfig.h"
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
-#include "platform/android/jni/JniHelper.h"
-#include "platform/CCApplication.h"
+#include "jni/JniHelper.h"
+#include "jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
+#include "CCApplication.h"
 #include "base/CCDirector.h"
 #include <android/log.h>
 #include <jni.h>
@@ -44,12 +45,10 @@ extern "C" size_t __ctype_get_mb_cur_max(void) {
 }
 #endif
 
-static const std::string helperClassName = "org/cocos2dx/lib/Cocos2dxHelper";
-
 NS_CC_BEGIN
 
 // sharedApplication pointer
-Application * Application::sm_pSharedApplication = nullptr;
+Application * Application::sm_pSharedApplication = 0;
 
 Application::Application()
 {
@@ -60,7 +59,7 @@ Application::Application()
 Application::~Application()
 {
     CCAssert(this == sm_pSharedApplication, "");
-    sm_pSharedApplication = nullptr;
+    sm_pSharedApplication = NULL;
 }
 
 int Application::run()
@@ -70,12 +69,22 @@ int Application::run()
     {
         return 0;
     }
-
+    
     return -1;
 }
 
-void Application::setAnimationInterval(float interval) {
-    JniHelper::callStaticVoidMethod("org/cocos2dx/lib/Cocos2dxRenderer", "setAnimationInterval", interval);
+void Application::setAnimationInterval(double interval)
+{
+  JniMethodInfo methodInfo;
+  if (! JniHelper::getStaticMethodInfo(methodInfo, "org/cocos2dx/lib/Cocos2dxRenderer", "setAnimationInterval",
+                                       "(D)V"))
+  {
+    CCLOG("%s %d: error to get methodInfo", __FILE__, __LINE__);
+  }
+  else
+  {
+    methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, interval);
+  }
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -96,15 +105,14 @@ Application* Application::sharedApplication()
 const char * Application::getCurrentLanguageCode()
 {
     static char code[3]={0};
-    std::string language = JniHelper::callStaticStringMethod(helperClassName, "getCurrentLanguage");
-    strncpy(code, language.c_str(), 2);
+    strncpy(code,getCurrentLanguageJNI().c_str(),2);
     code[2]='\0';
     return code;
 }
 
 LanguageType Application::getCurrentLanguage()
 {
-    std::string languageName = JniHelper::callStaticStringMethod(helperClassName, "getCurrentLanguage");
+    std::string languageName = getCurrentLanguageJNI();
     const char* pLanguageName = languageName.c_str();
     LanguageType ret = LanguageType::ENGLISH;
 
@@ -168,22 +176,6 @@ LanguageType Application::getCurrentLanguage()
     {
         ret = LanguageType::POLISH;
     }
-    else if (0 == strcmp("tr", pLanguageName))
-    {
-        ret = LanguageType::TURKISH;
-    }
-    else if (0 == strcmp("uk", pLanguageName))
-    {
-        ret = LanguageType::UKRAINIAN;
-    }
-    else if (0 == strcmp("ro", pLanguageName))
-    {
-        ret = LanguageType::ROMANIAN;
-    }
-    else if (0 == strcmp("bg", pLanguageName))
-    {
-        ret = LanguageType::BULGARIAN;
-    }
     return ret;
 }
 
@@ -192,14 +184,9 @@ Application::Platform Application::getTargetPlatform()
     return Platform::OS_ANDROID;
 }
 
-std::string Application::getVersion()
-{
-    return JniHelper::callStaticStringMethod(helperClassName, "getVersion");
-}
-
 bool Application::openURL(const std::string &url)
 {
-    return JniHelper::callStaticBooleanMethod(helperClassName, "openURL", url);
+    return openURLJNI(url.c_str());
 }
 
 void Application::applicationScreenSizeChanged(int newWidth, int newHeight) {
@@ -209,3 +196,4 @@ void Application::applicationScreenSizeChanged(int newWidth, int newHeight) {
 NS_CC_END
 
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+

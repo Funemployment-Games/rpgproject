@@ -25,7 +25,7 @@ THE SOFTWARE.
 ****************************************************************************/
 #include "2d/CCLabelTTF.h"
 #include "2d/CCLabel.h"
-#include "base/ccUTF8.h"
+#include "deprecated/CCString.h"
 
 NS_CC_BEGIN
 
@@ -223,11 +223,9 @@ void LabelTTF::setTextDefinition(const FontDefinition& theDefinition)
     _contentDirty = true;
 }
 
-const FontDefinition& LabelTTF::getTextDefinition()
+const FontDefinition& LabelTTF::getTextDefinition() const
 {
-    auto fontDef = _renderLabel->getFontDefinition();
-    memcpy(&_fontDef, &fontDef, sizeof(FontDefinition));
-    return _fontDef;
+    return _renderLabel->getFontDefinition();
 }
 
 void LabelTTF::setBlendFunc(const BlendFunc &blendFunc)

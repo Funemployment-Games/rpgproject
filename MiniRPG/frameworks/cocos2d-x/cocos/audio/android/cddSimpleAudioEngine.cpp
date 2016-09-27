@@ -23,13 +23,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-#include "audio/include/SimpleAudioEngine.h"
-#include "audio/android/jni/cddandroidAndroidJavaEngine.h"
-#include "audio/android/ccdandroidUtils.h"
+#include "SimpleAudioEngine.h"
+#include "jni/cddandroidAndroidJavaEngine.h"
+#include "ccdandroidUtils.h"
 
 namespace CocosDenshion {
 
-    static SimpleAudioEngine *s_pEngine = nullptr;
+    static SimpleAudioEngine *s_pEngine = 0;
 
     SimpleAudioEngine* SimpleAudioEngine::getInstance() {
         if (! s_pEngine) {
@@ -42,7 +42,7 @@ namespace CocosDenshion {
     void SimpleAudioEngine::end() {
         if (s_pEngine) {
             delete s_pEngine;
-            s_pEngine = nullptr;
+            s_pEngine = NULL;
         }
     }
 

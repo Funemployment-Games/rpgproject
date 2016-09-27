@@ -35,31 +35,24 @@
 NS_CC_BEGIN
 
 /**
- * @addtogroup _3d
- * @{
- */
-
-/**
- * @brief BundleReader is an interface for reading sequence of bytes.
- * @js NA
- * @lua NA
+ * BundleReader is an interface for reading sequence of bytes.
  */
 class BundleReader: public cocos2d::Ref
 {
 public:
     /**
-     * Constructor
+     * Structor
      */
     BundleReader();
     
     /**
-     * Destructor
+     * inicial
      */
     ~BundleReader();
     
     /**
      * initialise
-     * @param buffer The data buffer pointer
+     * @param lpbuffer The data buffer pointer
      * @param length The data buffer size
      */
     void init(char* buffer, ssize_t length);
@@ -116,11 +109,6 @@ public:
      * first read length, then read string text
      */
     std::string readString();
-
-    /**
-     * Read the matrix.
-     * @note the matrix type must be the 4*4 float matrix
-     */
     bool readMatrix(float* m);
 
 private:
@@ -128,8 +116,6 @@ private:
     ssize_t  _length;
     char* _buffer;
 };
-
-/// @cond 
 
 /**
 * template read routines
@@ -163,7 +149,7 @@ inline bool BundleReader::readArray(unsigned int *length, std::vector<T> *values
 }
 
 /**
-* specialization for char
+* specalization for char
 */
 template<>
 inline bool BundleReader::read<char>(char *ptr)
@@ -180,7 +166,7 @@ inline bool BundleReader::read<char>(char *ptr)
 }
 
 /**
-* specialization for std::string
+* specalization for std::string
 */
 template<>
 inline bool BundleReader::read<std::string>(std::string *ptr)
@@ -210,10 +196,6 @@ inline bool BundleReader::readArray<std::string>(unsigned int *length, std::vect
     return true;
 }
 
-/// @endcond
-
-// end of 3d group
-/// @}
 
 NS_CC_END
 

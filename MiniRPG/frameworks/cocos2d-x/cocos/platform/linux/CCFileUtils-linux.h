@@ -45,16 +45,14 @@ NS_CC_BEGIN
 class CC_DLL FileUtilsLinux : public FileUtils
 {
     friend class FileUtils;
-protected:
     FileUtilsLinux();
-private:
     std::string _writablePath;
 public:
-    /* override functions */
+    /* override funtions */
     bool init();
     virtual std::string getWritablePath() const;
 private:
-    virtual bool isFileExistInternal(const std::string& strFilePath) const override;
+    virtual bool isFileExistInternal(const std::string& strFilePath) const;
 };
 
 // end of platform group

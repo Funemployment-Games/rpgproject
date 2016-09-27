@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 Copyright (c) 2013-2014 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
@@ -26,11 +26,10 @@ THE SOFTWARE.
 #define __CCSGUIREADER_H__
 
 #include "ui/UILayout.h"
-#include "editor-support/cocostudio/DictionaryHelper.h"
-#include "editor-support/cocostudio/WidgetReader/WidgetReaderProtocol.h"
+#include "cocostudio/DictionaryHelper.h"
+#include "WidgetReader/WidgetReaderProtocol.h"
 #include "base/ObjectFactory.h"
-#include "base/CCValue.h"
-#include "editor-support/cocostudio/CocosStudioExport.h"
+#include "cocostudio/CocosStudioExport.h"
 
 namespace protocolbuffers
 {
@@ -74,7 +73,7 @@ public:
     /**
      *  @js NA
      */
-    cocos2d::Size getFileDesignSize(const char* fileName) const;
+    const cocos2d::Size getFileDesignSize(const char* fileName) const;
     
     void setFilePath(const std::string& strFilePath) { m_strFilePath = strFilePath; }
     const std::string& getFilePath() const { return m_strFilePath; }
@@ -149,9 +148,9 @@ public:
     WidgetPropertiesReader0250(){};
     virtual ~WidgetPropertiesReader0250(){};
     
-    virtual cocos2d::ui::Widget* createWidget(const rapidjson::Value& dic, const char* fullPath, const char* fileName) override;
+    virtual cocos2d::ui::Widget* createWidget(const rapidjson::Value& dic, const char* fullPath, const char* fileName);
 
-    virtual cocos2d::ui::Widget* widgetFromJsonDictionary(const rapidjson::Value& dic) override;
+    virtual cocos2d::ui::Widget* widgetFromJsonDictionary(const rapidjson::Value& dic);
     
     //added for binary parsing
     virtual cocos2d::ui::Widget* createWidgetFromBinary(CocoLoader* cocoLoader,
@@ -159,12 +158,12 @@ public:
                                                         const char* fileName)override{return nullptr;}
     
     virtual cocos2d::ui::Widget* widgetFromBinary(CocoLoader* cocoLoader,
-                                                  stExpCocoNode*	pCocoNode) override {return nullptr;}
+                                                  stExpCocoNode*	pCocoNode){return nullptr;}
     
     virtual void setPropsForAllWidgetFromBinary(WidgetReaderProtocol* reader,
                                                 cocos2d::ui::Widget* widget,
                                                 CocoLoader* cocoLoader,
-                                                stExpCocoNode*	pCocoNode) override {}
+                                                stExpCocoNode*	pCocoNode) {}
 
     virtual void setPropsForWidgetFromJsonDictionary(cocos2d::ui::Widget* widget,const rapidjson::Value& options);
     
@@ -182,10 +181,10 @@ public:
     virtual void setPropsForLayoutFromJsonDictionary(cocos2d::ui::Widget* widget,const rapidjson::Value& options);
     virtual void setPropsForScrollViewFromJsonDictionary(cocos2d::ui::Widget* widget,const rapidjson::Value& options);
     
-    virtual void setPropsForAllWidgetFromJsonDictionary(WidgetReaderProtocol* reader, cocos2d::ui::Widget* widget, const rapidjson::Value& options) override;
+    virtual void setPropsForAllWidgetFromJsonDictionary(WidgetReaderProtocol* reader, cocos2d::ui::Widget* widget, const rapidjson::Value& options);
     virtual void setPropsForAllCustomWidgetFromJsonDictionary(const std::string& classType,
                                                               cocos2d::ui::Widget* widget,
-                                                              const rapidjson::Value& customOptions) override;
+                                                              const rapidjson::Value& customOptions);
 };
    
 class CC_STUDIO_DLL WidgetPropertiesReader0300 : public WidgetPropertiesReader
@@ -198,7 +197,7 @@ public:
     
     virtual cocos2d::ui::Widget* createWidget(const rapidjson::Value& dic,
                                               const char* fullPath,
-                                              const char* fileName) override;
+                                              const char* fileName);
     
     
     //add bin parse support
@@ -207,12 +206,12 @@ public:
                                                         const char* fileName)override;
     
     virtual cocos2d::ui::Widget* widgetFromBinary(CocoLoader* cocoLoader,
-                                                  stExpCocoNode*	pCocoNode) override;
+                                                  stExpCocoNode*	pCocoNode);
     
     virtual void setPropsForAllWidgetFromBinary(WidgetReaderProtocol* reader,
                                                 cocos2d::ui::Widget* widget,
                                                 CocoLoader* cocoLoader,
-                                                stExpCocoNode*	pCocoNode) override;
+                                                stExpCocoNode*	pCocoNode);
     
     virtual void setPropsForAllCustomWidgetFromBinary(const std::string& classType,
                                                       cocos2d::ui::Widget* widget,
@@ -221,15 +220,15 @@ public:
         //TODO: custom property
     }
     
-    virtual cocos2d::ui::Widget* widgetFromJsonDictionary(const rapidjson::Value& dic) override;
+    virtual cocos2d::ui::Widget* widgetFromJsonDictionary(const rapidjson::Value& dic);
     
     virtual void setPropsForAllWidgetFromJsonDictionary(WidgetReaderProtocol* reader,
                                                         cocos2d::ui::Widget* widget,
-                                                        const rapidjson::Value& options) override;
+                                                        const rapidjson::Value& options);
     
     virtual void setPropsForAllCustomWidgetFromJsonDictionary(const std::string& classType,
                                                               cocos2d::ui::Widget* widget,
-                                                              const rapidjson::Value& customOptions) override;        
+                                                              const rapidjson::Value& customOptions);        
 };
 
 

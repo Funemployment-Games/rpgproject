@@ -1,6 +1,6 @@
 /****************************************************************************
 Copyright (c) 2012      cocos2d-x.org
-Copyright (c) 2013-2015 Chukong Technologies Inc.
+ opyright (c) 2013-2014 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -25,11 +25,10 @@ THE SOFTWARE.
 
 #ifndef __CCDICTIONARY_H__
 #define __CCDICTIONARY_H__
-/// @cond DO_NOT_SHOW
 
 #include "base/uthash.h"
 #include "base/CCRef.h"
-#include "deprecated/CCArray.h"
+#include "CCArray.h"
 #include "deprecated/CCString.h"
 
 NS_CC_BEGIN
@@ -275,7 +274,7 @@ public:
 
     /** Insert an object to dictionary, and match it with the specified string key.
      *
-     *  @note When the first time this method is invoked, the key type will be set to string.
+     *  @note Whe the first time this method is invoked, the key type will be set to string.
      *        After that you can't setObject with an integer key.
      *        If the dictionary contains the key you passed, the object matching the key will be released and removed from dictionary.
      *        Then the new object will be inserted after that.
@@ -389,8 +388,8 @@ public:
     
     /**
      *  Write a dictionary to a plist file.
-     *  @param fullPath The full path of the plist file. You can get writable path by getWritablePath()
-     *  @return true if succeeded, false if failed
+     *  @param fullPath The full path of the plist file. You can get writeable path by getWritablePath()
+     *  @return true if successed, false if failed
      *  @js NA
      *  @lua NA
      */
@@ -420,7 +419,7 @@ public:
      *  @js NA
      *  @lua NA
      */
-    virtual __Dictionary* clone() const override;
+    virtual __Dictionary* clone() const;
     
 private:
     /** 
@@ -457,5 +456,4 @@ private:
 
 NS_CC_END
 
-/// @endcond
 #endif /* __CCDICTIONARY_H__ */

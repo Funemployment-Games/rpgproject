@@ -21,8 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
-#include "editor-support/cocostudio/TriggerObj.h"
-#include "base/CCEventListenerCustom.h"
+#include "TriggerObj.h"
 
 using namespace cocos2d;
 
@@ -186,10 +185,10 @@ void TriggerObj::serialize(const rapidjson::Value &val)
         if(con == nullptr)
         {
             CCLOG("class %s can not be implemented!", classname);
-            CCASSERT(con != nullptr, "con can't be nullptr!");
+            CCASSERT(con != nullptr, "");
         }
         
-        CCASSERT(con != nullptr, "con can't be nullptr!");
+        CCASSERT(con != nullptr, "");
         con->serialize(subDict);
         con->init();
         _cons.pushBack(con);
@@ -208,7 +207,7 @@ void TriggerObj::serialize(const rapidjson::Value &val)
         if(act == nullptr)
         {
             CCLOG("class %s can not be implemented!", classname);
-            CCASSERT(act != nullptr, "act can't be nullptr!");
+            CCASSERT(act != nullptr, "");
         }
         act->serialize(subDict);
         act->init();
@@ -225,9 +224,10 @@ void TriggerObj::serialize(const rapidjson::Value &val)
             continue;
         }
 
-        char buf[10];
+        char* buf = new char[10];
         sprintf(buf, "%d", event);
         std::string custom_event_name(buf);
+        CC_SAFE_DELETE_ARRAY(buf);
 
         EventListenerCustom* listener = EventListenerCustom::create(custom_event_name, [=](EventCustom* evt){
             if (detect())
@@ -316,9 +316,10 @@ void TriggerObj::serialize(cocostudio::CocoLoader *pCocoLoader, cocostudio::stEx
                 {
                     continue;
                 }
-                char buf[10];
+                char* buf = new char[10];
                 sprintf(buf, "%d", event);
                 std::string custom_event_name(buf);
+                CC_SAFE_DELETE_ARRAY(buf);
                 
                 EventListenerCustom* listener = EventListenerCustom::create(custom_event_name, [=](EventCustom* evt){
                     if (detect())

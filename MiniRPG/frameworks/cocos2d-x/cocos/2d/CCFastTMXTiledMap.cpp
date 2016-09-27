@@ -26,7 +26,7 @@ THE SOFTWARE.
 ****************************************************************************/
 #include "2d/CCFastTMXTiledMap.h"
 #include "2d/CCFastTMXLayer.h"
-#include "base/ccUTF8.h"
+#include "deprecated/CCString.h"
 
 NS_CC_BEGIN
 namespace experimental {
@@ -101,9 +101,6 @@ TMXTiledMap::~TMXTiledMap()
 TMXLayer * TMXTiledMap::parseLayer(TMXLayerInfo *layerInfo, TMXMapInfo *mapInfo)
 {
     TMXTilesetInfo *tileset = tilesetForLayer(layerInfo, mapInfo);
-    if (tileset == nullptr)
-        return nullptr;
-    
     TMXLayer *layer = TMXLayer::create(tileset, layerInfo, mapInfo);
 
     // tell the layerinfo to release the ownership of the tiles map.
@@ -173,10 +170,6 @@ void TMXTiledMap::buildWithMapInfo(TMXMapInfo* mapInfo)
         if (layerInfo->_visible)
         {
             TMXLayer *child = parseLayer(layerInfo, mapInfo);
-            if (child == nullptr) {
-                idx++;
-                continue;
-            }
             addChild(child, idx, idx);
             
             // update content size with the max size

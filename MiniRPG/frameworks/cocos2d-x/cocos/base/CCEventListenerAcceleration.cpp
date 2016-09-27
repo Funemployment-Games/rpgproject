@@ -24,7 +24,6 @@
 
 #include "base/CCEventListenerAcceleration.h"
 #include "base/CCEventAcceleration.h"
-#include "base/CCConsole.h"
 
 NS_CC_BEGIN
 
@@ -89,7 +88,7 @@ EventListenerAcceleration* EventListenerAcceleration::clone()
 
 bool EventListenerAcceleration::checkAvailable()
 {
-    CCASSERT(onAccelerationEvent, "onAccelerationEvent can't be nullptr!");
+    CCASSERT(onAccelerationEvent, "");
     
     return true;
 }

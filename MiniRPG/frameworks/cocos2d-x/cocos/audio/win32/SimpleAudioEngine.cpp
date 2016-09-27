@@ -22,14 +22,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
-#include "audio/include/SimpleAudioEngine.h"
+#include "SimpleAudioEngine.h"
 
 #include <map>
 #include <cstdlib>
 
-#include "audio/win32/MciPlayer.h"
-#include "platform/CCFileUtils.h"
-
+#include "MciPlayer.h"
+#include "cocos2d.h"
 USING_NS_CC;
 
 using namespace std;
@@ -82,7 +81,7 @@ void SimpleAudioEngine::end()
     while (p != sharedList().end())
     {
         delete p->second;
-        p->second = nullptr;
+        p->second = NULL;
         p++;
     }   
     sharedList().clear();
@@ -251,7 +250,7 @@ void SimpleAudioEngine::unloadEffect(const char* pszFilePath)
     if (p != sharedList().end())
     {
         delete p->second;
-        p->second = nullptr;
+        p->second = NULL;
         sharedList().erase(nID);
     }    
 }

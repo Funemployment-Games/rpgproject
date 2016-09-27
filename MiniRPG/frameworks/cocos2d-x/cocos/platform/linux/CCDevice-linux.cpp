@@ -27,8 +27,6 @@ THE SOFTWARE.
 #if CC_TARGET_PLATFORM == CC_PLATFORM_LINUX
 
 #include "platform/CCDevice.h"
-#include "platform/CCFileUtils.h"
-
 #include <X11/Xlib.h>
 #include <stdio.h>
 
@@ -38,6 +36,7 @@ THE SOFTWARE.
 #include <string>
 #include <sstream>
 #include <fontconfig/fontconfig.h>
+#include "platform/CCFileUtils.h"
 
 #include "ft2build.h"
 #include FT_FREETYPE_H
@@ -502,12 +501,6 @@ Data Device::getTextureDataForText(const char * text, const FontDefinition& text
 
 void Device::setKeepScreenOn(bool value)
 {
-    CC_UNUSED_PARAM(value);
-}
-
-void Device::vibrate(float duration)
-{
-    CC_UNUSED_PARAM(duration);
 }
 
 NS_CC_END

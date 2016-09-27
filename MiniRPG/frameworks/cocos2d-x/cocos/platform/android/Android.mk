@@ -13,7 +13,8 @@ CCDevice-android.cpp \
 CCGLViewImpl-android.cpp \
 CCFileUtils-android.cpp \
 javaactivity-android.cpp \
-CCEnhanceAPI-android.cpp \
+jni/DPIJni.cpp \
+jni/IMEJni.cpp \
 jni/Java_org_cocos2dx_lib_Cocos2dxAccelerometer.cpp \
 jni/Java_org_cocos2dx_lib_Cocos2dxBitmap.cpp \
 jni/Java_org_cocos2dx_lib_Cocos2dxHelper.cpp \
@@ -31,6 +32,11 @@ LOCAL_EXPORT_LDLIBS := -lGLESv1_CM \
                        -lGLESv2 \
                        -lEGL \
                        -llog \
+                       -lz \
                        -landroid
+
+LOCAL_CPPFLAGS := -Wno-extern-c-compat
+
+LOCAL_EXPORT_CPPFLAGS := -Wno-extern-c-compat
 
 include $(BUILD_STATIC_LIBRARY)

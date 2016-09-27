@@ -1,5 +1,5 @@
 
-#include "scripting/lua-bindings/manual/platform/ios/CCLuaObjcBridge.h"
+#include "CCLuaObjcBridge.h"
 #include <Foundation/Foundation.h>
 
 NS_CC_BEGIN

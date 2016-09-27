@@ -21,17 +21,17 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
-#include "scripting/lua-bindings/manual/spine/lua_cocos2dx_spine_manual.hpp"
-#include "scripting/lua-bindings/auto/lua_cocos2dx_spine_auto.hpp"
-
-#include "scripting/lua-bindings/manual/tolua_fix.h"
-#include "scripting/lua-bindings/manual/LuaBasicConversions.h"
-#include "scripting/lua-bindings/manual/cocos2d/LuaScriptHandlerMgr.h"
-#include "scripting/lua-bindings/manual/CCLuaValue.h"
-#include "editor-support/spine/spine.h"
-#include "editor-support/spine/spine-cocos2dx.h"
-#include "scripting/lua-bindings/manual/spine/LuaSkeletonAnimation.h"
-#include "scripting/lua-bindings/manual/CCLuaEngine.h"
+#include "lua_cocos2dx_spine_manual.hpp"
+#include "lua_cocos2dx_spine_auto.hpp"
+#include "cocos2d.h"
+#include "tolua_fix.h"
+#include "LuaBasicConversions.h"
+#include "LuaScriptHandlerMgr.h"
+#include "CCLuaValue.h"
+#include "spine.h"
+#include "spine-cocos2dx.h"
+#include "LuaSkeletonAnimation.h"
+#include "CCLuaEngine.h"
 
 using namespace spine;
 
@@ -55,8 +55,6 @@ static int tolua_cocos2dx_setBlendFunc(lua_State* tolua_S,const char* className)
     argc = lua_gettop(tolua_S) - 1;
     if (2 == argc)
     {
-        CCLOG("setBlendFunc of %s will deprecate two int parameter form,please pass a table like {src = xx, dst = xx} as a parameter", className);
-        
         GLenum src, dst;
         if (!luaval_to_int32(tolua_S, 2, (int32_t*)&src, StringUtils::format("%s%s",className,":setBlendFunc").c_str()))
             return 0;
@@ -320,17 +318,9 @@ tolua_lerror:
 #endif
 }
 
-extern int lua_cocos2dx_spine_SkeletonRenderer_setBlendFunc(lua_State* tolua_S);
-
-CC_DEPRECATED_ATTRIBUTE static int tolua_spine_SkeletoneAnimation_setBlendFunc(lua_State* tolua_S)
+static int tolua_spine_SkeletoneAnimation_setBlendFunc(lua_State* tolua_S)
 {
-    int argc = lua_gettop(tolua_S) - 1;
-    if (argc == 2)
-    {
-        return tolua_cocos2dx_setBlendFunc<spine::SkeletonAnimation>(tolua_S,"sp.SkeletonAnimation");
-    }
-    
-    return lua_cocos2dx_spine_SkeletonRenderer_setBlendFunc(tolua_S);
+    return tolua_cocos2dx_setBlendFunc<spine::SkeletonAnimation>(tolua_S,"sp.SkeletonAnimation");
 }
 
 static int lua_cocos2dx_spine_SkeletonAnimation_addAnimation(lua_State* tolua_S)
@@ -374,8 +364,7 @@ static int lua_cocos2dx_spine_SkeletonAnimation_addAnimation(lua_State* tolua_S)
             return 0;
         cobj->addAnimation(arg0, arg1, arg2);
         
-        lua_settop(tolua_S, 1);
-        return 1;
+        return 0;
     }
     if (argc == 4)
     {
@@ -396,8 +385,7 @@ static int lua_cocos2dx_spine_SkeletonAnimation_addAnimation(lua_State* tolua_S)
         
         cobj->addAnimation(arg0, arg1, arg2, arg3);
 
-        lua_settop(tolua_S, 1);
-        return 1;
+        return 0;
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "addAnimation",argc, 3);
     return 0;
@@ -452,8 +440,7 @@ static int lua_cocos2dx_spine_SkeletonAnimation_setAnimation(lua_State* tolua_S)
         
         cobj->setAnimation(arg0, arg1, arg2);
         
-        lua_settop(tolua_S, 1);
-        return 1;
+        return 0;
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "setAnimation",argc, 3);
     return 0;

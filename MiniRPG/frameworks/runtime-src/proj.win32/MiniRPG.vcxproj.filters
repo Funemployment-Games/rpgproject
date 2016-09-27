@@ -19,6 +19,7 @@
       <Filter>win32</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+<<<<<<< Updated upstream
     <ClInclude Include="SimulatorWin.h" />
     <ClInclude Include="stdafx.h">
       <Filter>win32</Filter>
@@ -77,6 +78,8 @@
     <ClInclude Include="..\Classes\SimpleDPad.h">
       <Filter>Classes</Filter>
     </ClInclude>
+=======
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -85,6 +88,7 @@
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
     </ClCompile>
+<<<<<<< Updated upstream
     <ClCompile Include="SimulatorWin.cpp" />
     <ClCompile Include="stdafx.cpp">
       <Filter>win32</Filter>
@@ -134,6 +138,8 @@
     <ClCompile Include="..\Classes\SimpleDPad.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
+=======
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

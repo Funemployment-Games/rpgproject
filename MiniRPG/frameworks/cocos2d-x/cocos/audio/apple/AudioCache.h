@@ -22,10 +22,11 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#pragma once
-
 #include "platform/CCPlatformConfig.h"
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC
+
+#ifndef __AUDIO_CACHE_H_
+#define __AUDIO_CACHE_H_
 
 #import <OpenAL/al.h>
 #import <AudioToolbox/AudioToolbox.h>
@@ -34,35 +35,10 @@
 #include <mutex>
 #include <vector>
 
-#include "platform/CCPlatformMacros.h"
+#include "CCPlatformMacros.h"
 
 #define QUEUEBUFFER_NUM 3
 #define QUEUEBUFFER_TIME_STEP 0.1
-
-#define QUOTEME_(x) #x
-#define QUOTEME(x) QUOTEME_(x)
-
-#if defined(COCOS2D_DEBUG) && COCOS2D_DEBUG > 0
-#define ALOGV(fmt, ...) printf("V/" LOG_TAG " (" QUOTEME(__LINE__) "): " fmt "\n", ##__VA_ARGS__)
-#else
-#define ALOGV(fmt, ...) do {} while(false)
-#endif
-#define ALOGD(fmt, ...) printf("D/" LOG_TAG " (" QUOTEME(__LINE__) "): " fmt "\n", ##__VA_ARGS__)
-#define ALOGI(fmt, ...) printf("I/" LOG_TAG " (" QUOTEME(__LINE__) "): " fmt "\n", ##__VA_ARGS__)
-#define ALOGW(fmt, ...) printf("W/" LOG_TAG " (" QUOTEME(__LINE__) "): " fmt "\n", ##__VA_ARGS__)
-#define ALOGE(fmt, ...) printf("E/" LOG_TAG " (" QUOTEME(__LINE__) "): " fmt "\n", ##__VA_ARGS__)
-
-#if defined(COCOS2D_DEBUG) && COCOS2D_DEBUG > 0
-#define CHECK_AL_ERROR_DEBUG() \
-do { \
-    GLenum __error = alGetError(); \
-    if (__error) { \
-        ALOGE("OpenAL error 0x%04X in %s %s %d\n", __error, __FILE__, __FUNCTION__, __LINE__); \
-    } \
-} while (false)
-#else
-#define CHECK_AL_ERROR_DEBUG() 
-#endif
 
 NS_CC_BEGIN
 namespace experimental{
@@ -70,32 +46,16 @@ namespace experimental{
 class AudioEngineImpl;
 class AudioPlayer;
 
-class AudioCache
-{
+class AudioCache{
 public:
-    
-    enum class State
-    {
-        INITIAL,
-        LOADING,
-        READY,
-        FAILED
-    };
-    
     AudioCache();
     ~AudioCache();
 
-    void addPlayCallback(const std::function<void()>& callback);
-
-    void addLoadCallback(const std::function<void(bool)>& callback);
+    void addCallbacks(const std::function<void()> &callback);
     
 protected:
-    void setSkipReadDataTask(bool isSkip) { _isSkipReadDataTask = isSkip; };
-    void readDataTask(unsigned int selfId);
-
-    void invokingPlayCallbacks();
-
-    void invokingLoadCallbacks();
+    void readDataTask();
+    void invokingCallbacks();
     
     //pcm data related stuff
     ALsizei _dataSize;
@@ -103,7 +63,7 @@ protected:
     ALsizei _sampleRate;
     float _duration;
     int _bytesPerFrame;
-    AudioStreamBasicDescription _outputFormat;
+    AudioStreamBasicDescription outputFormat;
     
     /*Cache related stuff;
      * Cache pcm data when sizeInBytes less than PCMDATA_CACHEMAXSIZE
@@ -120,21 +80,14 @@ protected:
     UInt32 _queBufferFrames;
     UInt32 _queBufferBytes;
 
-    std::mutex _playCallbackMutex;
-    std::vector< std::function<void()> > _playCallbacks;
+    bool _alBufferReady;
+    std::mutex _callbackMutex;
     
-    // loadCallbacks doesn't need mutex since it's invoked only in Cocos thread.
-    std::vector< std::function<void(bool)> > _loadCallbacks;
-    
+    std::vector< std::function<void()> > _callbacks;
     std::mutex _readDataTaskMutex;
     
-    State _state;
-    
-    std::shared_ptr<bool> _isDestroyed;
+    bool _exitReadDataTask;
     std::string _fileFullPath;
-    unsigned int _id;
-    bool _isLoadingFinished;
-    bool _isSkipReadDataTask;
     
     friend class AudioEngineImpl;
     friend class AudioPlayer;
@@ -143,5 +96,6 @@ protected:
 }
 NS_CC_END
 
+#endif // __AUDIO_CACHE_H_
 #endif
 

@@ -25,27 +25,18 @@
 #ifndef __Manifest__
 #define __Manifest__
 
+#include "extensions/ExtensionMacros.h"
+#include "extensions/ExtensionExport.h"
+#include "Downloader.h"
+
 #include <string>
 #include <unordered_map>
 #include <vector>
-
-#include "extensions/ExtensionMacros.h"
-#include "extensions/ExtensionExport.h"
-#include "network/CCDownloader.h"
-#include "platform/CCFileUtils.h"
 
 #include "json/document.h"
 
 NS_CC_EXT_BEGIN
 
-struct DownloadUnit
-{
-    std::string srcUrl;
-    std::string storagePath;
-    std::string customId;
-};
-
-typedef std::unordered_map<std::string, DownloadUnit> DownloadUnits;
 
 class CC_EX_DLL Manifest : public Ref
 {
@@ -104,10 +95,6 @@ public:
      */
     const std::string& getVersion() const;
     
-    /** @brief Get the search paths list related to the Manifest.
-     */
-    std::vector<std::string> getSearchPaths() const;
-    
 protected:
     
     /** @brief Constructor for Manifest class
@@ -143,7 +130,7 @@ protected:
     /** @brief Generate resuming download assets list
      * @param units   The download units reference to be modified by the generation result
      */
-    void genResumeAssetsList(DownloadUnits *units) const;
+    void genResumeAssetsList(Downloader::DownloadUnits *units) const;
     
     /** @brief Prepend all search paths to the FileUtils.
      */
@@ -172,9 +159,7 @@ protected:
      */
     const std::string& getGroupVersion(const std::string &group) const;
     
-    /** 
-     * @brief Gets assets.
-     * @lua NA
+    /** @brief Gets assets.
      */
     const std::unordered_map<std::string, Asset>& getAssets() const;
     

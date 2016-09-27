@@ -31,12 +31,14 @@
 #include <unordered_map>
 
 #include "base/CCRef.h"
-#include "audio/win32/AudioCache.h"
-#include "audio/win32/AudioPlayer.h"
+#include "AudioCache.h"
+#include "AudioPlayer.h"
 
 NS_CC_BEGIN
     namespace experimental{
 #define MAX_AUDIOINSTANCES 32
+
+class AudioEngineThreadPool;
 
 class CC_DLL AudioEngineImpl : public cocos2d::Ref
 {
@@ -59,12 +61,13 @@ public:
     
     void uncache(const std::string& filePath);
     void uncacheAll();
-    AudioCache* preload(const std::string& filePath, std::function<void(bool)> callback);
     
     void update(float dt);
     
 private:
     void _play2d(AudioCache *cache, int audioID);
+    
+    AudioEngineThreadPool* _threadPool;
     
     ALuint _alSources[MAX_AUDIOINSTANCES];
     

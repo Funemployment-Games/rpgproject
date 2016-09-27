@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
  
  http://www.cocos2d-x.org
@@ -25,8 +25,8 @@
 #ifndef __TestCpp__LoadingBarReader__
 #define __TestCpp__LoadingBarReader__
 
-#include "editor-support/cocostudio/WidgetReader/WidgetReader.h"
-#include "editor-support/cocostudio/CocosStudioExport.h"
+#include "cocostudio/WidgetReader/WidgetReader.h"
+#include "cocostudio/CocosStudioExport.h"
 
 namespace cocostudio
 {
@@ -39,9 +39,7 @@ namespace cocostudio
         virtual ~LoadingBarReader();
         
         static LoadingBarReader* getInstance();
-        /** @deprecated Use method destroyInstance() instead */
-        CC_DEPRECATED_ATTRIBUTE static void purge();
-        static void destroyInstance();
+        static void purge();
         
         virtual void setPropsFromJsonDictionary(cocos2d::ui::Widget* widget, const rapidjson::Value& options);
         virtual void setPropsFromBinary(cocos2d::ui::Widget* widget, CocoLoader* cocoLoader,  stExpCocoNode*	pCocoNode) ;        

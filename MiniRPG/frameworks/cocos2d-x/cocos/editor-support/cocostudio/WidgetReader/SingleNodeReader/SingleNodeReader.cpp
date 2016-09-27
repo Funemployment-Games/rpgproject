@@ -22,13 +22,13 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "editor-support/cocostudio/WidgetReader/SingleNodeReader/SingleNodeReader.h"
+#include "SingleNodeReader.h"
 
-#include "editor-support/cocostudio/CSParseBinary_generated.h"
-#include "editor-support/cocostudio/ActionTimeline/CCActionTimeline.h"
-#include "editor-support/cocostudio/WidgetReader/NodeReader/NodeReader.h"
+#include "cocostudio/CSParseBinary_generated.h"
+#include "cocostudio/ActionTimeline/CCActionTimeline.h"
+#include "cocostudio/WidgetReader/NodeReader/NodeReader.h"
 
-#include "tinyxml2.h"
+#include "tinyxml2/tinyxml2.h"
 #include "flatbuffers/flatbuffers.h"
 
 
@@ -56,18 +56,13 @@ namespace cocostudio
     {
         if (!_instanceSingleNodeReader)
         {
-            _instanceSingleNodeReader = new (std::nothrow) SingleNodeReader();
+            _instanceSingleNodeReader = new SingleNodeReader();
         }
         
         return _instanceSingleNodeReader;
     }
     
     void SingleNodeReader::purge()
-    {
-        CC_SAFE_DELETE(_instanceSingleNodeReader);
-    }
-    
-    void SingleNodeReader::destroyInstance()
     {
         CC_SAFE_DELETE(_instanceSingleNodeReader);
     }

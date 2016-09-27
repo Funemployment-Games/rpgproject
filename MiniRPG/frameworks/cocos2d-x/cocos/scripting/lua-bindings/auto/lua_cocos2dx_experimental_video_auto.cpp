@@ -1,8 +1,10 @@
-#include "scripting/lua-bindings/auto/lua_cocos2dx_experimental_video_auto.hpp"
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS) && !defined(CC_TARGET_OS_TVOS)
-#include "ui/UIVideoPlayer.h"
-#include "scripting/lua-bindings/manual/tolua_fix.h"
-#include "scripting/lua-bindings/manual/LuaBasicConversions.h"
+#include "lua_cocos2dx_experimental_video_auto.hpp"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#include "UIVideoPlayer.h"
+#include "tolua_fix.h"
+#include "LuaBasicConversions.h"
+
+
 
 int lua_cocos2dx_experimental_video_VideoPlayer_getFileName(lua_State* tolua_S)
 {
@@ -132,8 +134,7 @@ int lua_cocos2dx_experimental_video_VideoPlayer_play(lua_State* tolua_S)
             return 0;
         }
         cobj->play();
-        lua_settop(tolua_S, 1);
-        return 1;
+        return 0;
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "ccexp.VideoPlayer:play",argc, 0);
     return 0;
@@ -141,6 +142,52 @@ int lua_cocos2dx_experimental_video_VideoPlayer_play(lua_State* tolua_S)
 #if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_experimental_video_VideoPlayer_play'.",&tolua_err);
+#endif
+
+    return 0;
+}
+int lua_cocos2dx_experimental_video_VideoPlayer_pause(lua_State* tolua_S)
+{
+    int argc = 0;
+    cocos2d::experimental::ui::VideoPlayer* cobj = nullptr;
+    bool ok  = true;
+
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+
+
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertype(tolua_S,1,"ccexp.VideoPlayer",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+    cobj = (cocos2d::experimental::ui::VideoPlayer*)tolua_tousertype(tolua_S,1,0);
+
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
+    {
+        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_experimental_video_VideoPlayer_pause'", nullptr);
+        return 0;
+    }
+#endif
+
+    argc = lua_gettop(tolua_S)-1;
+    if (argc == 0) 
+    {
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_cocos2dx_experimental_video_VideoPlayer_pause'", nullptr);
+            return 0;
+        }
+        cobj->pause();
+        return 0;
+    }
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "ccexp.VideoPlayer:pause",argc, 0);
+    return 0;
+
+#if COCOS2D_DEBUG >= 1
+    tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_experimental_video_VideoPlayer_pause'.",&tolua_err);
 #endif
 
     return 0;
@@ -182,8 +229,7 @@ int lua_cocos2dx_experimental_video_VideoPlayer_setKeepAspectRatioEnabled(lua_St
             return 0;
         }
         cobj->setKeepAspectRatioEnabled(arg0);
-        lua_settop(tolua_S, 1);
-        return 1;
+        return 0;
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "ccexp.VideoPlayer:setKeepAspectRatioEnabled",argc, 1);
     return 0;
@@ -191,6 +237,52 @@ int lua_cocos2dx_experimental_video_VideoPlayer_setKeepAspectRatioEnabled(lua_St
 #if COCOS2D_DEBUG >= 1
     tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_experimental_video_VideoPlayer_setKeepAspectRatioEnabled'.",&tolua_err);
+#endif
+
+    return 0;
+}
+int lua_cocos2dx_experimental_video_VideoPlayer_resume(lua_State* tolua_S)
+{
+    int argc = 0;
+    cocos2d::experimental::ui::VideoPlayer* cobj = nullptr;
+    bool ok  = true;
+
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+
+
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertype(tolua_S,1,"ccexp.VideoPlayer",0,&tolua_err)) goto tolua_lerror;
+#endif
+
+    cobj = (cocos2d::experimental::ui::VideoPlayer*)tolua_tousertype(tolua_S,1,0);
+
+#if COCOS2D_DEBUG >= 1
+    if (!cobj) 
+    {
+        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_experimental_video_VideoPlayer_resume'", nullptr);
+        return 0;
+    }
+#endif
+
+    argc = lua_gettop(tolua_S)-1;
+    if (argc == 0) 
+    {
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_cocos2dx_experimental_video_VideoPlayer_resume'", nullptr);
+            return 0;
+        }
+        cobj->resume();
+        return 0;
+    }
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "ccexp.VideoPlayer:resume",argc, 0);
+    return 0;
+
+#if COCOS2D_DEBUG >= 1
+    tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_experimental_video_VideoPlayer_resume'.",&tolua_err);
 #endif
 
     return 0;
@@ -229,8 +321,7 @@ int lua_cocos2dx_experimental_video_VideoPlayer_stop(lua_State* tolua_S)
             return 0;
         }
         cobj->stop();
-        lua_settop(tolua_S, 1);
-        return 1;
+        return 0;
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "ccexp.VideoPlayer:stop",argc, 0);
     return 0;
@@ -279,8 +370,7 @@ int lua_cocos2dx_experimental_video_VideoPlayer_setFullScreenEnabled(lua_State* 
             return 0;
         }
         cobj->setFullScreenEnabled(arg0);
-        lua_settop(tolua_S, 1);
-        return 1;
+        return 0;
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "ccexp.VideoPlayer:setFullScreenEnabled",argc, 1);
     return 0;
@@ -329,8 +419,7 @@ int lua_cocos2dx_experimental_video_VideoPlayer_setFileName(lua_State* tolua_S)
             return 0;
         }
         cobj->setFileName(arg0);
-        lua_settop(tolua_S, 1);
-        return 1;
+        return 0;
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "ccexp.VideoPlayer:setFileName",argc, 1);
     return 0;
@@ -379,8 +468,7 @@ int lua_cocos2dx_experimental_video_VideoPlayer_setURL(lua_State* tolua_S)
             return 0;
         }
         cobj->setURL(arg0);
-        lua_settop(tolua_S, 1);
-        return 1;
+        return 0;
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "ccexp.VideoPlayer:setURL",argc, 1);
     return 0;
@@ -476,8 +564,7 @@ int lua_cocos2dx_experimental_video_VideoPlayer_onPlayEvent(lua_State* tolua_S)
             return 0;
         }
         cobj->onPlayEvent(arg0);
-        lua_settop(tolua_S, 1);
-        return 1;
+        return 0;
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "ccexp.VideoPlayer:onPlayEvent",argc, 1);
     return 0;
@@ -620,8 +707,7 @@ int lua_cocos2dx_experimental_video_VideoPlayer_seekTo(lua_State* tolua_S)
             return 0;
         }
         cobj->seekTo(arg0);
-        lua_settop(tolua_S, 1);
-        return 1;
+        return 0;
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "ccexp.VideoPlayer:seekTo",argc, 1);
     return 0;
@@ -667,43 +753,6 @@ int lua_cocos2dx_experimental_video_VideoPlayer_create(lua_State* tolua_S)
 #endif
     return 0;
 }
-int lua_cocos2dx_experimental_video_VideoPlayer_constructor(lua_State* tolua_S)
-{
-    int argc = 0;
-    cocos2d::experimental::ui::VideoPlayer* cobj = nullptr;
-    bool ok  = true;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_Error tolua_err;
-#endif
-
-
-
-    argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
-    {
-        if(!ok)
-        {
-            tolua_error(tolua_S,"invalid arguments in function 'lua_cocos2dx_experimental_video_VideoPlayer_constructor'", nullptr);
-            return 0;
-        }
-        cobj = new cocos2d::experimental::ui::VideoPlayer();
-        cobj->autorelease();
-        int ID =  (int)cobj->_ID ;
-        int* luaID =  &cobj->_luaID ;
-        toluafix_pushusertype_ccobject(tolua_S, ID, luaID, (void*)cobj,"ccexp.VideoPlayer");
-        return 1;
-    }
-    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "ccexp.VideoPlayer:VideoPlayer",argc, 0);
-    return 0;
-
-#if COCOS2D_DEBUG >= 1
-    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_experimental_video_VideoPlayer_constructor'.",&tolua_err);
-#endif
-
-    return 0;
-}
-
 static int lua_cocos2dx_experimental_video_VideoPlayer_finalize(lua_State* tolua_S)
 {
     printf("luabindings: finalizing LUA object (VideoPlayer)");
@@ -716,11 +765,12 @@ int lua_register_cocos2dx_experimental_video_VideoPlayer(lua_State* tolua_S)
     tolua_cclass(tolua_S,"VideoPlayer","ccexp.VideoPlayer","ccui.Widget",nullptr);
 
     tolua_beginmodule(tolua_S,"VideoPlayer");
-        tolua_function(tolua_S,"new",lua_cocos2dx_experimental_video_VideoPlayer_constructor);
         tolua_function(tolua_S,"getFileName",lua_cocos2dx_experimental_video_VideoPlayer_getFileName);
         tolua_function(tolua_S,"getURL",lua_cocos2dx_experimental_video_VideoPlayer_getURL);
         tolua_function(tolua_S,"play",lua_cocos2dx_experimental_video_VideoPlayer_play);
+        tolua_function(tolua_S,"pause",lua_cocos2dx_experimental_video_VideoPlayer_pause);
         tolua_function(tolua_S,"setKeepAspectRatioEnabled",lua_cocos2dx_experimental_video_VideoPlayer_setKeepAspectRatioEnabled);
+        tolua_function(tolua_S,"resume",lua_cocos2dx_experimental_video_VideoPlayer_resume);
         tolua_function(tolua_S,"stop",lua_cocos2dx_experimental_video_VideoPlayer_stop);
         tolua_function(tolua_S,"setFullScreenEnabled",lua_cocos2dx_experimental_video_VideoPlayer_setFullScreenEnabled);
         tolua_function(tolua_S,"setFileName",lua_cocos2dx_experimental_video_VideoPlayer_setFileName);

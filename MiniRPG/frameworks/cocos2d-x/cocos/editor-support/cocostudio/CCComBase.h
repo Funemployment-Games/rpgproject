@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 Copyright (c) 2013-2014 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
@@ -26,10 +26,10 @@ THE SOFTWARE.
 #define __CC_EXTENTIONS_CCCOMBASE_H__
 
 #include <string>
-#include "editor-support/cocostudio/DictionaryHelper.h"
-#include "editor-support/cocostudio/CocosStudioExport.h"
+#include "DictionaryHelper.h"
+#include "cocostudio/CocosStudioExport.h"
 #include "base/ObjectFactory.h"
-#include "editor-support/cocostudio/CocoLoader.h"
+#include "CocoLoader.h"
 
 
 #define DECLARE_CLASS_COMPONENT_INFO \
