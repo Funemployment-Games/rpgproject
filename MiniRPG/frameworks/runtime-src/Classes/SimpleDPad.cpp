@@ -55,12 +55,14 @@ void SimpleDPad::onEnterTransitionDidFinish()
     m_pKeyboardEventListener->onKeyPressed = CC_CALLBACK_2(SimpleDPad::onKeyPressed, this);
     m_pKeyboardEventListener->onKeyReleased = CC_CALLBACK_2(SimpleDPad::onKeyReleased, this);
 
+    /*
     m_pControllerEventListener = EventListenerController::create();
     m_pControllerEventListener->onConnected = CC_CALLBACK_2(SimpleDPad::onConnectController,this);
     m_pControllerEventListener->onDisconnected = CC_CALLBACK_2(SimpleDPad::onDisconnectedController,this);
     m_pControllerEventListener->onKeyDown = CC_CALLBACK_3(SimpleDPad::onKeyDown, this);
     m_pControllerEventListener->onKeyUp = CC_CALLBACK_3(SimpleDPad::onKeyUp, this);
     m_pControllerEventListener->onAxisEvent = CC_CALLBACK_3(SimpleDPad::onAxisEvent, this);
+     */
      
 #endif
     m_pEventListener->onTouchBegan = CC_CALLBACK_2(SimpleDPad::onTouchBegan, this);
@@ -72,7 +74,7 @@ void SimpleDPad::onEnterTransitionDidFinish()
     dispatcher->addEventListenerWithSceneGraphPriority(m_pEventListener, this);
 #if CC_TARGET_PLATFORM == CC_PLATFORM_MAC
     dispatcher->addEventListenerWithSceneGraphPriority(m_pKeyboardEventListener, this);
-    dispatcher->addEventListenerWithSceneGraphPriority(m_pControllerEventListener, this);
+    //dispatcher->addEventListenerWithSceneGraphPriority(m_pControllerEventListener, this);
      
 #endif
     
@@ -82,7 +84,7 @@ void SimpleDPad::onEnterTransitionDidFinish()
     m_pEventListener->retain();
 #if CC_TARGET_PLATFORM == CC_PLATFORM_MAC
     m_pKeyboardEventListener->retain();
-    m_pControllerEventListener->retain();
+    //m_pControllerEventListener->retain();
 #endif
 }
 

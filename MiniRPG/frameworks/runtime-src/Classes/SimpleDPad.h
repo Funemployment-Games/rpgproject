@@ -12,7 +12,7 @@
 #include "cocos2d.h"
 #include "HeroSprite.h"
 #if CC_TARGET_PLATFORM == CC_PLATFORM_MAC
-#include "base/ControllerDesktop.h"
+#include "platform/desktop/CCController-desktop.h"
 #endif
 
 USING_NS_CC;
@@ -49,7 +49,7 @@ public:
     //Controller
     virtual void onKeyDown(cocos2d::Controller* controller, int keycode, Event* event);
     virtual void onKeyUp(cocos2d::Controller* controller, int keycode, Event* event);
-    virtual void onButtonEvent(int keyCode, bool isPressed, float value, bool isAnalog);
+    //virtual void onButtonEvent(int keyCode, bool isPressed, float value, bool isAnalog);
     virtual void onAxisEvent(cocos2d::Controller* controller, int keyCode, cocos2d::Event* event);
     virtual void onConnectController(cocos2d::Controller* controller, Event* event);
     virtual void onDisconnectedController(Controller* controller, Event* event);

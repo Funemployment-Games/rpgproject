@@ -25,7 +25,7 @@
 
 #include "base/CCController.h"
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventController.h"
@@ -97,6 +97,7 @@ void Controller::onButtonEvent(int keyCode, bool isPressed, float value, bool is
     _allKeyStatus[keyCode].isAnalog = isAnalog;
 
     _keyEvent->setKeyCode(keyCode);
+    _keyEvent->startPropagation();
     _eventDispatcher->dispatchEvent(_keyEvent);
 }
 
@@ -107,6 +108,7 @@ void Controller::onAxisEvent(int axisCode, float value, bool isAnalog)
     _allKeyStatus[axisCode].isAnalog = isAnalog;
 
     _axisEvent->setKeyCode(axisCode);
+    _axisEvent->startPropagation();
     _eventDispatcher->dispatchEvent(_axisEvent);
 }
 
