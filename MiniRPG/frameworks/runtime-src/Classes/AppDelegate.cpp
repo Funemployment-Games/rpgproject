@@ -15,7 +15,7 @@
 #include "runtime/Runtime.h"
 #include "ide-support/RuntimeLuaImpl.h"
 #endif
-#include "lua_module_register.h"
+#include "scripting/lua-bindings/manual/lua_module_register.h"
 
 using namespace CocosDenshion;
 

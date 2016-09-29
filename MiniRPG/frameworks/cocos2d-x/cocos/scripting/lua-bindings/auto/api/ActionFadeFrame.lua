@@ -13,7 +13,7 @@
         
 --------------------------------
 -- Gets the ActionInterval of ActionFrame.<br>
--- parame duration   the duration time of ActionFrame<br>
+-- param duration   the duration time of ActionFrame<br>
 -- return ActionInterval
 -- @function [parent=#ActionFadeFrame] getAction 
 -- @param self
@@ -26,10 +26,12 @@
 -- @function [parent=#ActionFadeFrame] setOpacity 
 -- @param self
 -- @param #int opacity
+-- @return ActionFadeFrame#ActionFadeFrame self (return value: ccs.ActionFadeFrame)
         
 --------------------------------
 -- Default constructor
 -- @function [parent=#ActionFadeFrame] ActionFadeFrame 
 -- @param self
+-- @return ActionFadeFrame#ActionFadeFrame self (return value: ccs.ActionFadeFrame)
         
 return nil

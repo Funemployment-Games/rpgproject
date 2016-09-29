@@ -88,8 +88,6 @@ extern "C" {
  #include <windows.h>
 #elif defined(GLFW_EXPOSE_NATIVE_COCOA)
 // #include <ApplicationServices/ApplicationServices.h>
-typedef uint32_t CGDirectDisplayID;
-
  #if defined(__OBJC__)
   #import <Cocoa/Cocoa.h>
  #else
@@ -197,7 +195,7 @@ GLFWAPI HGLRC glfwGetWGLContext(GLFWwindow* window);
  *
  *  @ingroup native
  */
-GLFWAPI CGDirectDisplayID glfwGetCocoaMonitor(GLFWmonitor* monitor);
+//GLFWAPI CGDirectDisplayID glfwGetCocoaMonitor(GLFWmonitor* monitor);
 
 /*! @brief Returns the `NSWindow` of the specified window.
  *

@@ -1,16 +1,38 @@
 
 cc.FileUtils:getInstance():setPopupNotify(false)
-cc.FileUtils:getInstance():addSearchPath("src/")
 cc.FileUtils:getInstance():addSearchPath("res/")
+cc.FileUtils:getInstance():addSearchPath("src/")
 
-require "config"
+print = release_print
+
 require "cocos.init"
 
-local function main()
-    require("app.MyApp"):create():run()
+-- cc.DEBUG = cc.DEBUG_INFO
+cc.DEBUG = cc.DEBUG_VERBOSE
+cc.DEBUG_DISABLE_DUMP_TRACEBACK = true
+
+local function _cleanmem()
+    for i = 1, 6 do
+        collectgarbage()
+    end
+
+    cc.printinfo("[MEM] used: %d KB", math.ceil(collectgarbage("count")))
 end
 
-local status, msg = xpcall(main, __G__TRACKBACK__)
-if not status then
-    print(msg)
+local function main()
+    local director = cc.Director:getInstance()
+    director:setDisplayStats(true)
+
+    _cleanmem()
+
+    local creator = require "creator.init"
+    local assets = creator.getAssets()
+
+    local url = assets:getLaunchSceneUrl()
+    local scene = assets:createScene(url)
+    scene:run()
+
+    _cleanmem()
 end
+
+xpcall(main, __G__TRACKBACK__)

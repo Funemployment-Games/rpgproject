@@ -117,16 +117,16 @@ bool GameLayer::loadSavedData()
     {
         
         int index = 0;
-        //for (rapidjson::Value::ConstMemberIterator itr = questFlagsJSON.MemberBegin();
-        //     itr != questFlagsJSON.MemberEnd();
-        //     ++itr)
-        //{
+        for (rapidjson::Value::ConstMemberIterator itr = questFlagsJSON.MemberBegin();
+             itr != questFlagsJSON.MemberEnd();
+             ++itr)
+        {
             //printf("member is %s %s\n", itr->name.GetString(), vQuestFlags[index] ? "true" : "false");
 
-            //lua_pushboolean(m_pLuaState, vQuestFlags[index]);
-            //lua_setfield(m_pLuaState, -2, itr->name.GetString());
-            //++index;
-        //}
+            lua_pushboolean(m_pLuaState, vQuestFlags[index]);
+            lua_setfield(m_pLuaState, -2, itr->name.GetString());
+            ++index;
+        }
     }
     lua_setglobal(m_pLuaState,"gQuestFlagsLUT");
     

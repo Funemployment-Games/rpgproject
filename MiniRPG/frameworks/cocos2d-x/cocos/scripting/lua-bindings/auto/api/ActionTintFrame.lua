@@ -13,7 +13,7 @@
         
 --------------------------------
 -- Gets the ActionInterval of ActionFrame.<br>
--- parame duration   the duration time of ActionFrame<br>
+-- param duration   the duration time of ActionFrame<br>
 -- return ActionInterval
 -- @function [parent=#ActionTintFrame] getAction 
 -- @param self
@@ -26,10 +26,12 @@
 -- @function [parent=#ActionTintFrame] setColor 
 -- @param self
 -- @param #color3b_table ccolor
+-- @return ActionTintFrame#ActionTintFrame self (return value: ccs.ActionTintFrame)
         
 --------------------------------
 -- Default constructor
 -- @function [parent=#ActionTintFrame] ActionTintFrame 
 -- @param self
+-- @return ActionTintFrame#ActionTintFrame self (return value: ccs.ActionTintFrame)
         
 return nil

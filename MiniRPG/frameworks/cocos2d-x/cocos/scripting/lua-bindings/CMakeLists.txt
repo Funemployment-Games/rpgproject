@@ -1,9 +1,5 @@
 set(cocos_root ${Cocos2d-X_SOURCE_DIR})
 
-if(WINDOWS)
-  add_definitions(-DLUASOCKET_INET_ATON -DLUASOCKET_INET_PTON)
-endif()
-
 include_directories(
   ${cocos_root}/external/lua/tolua
   ${cocos_root}/external/lua/lua
@@ -11,22 +7,7 @@ include_directories(
   ${cocos_root}/external/xxtea
   ${cocos_root}/external
   ${cocos_root}/cocos
-  ${cocos_root}/cocos/ui
-  ${cocos_root}/cocos/2d
-  ${cocos_root}/cocos/3d
-  ${cocos_root}/cocos/editor-support/spine
-  ${cocos_root}/cocos/editor-support/cocostudio
-  ${cocos_root}/cocos/editor-support/cocostudio/ActionTimeline
-  ${cocos_root}/cocos/editor-support/cocosbuilder
   ${cocos_root}/cocos/editor-support
-  ${cocos_root}/cocos/platform
-  ${cocos_root}/cocos/audio/include
-  manual
-  manual/extension
-  manual/cocostudio
-  manual/ui
-  manual/cocos2d
-  auto
 )
 
 file(GLOB lua_cocos2d_source_files
@@ -52,6 +33,10 @@ list(APPEND lua_cocos2d_source_files
 	)
 
 if(WINDOWS)
+    if(MINGW)
+        add_definitions(-DLUASOCKET_INET_ATON -DLUASOCKET_INET_PTON)
+    endif()
+    add_definitions(-DWIN32 -D_WINDOWS)
     list(APPEND lua_cocos2d_source_files
         ${cocos_root}/external/lua/luasocket/wsocket.c
         )
@@ -79,7 +64,9 @@ set(lua_bindings_manual_files
     manual/CCLuaValue.cpp
     manual/Cocos2dxLuaLoader.cpp
     manual/LuaBasicConversions.cpp
+    manual/lua_module_register.cpp
     manual/tolua_fix.cpp
+    manual/CCComponentLua.cpp
     manual/cocos2d/LuaOpengl.cpp
     manual/cocos2d/LuaScriptHandlerMgr.cpp
     manual/cocos2d/lua_cocos2dx_deprecated.cpp
@@ -93,6 +80,7 @@ set(lua_bindings_manual_files
     manual/cocosdenshion/lua_cocos2dx_cocosdenshion_manual.cpp
     manual/cocostudio/CustomGUIReader.cpp
     manual/cocostudio/lua_cocos2dx_coco_studio_manual.cpp
+    manual/cocostudio/lua-cocos-studio-conversions.cpp
     manual/cocostudio/lua_cocos2dx_csloader_manual.cpp
     manual/controller/lua_cocos2dx_controller_manual.cpp
     manual/extension/lua_cocos2dx_extension_manual.cpp
@@ -106,6 +94,9 @@ set(lua_bindings_manual_files
     manual/ui/lua_cocos2dx_ui_manual.cpp
     manual/video/lua_cocos2dx_experimental_video_manual.cpp
     manual/audioengine/lua_cocos2dx_audioengine_manual.cpp
+    manual/physics3d/lua_cocos2dx_physics3d_manual.cpp
+    manual/navmesh/lua_cocos2dx_navmesh_conversions.cpp
+    manual/navmesh/lua_cocos2dx_navmesh_manual.cpp
     )
 
 set(lua_bindings_auto_files
@@ -123,10 +114,12 @@ set(lua_bindings_auto_files
     auto/lua_cocos2dx_csloader_auto.cpp
     auto/lua_cocos2dx_ui_auto.cpp
     auto/lua_cocos2dx_audioengine_auto.cpp
+    auto/lua_cocos2dx_physics3d_auto.cpp
+    auto/lua_cocos2dx_navmesh_auto.cpp
     )
 
 if(MACOSX)
-    set(lua_bindings_manual_files 
+    set(lua_bindings_manual_files
         ${lua_bindings_manual_files}
         manual/platform/ios/CCLuaObjcBridge.mm
         )
