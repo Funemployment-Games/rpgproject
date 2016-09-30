@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="5">
  <tileset firstgid="1" source="castle_upper_tile_sheet.tsx"/>
  <tileset firstgid="53" source="meta_tiles.tsx"/>
  <layer name="floor" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt1rkOwjAQRVGDIIIEiX1HIgU7Yef/v42HZCQzREloPClecZqJi6uJC1eNMVUiIiqsDoHVcAQ586anvhAiq+KIcuahx74l1GAF6wwbey5W6tvBHg5wdLhzzb4TnOEi+ty5Zt9WdEkJ+zL7rnCDu+h62PlTue9D7jER3zX6YiurL3awj33s0+9rm++31FsHutCDPgxSzgw97q8ljGBs9zSBacoZrf9bVBn6ZiXom5vfu1XEwlOfvFf/8NFHRERUZi+4OyeT
+   eJzt1rkOwjAQRVETQQQJ+75JuGAn7Pz/t/EQjmSGyAkUtospTjNxcTVx4UAIETDGGCusAqFS1YQ585qlvghipaSJc+aRxb4FlGEJK4O1Oicd9W1hB3s4aPS5y74jnOBM+vS5y74N6aIS7jP2XeAKN9J1V/OH474U3WNCvrvok4qpT2q477++hud9Tc/7Utz31hKfb6mXNnSgCz3oZ5wZWNxfnRjCSO1pDJOMM67+b1E+9E096JuJ77tVxNxSH71Xv7DRxxhjjPnsCezFJ24=
   </data>
  </layer>
  <objectgroup name="start">
-  <object name="HeroStart" x="384" y="192" width="16" height="16"/>
+  <object id="1" name="HeroStart" x="384" y="192" width="16" height="16"/>
  </objectgroup>
  <objectgroup name="exits">
-  <object name="exit" x="336" y="416" width="16" height="16">
+  <object id="2" name="exit" x="336" y="416" width="16" height="16">
    <properties>
     <property name="destination" value="agc-town"/>
     <property name="startx" value="14"/>
@@ -21,29 +21,29 @@
  </objectgroup>
  <layer name="meta" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt1sEJACAQA0Gbsv/WLEEkEO8xCz6PXfCTtQAAL+zgtfqady2PvsyjL/Poyzz6Mo++zKMv8zT7btvp976a3te8a3l+/++kfT+5DwCAyRxvoRTq
+   eJztlsEJADEMw7JUoftP1hFKY3BMkaBPI3H3SRUAALywhOfqc+5cHvo0D32ahz7NQ5/moa/n2c1dl9++n7rreG630/R9ld7n3Lk80/836b5P7gMAAEjmABUOFSI=
   </data>
  </layer>
  <objectgroup name="npc">
-  <object name="kingspawn" type="npcspawn" x="288" y="192" width="16" height="16">
+  <object id="3" name="kingspawn" type="npcspawn" x="288" y="192" width="16" height="16">
    <properties>
     <property name="basesprite" value="king"/>
     <property name="dialogueId" value="King2"/>
-    <property name="dialogueYesId" value="KingYes"/>
     <property name="dialogueNoId" value="KingNo"/>
-    <property name="npcname" value="The King"/>
+    <property name="dialogueYesId" value="KingYes"/>
     <property name="npcType" value="king"/>
+    <property name="npcname" value="The King"/>
    </properties>
   </object>
-  <object name="wisemanspawn" type="npcspawn" x="336" y="304" width="16" height="16">
-    <properties>
-      <property name="basesprite" value="wise_man"/>
-      <property name="dialogueId" value="WiseMan2"/>
-      <property name="dialogueYesId" value="WiseMan"/>
-      <property name="dialogueNoId" value="WiseManNo"/>
-      <property name="npcname" value="Wise Man"/>
-      <property name="npcType" value="normal"/>
-    </properties>
+  <object id="4" name="wisemanspawn" type="npcspawn" x="336" y="304" width="16" height="16">
+   <properties>
+    <property name="basesprite" value="wise_man"/>
+    <property name="dialogueId" value="WiseMan2"/>
+    <property name="dialogueNoId" value="WiseManNo"/>
+    <property name="dialogueYesId" value="WiseMan"/>
+    <property name="npcType" value="normal"/>
+    <property name="npcname" value="Wise Man"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

@@ -430,15 +430,11 @@ void GameLayer::setPlayerPosition(Vec2 position)
         }
     }
     
-    /*
-    if (m_pTreasureLayer)
-    {
-        if (scanTreasureLayer(tileCoord))
-        {
-            return;
-        }
-    }
-     */
+	if (scanTreasureLayer(tileCoord))
+	{
+		m_pHero->idle();
+		return;
+	}
     
     //m_pHero->setPosition(position);
     m_pHero->walkOneTileInCurrentDirection();
@@ -456,14 +452,20 @@ bool GameLayer::scanMetaLayer(Vec2 tileCoord)
         if (tileValue.getType() != Value::Type::NONE)
         {
             ValueMap properties = tileValue.asValueMap();
+
             if (properties.size() > 0)
             {
-                const std::string collision = properties.at("collidable").asString();
-                //printf("%s at %f, %f\n",collision.c_str(), tileCoord.x, tileCoord.y);
-                if (collision.compare("true") == 0)
-                {
-                    return true;
-                }
+				ValueMap::const_iterator got = properties.find("wall");
+
+				if (got != properties.end())
+				{
+					const std::string collision = properties.at("wall").asString();
+					//printf("%s at %f, %f\n",collision.c_str(), tileCoord.x, tileCoord.y);
+					if (collision.compare("true") == 0)
+					{
+						return true;
+					}
+				}
             }
         }
     }
@@ -502,7 +504,53 @@ bool GameLayer::scanNPCLayer(Vec2 tileCoord)
 
 bool GameLayer::scanTreasureLayer(Vec2 tileCoord)
 {
-    return false;
+	int tileGid = m_pMetaLayer->getTileGIDAt(tileCoord);
+
+	if (tileGid)
+	{
+		Value tileValue = m_pTileMap->getPropertiesForGID(tileGid);
+		if (tileValue.getType() != Value::Type::NONE)
+		{
+			ValueMap properties = tileValue.asValueMap();
+
+			if (properties.size() > 0)
+			{
+				ValueMap::const_iterator got = properties.find("container");
+
+				if (got != properties.end())
+				{
+					const std::string container = properties.at("container").asString();
+					//printf("%s at %f, %f\n",container.c_str(), tileCoord.x, tileCoord.y);
+					if (container.compare("true") == 0)
+					{
+						if (!m_pHudLayer->getContextButtonVisibility(kContextMenuButton_Search))
+						{
+							//printf("Collided with: %s\n", collidedSprite->getCharacterName().c_str());
+							m_pHudLayer->setContextButtonVisibility(kContextMenuButton_Search, true);
+							m_pHudLayer->setContextButtonVisibility(kContextMenuButton_Menu, false);
+						}
+
+						return true;
+					}
+					else
+					{
+						if (m_pHudLayer->getContextButtonVisibility(kContextMenuButton_Search))
+						{
+							m_pHudLayer->setContextButtonVisibility(kContextMenuButton_Search, false);
+						}
+
+						if (!m_pHudLayer->getContextButtonVisibility(kContextMenuButton_Menu))
+						{
+							m_pHudLayer->setContextButtonVisibility(kContextMenuButton_Menu, true);
+						}
+					}
+
+				}
+			}
+		}
+	}
+
+	return false;
 }
 
 Vec2 GameLayer::wrapWoldMap(Vec2 tileCoord, Vec2 worldPosition)

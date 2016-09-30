@@ -46,9 +46,9 @@ void HudLayer::CreateContextMenuButtons()
 {
     Point buttonPositions [kContextMenuButton_Max] =
     {
-        Point(64,-160),
-        Point(64,-160),
-        Point(64,-160),
+        Point(64,64),
+        Point(64,64),
+        Point(64,64),
     };
     
     const char* buttonUpImages [kContextMenuButton_Max] =

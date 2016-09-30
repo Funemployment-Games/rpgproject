@@ -104,8 +104,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     director->setAnimationInterval(1.0f / 60.0f);
     
     // create a scene. it's an autorelease object
-    auto scene = CombatScene::createScene();
-    //auto scene = GameScene::createScene();
+    //auto scene = CombatScene::createScene();
+    auto scene = GameScene::createScene();
     //auto scene = MenuStatusScene::createScene();
     
     // run
