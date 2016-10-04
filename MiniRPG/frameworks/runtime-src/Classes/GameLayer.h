@@ -88,6 +88,7 @@ private:
     bool loadSavedData();
     void initTheHeros();
     void initTheNPCs(std::string mapName);
+	void initTheTreasure(std::string mapName);
     NPCType convertStringToNPCType(std::string typeString);
     void setViewpointCenter(Vec2 position);
     void setPlayerPosition(Vec2 position);
@@ -103,6 +104,7 @@ private:
     TMXTiledMap* m_pTileMap;
     TMXLayer* m_pMetaLayer;
     TMXObjectGroup* m_pNPCSpawnGroup;
+	TMXObjectGroup* m_pTreasureGroup;
     TMXObjectGroup* m_pExitGroup;
     std::string m_strCurrentMapName;
     std::string m_strCurrentTalkingNPC;

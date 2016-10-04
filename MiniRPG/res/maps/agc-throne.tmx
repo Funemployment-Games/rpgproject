@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="5">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="6">
  <tileset firstgid="1" source="castle_upper_tile_sheet.tsx"/>
  <tileset firstgid="53" source="meta_tiles.tsx"/>
  <layer name="floor" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eJzt1rkOwjAQRVETQQQJ+75JuGAn7Pz/t/EQjmSGyAkUtospTjNxcTVx4UAIETDGGCusAqFS1YQ585qlvghipaSJc+aRxb4FlGEJK4O1Oicd9W1hB3s4aPS5y74jnOBM+vS5y74N6aIS7jP2XeAKN9J1V/OH474U3WNCvrvok4qpT2q477++hud9Tc/7Utz31hKfb6mXNnSgCz3oZ5wZWNxfnRjCSO1pDJOMM67+b1E+9E096JuJ77tVxNxSH71Xv7DRxxhjjPnsCezFJ24=
+  </data>
+ </layer>
+ <layer name="foreground" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztzjERADAIBDAMUA31r7ISuE4/kChIFQAAwJ+bDgw6HRicdAAAABZ47eYAPA==
   </data>
  </layer>
  <objectgroup name="start">
@@ -21,7 +26,7 @@
  </objectgroup>
  <layer name="meta" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztlsEJADEMw7JUoftP1hFKY3BMkaBPI3H3SRUAALywhOfqc+5cHvo0D32ahz7NQ5/moa/n2c1dl9++n7rreG630/R9ld7n3Lk80/836b5P7gMAAEjmABUOFSI=
+   eJzt1sEJACAQA0Gbsv/WLEEkEO8xCz6PXfCTtQAAL+zgtfqady2PvsyjL/Poyzz6Mo++zKMv8zT7btvp976a3te8a3l+/++kfT+5DwCAyRxvoRTq
   </data>
  </layer>
  <objectgroup name="npc">
@@ -43,6 +48,13 @@
     <property name="dialogueYesId" value="WiseMan"/>
     <property name="npcType" value="normal"/>
     <property name="npcname" value="Wise Man"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="treasure">
+  <object id="5" name="treasure1" x="417" y="336" width="16" height="16">
+   <properties>
+    <property name="itemId" value="item_0001"/>
    </properties>
   </object>
  </objectgroup>

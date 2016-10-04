@@ -201,6 +201,13 @@ void GameLayer::loadMapNamed(std::string mapName)
         initTheNPCs(mapName);
     }
     
+	m_pTreasureGroup = m_pTileMap->getObjectGroup("treasure");
+	if (m_pTreasureGroup)
+	{
+		initTheTreasure(mapName);
+	}
+
+
     std::string mapScript = "res/lua/" + mapName + ".lua";
     m_pLuaEngine->executeScriptFile(mapScript.c_str());
     
@@ -271,6 +278,10 @@ void GameLayer::initTheNPCs(std::string mapName)
         
         m_pNPCManager->addNPC(npcSprite);
     }
+}
+
+void GameLayer::initTheTreasure(std::string mapName)
+{
 }
 
 NPCType GameLayer::convertStringToNPCType(std::string typeString)
@@ -544,7 +555,6 @@ bool GameLayer::scanTreasureLayer(Vec2 tileCoord)
 							m_pHudLayer->setContextButtonVisibility(kContextMenuButton_Menu, true);
 						}
 					}
-
 				}
 			}
 		}
